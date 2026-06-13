@@ -25,15 +25,18 @@ An **adaptive-k controller** adjusts the skip factor dynamically based on per-wi
 
 ## Key Results
 
-| Benchmark | Best architecture | Best MAE | FEM saving |
-|---|---|---:|---:|
-| 2D Canonical (3 domains) | Bayesian/TPE | < 5°C | up to 65% (adaptive: 83–85%) |
-| 3D Canonical (4 domains) | Bayesian/TPE | < 14°C | up to 80% |
-| Thermal Fin (3D) | Bayesian/TPE + Fourier | < 13°C | up to 80% |
+Two separate 2D studies were conducted, followed by 3D and Thermal Fin benchmarks.
+
+| Study | Domains | Best architecture | Best MAE | FEM saving |
+|---|---|---|---:|---:|
+| 2D Adaptive-k (NAS transfer comparison) | 4 domains: Square, Circle, L-Shape, Flower | Bayesian/TPE | < 2.5°C | 83–85% |
+| 2D Canonical fixed-k sweep | 3 domains: Rectangle, Circle, L-Shape | Bayesian/TPE | < 5°C | up to 80% |
+| 3D Canonical fixed-k sweep | 4 domains: Cylinder, L-Shape, Rectangular, Stacked | Bayesian/TPE | < 14°C | up to 80% |
+| Thermal Fin (3D) | 1 domain (3D fin geometry) | Bayesian/TPE + Fourier | < 13°C | up to 80% |
 
 - PINN-only (no FEM anchoring) fails on all complex geometries — errors reach 60–217°C
 - FEM anchoring is a structural requirement, not an optional component
-- Bayesian/TPE achieves the lowest error in 7 of 8 benchmarks
+- Bayesian/TPE achieves the lowest error across nearly all benchmarks
 
 ## Repository Structure
 
