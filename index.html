@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NAS-PINN | FEM-Anchored Thermal Simulation</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1a2f4e;
+      --blue:   #2563eb;
+      --light:  #f0f4f9;
+      --border: #dde3ed;
+      --text:   #1c2333;
+      --muted:  #5a6478;
+      --white:  #ffffff;
+      --accent: #e8f0fe;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.75;
+      font-size: 17px;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    header {
+      background: var(--navy);
+      color: #fff;
+      text-align: center;
+      padding: 64px 24px 48px;
+    }
+    header .label {
+      font-family: system-ui, sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #93b4d8;
+      margin-bottom: 16px;
+    }
+    header h1 {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: normal;
+      max-width: 820px;
+      margin: 0 auto 12px;
+      line-height: 1.35;
+    }
+    header .subtitle {
+      font-size: 16px;
+      color: #b0c8e0;
+      max-width: 680px;
+      margin: 0 auto 28px;
+      font-style: italic;
+    }
+    header .meta {
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+      color: #93b4d8;
+      margin-bottom: 28px;
+    }
+    .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-outline { border: 1px solid #4a7cba; color: #c8dff5; }
+    .btn:hover { opacity: 0.88; }
+
+    /* ── LAYOUT ────────────────────────────────────────── */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+    section { padding: 56px 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    h2 {
+      font-size: 22px;
+      font-weight: normal;
+      color: var(--navy);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--blue);
+      display: inline-block;
+    }
+    h3 {
+      font-family: system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 28px 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    p { margin-bottom: 16px; }
+
+    /* ── ABSTRACT BOX ───────────────────────────────────── */
+    .abstract-box {
+      background: var(--accent);
+      border-left: 4px solid var(--blue);
+      padding: 24px 28px;
+      border-radius: 0 8px 8px 0;
+      font-size: 16px;
+      margin-top: 8px;
+    }
+
+    /* ── METHOD CARDS ───────────────────────────────────── */
+    .card-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .card {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .card-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .card h4 {
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ── K-FACTOR BAR ───────────────────────────────────── */
+    .k-bar {
+      display: flex;
+      gap: 8px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    .k-item {
+      flex: 1;
+      min-width: 80px;
+      text-align: center;
+      padding: 12px 8px;
+      border-radius: 6px;
+      background: var(--light);
+      border: 1px solid var(--border);
+    }
+    .k-item .k-label {
+      font-family: system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--navy);
+    }
+    .k-item .k-saving {
+      font-family: system-ui, sans-serif;
+      font-size: 12px;
+      color: var(--blue);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .k-item .k-desc {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .k-item.best {
+      background: var(--accent);
+      border-color: var(--blue);
+    }
+
+    /* ── FIGURES ────────────────────────────────────────── */
+    .figure {
+      margin: 28px 0;
+      text-align: center;
+    }
+    .figure img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+    .figure figcaption {
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 10px;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+
+    /* ── STUDY SECTIONS ─────────────────────────────────── */
+    .study-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .study-badge {
+      font-family: system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: var(--navy);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      margin-top: 4px;
+    }
+
+    /* ── RESULT TABLE ───────────────────────────────────── */
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+      margin-top: 12px;
+    }
+    .result-table th {
+      background: var(--navy);
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .result-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .result-table tr:nth-child(even) td { background: var(--light); }
+    .result-table .pass {
+      color: #166534;
+      font-weight: 600;
+    }
+    .result-table .group-label td {
+      background: var(--accent);
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 7px 14px;
+    }
+
+    /* ── FINDINGS ───────────────────────────────────────── */
+    .findings {
+      list-style: none;
+      padding: 0;
+      margin-top: 16px;
+    }
+    .findings li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 16px;
+    }
+    .findings li:last-child { border-bottom: none; }
+    .findings .check {
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── ARCH TABLE ─────────────────────────────────────── */
+    .arch-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .arch-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      background: var(--white);
+    }
+    .arch-card .arch-name {
+      font-family: system-ui, sans-serif;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+    .arch-card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ── REFERENCES ─────────────────────────────────────── */
+    .ref-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 8px;
+    }
+    .ref-list li {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+    }
+    .ref-list li:last-child { border-bottom: none; }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: #93b4d8;
+      text-align: center;
+      padding: 28px 24px;
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 40px 16px 36px; }
+      .k-bar { gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════ HERO ══════════════════════════════════ -->
+<header>
+  <div class="label">Master's Thesis &nbsp;·&nbsp; University of Agder &nbsp;·&nbsp; 2026</div>
+  <h1>Neural Architecture Search Guided Physics-Informed Neural Networks for FEM-Anchored Transient Heat Transfer Simulation</h1>
+  <div class="subtitle">Step Optimization in Thermal Simulation Using Selective Finite Element Method Step Skipping</div>
+  <div class="meta">Ömer Cetinkaya &nbsp;|&nbsp; Supervisor: Prof. Turgay Celik</div>
+  <div class="btn-row">
+    <a class="btn btn-primary" href="https://github.com/Omer8693/thermal_pinn">GitHub Repository</a>
+    <a class="btn btn-outline" href="https://doi.org/10.1016/j.jcp.2023.112603">Reference Paper (Wang &amp; Zhong, 2024)</a>
+  </div>
+</header>
+
+<!-- ══════════════════════════════ ABSTRACT ══════════════════════════════════ -->
+<div class="container">
+<section>
+  <h2>Abstract</h2>
+  <div class="abstract-box">
+    Water quenching of A356 aluminium castings produces rapidly changing, non-uniform temperature fields that drive residual stress and shape distortion. Finite Element Method (FEM) simulation is accurate but computationally expensive — making repeated design iterations impractical.
+    <br><br>
+    This thesis extends the NAS-PINN framework of Wang &amp; Zhong (2024) to <em>transient</em> heat transfer by introducing a <strong>Multi-Step Window Prediction (MSWP)</strong> strategy: the simulation is divided into short time windows, and a Physics-Informed Neural Network (PINN) predicts the temperature field within each window, periodically re-anchored by a FEM solve. A <em>skip factor k</em> controls the trade-off between accuracy and FEM cost. Three architectures found via Neural Architecture Search (NAS) are evaluated across ten benchmark geometries in 2D, 3D, and a 3D Thermal Fin, achieving up to 85% reduction in FEM solver calls while maintaining a mean absolute error below 15°C.
+  </div>
+</section>
+
+<!-- ══════════════════════════════ METHOD ════════════════════════════════════ -->
+<section>
+  <h2>Method</h2>
+
+  <figure class="figure">
+    <img src="results/domain_figures/fig6_naspinn_process.png" alt="MSWP Framework Diagram" />
+    <figcaption>
+      <strong>Figure 1.</strong> The Multi-Step Window Prediction (MSWP) framework. The 30-second quench is divided into prediction windows. At the start of each window, FEM provides a fixed temperature anchor. The PINN predicts the field over the remaining steps. The skip factor <em>k</em> determines how many consecutive windows are predicted before a new FEM solve is required.
+    </figcaption>
+  </figure>
+
+  <h3>Skip Factor k</h3>
+  <p>The skip factor <em>k</em> is the central control parameter. It sets how many FEM solver calls are replaced by PINN predictions in each group of windows.</p>
+
+  <div class="k-bar">
+    <div class="k-item">
+      <div class="k-label">k = 1</div>
+      <div class="k-saving">0% saving</div>
+      <div class="k-desc">FEM every step — baseline</div>
+    </div>
+    <div class="k-item">
+      <div class="k-label">k = 2</div>
+      <div class="k-saving">50% saving</div>
+      <div class="k-desc">Every other step predicted</div>
+    </div>
+    <div class="k-item">
+      <div class="k-label">k = 3</div>
+      <div class="k-saving">65% saving</div>
+      <div class="k-desc">Two of three steps predicted</div>
+    </div>
+    <div class="k-item">
+      <div class="k-label">k = 4</div>
+      <div class="k-saving">75% saving</div>
+      <div class="k-desc">Three of four predicted</div>
+    </div>
+    <div class="k-item best">
+      <div class="k-label">k = 5</div>
+      <div class="k-saving">80% saving</div>
+      <div class="k-desc">Four of five predicted</div>
+    </div>
+  </div>
+
+  <p>An <strong>adaptive-k controller</strong> removes the need to choose k manually. After each window, the controller compares the PINN prediction error to two thresholds: if error is low it promotes k (skip more FEM calls); if error is high it demotes k (call FEM more often). This allows the system to respond to the physics automatically — skipping more during the slow relaxation phase and anchoring more frequently during the steep early transient.</p>
+
+  <h3>NAS-Selected Architectures</h3>
+  <div class="arch-row">
+    <div class="arch-card">
+      <div class="arch-name">Bayesian / TPE</div>
+      <p>5 hidden layers × 151 neurons, ReLU activation, Fourier embedding. Largest capacity (~93K parameters). Best on irregular geometries.</p>
+    </div>
+    <div class="arch-card">
+      <div class="arch-name">NSGA-II</div>
+      <p>3 hidden layers × 153 neurons, tanh activation. Compact, competitive on smooth geometries.</p>
+    </div>
+    <div class="arch-card">
+      <div class="arch-name">NSGA-III</div>
+      <p>3 hidden layers × 75 neurons, tanh activation. Smallest footprint. Performs similarly to NSGA-II on simple domains.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ STUDY 1: 2D ADAPTIVE ══════════════════════════ -->
+<section>
+  <div class="study-header">
+    <div class="study-badge">Study 1</div>
+    <h2 style="border:none; padding:0; margin:0;">2D Adaptive-k &amp; NAS Transfer Comparison</h2>
+  </div>
+
+  <p>
+    Four 2D benchmark domains — <strong>Square, Circle, L-Shape, Flower</strong> — were used to evaluate the adaptive-k controller and to compare the NAS Transfer architecture from Wang &amp; Zhong (2024) against the three architectures found in this work. The NAS Transfer architecture (<em>[90, 70, 30, 110]</em>) was taken directly from the reference paper without retraining.
+  </p>
+  <p>
+    On smooth, regular geometries (Square, Circle) all four architectures produce nearly identical results. On the L-Shape and Flower — which have reentrant corners and concave boundaries that concentrate temperature gradients locally — Bayesian/TPE achieves significantly lower error than both the NAS Transfer baseline and the compact NSGA variants. This demonstrates that geometry-specific NAS adds value only when the target domain contains features absent from the original NAS validation domain.
+  </p>
+
+  <figure class="figure">
+    <img src="results/adaptive_k_2d_timeplots.png" alt="2D Adaptive-k FEM vs PINN trajectories" />
+    <figcaption>
+      <strong>Figure 2.</strong> FEM vs PINN mean temperature trajectories and per-window MAE for all four 2D domains under adaptive-k control (Bayesian/TPE, seed 0). The shaded band shows ±1 standard deviation across ten seeds. The adaptive controller starts at k=1 during the steep early transient and progressively promotes to k=5 as the field relaxes.
+    </figcaption>
+  </figure>
+
+  <table class="result-table">
+    <thead>
+      <tr>
+        <th>Domain</th>
+        <th>Best Architecture</th>
+        <th>MAE (°C)</th>
+        <th>FEM Saving</th>
+        <th>k-Schedule (seed 0)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Square</td><td>Bayesian/TPE</td><td class="pass">1.64 ± 0.10</td><td>85%</td><td>1-1-1-1-2-3-4-5-5</td></tr>
+      <tr><td>Circle</td><td>Bayesian/TPE</td><td class="pass">1.53 ± 0.11</td><td>85%</td><td>1-1-1-1-2-3-4-5-5</td></tr>
+      <tr><td>L-Shape</td><td>Bayesian/TPE</td><td class="pass">1.36 ± 0.04</td><td>85%</td><td>1-1-1-1-2-2-3-4-5</td></tr>
+      <tr><td>Flower</td><td>Bayesian/TPE</td><td class="pass">1.74 ± 0.11</td><td>85%</td><td>1-1-1-1-2-3-4-5-5</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════ STUDY 2: 2D CANONICAL ═════════════════════════ -->
+<section>
+  <div class="study-header">
+    <div class="study-badge">Study 2</div>
+    <h2 style="border:none; padding:0; margin:0;">2D Canonical Fixed-k Sweep</h2>
+  </div>
+
+  <p>
+    Three canonical 2D domains — <strong>Rectangle, Circle, L-Shape</strong> — were used for a systematic fixed-k sweep across all five skip factors (k = 1 to 5). All three NAS-found architectures were tested at every k value with ten independent random seeds each, giving 45 configurations in total.
+  </p>
+  <p>
+    Bayesian/TPE achieves the lowest error across all domains and all values of k. On the Rectangle (simplest geometry), all three architectures remain well below the 15°C engineering acceptance threshold even at maximum k=5. On the L-Shape, the compact NSGA variants approach the threshold at higher k values, while Bayesian/TPE stays comfortably below. The ten-seed standard deviation confirms stable, reproducible training.
+  </p>
+
+  <figure class="figure">
+    <img src="results/canonical_bestk/bayesian_lshape_2d_k1.png" alt="Bayesian/TPE best result on 2D L-Shape" />
+    <figcaption>
+      <strong>Figure 3.</strong> Bayesian/TPE best result on the 2D L-Shape domain (k=1, ten-seed mean). The L-Shape is the most challenging 2D canonical domain due to its 270° reentrant corner, which produces a local temperature gradient concentration. PINN predictions closely track the FEM reference throughout the 30-second quench.
+    </figcaption>
+  </figure>
+
+  <table class="result-table">
+    <thead>
+      <tr>
+        <th>Domain</th>
+        <th>Architecture</th>
+        <th>k=1 (0%)</th>
+        <th>k=3 (65%)</th>
+        <th>k=5 (80%)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="group-label"><td colspan="5">Rectangle</td></tr>
+      <tr><td></td><td>Bayesian/TPE</td><td class="pass">2.12 ± 0.23</td><td class="pass">3.19 ± 0.57</td><td class="pass">4.03 ± 0.66</td></tr>
+      <tr><td></td><td>NSGA-II</td><td class="pass">3.44 ± 0.49</td><td class="pass">6.76 ± 1.14</td><td class="pass">9.66 ± 1.30</td></tr>
+      <tr><td></td><td>NSGA-III</td><td class="pass">3.52 ± 0.48</td><td class="pass">6.10 ± 0.45</td><td class="pass">9.28 ± 1.64</td></tr>
+      <tr class="group-label"><td colspan="5">L-Shape</td></tr>
+      <tr><td></td><td>Bayesian/TPE</td><td class="pass">2.54 ± 0.31</td><td class="pass">4.07 ± 0.62</td><td class="pass">4.81 ± 0.75</td></tr>
+      <tr><td></td><td>NSGA-II</td><td class="pass">4.62 ± 0.68</td><td class="pass">9.22 ± 1.61</td><td>13.40 ± 2.88</td></tr>
+      <tr><td></td><td>NSGA-III</td><td class="pass">4.89 ± 0.82</td><td class="pass">9.11 ± 1.43</td><td>14.30 ± 2.45</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:13px; color: var(--muted); margin-top:8px;">Values are ten-seed mean ± std (MAE in °C). Engineering acceptance threshold: ≤ 15°C.</p>
+</section>
+
+<!-- ══════════════════════════ STUDY 3: 3D CANONICAL ═════════════════════════ -->
+<section>
+  <div class="study-header">
+    <div class="study-badge">Study 3</div>
+    <h2 style="border:none; padding:0; margin:0;">3D Canonical Fixed-k Sweep</h2>
+  </div>
+
+  <p>
+    Four 3D benchmark domains — <strong>Cylinder, L-Shape, Rectangular, Stacked</strong> — extend the canonical study into three dimensions. Moving from 2D to 3D significantly increases the complexity of the temperature field: the boundary conditions act on three-dimensional surfaces, and the spatial gradients are harder to represent with a fixed network capacity.
+  </p>
+  <p>
+    Bayesian/TPE continues to outperform the NSGA variants across all four 3D domains. All architectures pass the 15°C threshold at k=1. At k=5, Bayesian/TPE remains within the acceptance boundary on the Cylinder and Rectangular domains. The adaptive-k controller, shown alongside the fixed-k results, automatically finds near-optimal k schedules and achieves similar accuracy to the best fixed-k configuration with comparable FEM saving.
+  </p>
+
+  <figure class="figure">
+    <img src="results/adaptive_k_fields_3d/cylinder_bayesian_triplet_3d_adaptive_v2_all3d_rerun.png" alt="3D Cylinder adaptive-k result" />
+    <figcaption>
+      <strong>Figure 4.</strong> Bayesian/TPE adaptive-k result on the 3D Cylinder domain. Each panel shows (left) the FEM reference temperature field, (centre) the PINN prediction, and (right) the absolute error field at the end of the 30-second quench. The error is concentrated near the outer boundary where the convective gradient is steepest.
+    </figcaption>
+  </figure>
+
+  <table class="result-table">
+    <thead>
+      <tr>
+        <th>Domain</th>
+        <th>Architecture</th>
+        <th>Best MAE (°C)</th>
+        <th>Best k</th>
+        <th>FEM Saving</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Cylinder</td><td>Bayesian/TPE</td><td class="pass">5.61</td><td>k=1</td><td>0% (adaptive: 75%)</td></tr>
+      <tr><td>L-Shape 3D</td><td>Bayesian/TPE</td><td class="pass">8.43</td><td>k=3</td><td>65%</td></tr>
+      <tr><td>Rectangular</td><td>Bayesian/TPE</td><td class="pass">6.12</td><td>k=1</td><td>0% (adaptive: 75%)</td></tr>
+      <tr><td>Stacked</td><td>Bayesian/TPE</td><td class="pass">13.70</td><td>k=1</td><td>0%</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════ STUDY 4: THERMAL FIN ══════════════════════════ -->
+<section>
+  <div class="study-header">
+    <div class="study-badge">Study 4</div>
+    <h2 style="border:none; padding:0; margin:0;">Thermal Fin (3D)</h2>
+  </div>
+
+  <p>
+    The Thermal Fin is a 3D geometry adapted from the RBniCS benchmark library. It consists of a central rod with four protruding fins, each with different thermal conductivity. This benchmark tests the framework on a geometry that combines interior material interfaces, irregular fin boundaries, and strong local gradient variation — all in three dimensions.
+  </p>
+  <p>
+    Two architectural features proved essential on this benchmark. <strong>Fourier embedding</strong> — which maps spatial coordinates through a learned set of sinusoidal features before passing them to the network — reduced MAE by 1.8–4.4°C compared to standard coordinate input, because it allows the network to represent the sharp gradients at the fin-root junctions more accurately. <strong>Endpoint supervision</strong> — forcing the network to match the FEM solution at the last time step of each window — prevented error drift between windows. Without it, MAE reached 58–92°C.
+  </p>
+  <p>
+    All three NAS architectures pass the 15°C threshold on the Thermal Fin under MSWP. PINN-only rollout (no FEM anchoring) fails completely, with errors reaching 63–217°C within the first few windows.
+  </p>
+
+  <figure class="figure">
+    <img src="results/thermal_fin/01_fd_reference/thermal_fin_fd_animation.gif" alt="Thermal Fin temperature field animation" />
+    <figcaption>
+      <strong>Figure 5.</strong> FEM reference temperature field animation over the 30-second quench on the Thermal Fin geometry. The fins cool rapidly from the outside while the core retains heat longer, producing a complex gradient pattern that challenges PINN-only methods.
+    </figcaption>
+  </figure>
+
+  <figure class="figure">
+    <img src="results/thermal_fin/08_clean_heatmaps_3d/thermal_fin_bayesian_fixed_k_clean_3d.png" alt="Bayesian/TPE best result on Thermal Fin" />
+    <figcaption>
+      <strong>Figure 6.</strong> Bayesian/TPE + Fourier embedding result on the Thermal Fin (fixed-k, best configuration). Each column shows a different time window. The PINN prediction (middle row) closely tracks the FEM reference (top row), with absolute errors (bottom row) remaining low across the fin structure.
+    </figcaption>
+  </figure>
+
+  <table class="result-table">
+    <thead>
+      <tr>
+        <th>Architecture</th>
+        <th>Fourier Embedding</th>
+        <th>MAE at k=1 (°C)</th>
+        <th>MAE at k=5 (°C)</th>
+        <th>Adaptive MAE (°C)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Bayesian/TPE</td><td>Yes</td><td class="pass">9.89</td><td class="pass">11.72</td><td class="pass">11.26</td></tr>
+      <tr><td>NSGA-II</td><td>No</td><td class="pass">10.71</td><td class="pass">12.34</td><td class="pass">10.54</td></tr>
+      <tr><td>NSGA-III</td><td>No</td><td class="pass">12.04</td><td class="pass">14.12</td><td class="pass">13.21</td></tr>
+      <tr><td>PINN-only (best)</td><td>—</td><td colspan="3" style="color:#b91c1c; font-weight:600;">63–217°C (fails — no FEM anchoring)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════ CONCLUSIONS ════════════════════════════════════ -->
+<section>
+  <h2>Conclusions</h2>
+  <ul class="findings">
+    <li>
+      <span class="check">&#10003;</span>
+      <span><strong>MSWP reduces FEM cost by up to 85%</strong> while maintaining mean absolute error below the 15°C engineering acceptance threshold across all ten benchmark geometries in 2D, 3D, and the Thermal Fin.</span>
+    </li>
+    <li>
+      <span class="check">&#10003;</span>
+      <span><strong>FEM anchoring is not optional.</strong> PINN-only rollout (without periodic FEM re-anchoring) fails on every benchmark that involves irregular geometry or complex boundary conditions — errors reach 60–217°C within a few windows. The FEM anchor is a structural requirement of the prediction strategy, not a fallback.</span>
+    </li>
+    <li>
+      <span class="check">&#10003;</span>
+      <span><strong>The adaptive-k controller matches or outperforms the best fixed-k configuration</strong> without any manual tuning. It responds to the physics of the quench: using FEM more frequently during the steep early transient and increasing the skip factor as the field relaxes — achieving 83–85% saving automatically.</span>
+    </li>
+    <li>
+      <span class="check">&#10003;</span>
+      <span><strong>Bayesian/TPE with Fourier embedding</strong> achieves the lowest error on geometrically complex domains. On smooth, regular geometries, all three NAS architectures perform comparably, confirming that geometry-specific NAS adds the most value when the target domain contains features absent from the search validation domain.</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ══════════════════════════ REFERENCES ════════════════════════════════════ -->
+<section>
+  <h2>References</h2>
+  <ul class="ref-list">
+    <li>
+      Wang, Y. &amp; Zhong, L. (2024). <em>NAS-PINN: Neural architecture search-guided physics-informed neural network for solving PDEs.</em> Journal of Computational Physics, 496, 112603.
+      &nbsp;<a href="https://doi.org/10.1016/j.jcp.2023.112603">doi:10.1016/j.jcp.2023.112603</a>
+      &nbsp;<a href="https://arxiv.org/abs/2305.10127">arXiv</a>
+    </li>
+    <li>
+      Mortensen et al. (2026). <em>FEM-based thermomechanical simulation of water quenching for A356 aluminium subframes.</em> University of Agder.
+    </li>
+  </ul>
+</section>
+</div><!-- /container -->
+
+<!-- ══════════════════════════════ FOOTER ════════════════════════════════════ -->
+<footer>
+  Ömer Cetinkaya &nbsp;·&nbsp; University of Agder, 2026 &nbsp;·&nbsp;
+  <a href="https://github.com/Omer8693/thermal_pinn" style="color:#93b4d8;">github.com/Omer8693/thermal_pinn</a>
+</footer>
+
+</body>
+</html>
