@@ -7,3 +7,6 @@ __pycache__/
 # Model checkpoints (large binary — tracked via metrics JSON only)
 checkpoints/**/*.pt
 checkpoints/**/*.pt.bak
+
+# Thesis report (LaTeX source, not part of the code repo)
+reports/
