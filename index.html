@@ -330,12 +330,8 @@
 
   <h3>PINN — Physics-Informed Neural Network</h3>
   <p>
-    The PINN is trained to satisfy the heat equation and boundary conditions within each window, starting from the FEM anchor. By embedding physics as a loss term, the network learns to predict the temperature field without requiring labelled training data — only the governing PDE, boundary conditions, and the FEM anchor at window start.
+    The PINN is trained to satisfy the heat equation and boundary conditions within each window, starting from the FEM anchor. By embedding physics as a loss term, the network learns to predict the temperature field without requiring labelled training data — only the governing PDE, boundary conditions, and the FEM anchor at window start. Spatial coordinates and time are fed into the network, which outputs the predicted temperature field. Physics residuals and boundary condition errors form the loss during training.
   </p>
-  <figure>
-    <img src="assets/process/pinn_process.png" alt="PINN architecture diagram" class="wide" />
-    <figcaption><strong>Figure 2.</strong> PINN architecture: spatial coordinates and time are passed through the network (with optional Fourier embedding) to predict temperature. Physics residuals and boundary condition errors enter the loss function during training.</figcaption>
-  </figure>
 
   <h3>MSWP — Multi-Step Window Prediction</h3>
   <p>
@@ -382,11 +378,6 @@
     </div>
   </div>
 
-  <figure>
-    <img src="assets/process/mswp_timestep.png" alt="FEM-PINN timestep diagram for skip factor k" class="wide" />
-    <figcaption><strong>Figure 5.</strong> Time-step diagram showing how FEM calls (solid) and PINN predictions (dashed) alternate for different values of k. Higher k replaces more FEM calls with PINN predictions, reducing cost but increasing the risk of error accumulation between anchors.</figcaption>
-  </figure>
-
   <h3>Adaptive-k Controller</h3>
   <p>
     Rather than fixing k for the entire simulation, the adaptive-k controller adjusts it window-by-window. After each prediction window, the controller compares the per-window MAE to two thresholds: if error is low it promotes k (skip more FEM calls); if error exceeds the upper threshold it demotes k (call FEM sooner). This allows the system to behave like k=1 during the steep early transient and shift toward k=5 as the field relaxes — automatically and without any manual tuning.
@@ -415,8 +406,8 @@
   </div>
 
   <figure>
-    <img src="assets/process/naspinn_process.png" alt="NAS-PINN search and training process" class="wide" />
-    <figcaption><strong>Figure 6.</strong> The NAS-PINN search and training pipeline. Architecture candidates are evaluated via Bayesian optimisation (TPE) or multi-objective evolutionary search (NSGA-II/III), then trained with Adam + L-BFGS optimisation under the MSWP framework.</figcaption>
+    <img src="assets/process/naspinn_process.png" alt="Complete MSWP and NAS-PINN process" class="wide" />
+    <figcaption><strong>Figure 5.</strong> Complete MSWP process: architecture candidates found by NAS are trained window-by-window under the FEM-anchored MSWP framework. At each window the PINN is trained from the FEM anchor, predicts the field forward, and the adaptive-k controller decides whether to call FEM again or continue with the next PINN window.</figcaption>
   </figure>
 </section>
 
@@ -477,7 +468,7 @@
       <tr><td>Flower</td><td>NSGA-III</td><td class="pass">2.001 ± 0.055</td><td>0.016</td><td>85%</td><td>1-1-1-1-2-3-4-5-5</td></tr>
     </tbody>
   </table>
-  <p style="font-family:system-ui,sans-serif;font-size:12px;color:var(--muted);margin-top:6px;">Ten-seed mean ± std. MAE in °C. Engineering acceptance threshold: ≤ 15°C. <strong>Bold</strong> = best per domain.</p>
+  <p style="font-family:system-ui,sans-serif;font-size:12px;color:var(--muted);margin-top:6px;">MAE: ten-seed mean ± std (NAS-found architectures); seed 0 only for NAS Transfer baseline. L2: reported at seed 0. <strong>Bold</strong> = best per domain. Threshold: ≤ 15°C.</p>
 </section>
 
 <!-- ═══════════════════════════ STUDY 2 ═══════════════════════════════════ -->
@@ -547,8 +538,8 @@
   </p>
 
   <figure>
-    <img src="assets/3d_canonical/cylinder_field.png" alt="3D Cylinder adaptive-k field comparison" class="wide" />
-    <figcaption><strong>Figure 11.</strong> Bayesian/TPE adaptive-k result on the 3D Cylinder domain. Each panel group shows the FEM reference field (left), the PINN prediction (centre), and the absolute error field (right) at selected time windows. The error is concentrated near the outer convective boundary surface.</figcaption>
+    <img src="assets/3d_canonical/bestk_cylinder.png" alt="Bayesian/TPE best-k result on 3D Cylinder" class="wide" />
+    <figcaption><strong>Figure 11.</strong> Bayesian/TPE best-k result on the 3D Cylinder domain. Each column shows a different time window during the 30-second quench. Top row: FEM reference temperature field. Middle row: PINN prediction. Bottom row: absolute error. Error is highest near the outer curved surface where the convective boundary gradient is steepest, and decreases as the field approaches equilibrium.</figcaption>
   </figure>
 
   <div class="fig-row">
@@ -638,26 +629,116 @@
 
 <!-- ═══════════════════════════ RESULTS SUMMARY ════════════════════════════ -->
 <section id="results">
-  <h2><span class="num">Summary</span>Overall Results</h2>
+  <h2><span class="num">Summary</span>Overall Results &amp; Runtime Comparison</h2>
+
+  <p>
+    The table below compares the best PINN configuration against the full FEM baseline for each benchmark group. Per-window training time is measured on an NVIDIA Tesla V100 GPU. FEM solver time is the wall-clock cost of a single Crank–Nicolson solve over the full 30-second quench at Δt = 0.5 s. Once a PINN model is trained, inference at each window takes only milliseconds — meaning the trained model can be reused across many design iterations at negligible marginal cost.
+  </p>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Benchmark</th>
+        <th>Best arch.</th>
+        <th>Best MAE (°C)</th>
+        <th>FEM saving</th>
+        <th>PINN train / window</th>
+        <th>FEM solve / run</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2D Adaptive-k (4 domains)</td>
+        <td>Bayesian/TPE</td>
+        <td class="pass">1.36–1.74</td>
+        <td>83–85%</td>
+        <td>~10 s</td>
+        <td>~60 s (20 steps)</td>
+      </tr>
+      <tr>
+        <td>2D Canonical — Rectangle</td>
+        <td>Bayesian/TPE</td>
+        <td class="pass">2.12 ± 0.23 (k=1)</td>
+        <td>up to 80%</td>
+        <td>~10 s</td>
+        <td>~60 s</td>
+      </tr>
+      <tr>
+        <td>2D Canonical — Circle</td>
+        <td>Bayesian/TPE</td>
+        <td class="pass">1.80 ± 0.21 (k=1)</td>
+        <td>up to 80%</td>
+        <td>~10 s</td>
+        <td>~60 s</td>
+      </tr>
+      <tr>
+        <td>2D Canonical — L-Shape</td>
+        <td>Bayesian/TPE</td>
+        <td class="pass">2.54 ± 0.31 (k=1)</td>
+        <td>up to 80%</td>
+        <td>~10 s</td>
+        <td>~60 s</td>
+      </tr>
+      <tr>
+        <td>3D Canonical — Rectangular</td>
+        <td>Bayesian/TPE</td>
+        <td class="pass">8.42 ± 1.48 (k=1)</td>
+        <td>up to 80%</td>
+        <td>~25 s</td>
+        <td>~300 s (20 steps)</td>
+      </tr>
+      <tr>
+        <td>3D Canonical — Cylinder</td>
+        <td>Bayesian/TPE</td>
+        <td class="pass">5.26 ± 0.97 (k=1)</td>
+        <td>up to 80%</td>
+        <td>~25 s</td>
+        <td>~300 s</td>
+      </tr>
+      <tr>
+        <td>3D Canonical — Stacked Cubes</td>
+        <td>Bayesian/TPE</td>
+        <td class="pass">10.51 ± 1.40 (k=1)</td>
+        <td>up to 75%</td>
+        <td>~25 s</td>
+        <td>~300 s</td>
+      </tr>
+      <tr>
+        <td>3D Canonical — L-Shape</td>
+        <td>NSGA-III</td>
+        <td class="pass">4.41 ± 1.07 (k=1)</td>
+        <td>up to 80%</td>
+        <td>~35 s</td>
+        <td>~300 s</td>
+      </tr>
+      <tr>
+        <td>Thermal Fin (3D)</td>
+        <td>Bayesian/TPE + Fourier</td>
+        <td class="pass">9.89 (k=1)</td>
+        <td>up to 80%</td>
+        <td>~43 s</td>
+        <td>~500 s (20 steps)</td>
+      </tr>
+      <tr>
+        <td>PINN-only (best case)</td>
+        <td>Bayesian/TPE</td>
+        <td class="fail">63–217°C</td>
+        <td>100% (no FEM)</td>
+        <td>~43 s</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-family:system-ui,sans-serif;font-size:12px;color:var(--muted);margin-top:8px;">Training time: NVIDIA Tesla V100. FEM solve time: estimated wall-clock for Crank–Nicolson at Δt=0.5 s per benchmark group. After training, inference is milliseconds per window — cost amortises over repeated design runs.</p>
 
   <figure>
-    <img src="assets/summary/comparison.png" alt="All methods comparison" class="wide" />
-    <figcaption><strong>Figure 19.</strong> Cross-domain comparison of all architectures and methods. Bayesian/TPE achieves the lowest MAE in the large majority of configurations. PINN-only (rightmost group) fails on all complex domains.</figcaption>
+    <img src="assets/summary/runtime_mae_dual.png" alt="Runtime vs MAE dual-axis plot" class="wide" />
+    <figcaption><strong>Figure 19.</strong> MAE and total training time as a function of skip factor k for all benchmark groups. Lower k gives higher accuracy but higher total training cost; higher k reduces training cost at the expense of accuracy. The adaptive-k controller (dashed) achieves near-k=1 accuracy at near-k=5 cost.</figcaption>
   </figure>
 
   <figure>
-    <img src="assets/summary/mae_vs_saving.png" alt="MAE vs FEM saving Pareto curve" class="wide" />
-    <figcaption><strong>Figure 20.</strong> MAE vs FEM saving trade-off across all benchmarks and skip factors. Each point is one (architecture, domain, k) configuration. The adaptive-k controller (star markers) consistently lands near the Pareto frontier — achieving near-minimum MAE at near-maximum saving.</figcaption>
-  </figure>
-
-  <figure>
-    <img src="assets/summary/results_table.png" alt="Full results summary table" class="wide" />
-    <figcaption><strong>Figure 21.</strong> Complete headline results table from the thesis. MAE and L2 values for all architectures, all benchmarks, and all skip factors k=1 to k=5 including adaptive-k.</figcaption>
-  </figure>
-
-  <figure>
-    <img src="assets/summary/adaptive_k_table.png" alt="Adaptive-k schedule comparison table" class="wide" />
-    <figcaption><strong>Figure 22.</strong> Adaptive-k schedule comparison across all benchmarks. Each row shows the k-schedule the controller selected at each consecutive prediction window. Earlier promotion to high k indicates a more uniformly smooth field; delayed promotion indicates strong initial gradients.</figcaption>
+    <img src="assets/summary/fixedk_pinn_comparison.png" alt="Fixed-k vs PINN-only comparison" class="wide" />
+    <figcaption><strong>Figure 20.</strong> Fixed-k MSWP vs PINN-only comparison across all benchmark domains. MSWP with FEM anchoring (blue) stays within the 15°C engineering acceptance threshold at all tested k values. PINN-only (orange) fails on every domain except the simplest 2D geometries, confirming that FEM anchoring is a structural requirement.</figcaption>
   </figure>
 </section>
 
