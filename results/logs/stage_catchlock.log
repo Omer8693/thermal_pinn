@@ -1,0 +1,13 @@
+2026-05-24 20:23:43 [stage_catchlock][all][catch_lock][k=-][s=-] INFO Catch-and-Lock | variants=['tpe', 'nsga2', 'nsga3'] | geometries=['square'] | seeds=[0] | lock_threshold=5.0°C | lock_patience=3
+2026-05-24 20:23:43 [stage_catchlock][all][catch_lock][k=-][s=-] INFO === NAS: variant=tpe  geo=square ===
+2026-05-24 20:29:16 [stage_catchlock][all][catch_lock][k=-][s=-] INFO NAS tpe  geo=square    arch=[50, 110, 70, 50]  MAE=29.467°C
+2026-05-24 20:29:16 [stage_catchlock][all][catch_lock][k=-][s=-] INFO === NAS: variant=nsga2  geo=square ===
+2026-05-24 21:18:12 [stage_catchlock][all][catch_lock][k=-][s=-] INFO NAS nsga2  geo=square    arch=[50, 10, 10, 70, 50]  MAE=28.026°C
+2026-05-24 21:18:12 [stage_catchlock][all][catch_lock][k=-][s=-] INFO === NAS: variant=nsga3  geo=square ===
+2026-05-24 21:35:54 [stage_catchlock][all][catch_lock][k=-][s=-] INFO Catch-and-Lock | variants=['tpe'] | geometries=['square'] | seeds=[0] | lock_threshold=5.0°C | lock_patience=3
+2026-05-24 21:35:54 [stage_catchlock][all][catch_lock][k=-][s=-] INFO --arch provided: [151, 151, 151, 151, 151]  (NAS skipped for all variants/geometries)
+2026-05-24 21:35:54 [stage_catchlock][all][catch_lock][k=-][s=-] INFO === CatchLock: variant=tpe  geo=square  seed=0  arch=[151, 151, 151, 151, 151] ===
+2026-05-24 21:43:29 [stage_catchlock][all][catch_lock][k=-][s=-] INFO RESULT variant=tpe    geo=square   seed=0 locked=True lock_t=9.0s FEM_saving=90% MAE=2.177°C
+2026-05-24 21:43:29 [stage_catchlock][all][catch_lock][k=-][s=-] INFO CSV → /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/catchlock/catchlock_summary.csv
+2026-05-24 21:43:29 [stage_catchlock][all][catch_lock][k=-][s=-] INFO === Catch-and-Lock Özet ===
+2026-05-24 21:43:29 [stage_catchlock][all][catch_lock][k=-][s=-] INFO tpe     square    seed=0  locked=True  lock_t=9.0s  FEM_saving=90%  MAE=2.18°C

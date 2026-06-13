@@ -1,0 +1,15 @@
+{
+  "geometry": "flower",
+  "level": "grid_0p120",
+  "n_refine": 0,
+  "flower_grid": 0.12,
+  "n_nodes": 457,
+  "n_cells": 512,
+  "dt": 0.5,
+  "t_end": 30.0,
+  "n_steps": 60,
+  "t_assemble_s": 0.009531,
+  "t_solve_s": 0.039426,
+  "t_total_s": 0.048958,
+  "T_mean_final": 20.0
+}

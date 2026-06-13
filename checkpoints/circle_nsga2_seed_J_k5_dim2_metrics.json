@@ -1,0 +1,55 @@
+{
+  "domain": "circle",
+  "arch": "nsga2",
+  "tag": "seed_J",
+  "strategy": "fem_anchor_fixed_k_sweep",
+  "reference_used_each_window": true,
+  "reference_used_for_final_evaluation": true,
+  "k": 5,
+  "dim": 2,
+  "mean_mae": 23.07131427489903,
+  "n_windows": 4,
+  "windows": [
+    {
+      "t_start": 0.0,
+      "t_end": 7.5,
+      "mae_C": 49.45875732257029,
+      "l2_rel": 0.20269599311513017,
+      "runtime_s": 10.191162824630737
+    },
+    {
+      "t_start": 7.5,
+      "t_end": 15.0,
+      "mae_C": 20.336735524550537,
+      "l2_rel": 0.061984030544563765,
+      "runtime_s": 13.021197080612183
+    },
+    {
+      "t_start": 15.0,
+      "t_end": 22.5,
+      "mae_C": 13.880878870292152,
+      "l2_rel": 0.0471687631225613,
+      "runtime_s": 11.147539138793945
+    },
+    {
+      "t_start": 22.5,
+      "t_end": 30.0,
+      "mae_C": 8.60888538218314,
+      "l2_rel": 0.03855502836162164,
+      "runtime_s": 11.118826627731323
+    }
+  ],
+  "total_s": 45.54655432701111,
+  "checkpoint": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/circle_nsga2_seed_J_k5_dim2.pt",
+  "train_kwargs": {
+    "n_domain": 1500,
+    "n_bc": 300,
+    "n_epochs": 800,
+    "lr": 0.001,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 50,
+    "use_end_supervision": true,
+    "use_physical_scaling": false,
+    "balanced_feature_sampling": false
+  }
+}

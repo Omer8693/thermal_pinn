@@ -1,0 +1,67 @@
+2026-05-21 22:45:40 [nas_original][square][nas_original][k=-][s=-] INFO Starting bi-level search: 20 outer × 10 inner steps
+2026-05-21 22:46:31 [nas_original][square][nas_original][k=-][s=-] INFO Starting bi-level search: 20 outer × 10 inner steps
+2026-05-21 22:46:33 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer   1/20  tau=1.000  L_pinn=1.0563e+01  L_outer=2.2432e-01  arch=[110, 110, 110, 110, 110, 110, 110]
+2026-05-21 22:46:41 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer  20/20  tau=0.100  L_pinn=7.6098e+00  L_outer=1.0659e-01  arch=[70, 90, 70, 70, 90, 70, 70]
+2026-05-21 22:46:41 [nas_original][square][nas_original][k=-][s=-] INFO Discovered architecture: [70, 90, 70, 70, 90, 70, 70]  (depth_probs=[0.14, 0.14, 0.14, 0.14, 0.14, 0.14, 0.14])
+2026-05-21 22:46:41 [nas_original][square][nas_original][k=-][s=-] INFO Final training with arch=[70, 90, 70, 70, 90, 70, 70]
+2026-05-21 22:49:04 [nas_original][square][nas_original][k=-][s=-] INFO Final: arch=[70, 90, 70, 70, 90, 70, 70]  MAE=23.98 C  L2=0.2458  params=35811  time=152 s
+2026-05-21 22:49:32 [nas_original][square][nas_original][k=-][s=-] INFO Starting bi-level search: 100 outer × 50 inner steps
+2026-05-21 22:49:35 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer   1/100  tau=1.000  L_pinn=9.6785e+00  L_outer=1.8710e-01  arch=[110, 110, 110, 110, 110, 110, 110]
+2026-05-21 22:50:12 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer  20/100  tau=0.921  L_pinn=2.6558e+00  L_outer=1.1096e-02  arch=[90, 90, 110, 110, 110, 110]
+2026-05-21 22:50:51 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer  40/100  tau=0.697  L_pinn=1.4850e+00  L_outer=4.4646e-03  arch=[90, 110, 90, 110, 110, 110, 110]
+2026-05-21 22:51:30 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer  60/100  tau=0.416  L_pinn=1.0392e+00  L_outer=2.7758e-03  arch=[90, 110, 90, 110]
+2026-05-21 22:52:09 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer  80/100  tau=0.188  L_pinn=2.9839e-01  L_outer=5.1567e-03  arch=[110, 110, 110, 90]
+2026-05-21 22:52:49 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer 100/100  tau=0.100  L_pinn=7.3144e-01  L_outer=1.2870e-03  arch=[110, 110, 110, 90]
+2026-05-21 22:52:49 [nas_original][square][nas_original][k=-][s=-] INFO Discovered architecture: [110, 110, 110, 90]  (depth_probs=[0.14, 0.14, 0.14, 0.14, 0.14, 0.14, 0.14])
+2026-05-21 22:52:49 [nas_original][square][nas_original][k=-][s=-] INFO Final training with arch=[110, 110, 110, 90]
+2026-05-21 22:54:39 [nas_original][square][nas_original][k=-][s=-] INFO Final: arch=[110, 110, 110, 90]  MAE=21.92 C  L2=0.1593  params=34941  time=307 s
+2026-05-21 22:54:45 [nas_original][circle][nas_original][k=-][s=-] INFO Starting bi-level search: 100 outer × 50 inner steps
+2026-05-21 22:54:47 [nas_original][circle][nas_original][k=-][s=-] INFO NAS outer   1/100  tau=1.000  L_pinn=9.5252e+00  L_outer=1.7994e-01  arch=[110, 110, 110, 110, 110, 110, 110]
+2026-05-21 22:55:25 [nas_original][circle][nas_original][k=-][s=-] INFO NAS outer  20/100  tau=0.921  L_pinn=2.9638e+00  L_outer=4.2593e-02  arch=[90, 90, 110, 110, 110]
+2026-05-21 22:56:04 [nas_original][circle][nas_original][k=-][s=-] INFO NAS outer  40/100  tau=0.697  L_pinn=1.8605e+00  L_outer=6.5856e-02  arch=[90, 110, 110, 110, 70]
+2026-05-21 22:56:43 [nas_original][circle][nas_original][k=-][s=-] INFO NAS outer  60/100  tau=0.416  L_pinn=1.1622e+00  L_outer=1.2188e-03  arch=[110, 110, 110, 110, 90]
+2026-05-21 22:57:23 [nas_original][circle][nas_original][k=-][s=-] INFO NAS outer  80/100  tau=0.188  L_pinn=3.4852e-01  L_outer=9.3276e-03  arch=[90, 90, 110, 110, 70]
+2026-05-21 22:58:03 [nas_original][circle][nas_original][k=-][s=-] INFO NAS outer 100/100  tau=0.100  L_pinn=1.3514e+00  L_outer=7.0362e-03  arch=[90, 110, 110, 70]
+2026-05-21 22:58:03 [nas_original][circle][nas_original][k=-][s=-] INFO Discovered architecture: [90, 110, 110, 70]  (depth_probs=[0.14, 0.14, 0.14, 0.14, 0.14, 0.14, 0.14])
+2026-05-21 22:58:03 [nas_original][circle][nas_original][k=-][s=-] INFO Final training with arch=[90, 110, 110, 70]
+2026-05-21 22:59:48 [nas_original][circle][nas_original][k=-][s=-] INFO Final: arch=[90, 110, 110, 70]  MAE=24.35 C  L2=0.2699  params=30421  time=304 s
+2026-05-21 22:59:54 [nas_original][lshape][nas_original][k=-][s=-] INFO Starting bi-level search: 100 outer × 50 inner steps
+2026-05-21 22:59:56 [nas_original][lshape][nas_original][k=-][s=-] INFO NAS outer   1/100  tau=1.000  L_pinn=9.5716e+00  L_outer=2.8132e-01  arch=[110, 110, 110, 110, 110, 110, 110]
+2026-05-21 23:00:34 [nas_original][lshape][nas_original][k=-][s=-] INFO NAS outer  20/100  tau=0.921  L_pinn=2.4454e+00  L_outer=2.7149e-02  arch=[110, 110, 110, 90, 70]
+2026-05-21 23:01:13 [nas_original][lshape][nas_original][k=-][s=-] INFO NAS outer  40/100  tau=0.697  L_pinn=1.1576e+00  L_outer=8.2606e-03  arch=[110, 110, 110, 110, 70, 110, 110]
+2026-05-21 23:01:52 [nas_original][lshape][nas_original][k=-][s=-] INFO NAS outer  60/100  tau=0.416  L_pinn=1.0743e+00  L_outer=4.4559e-03  arch=[110, 90, 110, 110]
+2026-05-21 23:02:32 [nas_original][lshape][nas_original][k=-][s=-] INFO NAS outer  80/100  tau=0.188  L_pinn=7.9912e-01  L_outer=1.2906e-02  arch=[110, 90, 110, 50]
+2026-05-21 23:03:11 [nas_original][lshape][nas_original][k=-][s=-] INFO NAS outer 100/100  tau=0.100  L_pinn=5.9622e-01  L_outer=1.6886e-02  arch=[10, 90, 10, 50]
+2026-05-21 23:03:11 [nas_original][lshape][nas_original][k=-][s=-] INFO Discovered architecture: [10, 90, 10, 50]  (depth_probs=[0.14, 0.14, 0.14, 0.15, 0.14, 0.14, 0.14])
+2026-05-21 23:03:11 [nas_original][lshape][nas_original][k=-][s=-] INFO Final training with arch=[10, 90, 10, 50]
+2026-05-21 23:04:54 [nas_original][lshape][nas_original][k=-][s=-] INFO Final: arch=[10, 90, 10, 50]  MAE=33.60 C  L2=0.2325  params=2541  time=300 s
+2026-05-21 23:04:59 [nas_original][flower][nas_original][k=-][s=-] INFO Starting bi-level search: 100 outer × 50 inner steps
+2026-05-21 23:05:01 [nas_original][flower][nas_original][k=-][s=-] INFO NAS outer   1/100  tau=1.000  L_pinn=9.6728e+00  L_outer=1.0674e-01  arch=[110, 110, 110, 110, 110, 110, 110]
+2026-05-21 23:05:38 [nas_original][flower][nas_original][k=-][s=-] INFO NAS outer  20/100  tau=0.921  L_pinn=2.4123e+00  L_outer=1.5460e-02  arch=[70, 70, 90, 90, 90, 110]
+2026-05-21 23:06:17 [nas_original][flower][nas_original][k=-][s=-] INFO NAS outer  40/100  tau=0.697  L_pinn=1.1603e+00  L_outer=1.8224e-02  arch=[70, 70, 90, 70, 90, 90]
+2026-05-21 23:06:56 [nas_original][flower][nas_original][k=-][s=-] INFO NAS outer  60/100  tau=0.416  L_pinn=7.9900e-01  L_outer=1.5006e-02  arch=[70, 70, 90, 70, 90, 90]
+2026-05-21 23:07:47 [nas_original][flower][nas_original][k=-][s=-] INFO NAS outer  80/100  tau=0.188  L_pinn=2.9824e-01  L_outer=3.4384e-02  arch=[70]
+2026-05-21 23:08:32 [nas_original][flower][nas_original][k=-][s=-] INFO NAS outer 100/100  tau=0.100  L_pinn=5.7597e-01  L_outer=1.3034e-02  arch=[70]
+2026-05-21 23:08:32 [nas_original][flower][nas_original][k=-][s=-] INFO Discovered architecture: [70]  (depth_probs=[0.15, 0.14, 0.14, 0.14, 0.14, 0.14, 0.14])
+2026-05-21 23:08:32 [nas_original][flower][nas_original][k=-][s=-] INFO Final training with arch=[70]
+2026-05-21 23:09:51 [nas_original][flower][nas_original][k=-][s=-] INFO Final: arch=[70]  MAE=31.92 C  L2=0.9304  params=351  time=292 s
+2026-05-23 22:17:14 [nas_original][square][nas_original][k=-][s=-] INFO Starting bi-level search: 100 outer × 50 inner steps
+2026-05-23 22:17:17 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer   1/100  tau=1.000  L_pinn=9.5968e+00  L_outer=1.8405e-01  arch=[110, 110, 110, 110, 110, 110, 110]
+2026-05-23 22:17:54 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer  20/100  tau=0.921  L_pinn=2.1272e+00  L_outer=1.4643e-02  arch=[90, 110, 110, 110, 110, 110, 110]
+2026-05-23 22:18:33 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer  40/100  tau=0.697  L_pinn=5.0690e-01  L_outer=2.2120e-02  arch=[70, 90, 90, 90, 110, 110, 110]
+2026-05-23 22:19:11 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer  60/100  tau=0.416  L_pinn=1.6273e-01  L_outer=4.3881e-03  arch=[70, 90, 70, 70, 110, 110, 110]
+2026-05-23 22:19:51 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer  80/100  tau=0.188  L_pinn=4.4020e-02  L_outer=1.0369e-02  arch=[70, 90, 70, 70, 110, 110]
+2026-05-23 22:20:30 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer 100/100  tau=0.100  L_pinn=2.0225e-02  L_outer=9.2451e-03  arch=[70]
+2026-05-23 22:20:30 [nas_original][square][nas_original][k=-][s=-] INFO Discovered architecture: [70]  (depth_probs=[0.14, 0.14, 0.14, 0.14, 0.14, 0.14, 0.14])
+2026-05-23 22:20:30 [nas_original][square][nas_original][k=-][s=-] INFO Final training with arch=[70]
+2026-05-23 22:21:14 [nas_original][square][nas_original][k=-][s=-] INFO Final: arch=[70]  MAE=21.71 C  L2=0.1632  params=351  time=240 s
+2026-05-23 23:05:47 [nas_original][square][nas_original][k=-][s=-] INFO Starting bi-level search: 100 outer × 50 inner steps
+2026-05-23 23:05:53 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer   1/100  tau=1.000  L_pinn=9.5432e+00  L_outer=1.8138e-01  arch=[110, 110, 110, 110, 110, 110, 110]
+2026-05-23 23:06:33 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer  20/100  tau=0.921  L_pinn=1.6767e+00  L_outer=4.1249e-03  arch=[90, 90, 110, 110, 110, 90]
+2026-05-23 23:07:15 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer  40/100  tau=0.697  L_pinn=5.0022e-01  L_outer=9.9216e-04  arch=[110, 110, 110, 110, 110, 90]
+2026-05-23 23:07:58 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer  60/100  tau=0.416  L_pinn=1.9256e-01  L_outer=9.6522e-03  arch=[90, 90, 110, 110, 110, 110, 110]
+2026-05-23 23:08:40 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer  80/100  tau=0.188  L_pinn=6.4665e-02  L_outer=3.5637e-04  arch=[90, 90, 70, 90, 90, 70]
+2026-05-23 23:09:23 [nas_original][square][nas_original][k=-][s=-] INFO NAS outer 100/100  tau=0.100  L_pinn=5.8522e-02  L_outer=3.1813e-03  arch=[90]
+2026-05-23 23:09:23 [nas_original][square][nas_original][k=-][s=-] INFO Discovered architecture: [90]  (depth_probs=[0.14, 0.14, 0.14, 0.14, 0.14, 0.14, 0.14])
+2026-05-23 23:09:23 [nas_original][square][nas_original][k=-][s=-] INFO Final training with arch=[90]
+2026-05-23 23:11:48 [nas_original][square][nas_original][k=-][s=-] INFO Final: arch=[90]  MAE=21.71 C  L2=0.1603  params=451  time=362 s

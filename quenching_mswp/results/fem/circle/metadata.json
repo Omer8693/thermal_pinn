@@ -1,0 +1,14 @@
+{
+  "geometry": "circle",
+  "n_refine": 4,
+  "n_vertices": 8321,
+  "n_cells": 16384,
+  "t_assemble_s": 0.0825,
+  "t_solve_s": 3.4419,
+  "t_total_s": 3.5244,
+  "T_mean_init": 540.0,
+  "T_mean_final": 20.0,
+  "T_min_final": 20.0,
+  "T_max_final": 20.0,
+  "cooling_fraction": 1.0
+}

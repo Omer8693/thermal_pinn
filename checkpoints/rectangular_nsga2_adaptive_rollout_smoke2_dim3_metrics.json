@@ -1,0 +1,106 @@
+{
+  "domain": "rectangular",
+  "arch": "nsga2",
+  "dim": 3,
+  "tag": "adaptive_rollout_smoke2",
+  "strategy": "pinn_only_adaptive_k_rollout",
+  "controller_uses_reference": false,
+  "reference_used_for_final_evaluation": true,
+  "completed": false,
+  "t_total_s": 30.0,
+  "t_reached_s": 3.0,
+  "t_eval_s": 3.0,
+  "dt_fem_s": 1.5,
+  "n_reference_steps": 20,
+  "n_reference_steps_reached": 2,
+  "n_windows": 2,
+  "fem_savings_pct": 0.0,
+  "k_schedule": [
+    1,
+    1
+  ],
+  "score_tol": 0.03,
+  "phase_caps": {
+    "early_until": 10.0,
+    "mid_until": 18.0,
+    "early_k_max": 1,
+    "mid_k_max": 2,
+    "late_k_max": 3
+  },
+  "train_kwargs": {
+    "n_domain": 16,
+    "n_bc": 8,
+    "n_epochs": 1,
+    "lr": 0.001,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 0,
+    "use_end_supervision": false
+  },
+  "final_eval": {
+    "t_eval_s": 3.0,
+    "mae_C": 343.447654472634,
+    "l2_rel": 0.7279818151076001,
+    "n_eval": 16
+  },
+  "total_s": 1.7778279781341553,
+  "windows": [
+    {
+      "window": 1,
+      "t_start": 0.0,
+      "t_end": 1.5,
+      "k_used": 1,
+      "controller_mode": "adaptive",
+      "selected_reason": "fallback smallest k",
+      "runtime_s": 0.18059706687927246,
+      "score": 1.0036047101020813,
+      "pde_loss": 0.4241774082183838,
+      "bc_loss": 0.5794273018836975,
+      "monotonic_loss": 0.0,
+      "mean_theta_drop": 0.6394131183624268,
+      "passed": false,
+      "candidates": [
+        {
+          "k": 1,
+          "t_start": 0.0,
+          "t_end": 1.5,
+          "runtime_s": 0.18059706687927246,
+          "score": 1.0036047101020813,
+          "pde_loss": 0.4241774082183838,
+          "bc_loss": 0.5794273018836975,
+          "monotonic_loss": 0.0,
+          "mean_theta_drop": 0.6394131183624268,
+          "passed": false
+        }
+      ]
+    },
+    {
+      "window": 2,
+      "t_start": 1.5,
+      "t_end": 3.0,
+      "k_used": 1,
+      "controller_mode": "adaptive",
+      "selected_reason": "fallback smallest k",
+      "runtime_s": 0.10235452651977539,
+      "score": 0.17868462949991226,
+      "pde_loss": 0.05055977776646614,
+      "bc_loss": 0.11959723383188248,
+      "monotonic_loss": 0.0008527617901563644,
+      "mean_theta_drop": 0.025033190846443176,
+      "passed": false,
+      "candidates": [
+        {
+          "k": 1,
+          "t_start": 1.5,
+          "t_end": 3.0,
+          "runtime_s": 0.10235452651977539,
+          "score": 0.17868462949991226,
+          "pde_loss": 0.05055977776646614,
+          "bc_loss": 0.11959723383188248,
+          "monotonic_loss": 0.0008527617901563644,
+          "mean_theta_drop": 0.025033190846443176,
+          "passed": false
+        }
+      ]
+    }
+  ]
+}

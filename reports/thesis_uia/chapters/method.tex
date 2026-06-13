@@ -1,0 +1,1019 @@
+
+\chapter{Methodology}
+\label{chap:method}
+
+In this chapter we describe the three-component framework used to reduce FEM
+solver calls in a transient water-quenching simulation.
+The \textbf{FEM Reference Solver} (Section~\ref{sec:mswp}) computes the
+ground-truth temperature field at selected anchor time steps using a
+Crank--Nicolson finite-difference scheme; it is called only at anchor points
+and the NAS-PINN replaces all intermediate steps.
+The \textbf{NAS-PINN} (Sections~\ref{sec:pinn_form}--\ref{sec:nas_method}) is
+a feed-forward neural network trained independently for each prediction window;
+its architecture is selected automatically by Neural Architecture Search before
+training begins, and its output is constrained to match the FEM anchor field
+exactly at the window start.
+The \textbf{MSWP Controller} (Section~\ref{sec:mswp}) decides when to call FEM
+and when to call the NAS-PINN via the skip factor $k$: at $k=1$ FEM anchors
+every step, at $k=5$ the NAS-PINN covers five steps per FEM call saving 80\%
+of solver invocations, and an adaptive-$k$ variant adjusts this factor at run
+time.
+Section~\ref{sec:mortensen_reference} defines the target physical problem,
+Section~\ref{sec:domains} introduces the benchmark domains, and
+Section~\ref{sec:metrics} defines the evaluation metrics.
+
+% =============================================================================
+\section{Reference Problem: Mortensen et al.\ Industrial Simulation (A356 Quenching)}
+\label{sec:mortensen_reference}
+
+The physical problem this thesis targets is the transient water quenching
+of A356 aluminium automotive subframes studied by Mortensen et al.\
+\cite{mortensen2026}.
+This section describes their simulation, the physical parameters we adopted,
+and the simplifications we made.
+
+\subsection{Industrial Context and Objective}
+
+Mortensen et al.\ address a core challenge in aluminium automotive
+manufacturing.
+Cast subframes undergo non-uniform cooling during water quenching, generating
+temperature gradients that drive residual stress and geometric distortion.
+Dimensional tolerances are tight.
+Deviations at key assembly points must stay within a few hundred microns.
+Their work predicts these distortions using FEM and shows that rack
+configuration changes can reduce them significantly.
+
+\subsection{The Mortensen et al. FEM Model}
+
+Mortensen et al.\ use StaMiSim, an in-house thermo-elastoviscoplastic FEM
+solver developed at IFE (Institute for Energy Technology).
+It simulates the full process chain from casting to final quenching.
+The simulation covers three sequential phases.
+First, as-cast (AC) deformation models solidification inside the mould,
+including mould thermal expansion, airgap formation, and degating.
+The AC simulation uses approximately 3~million finite elements across 27 coupled
+domains representing the part and surrounding equipment.
+Second, heat treatment creep holds the part at $540\,^\circ\mathrm{C}$ for
+several hours.
+Creep under gravity causes additional deformation depending on rack positioning.
+Third, water quenching submerges the part in a water tank at approximately
+$20\,^\circ\mathrm{C}$.
+This is the phase this thesis targets.
+
+The quenching thermal model uses a full temperature-dependent boiling curve
+$h(T_s)$ comprising five heat transfer regimes, ranging from film boiling at
+high surface temperatures to single-phase convection at low temperatures.
+The effective heat transfer coefficient varies by orders of magnitude over the
+30-second quench.
+The model additionally accounts for vapour accumulation, orientation-dependent
+cooling, and cavity detection via ray-beam analysis on the FE mesh.
+Validated against coordinate measuring machine (CMM) measurements from
+industrial casthouse trials, the model shows that rack optimisation reduces
+peak distortions from ${\approx}3\,\mathrm{mm}$ to ${\approx}1\,\mathrm{mm}$.
+The steepest temperature gradients occur in the first two seconds of quenching
+and are the primary driver of bending distortion.
+
+\subsection{What This Thesis Takes from Mortensen et al.}
+
+This framework targets the thermal sub-problem of the Mortensen simulation,
+that is, the transient temperature field during water quenching.
+Accurate temperature prediction is the necessary prerequisite for the
+subsequent mechanical distortion calculation.
+
+\begin{table}[H]
+\centering
+\caption{Comparison of the Mortensen et al.~\cite{mortensen2026} industrial
+framework and the NAS-PINN framework developed in this thesis.}
+\label{tab:mortensen_comparison}
+\small
+\begin{tabular}{p{3.8cm}p{5.0cm}p{5.0cm}}
+\toprule
+\textbf{Element} & \textbf{Mortensen et al.~\cite{mortensen2026}} & \textbf{This thesis} \\
+\midrule
+\multicolumn{3}{l}{\textit{\textbf{Taken directly from Mortensen et al.}}} \\
+\midrule
+Material & A356 aluminium alloy & A356 aluminium alloy \\
+Initial temperature & $T_0 = 540\,^\circ\mathrm{C}$ & $T_0 = 540\,^\circ\mathrm{C}$ \\
+Quench temperature & $T_w = 20\,^\circ\mathrm{C}$ & $T_w = 20\,^\circ\mathrm{C}$ \\
+Quench duration & 30 seconds & 30 seconds \\
+Thermal diffusivity & $\alpha = k_T/(\rho c_p)$ & Same value \\
+Engineering tolerance & Distortion $\lesssim$ few hundred $\mu$m & Temperature MAE $\leq 10$--$15\,^\circ\mathrm{C}$ \\
+Process motivation & Rack optimisation reduces distortion & Accelerate the thermal sub-problem \\
+\midrule
+\multicolumn{3}{l}{\textit{\textbf{Simplifications relative to Mortensen et al.}}} \\
+\midrule
+Physical problem & Thermo-elastoviscoplastic (thermal + mechanical coupled) & Thermal only (heat equation) \\
+Solver & StaMiSim (in-house FEM, multi-physics) & Custom Crank--Nicolson FD + NAS-PINN \\
+Mesh size & $\approx 3\times10^6$ finite elements & $\leq 1\,300$ structured grid nodes \\
+Domain count & 27--30 coupled domains (mould, rack, part\ldots) & 1 domain per benchmark \\
+Time-step strategy & Adaptive $\Delta t$, implicit solver & Fixed $\Delta t_\mathrm{int}=0.5\,\mathrm{s}$ \\
+Heat transfer $h$ & Full 5-regime boiling curve $h(T)$; spatial variation by rack position and cavity detection & Constant $h = 4\,000\,\mathrm{W/(m^2K)}$ \\
+Material properties & Temperature-dependent $k_T(T)$, $\rho c_p(T)$; viscoplastic flow stress & Constant $k_T = 160\,\mathrm{W/(mK)}$, $\rho c_p = 2.4\times10^6\,\mathrm{J/(m^3K)}$ \\
+Geometry & Proprietary CAD: A356 subframe with rails, enclosed cavities, support pads & Canonical 2D/3D geometries + 3D Thermal Fin benchmark \\
+Cavity treatment & Ray-beam vapour detection; position-dependent correction & Uniform BC; cavity modelled as low-$h$ region \\
+Validation & Physical CMM measurements on production parts & Comparison to own FEM reference solution \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:mortensen_comparison} shows precisely what is taken and what
+is simplified.
+The physical parameters and engineering tolerances that define the validation
+target of this thesis are taken directly from~\cite{mortensen2026}: A356
+aluminium, $T_0=540\,^\circ\mathrm{C}$, $T_w=20\,^\circ\mathrm{C}$,
+temperature accuracy within $10$--$15\,^\circ\mathrm{C}$.
+The five-regime boiling curve, temperature-dependent material properties, and
+the real industrial mesh are simplified to allow the MSWP framework to be
+validated systematically before being applied to the full model.
+The NAS-PINN framework is designed so that its thermal field predictions can
+serve as input to the mechanical distortion model of~\cite{mortensen2026} in
+the complete pipeline.
+The extension path is described in Section~\ref{sec:conc_future}.
+
+% =============================================================================
+\section{Multi-Step Window Prediction (MSWP) Framework}
+\label{sec:mswp}
+
+The MSWP concept and its three operating modes are introduced in
+Chapter~\ref{chap:intro}.
+This section defines the prediction loop formally using three algorithms and
+specifies the four experimental configurations.
+
+\textbf{How the three components interact.}
+At the start of window $i$, the FEM solver provides the current temperature
+field $T^\mathrm{FEM}_{t_i}$ as the anchor input.
+The NAS-PINN uses this field as its initial condition and predicts the
+temperature over the next $k$ intervals (see Section~\ref{sec:pinn_form} for
+the formulation; Section~\ref{sec:nas_method} for the selected architectures).
+The MSWP controller records the per-window prediction error and uses it to
+decide whether to keep, increase, or decrease $k$ for the next window.
+This three-way handshake repeats until $t = 30\,\mathrm{s}$.
+
+Figure~\ref{fig:naspinn_process} shows the full process from problem setup
+through NAS architecture selection to evaluation.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{fig6_naspinn_process.png}
+  \caption{NAS-PINN process flow from problem setup to evaluation.}
+  \label{fig:naspinn_process}
+\end{figure}
+
+\subsection{FEM Reference Solver (Crank--Nicolson, Structured Grid)}
+\label{subsec:fem_solver}
+
+We used a Crank--Nicolson finite-difference solver on structured grids as
+the FEM reference throughout this thesis.
+The solver implements the transient heat equation:
+
+\begin{equation}
+\rho c_p \frac{\partial T}{\partial t} = \nabla \cdot (k_T \nabla T),
+\label{eq:heat_dim}
+\end{equation}
+
+with a Robin boundary condition $k_T \partial T / \partial n = -h(T - T_w)$
+on all exposed surfaces and constant material properties
+($k_T = 160\,\mathrm{W/(mK)}$, $\rho c_p = 2.4 \times 10^6\,\mathrm{J/(m^3K)}$).
+
+The Crank--Nicolson scheme is unconditionally stable and uses an internal
+time step of $\Delta t_\mathrm{int} = 0.5\,\mathrm{s}$.
+We exported (recorded) the full temperature field every $\Delta t_a = 1.5\,\mathrm{s}$,
+producing 21 snapshots over the 30-second quench.
+These exported snapshots serve as the \emph{anchor fields}: the FEM ground
+truth that the NAS-PINN is trained to match.
+The internal integration continues at $0.5\,\mathrm{s}$ steps between
+exports; the PINN never modifies the FEM state.
+
+Figure~\ref{fig:fem_solver_method} illustrates the full FEM workflow for
+a representative 2D domain: domain discretisation, element assembly, global
+system solution, and the comparison of the FEM reference field against the
+NAS-PINN prediction.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{FEM_Proses.png}
+\caption{FEM reference solver workflow (Circle 2D benchmark).
+Panel~1: transient temperature field at $t=3\,\mathrm{s}$ obtained from the
+FEM solver.
+Panel~2: domain discretisation into triangular finite elements (nodes shown
+as blue dots; elements as triangles).
+Panel~3: element-level matrix assembly using material properties and shape
+functions.
+Panel~4: global conductivity $\mathbf{K}$, capacitance $\mathbf{C}$, and load
+$\mathbf{f}$ matrices assembled; time step solved by
+$(C + \Delta t K)T^{n+1} = \Delta t F^{n+1} + C T^n$.
+Panel~5: absolute prediction error between the NAS-PINN and the FEM reference
+at $t=3\,\mathrm{s}$, $k=1$ ($L_2 = 0.0294$).}
+\label{fig:fem_solver_method}
+\end{figure}
+
+\subsection{Skip Factor and Anchor Reduction (FEM Call Budget)}
+
+FEM temperature fields are exported every $\Delta t_a = 1.5\,\mathrm{s}$,
+giving 20 anchor intervals across the full 30-second simulation.
+The skip factor $k$ controls how many of those intervals one PINN window
+covers at a time:
+
+\begin{equation}
+\Delta t_k = k\,\Delta t_a.
+\label{eq:dtk}
+\end{equation}
+
+At $k=1$ the network predicts one interval and FEM is still called at every
+step, so no FEM calls are eliminated.
+As $k$ grows, each PINN window gets longer and fewer FEM calls are needed.
+The total number of windows and the corresponding anchor reduction are:
+
+\begin{equation}
+N_\mathrm{win}(k) = \left\lceil \frac{20}{k} \right\rceil, \qquad
+R(k) = \left(1 - \frac{N_\mathrm{win}(k)}{20}\right)\times 100\%.
+\label{eq:reduction}
+\end{equation}
+
+Table~\ref{tab:k_structure} shows what this looks like in practice for
+each value of $k$ tested.
+
+\begin{table}[H]
+\centering
+\caption{FEM anchor structure for each skip factor $k$.}
+\label{tab:k_structure}
+\begin{tabular}{ccccc}
+\toprule
+$k$ & Anchor intervals & Window length & No.\ of windows & Anchor reduction \\
+\midrule
+1 & 1 & $1.5\,\mathrm{s}$ & 20 & $0\%$ \\
+2 & 2 & $3.0\,\mathrm{s}$ & 10 & $50\%$ \\
+3 & 3 & $4.5\,\mathrm{s}$ &  7 & $65\%$ \\
+4 & 4 & $6.0\,\mathrm{s}$ &  5 & $75\%$ \\
+5 & 5 & $7.5\,\mathrm{s}$ &  4 & $80\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The three operating modes for different skip factors are illustrated in
+Figure~\ref{fig:timestep_intro} in Chapter~\ref{chap:intro}.
+
+\subsection{Operating Modes (Fixed-$k$, Adaptive-$k$, PINN-only)}
+\label{subsec:adaptive_k}
+
+Experiments were run in two $k$ selection modes.
+In fixed $k$ mode, the skip factor is set once before the simulation and stays
+constant for every window.
+We swept $k=1,2,3,4,5$ for all three architectures on all domains, giving
+15 runs per domain group.
+This mode applies to both the FEM-anchored hybrid and the PINN-only rollout.
+
+Algorithms~\ref{alg:fem_fixed} and~\ref{alg:pinn_only} show the two fixed $k$
+rollout protocols.
+The FEM-anchored version tests how much FEM work can be removed while still
+correcting accumulated error at every anchor.
+The PINN-only version is a stress test: it shows the largest apparent FEM
+saving, but also exposes how quickly errors grow when the FEM correction is
+removed.
+
+\begin{algorithm}[H]
+\caption{FEM-anchored fixed $k$ MSWP}
+\label{alg:fem_fixed}
+\begin{algorithmic}[1]
+\Require fixed skip factor $k$,\; stored FEM snapshots
+\For{each prediction window $i$}
+    \State Set $\theta_\mathrm{ic} \leftarrow T^\mathrm{FEM}_{t_i}$
+    \State Train the IC consistent PINN over $[t_i,t_i+k\Delta t_a]$
+    \State Predict $\hat{T}_{t_{i+1}}$ at the window endpoint
+    \State Compute the window error against $T^\mathrm{FEM}_{t_{i+1}}$
+    \State Use the next FEM snapshot as the IC for the following window
+\EndFor
+\State Report the mean window error and FEM anchor reduction
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{PINN-only fixed $k$ rollout}
+\label{alg:pinn_only}
+\begin{algorithmic}[1]
+\Require fixed skip factor $k$,\; initial FEM snapshot $T^\mathrm{FEM}_{0}$
+\State Set $\theta_\mathrm{ic} \leftarrow T^\mathrm{FEM}_{0}$
+\For{each prediction window $i$}
+    \State Train the IC consistent PINN over $[t_i,t_i+k\Delta t_a]$
+    \State Predict $\hat{T}_{t_{i+1}}$ at the window endpoint
+    \State Compute the window error against the stored FEM reference
+    \State Set $\theta_\mathrm{ic} \leftarrow \hat{T}_{t_{i+1}}$
+    \Comment{no FEM correction}
+\EndFor
+\State Report accumulated rollout error and the 95\% FEM call reduction
+\end{algorithmic}
+\end{algorithm}
+
+In adaptive $k$ mode, the controller adjusts $k$ after each window based on
+how accurately the PINN predicted that window.
+If the error stayed below a promotion threshold for two consecutive windows,
+$k$ is increased by one.
+If it exceeded a demotion threshold, $k$ drops back by one.
+Phase-based caps prevent the controller from using long windows during the
+high-gradient early transient.
+This mode was applied in two configurations: with FEM anchoring and without
+anchoring.
+In the PINN-only adaptive variant, the IC for each window comes from the
+previous PINN output and FEM is used only at $t=0$.
+
+The window error $\varepsilon_i$ used by the controller is always computed by
+comparing the PINN prediction at the end of window $i$ to the precomputed FEM
+reference snapshot at the same time point.
+In the FEM-anchored case this comparison is part of the regular anchor step.
+In the PINN-only case the FEM reference is available because a full FEM
+solution was run in advance.
+The controller reads this stored snapshot to evaluate $\varepsilon_i$ without
+triggering any additional FEM calls at deployment time.
+
+Algorithm~\ref{alg:adaptive_k} gives the complete decision procedure used
+in both adaptive configurations.
+
+\begin{algorithm}[H]
+\caption{Adaptive $k$ controller (used for FEM-anchored adaptive and
+PINN-only adaptive modes)}
+\label{alg:adaptive_k}
+\begin{algorithmic}[1]
+\Require $k \leftarrow k_\mathrm{init}$,\;
+         thresholds $\tau_\mathrm{up}$, $\tau_\mathrm{down}$,\;
+         streak required $s_\mathrm{req}$,\;
+         phase caps $k_\mathrm{max}^\mathrm{early}$,\;
+         $k_\mathrm{max}^\mathrm{mid}$,\;
+         $k_\mathrm{max}^\mathrm{late}$,\;
+         bounds $[k_\mathrm{min}, k_\mathrm{max}]$
+\State $\mathit{streak} \leftarrow 0$
+\For{each prediction window $i$}
+    \State Run PINN over window $i$ with current $k$
+    \State $\varepsilon_i \leftarrow \mathrm{MAE}(\hat{T}_i,\; T^\mathrm{FEM}_{t_i})$
+    \Comment{compare to stored FEM snapshot}
+    \If{$\varepsilon_i < \tau_\mathrm{up}$}
+        \State $\mathit{streak} \leftarrow \mathit{streak} + 1$
+        \If{$\mathit{streak} \geq s_\mathrm{req}$}
+            \State $k \leftarrow \min(k+1,\;k_\mathrm{max}^\mathrm{phase},\;k_\mathrm{max})$
+            \Comment{promote}
+            \State $\mathit{streak} \leftarrow 0$
+        \EndIf
+    \ElsIf{$\varepsilon_i > \tau_\mathrm{down}$}
+        \State $k \leftarrow \max(k-1,\;k_\mathrm{min})$
+        \Comment{demote}
+        \State $\mathit{streak} \leftarrow 0$
+    \Else
+        \State $\mathit{streak} \leftarrow 0$
+        \Comment{hold}
+    \EndIf
+    \State \textbf{Set IC for next window:} FEM snapshot (FEM-anchored) or
+    \Statex \hspace{4.8em} PINN output (PINN-only)
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+The phase cap $k_\mathrm{max}^\mathrm{phase}$ is
+$k_\mathrm{max}^\mathrm{early}=2$ for $t<10\,\mathrm{s}$,
+$k_\mathrm{max}^\mathrm{mid}=4$ for $10\leq t<20\,\mathrm{s}$, and
+$k_\mathrm{max}^\mathrm{late}=5$ after that.
+For the Thermal Fin experiments we used $k_\mathrm{init}=1$,
+$\tau_\mathrm{up}=13\,^\circ\mathrm{C}$,
+$\tau_\mathrm{down}=16\,^\circ\mathrm{C}$, and $s_\mathrm{req}=2$.
+Table~\ref{tab:modes} summarises all four configurations.
+The three algorithms produce four operating modes because the adaptive-$k$
+controller is shared between the FEM-anchored and PINN-only variants.
+
+\begin{table}[H]
+\centering
+\caption{Experimental configurations: three algorithms produce four operating modes.}
+\label{tab:modes}
+\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}p{3.4cm}p{2.0cm}p{2.6cm}p{1.6cm}p{4.0cm}@{}}
+\toprule
+Mode & Algorithm & IC source & FEM saved & Domains \\
+\midrule
+FEM-anchored, fixed $k$
+  & Alg.~\ref{alg:fem_fixed}
+  & FEM snapshot
+  & 0--80\%
+  & All 8 canonical domains \\
+FEM-anchored, adaptive $k$
+  & Alg.~\ref{alg:adaptive_k}
+  & FEM snapshot
+  & $\sim$45--85\%
+  & 2D adaptive, 3D canonical, Thermal Fin \\
+PINN-only, fixed $k$
+  & Alg.~\ref{alg:pinn_only}
+  & Prev.\ PINN output
+  & 95\%
+  & Thermal Fin \\
+PINN-only, adaptive $k$
+  & Alg.~\ref{alg:adaptive_k}
+  & Prev.\ PINN output
+  & 95\%
+  & Thermal Fin \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{NAS-PINN Formulation (IC-Consistent Output, Loss, Stabilisation)}
+\label{sec:pinn_form}
+
+The theoretical background (spectral bias, Fourier features, self-adaptive
+loss weighting) is in Chapter~\ref{chap:theory}.
+This section covers the implementation decisions specific to the MSWP setting:
+the IC-consistent output form, loss function, Fourier embedding, and collocation
+strategy.
+Figure~\ref{fig:pinn_framework} shows the complete single-window pipeline
+from FEM anchor input through NAS architecture selection to the IC-consistent
+output and physics-based loss terms.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{nas_pinn_framework.png}
+\caption{Single-window NAS-PINN prediction pipeline.}
+\label{fig:pinn_framework}
+\end{figure}
+
+The pipeline operates as follows.
+At the start of each prediction window, the FEM solver provides the
+temperature field $u_\mathrm{ic}$ as the anchor input.
+The spatial coordinates $(x, y, z, \tau)$ and $u_\mathrm{ic}$ enter the
+network together.
+An optional Fourier feature transformation can replace the raw spatial
+coordinates with a sinusoidal projection before the network layers; without
+it, the coordinates are passed directly.
+The NAS module selects one of three candidate architectures, Bayesian/TPE
+($5{\times}151$, ReLU), NSGA-II ($3{\times}153$, tanh), or NSGA-III
+($3{\times}75$, tanh), and fixes it for all windows of the simulation.
+The network output is wrapped by an IC-consistent layer that enforces
+$\hat{u}(\mathbf{x},0) = u_\mathrm{ic}$ exactly for every set of weights,
+so the training loss never needs to fight the initial condition.
+Four loss terms then supervise training: the PDE residual
+$\mathcal{L}_\mathrm{pde}$, the Robin boundary condition
+$\mathcal{L}_\mathrm{bc}$, the initial condition check
+$\mathcal{L}_\mathrm{ic}$, and endpoint supervision
+$\mathcal{L}_\mathrm{end}$ that penalises deviation from the next FEM
+snapshot.
+Their weighted sum is minimised by backpropagation.
+
+\subsection{Network Input and Output (IC-Consistent Form)}
+
+Within each window $[t_s, t_s+\Delta t_k]$, the local normalised time is
+$\tau = (t-t_s)/\Delta t_k \in [0,1]$.
+The network input is $(x, y, \tau, \theta_\mathrm{ic})$ in 2D and
+$(x, y, z, \tau, \theta_\mathrm{ic})$ in 3D, where $\theta_\mathrm{ic}$ is
+the dimensionless temperature at the window start.
+
+The output uses the IC consistent form:
+
+\begin{equation}
+\hat\theta(\mathbf{x},\tau)
+= \theta_\mathrm{ic}(\mathbf{x}) + \tau\,N_\phi(\mathbf{x},\tau,\theta_\mathrm{ic}),
+\label{eq:ic_form}
+\end{equation}
+
+which guarantees $\hat\theta(\mathbf{x},0)=\theta_\mathrm{ic}(\mathbf{x})$
+by construction \cite{lagaris1998}.
+This removes the need for a separate IC residual loss term at $\tau=0$ and
+allows the network to focus on learning the temperature change after the
+anchor.
+
+We evaluated Fourier feature embedding as a candidate input transformation.
+Spatial coordinates are passed through a fixed random sinusoidal projection
+before entering the MLP:
+\begin{equation}
+\gamma(\mathbf{x}) = \bigl[\cos(2\pi \mathbf{B}\mathbf{x}),\;
+                           \sin(2\pi \mathbf{B}\mathbf{x})\bigr],
+\qquad \mathbf{B} \sim \mathcal{N}(0,\sigma^2).
+\label{eq:fourier_embed}
+\end{equation}
+A targeted ablation (Appendix~\ref{app:ablation}) showed that this embedding
+reduces mean-window MAE by $1.8$--$4.4\,^\circ\mathrm{C}$ on the Thermal
+Fin for Bayesian/TPE.
+It is detrimental for the compact NSGA-II and NSGA-III tanh networks.
+The failure of Fourier embedding on NSGA-II/III is attributable to
+dimensionality mismatch: the embedding projects the $(d+2)$-dimensional input
+through $2F=128$ sinusoidal features, quadrupling the effective input
+dimension.
+A three-layer network with 75 or 153 neurons per layer does not have
+sufficient capacity to disentangle this high-dimensional representation while
+simultaneously satisfying the PDE and boundary conditions.
+Consequently, Fourier embedding is used only for Bayesian/TPE on the Thermal
+Fin benchmark.
+All other reported results use the plain IC-consistent MLP.
+
+\textbf{Limitation on architecture comparison.}
+The use of Fourier embedding for Bayesian/TPE but not for NSGA-II/III on the
+Thermal Fin benchmark introduces a confound: the observed performance
+differences partly reflect the embedding choice rather than the architecture
+alone.
+To isolate this effect, Appendix~\ref{app:ablation} reports a controlled
+ablation comparing plain and Fourier-embedded Bayesian/TPE at matched epoch
+budgets, confirming that the embedding accounts for $1.8$--$4.4\,^\circ\mathrm{C}$
+of the gap.
+A fully fair three-way architecture comparison on the Thermal Fin would require
+an embedding scheme that benefits all three architectures equally.
+This is deferred to future work.
+
+\subsection{Loss Function (PDE, BC, IC, Endpoint Supervision)}
+
+The total training loss for the FEM-anchored protocol is:
+
+\begin{equation}
+\mathcal{L}
+= w_\mathrm{pde}\mathcal{L}_\mathrm{pde}
++ w_\mathrm{ic}\mathcal{L}_\mathrm{ic}
++ w_\mathrm{bc}\mathcal{L}_\mathrm{bc}
++ w_\mathrm{end}\mathcal{L}_\mathrm{end}.
+\label{eq:loss_full}
+\end{equation}
+
+Each term is defined as:
+
+\begin{align}
+\mathcal{L}_\mathrm{pde}
+&= \mathrm{MSE}\!\left(
+   \frac{1}{\Delta t_k}\frac{\partial\hat\theta}{\partial\tau}
+   - \alpha\nabla^2\hat\theta
+   \right),
+\label{eq:lpde2}\\[4pt]
+\mathcal{L}_\mathrm{bc}
+&= \mathrm{MSE}\!\left(
+   \nabla\hat\theta\cdot\hat{\mathbf{n}}
+   + \frac{h}{k_T}\hat\theta
+   \right),
+\label{eq:lbc2}\\[4pt]
+\mathcal{L}_\mathrm{ic}
+&= \mathrm{MSE}\!\left(
+   \hat\theta(\mathbf{x},0) - \theta_\mathrm{ic}(\mathbf{x})
+   \right),
+\label{eq:lic2}\\[4pt]
+\mathcal{L}_\mathrm{end}
+&= \mathrm{MSE}\!\left(
+   \hat\theta(\mathbf{x},1) - \theta_\mathrm{FEM}(\mathbf{x},t_s+\Delta t_k)
+   \right).
+\label{eq:lend2}
+\end{align}
+
+In the PINN-only protocol, $w_\mathrm{end}=0$ because the FEM field at the
+window end is not available.
+
+\subsection{Collocation Point Sampling (Interior and Boundary)}
+
+Interior collocation points are sampled uniformly inside the domain by
+rejection sampling.
+For the Thermal Fin, a fraction of points is concentrated in challenging
+subregions such as fin tips and reentrant corners.
+
+Boundary collocation points are distributed proportionally to the surface area
+of each face.
+For the Thermal Fin benchmark, all 22 exposed faces receive area-proportional
+samples.
+
+\subsection{Stabilisation Choices}
+\label{subsec:stabilisation_choices}
+
+Several implementation choices were added because the plain windowed PINN
+was not reliable enough on long windows and complex geometries.
+Table~\ref{tab:stabilisation_choices} summarises what was used, why, and
+where the effect appears in the results.
+A quantitative improvement is stated only where a direct comparison was run;
+otherwise the entry is reported as a design choice that supports the final
+configuration.
+
+\begin{table}[H]
+\centering
+\caption{Stabilisation choices used in the final MSWP-PINN framework, with
+their literature basis and how they were integrated in this thesis.}
+\label{tab:stabilisation_choices}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{p{0.16\textwidth}p{0.27\textwidth}p{0.27\textwidth}p{0.22\textwidth}}
+\toprule
+Choice & Literature basis & How we used it & Evidence in this thesis \\
+\midrule
+IC consistent output
+& Lagaris et al.\ used trial solutions that satisfy constraints by
+construction~\cite{lagaris1998}; PINNs then optimise the PDE and boundary
+residuals around that constrained form~\cite{raissi2019}.
+& We wrote each window prediction as
+$\hat\theta=\theta_\mathrm{ic}+\tau N_\phi$, so the FEM anchor field is
+matched exactly at $\tau=0$.
+& Used in all reported runs.  The low $k=1$ errors in the 2D and 3D
+benchmarks show that the anchored window formulation reproduces the FEM
+trajectory before long window drift dominates. \\
+\midrule
+Fourier feature embedding
+& Spectral bias makes standard networks learn low frequency components first
+\cite{rahaman2019}; Fourier features improve the representation of
+high frequency coordinate functions~\cite{tancik2020}.
+& Evaluated as a candidate stabilisation choice.  The reported benchmark
+results use the plain IC consistent MLP without Fourier embedding; a
+targeted Fourier vs.\ no Fourier comparison at $k=2$ is reported in
+Appendix~\ref{app:ablation}.
+& See Appendix~\ref{app:ablation}.  Fourier features were available in the
+implementation but were not found to be critical for the canonical
+benchmark geometries within the tested training budget. \\
+\midrule
+Endpoint supervision and FEM anchoring
+& Long time PINN rollouts are known to accumulate error and become difficult
+to train~\cite{wang2021,krishnapriyan2021}; time decomposed PINN methods
+reduce this by solving shorter subproblems~\cite{meng2020ppinn,wang2024causality}.
+& We used the stored FEM field at the next anchor as an endpoint loss in
+FEM-anchored mode.  In PINN-only mode this term is disabled, so the next
+window starts only from the previous PINN output.
+& Thermal Fin anchored runs stay near $8$--$16\,^\circ\mathrm{C}$, while
+PINN-only rollouts rise to $59$--$217\,^\circ\mathrm{C}$. \\
+\midrule
+Adam followed by L-BFGS
+& Adam provides robust stochastic optimisation~\cite{kingma2015}; L-BFGS is
+a quasi Newton local optimiser often used for refinement in PINN
+training~\cite{liu1989,byrd1995}.
+& Each window was trained first with Adam and then refined with L-BFGS.  More
+complex domains and compact NSGA networks used longer budgets.
+& The extra epochs improve accuracy for NSGA-II/III but do not change the
+optimal $k$ on most domains. \\
+\midrule
+Per-window re-initialisation
+& Time decomposed PINN formulations reuse information between neighbouring
+time blocks to improve long time training stability~\cite{meng2020ppinn,wang2024causality}.
+& Each window begins from a new random network initialisation, ensuring
+independence of successive training runs.
+& Weight-transfer initialisation (carrying trained weights from the previous
+window) was evaluated but provided no consistent accuracy benefit; per-window
+re-initialisation was therefore adopted throughout. \\
+\midrule
+Feature balanced sampling
+& PINNs rely on collocation points to enforce the PDE and boundary
+residuals~\cite{raissi2019,karniadakis2021}; under sampled regions can
+therefore dominate the error even if the global loss looks acceptable.
+& We reserved fixed shares of collocation points for thin supports, cavities,
+fin tips, and corner regions instead of sampling only by total volume.
+& Used for the Thermal Fin case, where fin tips and corner regions
+receive additional points. \\
+\midrule
+Seed sensitivity evaluation
+& Stochastic neural network initialisation means results vary between runs;
+quantifying this variance is necessary to assess whether reported single-run
+values are representative.
+& Each (domain, architecture, $k$) configuration was run with ten independent
+random seeds.  All reported values are ten-seed means; standard deviations
+and per-seed breakdowns are in the consolidated tables in each results section.
+& Standard deviations remain below $1.4\,^\circ\mathrm{C}$ on canonical
+benchmarks, confirming results are representative. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\section{NAS-PINN Architecture Search (Bayesian/TPE, NSGA-II, NSGA-III)}
+\label{sec:nas_method}
+
+\subsection{What is NAS-PINN?}
+
+Wang et al.~\cite{wang2023} introduced NAS-PINN as a framework in which
+Neural Architecture Search selects the PINN architecture automatically.
+Instead of manually tuning network depth, width, and activation, the NAS
+module optimises these choices over a defined search space before training
+begins on the target problem.
+
+\textbf{Network structure.}
+A NAS-PINN is a standard feed-forward MLP with a uniform hidden structure:
+$L$ hidden layers, each with $W$ neurons and the same activation function $\sigma$.
+All layers share the same width; only depth, width, and activation are searched.
+The input is the tuple $(\mathbf{x}, \tau, \theta_\mathrm{ic})$: spatial
+coordinates, normalised window time, and the FEM anchor temperature field.
+The output is a scalar correction $\delta\theta$; the IC-consistent form wraps
+it as $\hat\theta = \theta_\mathrm{ic} + \tau\,\delta\theta$ (Section~\ref{sec:pinn_form}).
+
+We used the same search space as Wang et al.~\cite{wang2023}.
+The number of hidden layers ranged over $L \in \{2,3,4,5,6\}$.
+Neurons per layer ranged over $W \in \{32, 64, \ldots, 256\}$ with uniform
+width across layers.
+The activation function was selected from
+$\sigma \in \{\text{ReLU},\, \text{tanh},\, \text{SiLU},\, \text{GELU}\}$.
+The full search space table is in Appendix~\ref{app:nas_space}.
+
+\textbf{NAS-once, deploy-everywhere.}
+We ran each search once on the 2D rectangle domain at $k=1$.
+The winning architecture was then fixed and used for all domains and skip
+factors without repeating the search.
+This strategy reflects industrial practice: re-running NAS for every geometry
+is not affordable.
+We treated architectural robustness under geometric transfer as a result to
+be evaluated, not an assumption to be made.
+
+\subsection{Search Strategies and Selected Architectures}
+
+The theoretical background for each search strategy is in
+Chapter~\ref{chap:theory}.
+We compared three strategies representing different search philosophies:
+single-objective accuracy maximisation (Bayesian/TPE), two-objective
+accuracy-compactness trade-off (NSGA-II), and diversity-enforced Pareto
+search (NSGA-III)~\cite{wang2023,wang2025nasv2}.
+
+For Bayesian optimisation we used the TPE sampler through the Optuna
+framework~\cite{akiba2019,bergstra2011}.
+We ran 150 trials with the mean MAE on a 2D rectangle validation window as
+the objective.
+For NSGA-II~\cite{deb2002,blank2020pymoo} we used a population of 20 over
+15 generations, optimising jointly for prediction accuracy and model size.
+For NSGA-III~\cite{deb2014,blank2020pymoo} we used a population of 24 over
+15 generations with reference points to maintain search diversity.
+
+We found that the three strategies produced markedly different architecture
+profiles.
+Table~\ref{tab:arch} shows what each search returned.
+
+\begin{table}[H]
+\centering
+\caption{PINN architecture profiles selected by each NAS strategy.}
+\label{tab:arch}
+\begin{tabular}{lcccc}
+\toprule
+Label & Strategy & Layers & Neurons/layer & Activation \\
+\midrule
+Bayesian/TPE & Bayesian + TPE & 5 & 151 & ReLU \\
+NSGA-II      & NSGA-II        & 3 & 153 & tanh \\
+NSGA-III     & NSGA-III       & 3 &  75 & tanh \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+We observed that Bayesian/TPE returned the deepest and widest network at
+approximately 93K trainable parameters in 3D mode.
+We found that this architecture handled longer prediction windows better than
+the other two throughout all experiments.
+NSGA-II returned a compact three-layer design with roughly 48K parameters;
+NSGA-III selected an even smaller network at around 12K parameters.
+We observed that these lighter networks trained faster per window but required
+shorter windows to remain stable, particularly on complex geometries where the
+temperature gradient changes rapidly.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig1_naspinn_2d.png}
+  \caption{2D benchmark geometries from Wang et al.~\cite{wang2023} used as
+  NAS validation and transfer targets.}
+  \label{fig:naspinn_source_domains}
+\end{figure}
+
+We chose the 2D rectangle as the NAS validation domain because it is the
+simplest benchmark: uniform boundary normals, no reentrant corners, and a
+smooth temperature field.
+An architecture that performs well here may not transfer perfectly to
+geometries with curved surfaces or reentrant edges; evaluating that transfer
+across all eight domains is one of the main results of the study
+(Section~\ref{sec:disc_nas_transfer}).
+
+\subsection{Training Protocol (Adam + L-BFGS, Per-Window Budget)}
+
+Each PINN window was trained using two optimisers in sequence.
+First, Adam \cite{kingma2015} was run with a cosine annealing schedule
+\cite{loshchilov2017}, starting at $lr_0 = 8\times10^{-4}$ and decaying to
+$lr_\mathrm{min} = 10^{-5}$ over $N_\mathrm{ep}$ epochs.
+Once Adam converged, L-BFGS \cite{liu1989} was applied for a short
+fine-tuning phase to sharpen the solution near the optimum.
+This two-phase schedule gave lower final residuals than either optimiser
+alone, particularly near the fin tip and reentrant corner regions where the
+gradient is steepest.
+
+The training budget varied by domain complexity.
+Table~\ref{tab:training_budget} lists the configuration for each domain
+group, together with the resulting per-window training time measured on a
+single NVIDIA Tesla V100 GPU (full hardware and software specification in
+Appendix~\ref{app:hardware}).
+
+\begin{table}[H]
+\centering
+\caption{Training configuration and per-window wall-clock time by domain group
+(NVIDIA Tesla V100). $^*$Bayesian/TPE on Thermal Fin uses Fourier embedding.}
+\label{tab:training_budget}
+\small
+\begin{tabular}{llccccc}
+\toprule
+Domain group & Architecture & Adam epochs & L-BFGS & $n_\mathrm{domain}$ & $n_\mathrm{bc}$ &
+  Time / window \\
+\midrule
+2D canonical  & Bayesian/TPE   &   800 &  50 & 1\,500 &   300 & $\sim 10\,\mathrm{s}$ \\
+              & NSGA-II/III    & 1\,500 &  50 & 1\,500 &   300 & $\sim 16\,\mathrm{s}$ \\
+\midrule
+3D canonical  & Bayesian/TPE   &   800 & 100 & 12\,000 & 2\,400 & $\sim 25\,\mathrm{s}$ \\
+              & NSGA-II/III    & 1\,500 & 100 & 12\,000 & 2\,400 & $\sim 35\,\mathrm{s}$ \\
+\midrule
+Thermal Fin   & Bayesian/TPE$^*$ & 2\,000 & 100 & 12\,000 & 2\,400 & $\sim 43\,\mathrm{s}$ \\
+              & NSGA-II/III      & 2\,000 & 100 & 12\,000 & 2\,400 & $\sim 31\,\mathrm{s}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The epoch counts differ between Bayesian/TPE (800) and the two evolutionary
+architectures (1\,500) for the canonical domains.
+The compact tanh networks of NSGA-II and NSGA-III require more gradient steps
+to reach the same accuracy level that the larger ReLU network achieves in
+fewer epochs.
+Despite this difference, per-window training times remain in the same order of
+magnitude across all three architectures for a given domain group.
+We found that extending from 800 to 1\,500 epochs for NSGA-II/III improves
+accuracy slightly but does not change the optimal $k$ on most domains.
+
+One consequence of the window-by-window structure is that the total training
+cost scales linearly with the number of windows, not with the window length.
+Each window is trained independently from the FEM anchor field, so a
+7.5-second window ($k=5$) takes the same time to train as a 1.5-second one
+($k=1$).
+At $k=5$ the Thermal Fin trains in 4 windows (around 2 minutes for
+Bayesian/TPE); at $k=1$ the same 20 windows require around 10 minutes.
+Once training is complete, inference at each window takes only milliseconds,
+so the trained model can be reused across many simulation runs at negligible
+marginal cost.
+
+\section{Benchmark Domains}
+\label{sec:domains}
+
+We evaluated the framework on ten unique benchmark geometries.
+The canonical study covers eight domains organised in three levels of increasing
+complexity.
+The adaptive-$k$ NAS architecture transfer study uses four 2D domains: Square,
+Circle, L-Shape, and Flower.
+Circle and L-Shape are shared with the canonical set; Square and Flower are
+new domains that appear only in the adaptive-$k$ study.
+Figure~\ref{fig:domains_overview} and Table~\ref{tab:domain_overview} present
+the geometry and key properties of each domain together.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{fig2_thesis_2d.png}
+\subcaption{2D canonical domains}
+\label{fig:domains_2d}
+
+\vspace{0.8em}
+\includegraphics[width=0.82\textwidth]{fig3_thesis_3d.png}
+\subcaption{3D canonical domains}
+\label{fig:domains_3d}
+
+\vspace{0.8em}
+\includegraphics[width=0.82\textwidth]{fig4_thermalfin.png}
+\subcaption{Thermal Fin benchmark}
+\label{fig:thermal_fin_domain}
+
+\caption{Benchmark domain geometries.}
+\label{fig:domains_overview}
+\end{figure}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Benchmark domain summary: geometry, role, and key geometric challenge.
+All domains use $T_0=540\,^\circ\mathrm{C}$, $T_w=20\,^\circ\mathrm{C}$, 30-second quench.}
+\label{tab:domain_overview}
+\begin{tabular}{@{}llp{3.5cm}p{6.5cm}@{}}
+\toprule
+\textbf{Domain} & \textbf{Dim.} & \textbf{Role} & \textbf{Geometric challenge / key property} \\
+\midrule
+\multicolumn{4}{l}{\textit{Level 1 — Adaptive-$k$ NAS Transfer \quad $h=5000\,\mathrm{W/(m^2K)}$}} \\
+\midrule
+Square 2D      & 2D & Regular geometry        & Uniform BC; no gradient concentration; simplest adaptive-$k$ test case \\
+Circle 2D      & 2D & Curved boundary         & Curved normals; radial gradient; tests cut-cell BC \\
+L-Shape 2D     & 2D & Reentrant corner        & 270° corner concentrates gradient; analogous to subframe thin rails \\
+Flower 2D      & 2D & Concave boundary        & Multiple concave boundary regions; most geometrically complex 2D domain \\
+\midrule
+\multicolumn{4}{l}{\textit{Level 2 — Canonical 2D fixed-$k$ sweep \quad $h=5000\,\mathrm{W/(m^2K)}$ \quad (Circle and L-Shape shared with Level~1)}} \\
+\midrule
+Rectangle 2D   & 2D & NAS validation baseline & Simplest case; uniform BC; no gradient concentration \\
+Circle 2D      & 2D & Curved boundary         & Shared with Level~1; fixed-$k$ sweep $k=1$--$5$ \\
+L-Shape 2D     & 2D & Reentrant corner        & Shared with Level~1; fixed-$k$ sweep $k=1$--$5$ \\
+\midrule
+\multicolumn{4}{l}{\textit{Level 3 — Canonical 3D \quad $h=4000\,\mathrm{W/(m^2K)}$}} \\
+\midrule
+Rectangular 3D & 3D & 3D baseline             & Verifies 2D$\to$3D scaling; uniform cooling \\
+Cylinder 3D    & 3D & Curved 3D surface       & Curved surface normals; azimuthal symmetry \\
+Stacked 3D     & 3D & Material interface      & Two-layer gradient discontinuity; analogue of mould--part interface \\
+L-Shape 3D     & 3D & 3D reentrant edge       & Edge gradient concentration in 3D; only domain where NSGA-III leads \\
+\midrule
+\multicolumn{4}{l}{\textit{Level 4 — Community benchmark \quad $h=4000\,\mathrm{W/(m^2K)}$, threshold $15\,^\circ\mathrm{C}$}} \\
+\midrule
+Thermal Fin    & 2D$\to$3D & External reference  & Original RBniCS benchmark is 2D steady-state~\cite{maday2004thermalfin}; adapted to 3D transient quenching in this thesis; most geometrically demanding case \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+Full grid dimensions and active node counts for every domain are listed in
+Appendix~\ref{app:fem_config}.
+
+\subsection{Engineering Acceptance Threshold (MAE in $^\circ$C)}
+\label{subsec:threshold}
+
+The evaluation metric throughout this thesis is the mean-window MAE
+($^\circ\mathrm{C}$), averaged over all prediction windows in the 30-second
+simulation.
+The objective is not to find the skip factor that minimises MAE, but to find
+the maximum $k$ for which the MAE remains within an engineering acceptance
+threshold.
+This maximises FEM call reduction without compromising practical accuracy.
+
+A percentage-of-range metric is used rather than an absolute error.
+The physical consequence of a temperature prediction error depends on how far
+that error is from the equilibrium state.
+An error of $15\,^\circ\mathrm{C}$ near the quench temperature
+($20\,^\circ\mathrm{C}$) matters far more than the same error when the part is
+still near $540\,^\circ\mathrm{C}$.
+The total quench range $\Delta T = T_0 - T_w = 520\,^\circ\mathrm{C}$ is
+therefore used as the normalisation base.
+Two domain-specific thresholds are defined.
+For the Thermal Fin benchmark, the threshold is $15\,^\circ\mathrm{C}$
+($2.9\%$ of $\Delta T$).
+This value is derived from the accuracy requirements reported by
+Mortensen et al.~\cite{mortensen2026}.
+Residual stress and final dimension errors in that study remain within
+forming tolerances when the transient temperature field is predicted to
+within approximately $3\%$ of the operating range.
+For the canonical 2D and 3D benchmarks no hard threshold is imposed.
+Results are reported across the full $k=1$--$5$ range and the maximum
+tolerable $k$ is discussed in the context of each domain.
+
+The maximum acceptable $k$ per architecture is reported in each results
+section alongside the corresponding FEM call reduction.
+At $k=1$ the PINN covers one $1.5\,\mathrm{s}$ FEM step, which is the
+baseline with no saving.
+At $k=5$ it covers $7.5\,\mathrm{s}$, replacing four out of five FEM calls.
+The practical contribution of this thesis is the mapping from geometry and
+architecture to the maximum $k$ that keeps errors within the tolerance above.
+
+\subsection{Physical Parameters}
+
+All simulations use A356 aluminium material properties.
+The same physical setup was used across all domain groups.
+A slightly different value of $h$ was used for the 2D group, which was treated
+as a separate preliminary benchmark.
+Table~\ref{tab:params} lists the parameters used in each group.
+
+\begin{table}[H]
+\centering
+\caption{Physical and simulation parameters.}
+\label{tab:params}
+\small
+\begin{tabular}{lcc}
+\toprule
+Parameter & 2D group & 3D / Thermal Fin \\
+\midrule
+Thermal conductivity $k_T$     & $150\,\mathrm{W/(mK)}$                & $160\,\mathrm{W/(mK)}$ \\
+Vol.\ heat capacity $\rho c_p$ & $2.4{\times}10^6\,\mathrm{J/(m^3K)}$  & $2.4{\times}10^6\,\mathrm{J/(m^3K)}$ \\
+Thermal diffusivity $\alpha$   & $6.25{\times}10^{-5}\,\mathrm{m^2/s}$ & $6.67{\times}10^{-5}\,\mathrm{m^2/s}$ \\
+Initial temperature $T_0$      & $540\,^\circ\mathrm{C}$                & $540\,^\circ\mathrm{C}$ \\
+Water temperature $T_w$        & $20\,^\circ\mathrm{C}$                 & $20\,^\circ\mathrm{C}$ \\
+Convection coefficient $h$     & $5000\,\mathrm{W/(m^2K)}$              & $4000\,\mathrm{W/(m^2K)}$ \\
+Cooling time                   & $30\,\mathrm{s}$                       & $30\,\mathrm{s}$ \\
+FEM internal step              & $0.5\,\mathrm{s}$                      & $0.5\,\mathrm{s}$ \\
+FEM anchor spacing             & $1.5\,\mathrm{s}$                      & $1.5\,\mathrm{s}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All parameters in Table~\ref{tab:params} are treated as temperature-independent
+constants.
+This simplifies the heat equation to a linear PDE and makes the PINN training
+loss convex-like, at the cost of omitting the five-regime boiling curve and
+temperature-dependent material properties used by Mortensen
+et al.~\cite{mortensen2026} (described in
+Section~\ref{sec:mortensen_reference}).
+The rationale and impact of these simplifications are discussed in
+Section~\ref{sec:conc_limitations}.
+The implementation path for incorporating $h(T)$ is outlined in
+Section~\ref{sec:conc_future}.
+
+
+\section{Evaluation Metrics}
+\label{sec:metrics}
+
+Performance was measured using two error metrics and one efficiency metric.
+For accuracy, the MAE in degrees Celsius is:
+
+\begin{equation}
+\mathrm{MAE} = \frac{1}{N}\sum_{i=1}^N |T_i^\mathrm{PINN} - T_i^\mathrm{FEM}|.
+\label{eq:mae}
+\end{equation}
+
+This is computed over all prediction windows (mean-window MAE) and separately
+for the last window only (final window MAE).
+The mean-window MAE is the primary metric.
+The final window value is misleading in PINN-only mode: as $t\to30\,\mathrm{s}$
+the temperature field naturally converges toward $T_w=20\,^\circ\mathrm{C}$,
+which reduces the absolute error regardless of how well the PINN actually
+predicted the cooling history.
+
+For full-field agreement, the relative $L_2$ error is:
+
+\begin{equation}
+\mathrm{Rel.}\;L_2
+= \frac{\|\hat{T}-T^\mathrm{FEM}\|_2}{\|T^\mathrm{FEM}-T_w\|_2},
+\label{eq:l2}
+\end{equation}
+
+where $T_w = 20\,^\circ\mathrm{C}$ is the quench temperature.
+Normalising by $\|T^\mathrm{FEM}-T_w\|_2$ rather than $\|T^\mathrm{FEM}\|_2$
+removes the constant baseline and measures error relative to the temperature
+excursion above the quench medium, which is the physically meaningful driving
+quantity.
+
+For efficiency, the FEM anchor reduction $R(k)$ from
+Eq.~\eqref{eq:reduction} is reported.
+Since each anchor call corresponds to one FEM solver invocation, this metric
+directly quantifies how much of the original FEM cost is saved.
+The full implementation is provided in Appendix~\ref{app:code}.

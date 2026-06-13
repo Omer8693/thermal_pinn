@@ -1,0 +1,25 @@
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Adaptive-$k$ controller schedules on the Rectangle, Circle, and L-Shape 2D benchmark domains (single seed).
+Controller: $k_\mathrm{init}{=}1$, $\tau_\mathrm{up}{=}2.0\,^\circ\mathrm{C}$, $\tau_\mathrm{down}{=}5.0\,^\circ\mathrm{C}$.
+$k$-schedule lists the skip factor selected at each consecutive prediction window from $t=0$ to $t=30\,\mathrm{s}$.}
+\label{tab:2d_canonical_adaptive_kschedules}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llcccl@{}}
+\toprule
+Domain & Architecture & MAE ($^\circ\mathrm{C}$) & FEM saved & Max $k$ & $k$-schedule \\
+\midrule
+\multirow{3}{*}{Rectangle} & Bayesian/TPE & 3.62 & 50\% & 3 & 3-2-2-2-2-2-2-2-2-2 \\
+ & NSGA-II & 4.64 & 45\% & 3 & 3-2-1-1-2-2-2-2-2-2-2 \\
+ & NSGA-III & 4.79 & 45\% & 3 & 3-2-1-1-2-2-2-2-2-2-2 \\
+\midrule
+\multirow{3}{*}{Circle} & Bayesian/TPE & 3.29 & 65\% & 4 & 3-2-2-2-3-4-4 \\
+ & NSGA-II & 5.12 & 50\% & 4 & 3-2-1-1-2-2-2-3-3-4 \\
+ & NSGA-III & 5.16 & 55\% & 4 & 3-2-1-1-1-2-3-3-4 \\
+\midrule
+\multirow{3}{*}{L-Shape} & Bayesian/TPE & 3.01 & 55\% & 3 & 3-2-2-2-2-2-2-2-3 \\
+ & NSGA-II & 6.95 & 50\% & 3 & 3-2-2-2-2-2-2-2-2-3 \\
+ & NSGA-III & 5.53 & 35\% & 3 & 3-2-1-1-1-1-1-1-2-2-2-2-2 \\
+\bottomrule
+\end{tabular}}
+\end{table}

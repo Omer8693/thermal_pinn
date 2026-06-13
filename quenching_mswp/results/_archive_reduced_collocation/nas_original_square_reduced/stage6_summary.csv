@@ -1,0 +1,6 @@
+geometry,k,seed,arch,MAE_mean,L2_mean,max_err,fem_saving_pct,n_windows,anchor_spacing_s,train_time_s,epochs_adam,use_fourier
+square,1,0,[70],1.8154,0.012874,3.1271,0.6667,20,1.5,650.93,3000,False
+square,2,0,[70],3.7256,0.025455,4.6837,0.8333,10,3.0,317.35,3000,False
+square,3,0,[70],3.8086,0.026363,4.8723,0.8833,7,4.5,224.53,3000,False
+square,4,0,[70],4.38,0.033192,5.5706,0.9167,5,6.0,157.32,3000,False
+square,5,0,[70],4.3347,0.035441,5.5815,0.9333,4,7.5,125.09,3000,False

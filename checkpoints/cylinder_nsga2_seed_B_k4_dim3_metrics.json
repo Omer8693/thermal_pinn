@@ -1,0 +1,62 @@
+{
+  "domain": "cylinder",
+  "arch": "nsga2",
+  "tag": "seed_B",
+  "strategy": "fem_anchor_fixed_k_sweep",
+  "reference_used_each_window": true,
+  "reference_used_for_final_evaluation": true,
+  "k": 4,
+  "dim": 3,
+  "mean_mae": 25.96559874181266,
+  "n_windows": 5,
+  "windows": [
+    {
+      "t_start": 0.0,
+      "t_end": 6.0,
+      "mae_C": 94.22431499679838,
+      "l2_rel": 0.29763639954519583,
+      "runtime_s": 10.199859619140625
+    },
+    {
+      "t_start": 6.0,
+      "t_end": 12.0,
+      "mae_C": 16.39221335748801,
+      "l2_rel": 0.049287550176173395,
+      "runtime_s": 10.725274562835693
+    },
+    {
+      "t_start": 12.0,
+      "t_end": 18.0,
+      "mae_C": 8.199692324138082,
+      "l2_rel": 0.02830586512372609,
+      "runtime_s": 10.83214020729065
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 24.0,
+      "mae_C": 6.002179156804563,
+      "l2_rel": 0.023793298762432268,
+      "runtime_s": 10.429171085357666
+    },
+    {
+      "t_start": 24.0,
+      "t_end": 30.0,
+      "mae_C": 5.009593873834248,
+      "l2_rel": 0.022041643083873283,
+      "runtime_s": 10.48313307762146
+    }
+  ],
+  "total_s": 52.711381673812866,
+  "checkpoint": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/cylinder_nsga2_seed_B_k4_dim3.pt",
+  "train_kwargs": {
+    "n_domain": 1500,
+    "n_bc": 300,
+    "n_epochs": 800,
+    "lr": 0.001,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 50,
+    "use_end_supervision": true,
+    "use_physical_scaling": false,
+    "balanced_feature_sampling": false
+  }
+}

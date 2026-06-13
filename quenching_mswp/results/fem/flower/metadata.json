@@ -1,0 +1,14 @@
+{
+  "geometry": "flower",
+  "n_refine": 4,
+  "n_vertices": 935,
+  "n_cells": 1468,
+  "t_assemble_s": 0.0179,
+  "t_solve_s": 0.1231,
+  "t_total_s": 0.141,
+  "T_mean_init": 540.0,
+  "T_mean_final": 20.0,
+  "T_min_final": 20.0,
+  "T_max_final": 20.0,
+  "cooling_fraction": 1.0
+}

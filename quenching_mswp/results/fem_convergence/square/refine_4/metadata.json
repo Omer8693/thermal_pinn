@@ -1,0 +1,15 @@
+{
+  "geometry": "square",
+  "level": "refine_4",
+  "n_refine": 4,
+  "flower_grid": 0.04,
+  "n_nodes": 1089,
+  "n_cells": 2048,
+  "dt": 0.5,
+  "t_end": 30.0,
+  "n_steps": 60,
+  "t_assemble_s": 0.013462,
+  "t_solve_s": 0.223657,
+  "t_total_s": 0.23712,
+  "T_mean_final": 20.000001
+}

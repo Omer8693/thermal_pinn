@@ -1,0 +1,93 @@
+{
+  "domain": "thermal_fin",
+  "arch": "bayesian",
+  "k": 2,
+  "dim": 3,
+  "mean_mae": 66.62801759057251,
+  "n_windows": 10,
+  "windows": [
+    {
+      "t_start": 0.0,
+      "t_end": 3.0,
+      "mae_C": 81.16405202378196,
+      "l2_rel": 0.23940162661449346,
+      "runtime_s": 27.19776678085327
+    },
+    {
+      "t_start": 3.0,
+      "t_end": 6.0,
+      "mae_C": 91.71388086246871,
+      "l2_rel": 0.32570741475180787,
+      "runtime_s": 28.545217037200928
+    },
+    {
+      "t_start": 6.0,
+      "t_end": 9.0,
+      "mae_C": 87.95012395584115,
+      "l2_rel": 0.3376587965410654,
+      "runtime_s": 26.904650926589966
+    },
+    {
+      "t_start": 9.0,
+      "t_end": 12.0,
+      "mae_C": 78.30209881437399,
+      "l2_rel": 0.34950236428461934,
+      "runtime_s": 27.529403924942017
+    },
+    {
+      "t_start": 12.0,
+      "t_end": 15.0,
+      "mae_C": 73.19305123472286,
+      "l2_rel": 0.36933785577974276,
+      "runtime_s": 28.958398818969727
+    },
+    {
+      "t_start": 15.0,
+      "t_end": 18.0,
+      "mae_C": 61.71769294611069,
+      "l2_rel": 0.34886037218756216,
+      "runtime_s": 26.839833974838257
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 21.0,
+      "mae_C": 56.56583961455086,
+      "l2_rel": 0.36030342710691093,
+      "runtime_s": 26.954869747161865
+    },
+    {
+      "t_start": 21.0,
+      "t_end": 24.0,
+      "mae_C": 47.40688335639541,
+      "l2_rel": 0.3509496142768757,
+      "runtime_s": 27.691322565078735
+    },
+    {
+      "t_start": 24.0,
+      "t_end": 27.0,
+      "mae_C": 46.480380865847934,
+      "l2_rel": 0.3603607048723296,
+      "runtime_s": 26.596986770629883
+    },
+    {
+      "t_start": 27.0,
+      "t_end": 30.0,
+      "mae_C": 41.786172231631575,
+      "l2_rel": 0.3679964763053727,
+      "runtime_s": 26.933927536010742
+    }
+  ],
+  "total_s": 275.9547703266144,
+  "checkpoint": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/thermal_fin/thermal_fin_bayesian_k2_ablation_no_end_sup.pt",
+  "train_config": {
+    "n_domain": 12000,
+    "n_bc": 2400,
+    "n_epochs": 2000,
+    "lr": 0.0008,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 100,
+    "n_eval": 4000,
+    "use_end_supervision": false
+  },
+  "run_tag": "ablation_no_end_sup"
+}

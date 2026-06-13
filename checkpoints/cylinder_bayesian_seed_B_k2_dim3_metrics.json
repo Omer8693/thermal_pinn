@@ -1,0 +1,97 @@
+{
+  "domain": "cylinder",
+  "arch": "bayesian",
+  "tag": "seed_B",
+  "strategy": "fem_anchor_fixed_k_sweep",
+  "reference_used_each_window": true,
+  "reference_used_for_final_evaluation": true,
+  "k": 2,
+  "dim": 3,
+  "mean_mae": 4.153235884350872,
+  "n_windows": 10,
+  "windows": [
+    {
+      "t_start": 0.0,
+      "t_end": 3.0,
+      "mae_C": 9.910801453814345,
+      "l2_rel": 0.03408174503507713,
+      "runtime_s": 11.281860113143921
+    },
+    {
+      "t_start": 3.0,
+      "t_end": 6.0,
+      "mae_C": 6.1371296866716305,
+      "l2_rel": 0.01993384658697336,
+      "runtime_s": 11.121718883514404
+    },
+    {
+      "t_start": 6.0,
+      "t_end": 9.0,
+      "mae_C": 4.161313331934007,
+      "l2_rel": 0.015180284058807779,
+      "runtime_s": 11.467204809188843
+    },
+    {
+      "t_start": 9.0,
+      "t_end": 12.0,
+      "mae_C": 4.496879512827847,
+      "l2_rel": 0.021682003755272225,
+      "runtime_s": 10.640530347824097
+    },
+    {
+      "t_start": 12.0,
+      "t_end": 15.0,
+      "mae_C": 3.312599353072464,
+      "l2_rel": 0.019131070413567184,
+      "runtime_s": 10.87608289718628
+    },
+    {
+      "t_start": 15.0,
+      "t_end": 18.0,
+      "mae_C": 3.030650538322586,
+      "l2_rel": 0.013226382049214624,
+      "runtime_s": 11.099809408187866
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 21.0,
+      "mae_C": 2.2660411968328864,
+      "l2_rel": 0.009113732532039788,
+      "runtime_s": 10.635336637496948
+    },
+    {
+      "t_start": 21.0,
+      "t_end": 24.0,
+      "mae_C": 3.1972023076765246,
+      "l2_rel": 0.019660427575860385,
+      "runtime_s": 10.764030456542969
+    },
+    {
+      "t_start": 24.0,
+      "t_end": 27.0,
+      "mae_C": 2.9150197632074617,
+      "l2_rel": 0.01825192630676433,
+      "runtime_s": 10.825523138046265
+    },
+    {
+      "t_start": 27.0,
+      "t_end": 30.0,
+      "mae_C": 2.1047216991489717,
+      "l2_rel": 0.011061710523296492,
+      "runtime_s": 10.801715612411499
+    }
+  ],
+  "total_s": 109.61284852027893,
+  "checkpoint": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/cylinder_bayesian_seed_B_k2_dim3.pt",
+  "train_kwargs": {
+    "n_domain": 1500,
+    "n_bc": 300,
+    "n_epochs": 800,
+    "lr": 0.001,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 50,
+    "use_end_supervision": true,
+    "use_physical_scaling": false,
+    "balanced_feature_sampling": false
+  }
+}

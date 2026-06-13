@@ -1,0 +1,1396 @@
+[
+  {
+    "domain": "rectangular",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 94.10136017789141,
+    "all_k": {
+      "1": 94.10136017789141
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_bayesian_k1_dim3_smokecheck.pt",
+    "run_tag": "smokecheck"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 73.4204554753758,
+    "all_k": {
+      "1": 73.4204554753758
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_bayesian_k1_dim3_smokecheck_ws.pt",
+    "run_tag": "smokecheck_ws",
+    "warm_start": true
+  },
+  {
+    "domain": "cylinder",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 11.02370762617171,
+    "all_k": {
+      "1": 11.02370762617171
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_bayesian_k1_dim3_improved3d_ws.pt",
+    "run_tag": "improved3d_ws",
+    "warm_start": true
+  },
+  {
+    "domain": "cylinder",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 6.585590247790913,
+    "all_k": {
+      "1": 6.585590247790913
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_bayesian_k1_dim3_improved3d.pt",
+    "run_tag": "improved3d"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 4,
+    "best_mae": 8.610464458519372,
+    "all_k": {
+      "1": 9.391040657439675,
+      "2": 9.513737314614238,
+      "3": 9.264192631251296,
+      "4": 8.610464458519372,
+      "5": 9.790834441674516
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_bayesian_k4_dim3_seed_D.pt",
+    "run_tag": "seed_D"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 3,
+    "best_mae": 7.899245115162935,
+    "all_k": {
+      "1": 9.663020245146553,
+      "2": 9.565822606543021,
+      "3": 7.899245115162935,
+      "4": 9.566855110364472,
+      "5": 10.076188899251552
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_bayesian_k3_dim3_seed_E.pt",
+    "run_tag": "seed_E"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 3,
+    "best_mae": 8.67609888928285,
+    "all_k": {
+      "1": 8.925295100985352,
+      "2": 8.711538649539069,
+      "3": 8.67609888928285,
+      "4": 10.1880556275824,
+      "5": 10.692582701189103
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_bayesian_k3_dim3_seed_F.pt",
+    "run_tag": "seed_F"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 2,
+    "best_mae": 7.959004302075482,
+    "all_k": {
+      "1": 9.955516186871348,
+      "2": 7.959004302075482,
+      "3": 10.931207354734173,
+      "4": 11.700783571021422,
+      "5": 9.238308704357014
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_bayesian_k2_dim3_seed_G.pt",
+    "run_tag": "seed_G"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 9.615196727633192,
+    "all_k": {
+      "1": 9.615196727633192,
+      "2": 10.001416789395211,
+      "3": 10.47233486612218,
+      "4": 10.163051517896857,
+      "5": 11.76758154803797
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_bayesian_k1_dim3_seed_H.pt",
+    "run_tag": "seed_H"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 8.378329606106874,
+    "all_k": {
+      "1": 8.378329606106874,
+      "2": 9.078983079073918,
+      "3": 10.145536552170938,
+      "4": 9.580255359574313,
+      "5": 9.181173417171197
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_bayesian_k1_dim3_seed_I.pt",
+    "run_tag": "seed_I"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 8.519411037393466,
+    "all_k": {
+      "1": 8.519411037393466,
+      "2": 9.042132108849206,
+      "3": 9.811077218712708,
+      "4": 9.941676677854781,
+      "5": 9.855516147331087
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_bayesian_k1_dim3_seed_J.pt",
+    "run_tag": "seed_J"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.422737801583745,
+    "all_k": {
+      "1": 4.422737801583745,
+      "2": 6.057366040112416,
+      "3": 9.228549368155504,
+      "4": 10.474370449762471,
+      "5": 8.528239598616056
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_nsga2_k1_dim3_seed_D.pt",
+    "run_tag": "seed_D"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.3212754984050035,
+    "all_k": {
+      "1": 4.3212754984050035,
+      "2": 5.913657728320819,
+      "3": 8.222745927526363,
+      "4": 10.680798656391014,
+      "5": 8.905369903581771
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_nsga2_k1_dim3_seed_E.pt",
+    "run_tag": "seed_E"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 3.8566234537562316,
+    "all_k": {
+      "1": 3.8566234537562316,
+      "2": 6.15637793860745,
+      "3": 7.938418068779092,
+      "4": 8.220123287291447,
+      "5": 10.44160884030035
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_nsga2_k1_dim3_seed_F.pt",
+    "run_tag": "seed_F"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.698055051798132,
+    "all_k": {
+      "1": 4.698055051798132,
+      "2": 6.248359075753799,
+      "3": 12.565780913811173,
+      "4": 11.378535653978435,
+      "5": 11.86073228073463
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_nsga2_k1_dim3_seed_G.pt",
+    "run_tag": "seed_G"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.991565871771542,
+    "all_k": {
+      "1": 4.991565871771542,
+      "2": 6.480778294462935,
+      "3": 7.175922815965761,
+      "4": 8.271858762239054,
+      "5": 22.172944807225093
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_nsga2_k1_dim3_seed_H.pt",
+    "run_tag": "seed_H"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.0929498709084,
+    "all_k": {
+      "1": 5.0929498709084,
+      "2": 6.5310651723223145,
+      "3": 8.273688324829838,
+      "4": 7.993612938627064,
+      "5": 10.684861789855452
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_nsga2_k1_dim3_seed_I.pt",
+    "run_tag": "seed_I"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.2214802579208355,
+    "all_k": {
+      "1": 5.2214802579208355,
+      "2": 6.8815791342621635,
+      "3": 8.876451104652137,
+      "4": 10.718500850747903,
+      "5": 9.4615545070174
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_nsga2_k1_dim3_seed_J.pt",
+    "run_tag": "seed_J"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.980257003715778,
+    "all_k": {
+      "1": 4.980257003715778,
+      "2": 7.408817422702119,
+      "3": 7.654580490900822,
+      "4": 8.497290039689053,
+      "5": 22.615487651079945
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_nsga3_k1_dim3_seed_D.pt",
+    "run_tag": "seed_D"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 6.0871162537809145,
+    "all_k": {
+      "1": 6.0871162537809145,
+      "2": 6.951030111213849,
+      "3": 8.38549195714234,
+      "4": 9.038367696705878,
+      "5": 11.180535377285667
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_nsga3_k1_dim3_seed_E.pt",
+    "run_tag": "seed_E"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.024407110828937,
+    "all_k": {
+      "1": 5.024407110828937,
+      "2": 6.709638308746261,
+      "3": 8.276199285637189,
+      "4": 10.043580352995544,
+      "5": 8.80785123758116
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_nsga3_k1_dim3_seed_F.pt",
+    "run_tag": "seed_F"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.308101569996936,
+    "all_k": {
+      "1": 5.308101569996936,
+      "2": 7.445915366685162,
+      "3": 7.8708097343080965,
+      "4": 9.319677035934685,
+      "5": 10.55229107577216
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_nsga3_k1_dim3_seed_G.pt",
+    "run_tag": "seed_G"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.0891486090556715,
+    "all_k": {
+      "1": 5.0891486090556715,
+      "2": 6.730239718843381,
+      "3": 10.490487154157252,
+      "4": 8.702130402121222,
+      "5": 11.254050367601957
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_nsga3_k1_dim3_seed_H.pt",
+    "run_tag": "seed_H"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.503503297357586,
+    "all_k": {
+      "1": 5.503503297357586,
+      "2": 7.311441834025712,
+      "3": 7.583990548661087,
+      "4": 9.995710611886828,
+      "5": 12.098013655531673
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_nsga3_k1_dim3_seed_I.pt",
+    "run_tag": "seed_I"
+  },
+  {
+    "domain": "rectangular",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.156287213278075,
+    "all_k": {
+      "1": 4.156287213278075,
+      "2": 7.040121851181804,
+      "3": 8.082807732255562,
+      "4": 10.372877395720106,
+      "5": 8.555361959688595
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_nsga3_k1_dim3_seed_J.pt",
+    "run_tag": "seed_J"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.697756524584564,
+    "all_k": {
+      "1": 5.697756524584564,
+      "2": 7.721128443980409,
+      "3": 7.645029456953311,
+      "4": 9.28929609439443,
+      "5": 9.763681383637785
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_bayesian_k1_dim3_seed_D.pt",
+    "run_tag": "seed_D"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.914310308203687,
+    "all_k": {
+      "1": 5.914310308203687,
+      "2": 7.46942809756051,
+      "3": 7.784720921266982,
+      "4": 7.930151976207041,
+      "5": 8.929369925857094
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_bayesian_k1_dim3_seed_E.pt",
+    "run_tag": "seed_E"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.761360488221662,
+    "all_k": {
+      "1": 5.761360488221662,
+      "2": 6.98615882843672,
+      "3": 7.911261186932948,
+      "4": 9.303738906088183,
+      "5": 9.487932495098095
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_bayesian_k1_dim3_seed_F.pt",
+    "run_tag": "seed_F"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.025280899805816,
+    "all_k": {
+      "1": 5.025280899805816,
+      "2": 6.77653067229825,
+      "3": 7.3836024971213,
+      "4": 9.241446725478871,
+      "5": 9.350612605953698
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_bayesian_k1_dim3_seed_G.pt",
+    "run_tag": "seed_G"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.302611671518408,
+    "all_k": {
+      "1": 5.302611671518408,
+      "2": 7.71616202926352,
+      "3": 7.227014287395172,
+      "4": 8.873705418834238,
+      "5": 10.33290465101303
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_bayesian_k1_dim3_seed_H.pt",
+    "run_tag": "seed_H"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.617708023161467,
+    "all_k": {
+      "1": 5.617708023161467,
+      "2": 6.5131212768347835,
+      "3": 8.27945145360811,
+      "4": 9.215385944269626,
+      "5": 10.494771836769296
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_bayesian_k1_dim3_seed_I.pt",
+    "run_tag": "seed_I"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.774725372518109,
+    "all_k": {
+      "1": 5.774725372518109,
+      "2": 7.203763223749536,
+      "3": 7.50735873536418,
+      "4": 9.024970267462626,
+      "5": 9.102212135404534
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_bayesian_k1_dim3_seed_J.pt",
+    "run_tag": "seed_J"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.990052153062067,
+    "all_k": {
+      "1": 4.990052153062067,
+      "2": 9.893955725232729,
+      "3": 6.0171462764324914,
+      "4": 6.107790630449076,
+      "5": 6.938599216051088
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_nsga2_k1_dim3_seed_D.pt",
+    "run_tag": "seed_D"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.847747430049327,
+    "all_k": {
+      "1": 4.847747430049327,
+      "2": 9.716327259841341,
+      "3": 5.040452105043028,
+      "4": 7.793427339960985,
+      "5": 8.598735606393449
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_nsga2_k1_dim3_seed_E.pt",
+    "run_tag": "seed_E"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.15135205526246,
+    "all_k": {
+      "1": 5.15135205526246,
+      "2": 5.698734065416193,
+      "3": 5.315147286509022,
+      "4": 7.128920566207489,
+      "5": 31.800794891200855
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_nsga2_k1_dim3_seed_F.pt",
+    "run_tag": "seed_F"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 3.7583734386997754,
+    "all_k": {
+      "1": 3.7583734386997754,
+      "2": 5.444688511581179,
+      "3": 15.111347276967242,
+      "4": 6.722825998885516,
+      "5": 7.160355485473145
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_nsga2_k1_dim3_seed_G.pt",
+    "run_tag": "seed_G"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 2,
+    "best_mae": 4.8110017750594185,
+    "all_k": {
+      "1": 5.0949156073818544,
+      "2": 4.8110017750594185,
+      "3": 6.6250475180085635,
+      "4": 23.81205264573013,
+      "5": 31.588943472018904
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_nsga2_k2_dim3_seed_H.pt",
+    "run_tag": "seed_H"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 2,
+    "best_mae": 4.919325236624632,
+    "all_k": {
+      "1": 4.9823876422303055,
+      "2": 4.919325236624632,
+      "3": 15.203896651276994,
+      "4": 7.018524921026885,
+      "5": 7.283914121932534
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_nsga2_k2_dim3_seed_I.pt",
+    "run_tag": "seed_I"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.184156714523704,
+    "all_k": {
+      "1": 4.184156714523704,
+      "2": 5.231821281726063,
+      "3": 6.188178769751296,
+      "4": 6.1729574557672695,
+      "5": 7.233754272139216
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_nsga2_k1_dim3_seed_J.pt",
+    "run_tag": "seed_J"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.4827280629156485,
+    "all_k": {
+      "1": 4.4827280629156485,
+      "2": 10.13026532012687,
+      "3": 5.384000561075991,
+      "4": 6.922018554637978,
+      "5": 8.221169013917118
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_nsga3_k1_dim3_seed_D.pt",
+    "run_tag": "seed_D"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 3.8848715117711548,
+    "all_k": {
+      "1": 3.8848715117711548,
+      "2": 5.496896482898482,
+      "3": 6.345417489375484,
+      "4": 6.563588513747797,
+      "5": 8.664634849092435
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_nsga3_k1_dim3_seed_E.pt",
+    "run_tag": "seed_E"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.400048603536401,
+    "all_k": {
+      "1": 5.400048603536401,
+      "2": 5.453347890275398,
+      "3": 5.508385358546259,
+      "4": 6.055619007939555,
+      "5": 7.133155167937955
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_nsga3_k1_dim3_seed_F.pt",
+    "run_tag": "seed_F"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 2,
+    "best_mae": 4.557467844953572,
+    "all_k": {
+      "1": 5.650936818125947,
+      "2": 4.557467844953572,
+      "3": 6.273244066824674,
+      "4": 7.843964991531138,
+      "5": 7.976927236461493
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_nsga3_k2_dim3_seed_G.pt",
+    "run_tag": "seed_G"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.3748744849221035,
+    "all_k": {
+      "1": 4.3748744849221035,
+      "2": 5.217007674830251,
+      "3": 6.2095365074260584,
+      "4": 7.097883863206637,
+      "5": 7.643022687611032
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_nsga3_k1_dim3_seed_H.pt",
+    "run_tag": "seed_H"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 3.2217921273942878,
+    "all_k": {
+      "1": 3.2217921273942878,
+      "2": 4.527286284720747,
+      "3": 6.025004177709541,
+      "4": 23.921427616373087,
+      "5": 7.024926725117531
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_nsga3_k1_dim3_seed_I.pt",
+    "run_tag": "seed_I"
+  },
+  {
+    "domain": "cylinder",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.055649390125896,
+    "all_k": {
+      "1": 4.055649390125896,
+      "2": 10.185557921810108,
+      "3": 6.094590824410181,
+      "4": 8.462085660905567,
+      "5": 8.64483014214969
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/cylinder_nsga3_k1_dim3_seed_J.pt",
+    "run_tag": "seed_J"
+  },
+  {
+    "domain": "stacked",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 11.460305095366945,
+    "all_k": {
+      "1": 11.460305095366945,
+      "2": 14.31953138726847,
+      "3": 11.821666913775728,
+      "4": 16.026474902030024,
+      "5": 17.64099682261992
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_bayesian_k1_dim3_seed_D.pt",
+    "run_tag": "seed_D"
+  },
+  {
+    "domain": "stacked",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 10.996557103661967,
+    "all_k": {
+      "1": 10.996557103661967,
+      "2": 12.022990006023372,
+      "3": 14.25425633161247,
+      "4": 12.111850532321627,
+      "5": 11.844025868176207
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_bayesian_k1_dim3_seed_E.pt",
+    "run_tag": "seed_E"
+  },
+  {
+    "domain": "stacked",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 11.344586189838257,
+    "all_k": {
+      "1": 11.344586189838257,
+      "2": 12.267060680418455,
+      "3": 13.076804381121102,
+      "4": 13.67995844832306,
+      "5": 17.819045698081016
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_bayesian_k1_dim3_seed_F.pt",
+    "run_tag": "seed_F"
+  },
+  {
+    "domain": "stacked",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 5,
+    "best_mae": 11.500764252425183,
+    "all_k": {
+      "1": 11.566858859818817,
+      "2": 11.500912668445403,
+      "3": 11.905427536741556,
+      "4": 12.081697766896866,
+      "5": 11.500764252425183
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_bayesian_k5_dim3_seed_G.pt",
+    "run_tag": "seed_G"
+  },
+  {
+    "domain": "stacked",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 10.79680353760137,
+    "all_k": {
+      "1": 10.79680353760137,
+      "2": 13.409661192552448,
+      "3": 11.688428933080171,
+      "4": 12.617327100935801,
+      "5": 13.283172679254054
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_bayesian_k1_dim3_seed_H.pt",
+    "run_tag": "seed_H"
+  },
+  {
+    "domain": "stacked",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 11.592786348020638,
+    "all_k": {
+      "1": 11.592786348020638,
+      "2": 13.655530012442426,
+      "3": 13.71852094102844,
+      "4": 12.069265549853952,
+      "5": 13.831722291405068
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_bayesian_k1_dim3_seed_I.pt",
+    "run_tag": "seed_I"
+  },
+  {
+    "domain": "stacked",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 11.121835797116606,
+    "all_k": {
+      "1": 11.121835797116606,
+      "2": 11.984962805885065,
+      "3": 11.736915501376568,
+      "4": 16.209667407840513,
+      "5": 14.078185773420552
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_bayesian_k1_dim3_seed_J.pt",
+    "run_tag": "seed_J"
+  },
+  {
+    "domain": "stacked",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.679807561525526,
+    "all_k": {
+      "1": 5.679807561525526,
+      "2": 12.387538522849864,
+      "3": 10.172796611416482,
+      "4": 11.588982489355672,
+      "5": 25.331930736555027
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_nsga2_k1_dim3_seed_D.pt",
+    "run_tag": "seed_D"
+  },
+  {
+    "domain": "stacked",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 6.723818367590489,
+    "all_k": {
+      "1": 6.723818367590489,
+      "2": 7.779375338210228,
+      "3": 9.18488079126742,
+      "4": 12.111610074867752,
+      "5": 12.719901221141651
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_nsga2_k1_dim3_seed_E.pt",
+    "run_tag": "seed_E"
+  },
+  {
+    "domain": "stacked",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 6.996103279749735,
+    "all_k": {
+      "1": 6.996103279749735,
+      "2": 7.578632493107504,
+      "3": 9.109165075965528,
+      "4": 19.150641956831425,
+      "5": 14.825761229263907
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_nsga2_k1_dim3_seed_F.pt",
+    "run_tag": "seed_F"
+  },
+  {
+    "domain": "stacked",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 7.997455628311326,
+    "all_k": {
+      "1": 7.997455628311326,
+      "2": 9.779249041395982,
+      "3": 10.611538073101785,
+      "4": 12.821281781082439,
+      "5": 13.984344722071736
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_nsga2_k1_dim3_seed_G.pt",
+    "run_tag": "seed_G"
+  },
+  {
+    "domain": "stacked",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 6.803886972009652,
+    "all_k": {
+      "1": 6.803886972009652,
+      "2": 8.154974149147598,
+      "3": 14.951223457459335,
+      "4": 12.279329853739549,
+      "5": 26.262095503010478
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_nsga2_k1_dim3_seed_H.pt",
+    "run_tag": "seed_H"
+  },
+  {
+    "domain": "stacked",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.819799952128193,
+    "all_k": {
+      "1": 5.819799952128193,
+      "2": 7.933903765577742,
+      "3": 9.302741287510912,
+      "4": 11.973935655661412,
+      "5": 12.493048930895744
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_nsga2_k1_dim3_seed_I.pt",
+    "run_tag": "seed_I"
+  },
+  {
+    "domain": "stacked",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.865682980696775,
+    "all_k": {
+      "1": 5.865682980696775,
+      "2": 11.554519155591935,
+      "3": 11.315601904596974,
+      "4": 9.979959173857727,
+      "5": 11.97397273979321
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_nsga2_k1_dim3_seed_J.pt",
+    "run_tag": "seed_J"
+  },
+  {
+    "domain": "stacked",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 7.668149996966609,
+    "all_k": {
+      "1": 7.668149996966609,
+      "2": 10.643028397461286,
+      "3": 10.409017809623403,
+      "4": 20.797415184900583,
+      "5": 16.213988927869476
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_nsga3_k1_dim3_seed_D.pt",
+    "run_tag": "seed_D"
+  },
+  {
+    "domain": "stacked",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 5.769968785837689,
+    "all_k": {
+      "1": 5.769968785837689,
+      "2": 13.502704874339807,
+      "3": 10.097128249819502,
+      "4": 12.043824706461837,
+      "5": 15.873084834632316
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_nsga3_k1_dim3_seed_E.pt",
+    "run_tag": "seed_E"
+  },
+  {
+    "domain": "stacked",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 2,
+    "best_mae": 7.491109586139679,
+    "all_k": {
+      "1": 9.131073507070033,
+      "2": 7.491109586139679,
+      "3": 15.437810739671326,
+      "4": 11.308055640393441,
+      "5": 14.158913095702854
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_nsga3_k2_dim3_seed_F.pt",
+    "run_tag": "seed_F"
+  },
+  {
+    "domain": "stacked",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 2,
+    "best_mae": 7.862408656184279,
+    "all_k": {
+      "1": 8.62638053546017,
+      "2": 7.862408656184279,
+      "3": 9.812817186387694,
+      "4": 9.79525241543767,
+      "5": 25.275169423955944
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_nsga3_k2_dim3_seed_G.pt",
+    "run_tag": "seed_G"
+  },
+  {
+    "domain": "stacked",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 7.232845106230975,
+    "all_k": {
+      "1": 7.232845106230975,
+      "2": 7.545621777290978,
+      "3": 10.667864929315583,
+      "4": 10.752074914941229,
+      "5": 12.74468627821064
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_nsga3_k1_dim3_seed_H.pt",
+    "run_tag": "seed_H"
+  },
+  {
+    "domain": "stacked",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 6.535662167231702,
+    "all_k": {
+      "1": 6.535662167231702,
+      "2": 8.113969198739918,
+      "3": 9.19157633283235,
+      "4": 11.289583176561674,
+      "5": 26.110163731325258
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_nsga3_k1_dim3_seed_I.pt",
+    "run_tag": "seed_I"
+  },
+  {
+    "domain": "stacked",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 2,
+    "best_mae": 7.773970602976052,
+    "all_k": {
+      "1": 8.265734635907728,
+      "2": 7.773970602976052,
+      "3": 9.530855423679743,
+      "4": 12.343751836691775,
+      "5": 11.245104648939119
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/stacked_nsga3_k2_dim3_seed_J.pt",
+    "run_tag": "seed_J"
+  },
+  {
+    "domain": "lshape",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 9.458108434792642,
+    "all_k": {
+      "1": 9.458108434792642,
+      "2": 15.050654309597968,
+      "3": 13.022091774799366,
+      "4": 14.136039771296032,
+      "5": 14.671536523377693
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_bayesian_k1_dim3_seed_D.pt",
+    "run_tag": "seed_D"
+  },
+  {
+    "domain": "lshape",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 9.46711877099572,
+    "all_k": {
+      "1": 9.46711877099572,
+      "2": 13.580391044090925,
+      "3": 15.906518685613587,
+      "4": 12.029709503264067,
+      "5": 15.31104483949921
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_bayesian_k1_dim3_seed_E.pt",
+    "run_tag": "seed_E"
+  },
+  {
+    "domain": "lshape",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 3,
+    "best_mae": 12.44831623526377,
+    "all_k": {
+      "1": 13.193635863507973,
+      "2": 12.620393694708982,
+      "3": 12.44831623526377,
+      "4": 14.798406892040067,
+      "5": 14.002306831755998
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_bayesian_k3_dim3_seed_F.pt",
+    "run_tag": "seed_F"
+  },
+  {
+    "domain": "lshape",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 10.848864198355836,
+    "all_k": {
+      "1": 10.848864198355836,
+      "2": 12.564420976624827,
+      "3": 11.7671204797947,
+      "4": 11.436027885558676,
+      "5": 15.358972748040257
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_bayesian_k1_dim3_seed_G.pt",
+    "run_tag": "seed_G"
+  },
+  {
+    "domain": "lshape",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 9.034644131926086,
+    "all_k": {
+      "1": 9.034644131926086,
+      "2": 14.382398851593038,
+      "3": 10.749996483047074,
+      "4": 13.583149933370342,
+      "5": 16.334150190720596
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_bayesian_k1_dim3_seed_H.pt",
+    "run_tag": "seed_H"
+  },
+  {
+    "domain": "lshape",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 3,
+    "best_mae": 10.931363597501448,
+    "all_k": {
+      "1": 11.957410979986586,
+      "2": 15.197189679813775,
+      "3": 10.931363597501448,
+      "4": 12.990837645708734,
+      "5": 16.376042695545834
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_bayesian_k3_dim3_seed_I.pt",
+    "run_tag": "seed_I"
+  },
+  {
+    "domain": "lshape",
+    "arch": "bayesian",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 9.447807164765546,
+    "all_k": {
+      "1": 9.447807164765546,
+      "2": 12.58933470740867,
+      "3": 15.914831477440297,
+      "4": 14.705564791911366,
+      "5": 14.793838639319723
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_bayesian_k1_dim3_seed_J.pt",
+    "run_tag": "seed_J"
+  },
+  {
+    "domain": "lshape",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 3.6736209022837465,
+    "all_k": {
+      "1": 3.6736209022837465,
+      "2": 6.87426239118931,
+      "3": 7.2044429331977895,
+      "4": 8.871485254099253,
+      "5": 10.663824454330939
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_nsga2_k1_dim3_seed_D.pt",
+    "run_tag": "seed_D"
+  },
+  {
+    "domain": "lshape",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 3.9220871092132854,
+    "all_k": {
+      "1": 3.9220871092132854,
+      "2": 7.80079424230413,
+      "3": 6.400785884565944,
+      "4": 8.714844002241271,
+      "5": 10.087684577305684
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_nsga2_k1_dim3_seed_E.pt",
+    "run_tag": "seed_E"
+  },
+  {
+    "domain": "lshape",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.04329738724819,
+    "all_k": {
+      "1": 4.04329738724819,
+      "2": 5.610977419822465,
+      "3": 9.718967933836458,
+      "4": 9.132910788573785,
+      "5": 10.397841180744422
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_nsga2_k1_dim3_seed_F.pt",
+    "run_tag": "seed_F"
+  },
+  {
+    "domain": "lshape",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.023234192465411,
+    "all_k": {
+      "1": 4.023234192465411,
+      "2": 9.379701581011886,
+      "3": 6.333341644738809,
+      "4": 9.092801764212517,
+      "5": 10.391005886471616
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_nsga2_k1_dim3_seed_G.pt",
+    "run_tag": "seed_G"
+  },
+  {
+    "domain": "lshape",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 3.9933907625236906,
+    "all_k": {
+      "1": 3.9933907625236906,
+      "2": 5.347543748013189,
+      "3": 7.395000521800597,
+      "4": 9.072250900933463,
+      "5": 10.540953427300119
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_nsga2_k1_dim3_seed_H.pt",
+    "run_tag": "seed_H"
+  },
+  {
+    "domain": "lshape",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.623473756950066,
+    "all_k": {
+      "1": 4.623473756950066,
+      "2": 5.005753620940668,
+      "3": 7.8983803722229755,
+      "4": 8.960405469576859,
+      "5": 10.207499118277195
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_nsga2_k1_dim3_seed_I.pt",
+    "run_tag": "seed_I"
+  },
+  {
+    "domain": "lshape",
+    "arch": "nsga2",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 3.9067606839243836,
+    "all_k": {
+      "1": 3.9067606839243836,
+      "2": 5.5662548531905385,
+      "3": 7.804814045772221,
+      "4": 10.526061015534141,
+      "5": 10.750876577153521
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_nsga2_k1_dim3_seed_J.pt",
+    "run_tag": "seed_J"
+  },
+  {
+    "domain": "lshape",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.398455831588528,
+    "all_k": {
+      "1": 4.398455831588528,
+      "2": 5.897854086506384,
+      "3": 7.0775552174443055,
+      "4": 9.360913944087434,
+      "5": 10.811225113178665
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_nsga3_k1_dim3_seed_D.pt",
+    "run_tag": "seed_D"
+  },
+  {
+    "domain": "lshape",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.926723299436418,
+    "all_k": {
+      "1": 4.926723299436418,
+      "2": 7.067722746421014,
+      "3": 7.0666560624080885,
+      "4": 8.665841988986584,
+      "5": 11.614560140104679
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_nsga3_k1_dim3_seed_E.pt",
+    "run_tag": "seed_E"
+  },
+  {
+    "domain": "lshape",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 3.7373931736651542,
+    "all_k": {
+      "1": 3.7373931736651542,
+      "2": 6.664290309495731,
+      "3": 7.552539827429279,
+      "4": 9.796207009207766,
+      "5": 11.168193790987386
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_nsga3_k1_dim3_seed_F.pt",
+    "run_tag": "seed_F"
+  },
+  {
+    "domain": "lshape",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 3.963483700065917,
+    "all_k": {
+      "1": 3.963483700065917,
+      "2": 7.00213060526842,
+      "3": 7.626569020170919,
+      "4": 9.14837826630966,
+      "5": 10.993259212464379
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_nsga3_k1_dim3_seed_G.pt",
+    "run_tag": "seed_G"
+  },
+  {
+    "domain": "lshape",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 3.3032447515086054,
+    "all_k": {
+      "1": 3.3032447515086054,
+      "2": 5.890745669905961,
+      "3": 7.249327320081795,
+      "4": 9.064613459806791,
+      "5": 10.54504543711776
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_nsga3_k1_dim3_seed_H.pt",
+    "run_tag": "seed_H"
+  },
+  {
+    "domain": "lshape",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 4.048970094787159,
+    "all_k": {
+      "1": 4.048970094787159,
+      "2": 6.051359663366613,
+      "3": 6.913601789241896,
+      "4": 8.461417731846137,
+      "5": 10.93513820389955
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_nsga3_k1_dim3_seed_I.pt",
+    "run_tag": "seed_I"
+  },
+  {
+    "domain": "lshape",
+    "arch": "nsga3",
+    "dim": 3,
+    "best_k": 1,
+    "best_mae": 3.773024763162332,
+    "all_k": {
+      "1": 3.773024763162332,
+      "2": 7.993463253690509,
+      "3": 7.029760675379209,
+      "4": 10.731000787239923,
+      "5": 11.462906983400389
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/lshape_nsga3_k1_dim3_seed_J.pt",
+    "run_tag": "seed_J"
+  }
+]

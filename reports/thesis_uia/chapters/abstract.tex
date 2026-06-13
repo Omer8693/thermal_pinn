@@ -1,0 +1,38 @@
+\chapter*{Abstract}
+
+In this thesis, we developed a Finite Element Method (FEM)-anchored
+Physics-Informed Neural Network (PINN) framework for transient water-quenching
+simulation of A356 aluminium.
+We based the study on the industrial quenching scenario of Mortensen
+et al.~\cite{mortensen2026}.
+Our central question was: how many FEM solver calls can be replaced by PINN
+predictions while keeping the temperature error within engineering limits?
+
+We adopted Multi-Step Window Prediction (MSWP) as the core strategy.
+The FEM solver provides anchor fields at selected time steps.
+The PINN predicts between consecutive anchors.
+The skip factor $k$ controls the anchor spacing.
+We compared three NAS (Neural Architecture Search)-selected architectures:
+Bayesian/TPE ($5{\times}151$, ReLU), NSGA-II ($3{\times}153$, tanh), and
+NSGA-III ($3{\times}75$, tanh).
+We conducted experiments across ten unique benchmark geometries in two studies.
+The canonical study covers eight domains: three 2D, four 3D, and the Thermal
+Fin, originally a 2D steady-state RBniCS benchmark that we extended to a 3D
+transient quenching scenario.
+A complementary adaptive-$k$ study added Square and Flower as two new 2D
+geometries alongside Circle and L-Shape.
+
+On the adaptive-$k$ study, we found 83--85\% FEM saving with mean absolute
+error (MAE) below $2.5\,^\circ\mathrm{C}$ across all architectures.
+On the canonical 2D domains with fixed $k$, Bayesian/TPE stayed below
+$5\,^\circ\mathrm{C}$ through $k=3$ on all three domains.
+On the 3D domains, Bayesian/TPE remained acceptable at $k=5$ with MAE below
+$14\,^\circ\mathrm{C}$.
+On the Thermal Fin, Bayesian/TPE with Fourier embedding reached $k=5$ at
+$12.55\,^\circ\mathrm{C}$ (ten-seed mean).
+NSGA-II and NSGA-III held through $k=4$.
+We demonstrated that FEM-anchored PINNs can reproduce transient quenching
+fields with 65--85\% fewer solver calls within practical engineering accuracy.
+
+\vspace{0.15cm}
+\noindent\textbf{Keywords}\quad Physics-Informed Neural Networks, Neural Architecture Search, Finite Element Method, Transient Heat Transfer, Water Quenching, Multi-Step Window Prediction, Adaptive Skip-Factor Scheduling, FEM-Anchored Surrogate Modelling, Fourier Feature Embeddings, Thermal Fin Benchmark, A356 Aluminium.

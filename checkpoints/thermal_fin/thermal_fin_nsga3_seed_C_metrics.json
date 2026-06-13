@@ -1,0 +1,171 @@
+{
+  "domain": "thermal_fin",
+  "arch": "nsga3",
+  "dim": 3,
+  "run_tag": "seed_C",
+  "mean_mae": 12.148497733258445,
+  "n_windows": 11,
+  "fem_savings_pct": 44.99999999999999,
+  "k_schedule": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4
+  ],
+  "windows": [
+    {
+      "window": 1,
+      "t_start": 0.0,
+      "t_end": 1.5,
+      "k_used": 1,
+      "phase_cap": 2,
+      "mode": "burn-in",
+      "mae_C": 23.229456022504497,
+      "l2_rel": 0.07850661706452537,
+      "runtime_s": 27.939493417739868
+    },
+    {
+      "window": 2,
+      "t_start": 1.5,
+      "t_end": 3.0,
+      "k_used": 1,
+      "phase_cap": 2,
+      "mode": "burn-in",
+      "mae_C": 16.07635702175947,
+      "l2_rel": 0.07339992451805219,
+      "runtime_s": 27.603076696395874
+    },
+    {
+      "window": 3,
+      "t_start": 3.0,
+      "t_end": 4.5,
+      "k_used": 1,
+      "phase_cap": 2,
+      "mode": "adaptive",
+      "mae_C": 14.635302891136442,
+      "l2_rel": 0.06953897776172034,
+      "runtime_s": 28.07941246032715
+    },
+    {
+      "window": 4,
+      "t_start": 4.5,
+      "t_end": 6.0,
+      "k_used": 1,
+      "phase_cap": 2,
+      "mode": "adaptive",
+      "mae_C": 13.276597748879865,
+      "l2_rel": 0.07008346762185061,
+      "runtime_s": 25.767096996307373
+    },
+    {
+      "window": 5,
+      "t_start": 6.0,
+      "t_end": 7.5,
+      "k_used": 1,
+      "phase_cap": 2,
+      "mode": "adaptive",
+      "mae_C": 12.627762612742462,
+      "l2_rel": 0.0649697683706146,
+      "runtime_s": 26.445125341415405
+    },
+    {
+      "window": 6,
+      "t_start": 7.5,
+      "t_end": 9.0,
+      "k_used": 1,
+      "phase_cap": 2,
+      "mode": "adaptive",
+      "mae_C": 11.22242069272746,
+      "l2_rel": 0.06217079150111058,
+      "runtime_s": 27.77692198753357
+    },
+    {
+      "window": 7,
+      "t_start": 9.0,
+      "t_end": 12.0,
+      "k_used": 2,
+      "phase_cap": 2,
+      "mode": "adaptive",
+      "mae_C": 11.409503863355084,
+      "l2_rel": 0.06567741023454485,
+      "runtime_s": 26.760470151901245
+    },
+    {
+      "window": 8,
+      "t_start": 12.0,
+      "t_end": 15.0,
+      "k_used": 2,
+      "phase_cap": 4,
+      "mode": "adaptive",
+      "mae_C": 9.776825707783495,
+      "l2_rel": 0.06353428967991856,
+      "runtime_s": 25.983572959899902
+    },
+    {
+      "window": 9,
+      "t_start": 15.0,
+      "t_end": 19.5,
+      "k_used": 3,
+      "phase_cap": 4,
+      "mode": "adaptive",
+      "mae_C": 8.496450985826906,
+      "l2_rel": 0.05902129545526742,
+      "runtime_s": 25.99696445465088
+    },
+    {
+      "window": 10,
+      "t_start": 19.5,
+      "t_end": 24.0,
+      "k_used": 3,
+      "phase_cap": 4,
+      "mode": "adaptive",
+      "mae_C": 7.102642360802657,
+      "l2_rel": 0.05626750714995153,
+      "runtime_s": 26.206412076950073
+    },
+    {
+      "window": 11,
+      "t_start": 24.0,
+      "t_end": 30.0,
+      "k_used": 4,
+      "phase_cap": 5,
+      "mode": "adaptive",
+      "mae_C": 5.7801551583245505,
+      "l2_rel": 0.055110386403183366,
+      "runtime_s": 27.176944494247437
+    }
+  ],
+  "controller": {
+    "k_init": 1,
+    "k_min": 1,
+    "k_max": 5,
+    "thresh_up": 13.0,
+    "thresh_down": 16.0,
+    "burnin_windows": 2,
+    "burnin_k": 1,
+    "promote_streak": 2,
+    "early_until": 10.0,
+    "mid_until": 20.0,
+    "early_k_max": 2,
+    "mid_k_max": 4,
+    "late_k_max": 5
+  },
+  "train_config": {
+    "n_domain": 12000,
+    "n_bc": 2400,
+    "n_epochs": 2000,
+    "lr": 0.0008,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 100,
+    "n_eval": 4000,
+    "use_end_supervision": true
+  },
+  "total_s": 297.551878452301
+}

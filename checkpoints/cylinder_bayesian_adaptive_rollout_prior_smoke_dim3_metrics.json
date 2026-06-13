@@ -1,0 +1,123 @@
+{
+  "domain": "cylinder",
+  "arch": "bayesian",
+  "dim": 3,
+  "tag": "adaptive_rollout_prior_smoke",
+  "strategy": "pinn_only_adaptive_k_rollout",
+  "controller_uses_reference": false,
+  "reference_used_for_final_evaluation": true,
+  "completed": false,
+  "t_total_s": 30.0,
+  "t_reached_s": 3.0,
+  "t_eval_s": 3.0,
+  "dt_fem_s": 1.5,
+  "n_reference_steps": 20,
+  "n_reference_steps_reached": 2,
+  "n_windows": 2,
+  "fem_savings_pct": 0.0,
+  "k_schedule": [
+    1,
+    1
+  ],
+  "score_tol": 0.03,
+  "phase_caps": {
+    "early_until": 10.0,
+    "mid_until": 18.0,
+    "early_k_max": 1,
+    "mid_k_max": 2,
+    "late_k_max": 3
+  },
+  "physics_end_prior": {
+    "enabled": true,
+    "lumped_cooling_scale": 0.7,
+    "end_prior_weight": 5.0
+  },
+  "train_kwargs": {
+    "n_domain": 32,
+    "n_bc": 16,
+    "n_epochs": 2,
+    "lr": 0.001,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 0,
+    "use_end_supervision": true
+  },
+  "final_eval": {
+    "t_eval_s": 3.0,
+    "mae_C": 127.18386524659667,
+    "l2_rel": 0.32518518931741636,
+    "n_eval": 32
+  },
+  "total_s": 2.1717069149017334,
+  "windows": [
+    {
+      "window": 1,
+      "t_start": 0.0,
+      "t_end": 1.5,
+      "k_used": 1,
+      "controller_mode": "adaptive",
+      "selected_reason": "fallback smallest k",
+      "runtime_s": 0.5283637046813965,
+      "score": 0.9634338635951281,
+      "pde_loss": 0.021888427436351776,
+      "bc_loss": 0.8754239082336426,
+      "monotonic_loss": 0.0,
+      "end_prior_loss": 0.013224305585026741,
+      "undercooling_loss": 0.0,
+      "mean_theta_drop": 0.14593933522701263,
+      "target_theta_drop": 0.031574130058288574,
+      "passed": false,
+      "candidates": [
+        {
+          "k": 1,
+          "t_start": 0.0,
+          "t_end": 1.5,
+          "runtime_s": 0.5283637046813965,
+          "score": 0.9634338635951281,
+          "pde_loss": 0.021888427436351776,
+          "bc_loss": 0.8754239082336426,
+          "monotonic_loss": 0.0,
+          "end_prior_loss": 0.013224305585026741,
+          "undercooling_loss": 0.0,
+          "mean_theta_drop": 0.14593933522701263,
+          "target_theta_drop": 0.031574130058288574,
+          "passed": false
+        }
+      ]
+    },
+    {
+      "window": 2,
+      "t_start": 1.5,
+      "t_end": 3.0,
+      "k_used": 1,
+      "controller_mode": "adaptive",
+      "selected_reason": "fallback smallest k",
+      "runtime_s": 0.30135035514831543,
+      "score": 0.8712849654257298,
+      "pde_loss": 0.05594446882605553,
+      "bc_loss": 0.5834614038467407,
+      "monotonic_loss": 0.0,
+      "end_prior_loss": 0.0463758185505867,
+      "undercooling_loss": 0.0,
+      "mean_theta_drop": 0.24210329353809357,
+      "target_theta_drop": 0.027216831222176552,
+      "passed": false,
+      "candidates": [
+        {
+          "k": 1,
+          "t_start": 1.5,
+          "t_end": 3.0,
+          "runtime_s": 0.30135035514831543,
+          "score": 0.8712849654257298,
+          "pde_loss": 0.05594446882605553,
+          "bc_loss": 0.5834614038467407,
+          "monotonic_loss": 0.0,
+          "end_prior_loss": 0.0463758185505867,
+          "undercooling_loss": 0.0,
+          "mean_theta_drop": 0.24210329353809357,
+          "target_theta_drop": 0.027216831222176552,
+          "passed": false
+        }
+      ]
+    }
+  ]
+}

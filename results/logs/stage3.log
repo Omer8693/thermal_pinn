@@ -1,0 +1,27 @@
+2026-05-21 21:52:53 [stage3][all][pinn_only][k=-][s=-] INFO Stage 3 PINN-only | arch=[50,50,50,50] | Adam=200 + L-BFGS=50
+2026-05-21 21:52:53 [stage3][all][pinn_only][k=-][s=-] INFO === PINN-only: square ===
+2026-05-21 21:52:53 [stage3][all][pinn_only][k=-][s=-] INFO Network: 7901 parameters
+2026-05-21 21:58:26 [stage3][all][pinn_only][k=-][s=-] INFO Stage 3 PINN-only | arch=[50,50,50,50] | Adam=5000 + L-BFGS=1000
+2026-05-21 21:58:26 [stage3][all][pinn_only][k=-][s=-] INFO === PINN-only: square ===
+2026-05-21 21:58:26 [stage3][all][pinn_only][k=-][s=-] INFO Network: 7901 parameters
+2026-05-21 22:17:24 [stage3][all][pinn_only][k=-][s=-] INFO MAE_mean=140.32 C  L2_mean=0.5336  train=1470.6 s
+2026-05-21 22:17:29 [stage3][all][pinn_only][k=-][s=-] INFO === Stage 3 complete ===
+2026-05-21 22:17:29 [stage3][all][pinn_only][k=-][s=-] INFO   square    MAE=140.32 C  L2=0.5336  train=1471 s
+2026-05-21 22:28:46 [stage3][all][pinn_only][k=-][s=-] INFO Stage 3 PINN-only | arch=[50,50,50,50] | Adam=5000 + L-BFGS=1000
+2026-05-21 22:28:46 [stage3][all][pinn_only][k=-][s=-] INFO === PINN-only: square ===
+2026-05-21 22:28:46 [stage3][all][pinn_only][k=-][s=-] INFO Network: 7901 parameters
+2026-05-21 22:30:29 [stage3][all][pinn_only][k=-][s=-] INFO MAE_mean=147.59 C  L2_mean=0.6740  train=102.7 s
+2026-05-21 22:30:34 [stage3][all][pinn_only][k=-][s=-] INFO === PINN-only: circle ===
+2026-05-21 22:30:34 [stage3][all][pinn_only][k=-][s=-] INFO Network: 7901 parameters
+2026-05-21 22:32:11 [stage3][all][pinn_only][k=-][s=-] INFO MAE_mean=141.26 C  L2_mean=0.5362  train=97.2 s
+2026-05-21 22:32:17 [stage3][all][pinn_only][k=-][s=-] INFO === PINN-only: lshape ===
+2026-05-21 22:32:17 [stage3][all][pinn_only][k=-][s=-] INFO Network: 7901 parameters
+2026-05-21 22:33:59 [stage3][all][pinn_only][k=-][s=-] INFO MAE_mean=179.82 C  L2_mean=0.6964  train=101.8 s
+2026-05-21 22:34:04 [stage3][all][pinn_only][k=-][s=-] INFO === PINN-only: flower ===
+2026-05-21 22:34:04 [stage3][all][pinn_only][k=-][s=-] INFO Network: 7901 parameters
+2026-05-21 22:35:52 [stage3][all][pinn_only][k=-][s=-] INFO MAE_mean=113.20 C  L2_mean=0.6367  train=108.6 s
+2026-05-21 22:35:58 [stage3][all][pinn_only][k=-][s=-] INFO === Stage 3 complete ===
+2026-05-21 22:35:58 [stage3][all][pinn_only][k=-][s=-] INFO   square    MAE=147.59 C  L2=0.6740  train=103 s
+2026-05-21 22:35:58 [stage3][all][pinn_only][k=-][s=-] INFO   circle    MAE=141.26 C  L2=0.5362  train=97 s
+2026-05-21 22:35:58 [stage3][all][pinn_only][k=-][s=-] INFO   lshape    MAE=179.82 C  L2=0.6964  train=102 s
+2026-05-21 22:35:58 [stage3][all][pinn_only][k=-][s=-] INFO   flower    MAE=113.20 C  L2=0.6367  train=109 s

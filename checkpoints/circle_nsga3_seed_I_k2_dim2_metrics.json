@@ -1,0 +1,97 @@
+{
+  "domain": "circle",
+  "arch": "nsga3",
+  "tag": "seed_I",
+  "strategy": "fem_anchor_fixed_k_sweep",
+  "reference_used_each_window": true,
+  "reference_used_for_final_evaluation": true,
+  "k": 2,
+  "dim": 2,
+  "mean_mae": 4.086564278683094,
+  "n_windows": 10,
+  "windows": [
+    {
+      "t_start": 0.0,
+      "t_end": 3.0,
+      "mae_C": 7.713115461986043,
+      "l2_rel": 0.0378883837873776,
+      "runtime_s": 14.771925687789917
+    },
+    {
+      "t_start": 3.0,
+      "t_end": 6.0,
+      "mae_C": 5.40628295949107,
+      "l2_rel": 0.019787891274464987,
+      "runtime_s": 14.206185817718506
+    },
+    {
+      "t_start": 6.0,
+      "t_end": 9.0,
+      "mae_C": 4.3934581640133565,
+      "l2_rel": 0.015659726056437735,
+      "runtime_s": 14.133256435394287
+    },
+    {
+      "t_start": 9.0,
+      "t_end": 12.0,
+      "mae_C": 3.836179065553455,
+      "l2_rel": 0.0135620303139405,
+      "runtime_s": 14.749775171279907
+    },
+    {
+      "t_start": 12.0,
+      "t_end": 15.0,
+      "mae_C": 3.5483311369462434,
+      "l2_rel": 0.012094298490484814,
+      "runtime_s": 15.212473154067993
+    },
+    {
+      "t_start": 15.0,
+      "t_end": 18.0,
+      "mae_C": 3.103964192430508,
+      "l2_rel": 0.010763113185865267,
+      "runtime_s": 14.616692304611206
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 21.0,
+      "mae_C": 3.390969039452285,
+      "l2_rel": 0.011314511022764939,
+      "runtime_s": 15.205443620681763
+    },
+    {
+      "t_start": 21.0,
+      "t_end": 24.0,
+      "mae_C": 3.0845057933541855,
+      "l2_rel": 0.010287356870566713,
+      "runtime_s": 15.284564018249512
+    },
+    {
+      "t_start": 24.0,
+      "t_end": 27.0,
+      "mae_C": 3.3097075784831786,
+      "l2_rel": 0.010869788783055934,
+      "runtime_s": 15.05024766921997
+    },
+    {
+      "t_start": 27.0,
+      "t_end": 30.0,
+      "mae_C": 3.079129395120618,
+      "l2_rel": 0.01022863002007062,
+      "runtime_s": 14.259342670440674
+    }
+  ],
+  "total_s": 147.71251606941223,
+  "checkpoint": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/circle_nsga3_seed_I_k2_dim2.pt",
+  "train_kwargs": {
+    "n_domain": 1500,
+    "n_bc": 300,
+    "n_epochs": 800,
+    "lr": 0.001,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 50,
+    "use_end_supervision": true,
+    "use_physical_scaling": false,
+    "balanced_feature_sampling": false
+  }
+}

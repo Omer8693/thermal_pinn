@@ -1,0 +1,37 @@
+2026-05-23 21:36:53 [stage1_convergence][all][fem][k=-][s=-] INFO Stage 1A FEM convergence | geometries=['square', 'circle', 'lshape', 'flower'] | n_refines=[1, 2, 3, 4] | flower_grids=[0.12, 0.08, 0.06, 0.04]
+2026-05-23 21:36:53 [stage1_convergence][all][fem][k=-][s=-] INFO === square levels: ['refine_1', 'refine_2', 'refine_3', 'refine_4'] ===
+2026-05-23 21:36:53 [stage1_convergence][all][fem][k=-][s=-] INFO square   refine_1     nodes=25     cells=32     total=0.013 s
+2026-05-23 21:36:53 [stage1_convergence][all][fem][k=-][s=-] INFO square   refine_2     nodes=81     cells=128    total=0.017 s
+2026-05-23 21:36:53 [stage1_convergence][all][fem][k=-][s=-] INFO square   refine_3     nodes=289    cells=512    total=0.061 s
+2026-05-23 21:36:53 [stage1_convergence][all][fem][k=-][s=-] INFO square   refine_4     nodes=1089   cells=2048   total=0.237 s
+2026-05-23 21:36:53 [stage1_convergence][all][fem][k=-][s=-] INFO square   refine_1     vs refine_4     MAE=0.085363 C  L2=9.741083e-04  max=4.097342 C
+2026-05-23 21:36:53 [stage1_convergence][all][fem][k=-][s=-] INFO square   refine_2     vs refine_4     MAE=0.022316 C  L2=2.572296e-04  max=1.222451 C
+2026-05-23 21:36:54 [stage1_convergence][all][fem][k=-][s=-] INFO square   refine_3     vs refine_4     MAE=0.005471 C  L2=6.014810e-05  max=0.282678 C
+2026-05-23 21:36:55 [stage1_convergence][all][fem][k=-][s=-] INFO square   refine_4     vs refine_4     MAE=0.000000 C  L2=0.000000e+00  max=0.000000 C
+2026-05-23 21:36:55 [stage1_convergence][all][fem][k=-][s=-] INFO === circle levels: ['refine_1', 'refine_2', 'refine_3'] ===
+2026-05-23 21:36:55 [stage1_convergence][all][fem][k=-][s=-] INFO circle   refine_1     nodes=545    cells=1024   total=0.126 s
+2026-05-23 21:36:55 [stage1_convergence][all][fem][k=-][s=-] INFO circle   refine_2     nodes=2113   cells=4096   total=0.614 s
+2026-05-23 21:36:59 [stage1_convergence][all][fem][k=-][s=-] INFO circle   refine_3     nodes=8321   cells=16384  total=3.660 s
+2026-05-23 21:37:00 [stage1_convergence][all][fem][k=-][s=-] INFO circle   refine_1     vs refine_3     MAE=0.001638 C  L2=1.950826e-05  max=0.075916 C
+2026-05-23 21:37:02 [stage1_convergence][all][fem][k=-][s=-] INFO circle   refine_2     vs refine_3     MAE=0.000446 C  L2=4.624920e-06  max=0.021844 C
+2026-05-23 21:37:10 [stage1_convergence][all][fem][k=-][s=-] INFO circle   refine_3     vs refine_3     MAE=0.000000 C  L2=3.013690e-17  max=0.000000 C
+2026-05-23 21:37:10 [stage1_convergence][all][fem][k=-][s=-] INFO === lshape levels: ['refine_1', 'refine_2', 'refine_3', 'refine_4'] ===
+2026-05-23 21:37:11 [stage1_convergence][all][fem][k=-][s=-] INFO lshape   refine_1     nodes=21     cells=24     total=0.011 s
+2026-05-23 21:37:11 [stage1_convergence][all][fem][k=-][s=-] INFO lshape   refine_2     nodes=65     cells=96     total=0.015 s
+2026-05-23 21:37:11 [stage1_convergence][all][fem][k=-][s=-] INFO lshape   refine_3     nodes=225    cells=384    total=0.042 s
+2026-05-23 21:37:11 [stage1_convergence][all][fem][k=-][s=-] INFO lshape   refine_4     nodes=833    cells=1536   total=0.157 s
+2026-05-23 21:37:11 [stage1_convergence][all][fem][k=-][s=-] INFO lshape   refine_1     vs refine_4     MAE=0.424090 C  L2=5.026121e-03  max=12.201568 C
+2026-05-23 21:37:11 [stage1_convergence][all][fem][k=-][s=-] INFO lshape   refine_2     vs refine_4     MAE=0.112887 C  L2=1.330211e-03  max=4.434087 C
+2026-05-23 21:37:11 [stage1_convergence][all][fem][k=-][s=-] INFO lshape   refine_3     vs refine_4     MAE=0.026671 C  L2=3.035124e-04  max=1.412439 C
+2026-05-23 21:37:12 [stage1_convergence][all][fem][k=-][s=-] INFO lshape   refine_4     vs refine_4     MAE=0.000000 C  L2=2.114938e-18  max=0.000000 C
+2026-05-23 21:37:12 [stage1_convergence][all][fem][k=-][s=-] INFO === flower levels: ['grid_0p120', 'grid_0p080', 'grid_0p060', 'grid_0p040'] ===
+2026-05-23 21:37:12 [stage1_convergence][all][fem][k=-][s=-] INFO flower   grid_0p120   nodes=457    cells=512    total=0.049 s
+2026-05-23 21:37:12 [stage1_convergence][all][fem][k=-][s=-] INFO flower   grid_0p080   nodes=531    cells=660    total=0.065 s
+2026-05-23 21:37:12 [stage1_convergence][all][fem][k=-][s=-] INFO flower   grid_0p060   nodes=636    cells=870    total=0.085 s
+2026-05-23 21:37:12 [stage1_convergence][all][fem][k=-][s=-] INFO flower   grid_0p040   nodes=935    cells=1468   total=0.142 s
+2026-05-23 21:37:13 [stage1_convergence][all][fem][k=-][s=-] INFO flower   grid_0p120   vs grid_0p040   MAE=0.024757 C  L2=3.131582e-04  max=1.402184 C
+2026-05-23 21:37:13 [stage1_convergence][all][fem][k=-][s=-] INFO flower   grid_0p080   vs grid_0p040   MAE=0.011261 C  L2=1.351706e-04  max=0.759853 C
+2026-05-23 21:37:14 [stage1_convergence][all][fem][k=-][s=-] INFO flower   grid_0p060   vs grid_0p040   MAE=0.006402 C  L2=7.451901e-05  max=0.557215 C
+2026-05-23 21:37:15 [stage1_convergence][all][fem][k=-][s=-] INFO flower   grid_0p040   vs grid_0p040   MAE=0.000000 C  L2=3.268090e-17  max=0.000000 C
+2026-05-23 21:37:17 [stage1_convergence][all][fem][k=-][s=-] INFO Saved summary: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/fem_convergence/convergence_summary.csv
+2026-05-23 21:37:17 [stage1_convergence][all][fem][k=-][s=-] INFO Saved figures: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_convergence/fem_convergence_l2.png | /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_convergence/fem_convergence_mae.png | /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_convergence/fem_convergence_runtime.png

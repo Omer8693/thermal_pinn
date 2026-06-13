@@ -1,0 +1,1550 @@
+\appendix
+
+% ─────────────────────────────────────────────────────────────────────────────
+\chapter{NAS Hyperparameter Search Space}
+\label{app:nas_space}
+
+Table~\ref{tab:nas_space} defines the hyperparameter search space used by all
+three NAS strategies.
+The same space was searched in each case; only the search strategy differed.
+Selected architectures are in Table~\ref{tab:arch} in Chapter~\ref{chap:method}.
+Bayesian/TPE used 150 trials; NSGA-II used 15 generations of 20; NSGA-III
+used 15 generations of 24.
+
+\begin{table}[H]
+\centering
+\caption{NAS hyperparameter search space.}
+\label{tab:nas_space}
+\small
+\begin{tabular}{lll}
+\toprule
+Hyperparameter & Range / Options & Notes \\
+\midrule
+Hidden layers     & 2--6                  & integer \\
+Neurons per layer & 32--256               & integer, uniform \\
+Activation        & ReLU, tanh, SiLU, GELU & categorical \\
+Fourier embedding & 64 frequencies        & fixed \\
+\midrule
+Objective 1                    & Mean-window MAE & minimise \\
+Objective 2 (NSGA-II/III only) & Parameter count & minimise \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\chapter{FEM Reference Solver and Mesh Configuration}
+\label{app:fem_config}
+
+We used a Crank--Nicolson finite-difference solver on structured grids as the
+FEM reference.
+Table~\ref{tab:fem_mesh} lists the grid dimensions for each domain.
+
+\begin{table}[H]
+\centering
+\caption{FEM reference solver grid configuration.
+All frameworks use $\Delta t_\mathrm{int}=0.5\,\mathrm{s}$ internally.
+PINN anchor spacing is $\Delta t_a=1.5\,\mathrm{s}$ in all cases.}
+\label{tab:fem_mesh}
+\small
+\begin{tabular}{llrr}
+\toprule
+Domain & Dim. & Grid & Active nodes \\
+\midrule
+\multicolumn{4}{l}{\textit{Canonical 2D}} \\
+\midrule
+Rectangle 2D  & 2D & $131{\times}61$          & 7\,991  \\
+Circle 2D     & 2D & $121{\times}121$         & 11\,285 \\
+L-Shape 2D    & 2D & $81{\times}81$           & 4\,961  \\
+\midrule
+\multicolumn{4}{l}{\textit{Canonical 3D}} \\
+\midrule
+Rectangular 3D & 3D & $27{\times}13{\times}9$  & 3\,159  \\
+Cylinder 3D    & 3D & $31{\times}31{\times}9$  & 8\,649  \\
+Stacked 3D     & 3D & $11{\times}11{\times}21$ & 2\,541  \\
+L-Shape 3D     & 3D & $17{\times}17{\times}9$  & 2\,601  \\
+\midrule
+Thermal Fin 3D & 3D & $40{\times}24{\times}16$ & 15\,360 \\
+\midrule
+\multicolumn{4}{l}{\textit{NAS transfer 2D (unstructured)}} \\
+\midrule
+Square 2D  & 2D & --- & 1\,089 \\
+Circle 2D  & 2D & --- & 8\,321 \\
+L-Shape 2D & 2D & --- &   833  \\
+Flower 2D  & 2D & --- &   935  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\chapter{Software and Hardware Configuration}
+\label{app:hardware}
+
+\begin{table}[H]
+\centering
+\caption{Hardware configuration.}
+\label{tab:hardware}
+\small
+\begin{tabular}{ll}
+\toprule
+Component & Specification \\
+\midrule
+GPU & NVIDIA Tesla V100-SXM3 (32\,GB HBM2) \\
+CPU & Intel Xeon Platinum 8168 @ 2.70\,GHz \\
+RAM & 512\,GB \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Software versions.}
+\label{tab:software}
+\small
+\begin{tabular}{ll}
+\toprule
+Library & Version \\
+\midrule
+Python & 3.12.3 \\ PyTorch & 2.6.0 \\ CUDA & 12.6 \\
+Optuna & 4.2.0 \\ pymoo & 0.6.1 \\ scikit-fem & 12.0.1 \\
+NumPy & 1.26.4 \\ Matplotlib & 3.9.3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\chapter{Full Ten-Seed Benchmark Results}
+\label{app:full_results}
+
+Full per-seed results for all canonical 2D and 3D benchmark domains.
+Summary statistics are in Tables~\ref{tab:summary_2d_mae}
+and~\ref{tab:summary_3d_mae} in Chapter~\ref{chap:results}.
+
+\section*{2D Adaptive-$k$ Study}
+
+The combined overview table is in Chapter~\ref{chap:results}
+(Table~\ref{tab:2d_adap_combined}).
+Full per-seed MAE ($^\circ\mathrm{C}$), $L_2$ relative error, and training
+time are shown in the domain-level tables below.
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Per-seed MAE ($^\circ\mathrm{C}$), $L_2$, and training time (s) --- Square Domain (adaptive-$k$).
+\cellcolor{ForestGreen!55}\phantom{x} best; \cellcolor{ForestGreen!25}\phantom{x} ${<}0.07$; \cellcolor{YellowGreen!30}\phantom{x} $0.07$--$0.09$; \cellcolor{red!15}\phantom{x} ${\geq}0.09$.}
+\label{tab:adap_square_seeds}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Architecture & Seed & MAE ($^\circ\mathrm{C}$) & $L_2$ & Train (s) \\
+\midrule
+\multirow{11}{*}{Bayesian/TPE}
+  & Seed 0 & {\small 1.523} & {\small 0.0171} & {\small 487} \\
+  & Seed 1 & {\small 1.609} & {\small 0.0174} & {\small 505} \\
+  & Seed 2 & {\small 1.696} & {\small 0.0177} & {\small 488} \\
+  & Seed 3 & {\small 1.856} & {\small 0.0180} & {\small 492} \\
+  & Seed 4 & {\small 1.656} & {\small 0.0183} & {\small 503} \\
+  & Seed 5 & {\small 1.655} & {\small 0.0170} & {\small 535} \\
+  & Seed 6 & {\small 1.743} & {\small 0.0172} & {\small 514} \\
+  & Seed 7 & {\small 1.538} & {\small 0.0177} & {\small 499} \\
+  & Seed 8 & {\small 1.592} & {\small 0.0166} & {\small 504} \\
+  & Seed 9 & {\small 1.544} & {\small 0.0172} & {\small 505} \\
+  & \textbf{Mean$\pm$std} & \textbf{1.641$\pm$0.104} & \cellcolor{ForestGreen!25}\textbf{0.0174} & \textbf{503} \\
+\midrule
+\multirow{11}{*}{NSGA-II}
+  & Seed 0 & {\small 1.752} & {\small 0.0150} & {\small 420} \\
+  & Seed 1 & {\small 1.804} & {\small 0.0151} & {\small 456} \\
+  & Seed 2 & {\small 1.661} & {\small 0.0146} & {\small 414} \\
+  & Seed 3 & {\small 1.687} & {\small 0.0147} & {\small 414} \\
+  & Seed 4 & {\small 1.800} & {\small 0.0148} & {\small 415} \\
+  & Seed 5 & {\small 1.826} & {\small 0.0155} & {\small 420} \\
+  & Seed 6 & {\small 1.818} & {\small 0.0155} & {\small 418} \\
+  & Seed 7 & {\small 1.827} & {\small 0.0147} & {\small 414} \\
+  & Seed 8 & {\small 1.736} & {\small 0.0150} & {\small 414} \\
+  & Seed 9 & {\small 1.771} & {\small 0.0153} & {\small 415} \\
+  & \textbf{Mean$\pm$std} & \textbf{1.768$\pm$0.059} & \cellcolor{ForestGreen!25}\textbf{0.0150} & \textbf{420} \\
+\midrule
+\multirow{11}{*}{NSGA-III}
+  & Seed 0 & {\small 1.701} & {\small 0.0147} & {\small 432} \\
+  & Seed 1 & {\small 1.764} & {\small 0.0146} & {\small 422} \\
+  & Seed 2 & {\small 1.722} & {\small 0.0146} & {\small 419} \\
+  & Seed 3 & {\small 1.641} & {\small 0.0142} & {\small 424} \\
+  & Seed 4 & {\small 1.681} & {\small 0.0146} & {\small 423} \\
+  & Seed 5 & {\small 1.756} & {\small 0.0147} & {\small 428} \\
+  & Seed 6 & {\small 1.703} & {\small 0.0145} & {\small 424} \\
+  & Seed 7 & {\small 1.697} & {\small 0.0142} & {\small 424} \\
+  & Seed 8 & {\small 1.699} & {\small 0.0142} & {\small 426} \\
+  & Seed 9 & {\small 1.804} & {\small 0.0148} & {\small 424} \\
+  & \textbf{Mean$\pm$std} & \textbf{1.717$\pm$0.047} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.0145}} & \textbf{425} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Per-seed MAE ($^\circ\mathrm{C}$) and $L_2$ --- Circle Domain (adaptive-$k$).
+\cellcolor{ForestGreen!55}\phantom{x} best; \cellcolor{ForestGreen!25}\phantom{x} ${<}0.07$; \cellcolor{YellowGreen!30}\phantom{x} $0.07$--$0.09$; \cellcolor{red!15}\phantom{x} ${\geq}0.09$.}
+\label{tab:adap_circle_seeds}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Architecture & Seed & MAE ($^\circ\mathrm{C}$) & $L_2$ & Train (s) \\
+\midrule
+\multirow{11}{*}{Bayesian/TPE}
+  & Seed 0 & {\small 1.431} & {\small 0.0164} & {\small 474} \\
+  & Seed 1 & {\small 1.409} & {\small 0.0163} & {\small 556} \\
+  & Seed 2 & {\small 1.625} & {\small 0.0179} & {\small 560} \\
+  & Seed 3 & {\small 1.608} & {\small 0.0172} & {\small 554} \\
+  & Seed 4 & {\small 1.636} & {\small 0.0177} & {\small 574} \\
+  & Seed 5 & {\small 1.386} & {\small 0.0166} & {\small 545} \\
+  & Seed 6 & {\small 1.559} & {\small 0.0177} & {\small 544} \\
+  & Seed 7 & {\small 1.662} & {\small 0.0180} & {\small 547} \\
+  & Seed 8 & {\small 1.431} & {\small 0.0164} & {\small 552} \\
+  & Seed 9 & {\small 1.518} & {\small 0.0163} & {\small 550} \\
+  & \textbf{Mean$\pm$std} & \textbf{1.527$\pm$0.105} & \cellcolor{ForestGreen!25}\textbf{0.0171} & \textbf{546} \\
+\midrule
+\multirow{11}{*}{NSGA-II}
+  & Seed 0 & {\small 1.629} & {\small 0.0135} & {\small 424} \\
+  & Seed 1 & {\small 1.638} & {\small 0.0134} & {\small 471} \\
+  & Seed 2 & {\small 1.674} & {\small 0.0137} & {\small 487} \\
+  & Seed 3 & {\small 1.590} & {\small 0.0135} & {\small 483} \\
+  & Seed 4 & {\small 1.688} & {\small 0.0136} & {\small 492} \\
+  & Seed 5 & {\small 1.593} & {\small 0.0135} & {\small 466} \\
+  & Seed 6 & {\small 1.655} & {\small 0.0136} & {\small 464} \\
+  & Seed 7 & {\small 1.681} & {\small 0.0138} & {\small 470} \\
+  & Seed 8 & {\small 1.663} & {\small 0.0136} & {\small 468} \\
+  & Seed 9 & {\small 1.670} & {\small 0.0131} & {\small 469} \\
+  & \textbf{Mean$\pm$std} & \textbf{1.648$\pm$0.035} & \cellcolor{ForestGreen!25}\textbf{0.0135} & \textbf{469} \\
+\midrule
+\multirow{11}{*}{NSGA-III}
+  & Seed 0 & {\small 1.580} & {\small 0.0131} & {\small 436} \\
+  & Seed 1 & {\small 1.604} & {\small 0.0129} & {\small 484} \\
+  & Seed 2 & {\small 1.610} & {\small 0.0137} & {\small 478} \\
+  & Seed 3 & {\small 1.575} & {\small 0.0130} & {\small 469} \\
+  & Seed 4 & {\small 1.651} & {\small 0.0141} & {\small 479} \\
+  & Seed 5 & {\small 1.632} & {\small 0.0132} & {\small 466} \\
+  & Seed 6 & {\small 1.637} & {\small 0.0133} & {\small 464} \\
+  & Seed 7 & {\small 1.630} & {\small 0.0133} & {\small 459} \\
+  & Seed 8 & {\small 1.610} & {\small 0.0127} & {\small 459} \\
+  & Seed 9 & {\small 1.664} & {\small 0.0136} & {\small 458} \\
+  & \textbf{Mean$\pm$std} & \textbf{1.619$\pm$0.029} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.0133}} & \textbf{465} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Per-seed MAE ($^\circ\mathrm{C}$) and $L_2$ --- L-Shape Domain (adaptive-$k$).
+\cellcolor{ForestGreen!55}\phantom{x} best; \cellcolor{ForestGreen!25}\phantom{x} ${<}0.07$; \cellcolor{YellowGreen!30}\phantom{x} $0.07$--$0.09$; \cellcolor{red!15}\phantom{x} ${\geq}0.09$.}
+\label{tab:adap_lshape_seeds}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Architecture & Seed & MAE ($^\circ\mathrm{C}$) & $L_2$ & Train (s) \\
+\midrule
+\multirow{11}{*}{Bayesian/TPE}
+  & Seed 0 & {\small 1.368} & {\small 0.0173} & {\small 464} \\
+  & Seed 1 & {\small 1.366} & {\small 0.0167} & {\small 513} \\
+  & Seed 2 & {\small 1.368} & {\small 0.0178} & {\small 506} \\
+  & Seed 3 & {\small 1.358} & {\small 0.0183} & {\small 505} \\
+  & Seed 4 & {\small 1.314} & {\small 0.0169} & {\small 502} \\
+  & Seed 5 & {\small 1.360} & {\small 0.0172} & {\small 501} \\
+  & Seed 6 & {\small 1.365} & {\small 0.0180} & {\small 504} \\
+  & Seed 7 & {\small 1.421} & {\small 0.0174} & {\small 501} \\
+  & Seed 8 & {\small 1.367} & {\small 0.0179} & {\small 500} \\
+  & Seed 9 & {\small 1.286} & {\small 0.0165} & {\small 561} \\
+  & \textbf{Mean$\pm$std} & \textbf{1.357$\pm$0.036} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.0174}} & \textbf{506} \\
+\midrule
+\multirow{11}{*}{NSGA-II}
+  & Seed 0 & {\small 2.456} & {\small 0.0243} & {\small 473} \\
+  & Seed 1 & {\small 2.459} & {\small 0.0223} & {\small 504} \\
+  & Seed 2 & {\small 2.446} & {\small 0.0224} & {\small 486} \\
+  & Seed 3 & {\small 2.428} & {\small 0.0224} & {\small 487} \\
+  & Seed 4 & {\small 2.471} & {\small 0.0241} & {\small 486} \\
+  & Seed 5 & {\small 2.349} & {\small 0.0217} & {\small 496} \\
+  & Seed 6 & {\small 2.536} & {\small 0.0258} & {\small 485} \\
+  & Seed 7 & {\small 2.415} & {\small 0.0223} & {\small 502} \\
+  & Seed 8 & {\small 2.449} & {\small 0.0223} & {\small 495} \\
+  & Seed 9 & {\small 2.374} & {\small 0.0219} & {\small 495} \\
+  & \textbf{Mean$\pm$std} & \textbf{2.438$\pm$0.052} & \cellcolor{ForestGreen!25}\textbf{0.0229} & \textbf{491} \\
+\midrule
+\multirow{11}{*}{NSGA-III}
+  & Seed 0 & {\small 2.346} & {\small 0.0212} & {\small 482} \\
+  & Seed 1 & {\small 2.358} & {\small 0.0217} & {\small 489} \\
+  & Seed 2 & {\small 2.325} & {\small 0.0208} & {\small 484} \\
+  & Seed 3 & {\small 2.376} & {\small 0.0223} & {\small 473} \\
+  & Seed 4 & {\small 2.345} & {\small 0.0211} & {\small 468} \\
+  & Seed 5 & {\small 2.330} & {\small 0.0210} & {\small 478} \\
+  & Seed 6 & {\small 2.408} & {\small 0.0219} & {\small 468} \\
+  & Seed 7 & {\small 2.309} & {\small 0.0204} & {\small 468} \\
+  & Seed 8 & {\small 2.342} & {\small 0.0214} & {\small 469} \\
+  & Seed 9 & {\small 2.296} & {\small 0.0211} & {\small 470} \\
+  & \textbf{Mean$\pm$std} & \textbf{2.344$\pm$0.032} & \cellcolor{ForestGreen!25}\textbf{0.0213} & \textbf{475} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Per-seed MAE ($^\circ\mathrm{C}$), $L_2$, and training time (s) --- Flower Domain (adaptive-$k$).
+\cellcolor{ForestGreen!55}\phantom{x} best; \cellcolor{ForestGreen!25}\phantom{x} ${<}0.07$; \cellcolor{YellowGreen!30}\phantom{x} $0.07$--$0.09$; \cellcolor{red!15}\phantom{x} ${\geq}0.09$.}
+\label{tab:adap_flower_seeds}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Architecture & Seed & MAE ($^\circ\mathrm{C}$) & $L_2$ & Train (s) \\
+\midrule
+\multirow{11}{*}{Bayesian/TPE}
+  & Seed 0 & {\small 1.619} & {\small 0.0152} & {\small 710} \\
+  & Seed 1 & {\small 1.769} & {\small 0.0157} & {\small 725} \\
+  & Seed 2 & {\small 1.700} & {\small 0.0150} & {\small 720} \\
+  & Seed 3 & {\small 1.964} & {\small 0.0161} & {\small 722} \\
+  & Seed 4 & {\small 1.843} & {\small 0.0158} & {\small 730} \\
+  & Seed 5 & {\small 1.620} & {\small 0.0150} & {\small 729} \\
+  & Seed 6 & {\small 1.661} & {\small 0.0150} & {\small 722} \\
+  & Seed 7 & {\small 1.754} & {\small 0.0165} & {\small 718} \\
+  & Seed 8 & {\small 1.744} & {\small 0.0155} & {\small 722} \\
+  & Seed 9 & {\small 1.735} & {\small 0.0148} & {\small 720} \\
+  & \textbf{Mean$\pm$std} & \textbf{1.741$\pm$0.105} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.0154}} & \textbf{722} \\
+\midrule
+\multirow{11}{*}{NSGA-II}
+  & Seed 0 & {\small 2.087} & {\small 0.0159} & {\small 647} \\
+  & Seed 1 & {\small 2.014} & {\small 0.0157} & {\small 667} \\
+  & Seed 2 & {\small 2.092} & {\small 0.0168} & {\small 674} \\
+  & Seed 3 & {\small 2.111} & {\small 0.0170} & {\small 689} \\
+  & Seed 4 & {\small 2.096} & {\small 0.0161} & {\small 665} \\
+  & Seed 5 & {\small 2.201} & {\small 0.0161} & {\small 670} \\
+  & Seed 6 & {\small 2.196} & {\small 0.0168} & {\small 671} \\
+  & Seed 7 & {\small 2.113} & {\small 0.0161} & {\small 676} \\
+  & Seed 8 & {\small 2.129} & {\small 0.0166} & {\small 662} \\
+  & Seed 9 & {\small 2.090} & {\small 0.0164} & {\small 670} \\
+  & \textbf{Mean$\pm$std} & \textbf{2.113$\pm$0.054} & \cellcolor{ForestGreen!25}\textbf{0.0163} & \textbf{669} \\
+\midrule
+\multirow{11}{*}{NSGA-III}
+  & Seed 0 & {\small 2.030} & {\small 0.0178} & {\small 647} \\
+  & Seed 1 & {\small 1.978} & {\small 0.0157} & {\small 657} \\
+  & Seed 2 & {\small 2.047} & {\small 0.0157} & {\small 646} \\
+  & Seed 3 & {\small 2.080} & {\small 0.0158} & {\small 648} \\
+  & Seed 4 & {\small 1.989} & {\small 0.0158} & {\small 649} \\
+  & Seed 5 & {\small 2.020} & {\small 0.0155} & {\small 660} \\
+  & Seed 6 & {\small 1.970} & {\small 0.0158} & {\small 653} \\
+  & Seed 7 & {\small 1.901} & {\small 0.0154} & {\small 661} \\
+  & Seed 8 & {\small 1.943} & {\small 0.0153} & {\small 654} \\
+  & Seed 9 & {\small 2.053} & {\small 0.0160} & {\small 650} \\
+  & \textbf{Mean$\pm$std} & \textbf{2.001$\pm$0.055} & \cellcolor{ForestGreen!25}\textbf{0.0159} & \textbf{653} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Condensed ten-seed mean$\pm$std MAE and relative $L_2$ error summary --- 2D NAS Architecture Transfer / Adaptive-$k$ benchmark group (Square, Circle, L-Shape, Flower).
+\cellcolor{ForestGreen!55}\phantom{x} best; \cellcolor{ForestGreen!25}\phantom{x} ${<}0.07$; \cellcolor{YellowGreen!30}\phantom{x} $0.07$--$0.09$; \cellcolor{red!15}\phantom{x} ${\geq}0.09$.}
+\label{tab:l2_summary_2d_adaptive}
+\begin{tabular}{@{}llcc@{}}
+\toprule
+Domain & Architecture & MAE ($^\circ\mathrm{C}$) & $L_2$ \\
+\midrule
+\multirow{3}{*}{Square}
+  & \textbf{Bayesian/TPE} & $1.641\pm0.104$ & \cellcolor{ForestGreen!25}$0.0174\pm0.0005$ \\
+  & \textbf{NSGA-II} & $1.768\pm0.059$ & \cellcolor{ForestGreen!25}$0.0150\pm0.0003$ \\
+  & \textbf{NSGA-III} & $1.717\pm0.047$ & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{$0.0145\pm0.0002$}} \\
+\midrule
+\multirow{3}{*}{Circle}
+  & \textbf{Bayesian/TPE} & $1.527\pm0.105$ & \cellcolor{ForestGreen!25}$0.0170\pm0.0007$ \\
+  & \textbf{NSGA-II} & $1.648\pm0.035$ & \cellcolor{ForestGreen!25}$0.0135\pm0.0002$ \\
+  & \textbf{NSGA-III} & $1.619\pm0.029$ & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{$0.0133\pm0.0004$}} \\
+\midrule
+\multirow{3}{*}{L-Shape}
+  & \textbf{Bayesian/TPE} & $1.357\pm0.036$ & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{$0.0174\pm0.0006$}} \\
+  & \textbf{NSGA-II} & $2.438\pm0.052$ & \cellcolor{ForestGreen!25}$0.0230\pm0.0013$ \\
+  & \textbf{NSGA-III} & $2.344\pm0.032$ & \cellcolor{ForestGreen!25}$0.0213\pm0.0006$ \\
+\midrule
+\multirow{3}{*}{Flower}
+  & \textbf{Bayesian/TPE} & $1.741\pm0.105$ & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{$0.0155\pm0.0006$}} \\
+  & \textbf{NSGA-II} & $2.113\pm0.054$ & \cellcolor{ForestGreen!25}$0.0163\pm0.0004$ \\
+  & \textbf{NSGA-III} & $2.001\pm0.055$ & \cellcolor{ForestGreen!25}$0.0159\pm0.0007$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section*{L-Shape Adaptive-$k$ Schedules (Per-Seed)}
+\label{app:lshape_kschedules}
+
+Table~\ref{tab:lshape_k_schedules} shows the $k$-schedule used by each of the
+ten seeds on the L-Shape domain.
+On the Square, Circle, and Flower domains all ten seeds converged to the
+identical schedule for every architecture.
+The L-Shape is the only domain where schedules vary.
+
+The reason is the reentrant corner.
+The 270° corner creates a concentrated, localised temperature gradient at the
+start of the quench.
+The first-window MAE on L-Shape is higher and more sensitive to weight
+initialisation than on smooth geometries.
+For Bayesian/TPE, nine seeds produce a first-window MAE that falls below the
+$\tau_\mathrm{up}=2.0\,^\circ\mathrm{C}$ promotion threshold at window 5,
+but seed~9 reaches this threshold one window later.
+The result is a one-window shift in the schedule (9 windows vs 10 windows
+total).
+For NSGA-II the effect is larger: the compact $3{\times}153$ tanh network has
+higher first-window error on L-Shape, and three seeds promote one window
+earlier than the other seven.
+NSGA-III is more stable; all ten seeds converge to the same schedule.
+This seed-dependent behaviour explains why the FEM saving for L-Shape
+NSGA-II varies between 83\% and 85\% across seeds.
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Per-seed adaptive-$k$ schedules --- L-Shape domain.
+All other domains (Square, Circle, Flower) produce identical schedules across
+all ten seeds.}
+\label{tab:lshape_k_schedules}
+\begin{tabular}{@{}llcc@{}}
+\toprule
+Architecture & Seed & $k$-schedule & FEM saved \\
+\midrule
+\multirow{10}{*}{Bayesian/TPE}
+  & Seed 0 & 1-1-1-1-2-2-3-4-5 & 85\% \\
+  & Seed 1 & 1-1-1-1-2-2-3-4-5 & 85\% \\
+  & Seed 2 & 1-1-1-1-2-2-3-4-5 & 85\% \\
+  & Seed 3 & 1-1-1-1-2-2-3-4-5 & 85\% \\
+  & Seed 4 & 1-1-1-1-2-2-3-4-5 & 85\% \\
+  & Seed 5 & 1-1-1-1-2-2-3-4-5 & 85\% \\
+  & Seed 6 & 1-1-1-1-2-2-3-4-5 & 85\% \\
+  & Seed 7 & 1-1-1-1-2-2-3-4-5 & 85\% \\
+  & Seed 8 & 1-1-1-1-2-2-3-4-5 & 85\% \\
+  & Seed 9 & 1-1-1-1-1-2-3-4-5-5 & 83\% \\
+\midrule
+\multirow{10}{*}{NSGA-II}
+  & Seed 0 & 1-1-1-1-1-2-3-4-5-5 & 85\% \\
+  & Seed 1 & 1-1-1-1-1-1-2-3-4-5 & 83\% \\
+  & Seed 2 & 1-1-1-1-1-1-2-3-4-5 & 83\% \\
+  & Seed 3 & 1-1-1-1-1-1-2-3-4-5 & 83\% \\
+  & Seed 4 & 1-1-1-1-1-2-3-4-5-5 & 85\% \\
+  & Seed 5 & 1-1-1-1-1-1-2-3-4-5 & 83\% \\
+  & Seed 6 & 1-1-1-1-1-2-3-4-5-5 & 85\% \\
+  & Seed 7 & 1-1-1-1-1-1-2-3-4-5 & 83\% \\
+  & Seed 8 & 1-1-1-1-1-1-2-3-4-5 & 83\% \\
+  & Seed 9 & 1-1-1-1-1-1-2-3-4-5 & 83\% \\
+\midrule
+\multirow{2}{*}{NSGA-III}
+  & Seed 0--9 & 1-1-1-1-1-1-2-3-4-5 & 83\% \\
+  & (all identical) & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section*{2D Canonical Domains}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Mean-Window MAE ($^\circ\mathrm{C}$) — 2D Rectangle Domain.
+\cellcolor{RoyalBlue!65}\phantom{x} lowest mean per $k$;
+\cellcolor{RoyalBlue!20}\phantom{x} within $10\,^\circ\mathrm{C}$.}
+\label{tab:cons_rectangle_2d}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Arch. & Seed & \makecell{$k{=}1$\\(0\%)} & \makecell{$k{=}2$\\(50\%)} & \makecell{$k{=}3$\\(65\%)} & \makecell{$k{=}4$\\(75\%)} & \makecell{$k{=}5$\\(80\%)} \\
+\midrule
+\textbf{Bayesian/TPE} & Seed A & \cellcolor{RoyalBlue!10}{\small 2.49} & \cellcolor{RoyalBlue!10}{\small 3.49} & \cellcolor{RoyalBlue!10}{\small 4.34} & \cellcolor{RoyalBlue!10}{\small 5.35} & \cellcolor{RoyalBlue!10}{\small 5.80} \\
+ & Seed B & \cellcolor{RoyalBlue!10}{\small 1.87} & \cellcolor{RoyalBlue!10}{\small 3.00} & \cellcolor{RoyalBlue!10}{\small 2.74} & \cellcolor{RoyalBlue!10}{\small 3.26} & \cellcolor{RoyalBlue!10}{\small 3.78} \\
+ & Seed C & \cellcolor{RoyalBlue!10}{\small 1.97} & \cellcolor{RoyalBlue!10}{\small 2.95} & \cellcolor{RoyalBlue!10}{\small 3.25} & \cellcolor{RoyalBlue!10}{\small 3.43} & \cellcolor{RoyalBlue!10}{\small 3.58} \\
+ & Seed D & \cellcolor{RoyalBlue!10}{\small 2.30} & \cellcolor{RoyalBlue!10}{\small 2.45} & \cellcolor{RoyalBlue!10}{\small 2.47} & \cellcolor{RoyalBlue!10}{\small 4.66} & \cellcolor{RoyalBlue!10}{\small 4.13} \\
+ & Seed E & \cellcolor{RoyalBlue!10}{\small 2.42} & \cellcolor{RoyalBlue!10}{\small 2.67} & \cellcolor{RoyalBlue!10}{\small 2.68} & \cellcolor{RoyalBlue!10}{\small 3.22} & \cellcolor{RoyalBlue!10}{\small 3.53} \\
+ & Seed F & \cellcolor{RoyalBlue!10}{\small 2.10} & \cellcolor{RoyalBlue!10}{\small 2.50} & \cellcolor{RoyalBlue!10}{\small 3.71} & \cellcolor{RoyalBlue!10}{\small 3.04} & \cellcolor{RoyalBlue!10}{\small 3.54} \\
+ & Seed G & \cellcolor{RoyalBlue!10}{\small 2.03} & \cellcolor{RoyalBlue!10}{\small 2.68} & \cellcolor{RoyalBlue!10}{\small 3.28} & \cellcolor{RoyalBlue!10}{\small 4.56} & \cellcolor{RoyalBlue!10}{\small 4.02} \\
+ & Seed H & \cellcolor{RoyalBlue!10}{\small 1.88} & \cellcolor{RoyalBlue!10}{\small 2.64} & \cellcolor{RoyalBlue!10}{\small 2.68} & \cellcolor{RoyalBlue!10}{\small 3.30} & \cellcolor{RoyalBlue!10}{\small 4.03} \\
+ & Seed I & \cellcolor{RoyalBlue!10}{\small 2.26} & \cellcolor{RoyalBlue!10}{\small 2.75} & \cellcolor{RoyalBlue!10}{\small 3.33} & \cellcolor{RoyalBlue!10}{\small 2.86} & \cellcolor{RoyalBlue!10}{\small 4.09} \\
+ & Seed J & \cellcolor{RoyalBlue!10}{\small 1.92} & \cellcolor{RoyalBlue!10}{\small 2.93} & \cellcolor{RoyalBlue!10}{\small 3.45} & \cellcolor{RoyalBlue!10}{\small 3.25} & \cellcolor{RoyalBlue!10}{\small 3.77} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{2.12$\pm$0.23}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{2.81$\pm$0.30}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{3.19$\pm$0.57}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{3.69$\pm$0.84}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{4.03$\pm$0.66}} \\
+\midrule
+\textbf{NSGA-II} & Seed A & \cellcolor{RoyalBlue!10}{\small 2.52} & \cellcolor{RoyalBlue!10}{\small 3.91} & \cellcolor{RoyalBlue!10}{\small 5.34} & \cellcolor{RoyalBlue!10}{\small 7.41} & {\small\color{gray!60!black}10.42} \\
+ & Seed B & \cellcolor{RoyalBlue!10}{\small 4.18} & \cellcolor{RoyalBlue!10}{\small 6.67} & \cellcolor{RoyalBlue!10}{\small 7.92} & \cellcolor{RoyalBlue!10}{\small 6.67} & \cellcolor{RoyalBlue!10}{\small 9.48} \\
+ & Seed C & \cellcolor{RoyalBlue!10}{\small 2.99} & \cellcolor{RoyalBlue!10}{\small 5.13} & \cellcolor{RoyalBlue!10}{\small 6.15} & {\small\color{gray!60!black}11.18} & \cellcolor{RoyalBlue!10}{\small 8.53} \\
+ & Seed D & \cellcolor{RoyalBlue!10}{\small 3.82} & \cellcolor{RoyalBlue!10}{\small 4.98} & \cellcolor{RoyalBlue!10}{\small 8.75} & \cellcolor{RoyalBlue!10}{\small 8.05} & {\small\color{gray!60!black}12.98} \\
+ & Seed E & \cellcolor{RoyalBlue!10}{\small 3.78} & \cellcolor{RoyalBlue!10}{\small 6.15} & \cellcolor{RoyalBlue!10}{\small 6.63} & {\small\color{gray!60!black}11.14} & \cellcolor{RoyalBlue!10}{\small 8.58} \\
+ & Seed F & \cellcolor{RoyalBlue!10}{\small 3.61} & \cellcolor{RoyalBlue!10}{\small 5.82} & \cellcolor{RoyalBlue!10}{\small 6.82} & \cellcolor{RoyalBlue!10}{\small 9.28} & \cellcolor{RoyalBlue!10}{\small 9.65} \\
+ & Seed G & \cellcolor{RoyalBlue!10}{\small 3.79} & \cellcolor{RoyalBlue!10}{\small 5.60} & \cellcolor{RoyalBlue!10}{\small 6.81} & \cellcolor{RoyalBlue!10}{\small 7.11} & \cellcolor{RoyalBlue!10}{\small 9.37} \\
+ & Seed H & \cellcolor{RoyalBlue!10}{\small 3.33} & \cellcolor{RoyalBlue!10}{\small 6.02} & \cellcolor{RoyalBlue!10}{\small 7.86} & \cellcolor{RoyalBlue!10}{\small 7.16} & \cellcolor{RoyalBlue!10}{\small 8.98} \\
+ & Seed I & \cellcolor{RoyalBlue!10}{\small 3.23} & \cellcolor{RoyalBlue!10}{\small 5.22} & \cellcolor{RoyalBlue!10}{\small 6.17} & \cellcolor{RoyalBlue!10}{\small 7.58} & \cellcolor{RoyalBlue!10}{\small 8.87} \\
+ & Seed J & \cellcolor{RoyalBlue!10}{\small 3.18} & \cellcolor{RoyalBlue!10}{\small 4.50} & \cellcolor{RoyalBlue!10}{\small 5.19} & \cellcolor{RoyalBlue!10}{\small 7.73} & \cellcolor{RoyalBlue!10}{\small 9.78} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!20}3.44$\pm$0.49 & \cellcolor{RoyalBlue!20}5.40$\pm$0.82 & \cellcolor{RoyalBlue!20}6.76$\pm$1.14 & \cellcolor{RoyalBlue!20}8.33$\pm$1.65 & \cellcolor{RoyalBlue!20}9.66$\pm$1.30 \\
+\midrule
+\textbf{NSGA-III} & Seed A & \cellcolor{RoyalBlue!10}{\small 2.62} & \cellcolor{RoyalBlue!10}{\small 6.76} & \cellcolor{RoyalBlue!10}{\small 6.23} & \cellcolor{RoyalBlue!10}{\small 8.22} & {\small\color{gray!60!black}10.46} \\
+ & Seed B & \cellcolor{RoyalBlue!10}{\small 2.79} & \cellcolor{RoyalBlue!10}{\small 4.49} & \cellcolor{RoyalBlue!10}{\small 5.79} & \cellcolor{RoyalBlue!10}{\small 7.59} & \cellcolor{RoyalBlue!10}{\small 8.81} \\
+ & Seed C & \cellcolor{RoyalBlue!10}{\small 4.02} & \cellcolor{RoyalBlue!10}{\small 5.11} & \cellcolor{RoyalBlue!10}{\small 5.90} & \cellcolor{RoyalBlue!10}{\small 7.49} & \cellcolor{RoyalBlue!10}{\small 8.53} \\
+ & Seed D & \cellcolor{RoyalBlue!10}{\small 3.73} & \cellcolor{RoyalBlue!10}{\small 5.14} & \cellcolor{RoyalBlue!10}{\small 6.17} & \cellcolor{RoyalBlue!10}{\small 7.27} & \cellcolor{RoyalBlue!10}{\small 9.40} \\
+ & Seed E & \cellcolor{RoyalBlue!10}{\small 3.69} & \cellcolor{RoyalBlue!10}{\small 4.16} & \cellcolor{RoyalBlue!10}{\small 5.68} & {\small\color{gray!60!black}10.34} & \cellcolor{RoyalBlue!10}{\small 7.21} \\
+ & Seed F & \cellcolor{RoyalBlue!10}{\small 3.85} & \cellcolor{RoyalBlue!10}{\small 5.30} & \cellcolor{RoyalBlue!10}{\small 5.76} & \cellcolor{RoyalBlue!10}{\small 7.94} & \cellcolor{RoyalBlue!10}{\small 9.22} \\
+ & Seed G & \cellcolor{RoyalBlue!10}{\small 3.42} & \cellcolor{RoyalBlue!10}{\small 5.03} & \cellcolor{RoyalBlue!10}{\small 6.17} & \cellcolor{RoyalBlue!10}{\small 7.95} & \cellcolor{RoyalBlue!10}{\small 9.72} \\
+ & Seed H & \cellcolor{RoyalBlue!10}{\small 3.32} & \cellcolor{RoyalBlue!10}{\small 5.53} & \cellcolor{RoyalBlue!10}{\small 6.90} & \cellcolor{RoyalBlue!10}{\small 7.50} & {\small\color{gray!60!black}13.16} \\
+ & Seed I & \cellcolor{RoyalBlue!10}{\small 3.71} & \cellcolor{RoyalBlue!10}{\small 4.84} & \cellcolor{RoyalBlue!10}{\small 6.82} & \cellcolor{RoyalBlue!10}{\small 7.76} & \cellcolor{RoyalBlue!10}{\small 8.12} \\
+ & Seed J & \cellcolor{RoyalBlue!10}{\small 4.00} & \cellcolor{RoyalBlue!10}{\small 4.77} & \cellcolor{RoyalBlue!10}{\small 5.61} & \cellcolor{RoyalBlue!10}{\small 7.46} & \cellcolor{RoyalBlue!10}{\small 8.17} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!20}3.52$\pm$0.48 & \cellcolor{RoyalBlue!20}5.11$\pm$0.70 & \cellcolor{RoyalBlue!20}6.10$\pm$0.45 & \cellcolor{RoyalBlue!20}7.95$\pm$0.89 & \cellcolor{RoyalBlue!20}9.28$\pm$1.64 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Relative $L_2$ Error — 2D Rectangle Domain.
+\cellcolor{ForestGreen!55}\phantom{x} best; \cellcolor{ForestGreen!25}\phantom{x} ${<}0.07$;
+\cellcolor{YellowGreen!30}\phantom{x} $0.07$--$0.09$; \cellcolor{red!15}\phantom{x} ${\geq}0.09$.}
+\label{tab:l2_rectangle_2d}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Arch. & Seed & \makecell{$k{=1}$\\(0\%)} & \makecell{$k{=2}$\\(50\%)} & \makecell{$k{=3}$\\(65\%)} & \makecell{$k{=4}$\\(75\%)} & \makecell{$k{=5}$\\(80\%)} \\
+\midrule
+ \textbf{Bayesian/TPE} & Seed A & {\small 0.0228} & {\small 0.0254} & {\small 0.0301} & {\small 0.0313} & {\small 0.0311} \\
+  & Seed B & {\small 0.0156} & {\small 0.0257} & {\small 0.0192} & {\small 0.0211} & {\small 0.0215} \\
+  & Seed C & {\small 0.0169} & {\small 0.0215} & {\small 0.0186} & {\small 0.0191} & {\small 0.0187} \\
+  & Seed D & {\small 0.0165} & {\small 0.0171} & {\small 0.0138} & {\small 0.0276} & {\small 0.0213} \\
+  & Seed E & {\small 0.0203} & {\small 0.0193} & {\small 0.0151} & {\small 0.0166} & {\small 0.0176} \\
+  & Seed F & {\small 0.0180} & {\small 0.0182} & {\small 0.0249} & {\small 0.0159} & {\small 0.0162} \\
+  & Seed G & {\small 0.0157} & {\small 0.0162} & {\small 0.0200} & {\small 0.0266} & {\small 0.0199} \\
+  & Seed H & {\small 0.0160} & {\small 0.0186} & {\small 0.0166} & {\small 0.0175} & {\small 0.0221} \\
+  & Seed I & {\small 0.0202} & {\small 0.0199} & {\small 0.0212} & {\small 0.0160} & {\small 0.0211} \\
+  & Seed J & {\small 0.0166} & {\small 0.0209} & {\small 0.0189} & {\small 0.0170} & {\small 0.0195} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.018$\pm$0.002}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.020$\pm$0.003}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.020$\pm$0.005}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.021$\pm$0.005}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.021$\pm$0.004}} \\
+\midrule
+ \textbf{NSGA-II} & Seed A & {\small 0.0298} & {\small 0.0349} & {\small 0.0370} & {\small 0.0452} & {\small 0.0540} \\
+  & Seed B & {\small 0.0244} & {\small 0.0433} & {\small 0.0477} & {\small 0.0339} & {\small 0.0448} \\
+  & Seed C & {\small 0.0194} & {\small 0.0312} & {\small 0.0368} & {\small 0.0556} & {\small 0.0408} \\
+  & Seed D & {\small 0.0234} & {\small 0.0264} & {\small 0.0484} & {\small 0.0385} & {\small 0.0615} \\
+  & Seed E & {\small 0.0331} & {\small 0.0384} & {\small 0.0319} & {\small 0.0546} & {\small 0.0413} \\
+  & Seed F & {\small 0.0193} & {\small 0.0286} & {\small 0.0333} & {\small 0.0443} & {\small 0.0457} \\
+  & Seed G & {\small 0.0217} & {\small 0.0385} & {\small 0.0335} & {\small 0.0352} & {\small 0.0435} \\
+  & Seed H & {\small 0.0316} & {\small 0.0399} & {\small 0.0452} & {\small 0.0352} & {\small 0.0419} \\
+  & Seed I & {\small 0.0192} & {\small 0.0374} & {\small 0.0316} & {\small 0.0360} & {\small 0.0425} \\
+  & Seed J & {\small 0.0236} & {\small 0.0239} & {\small 0.0260} & {\small 0.0387} & {\small 0.0459} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!25}0.025$\pm$0.005 & \cellcolor{ForestGreen!25}0.034$\pm$0.006 & \cellcolor{ForestGreen!25}0.037$\pm$0.007 & \cellcolor{ForestGreen!25}0.042$\pm$0.008 & \cellcolor{ForestGreen!25}0.046$\pm$0.006 \\
+\midrule
+ \textbf{NSGA-III} & Seed A & {\small 0.0311} & {\small 0.0580} & {\small 0.0403} & {\small 0.0500} & {\small 0.0536} \\
+  & Seed B & {\small 0.0195} & {\small 0.0264} & {\small 0.0304} & {\small 0.0385} & {\small 0.0430} \\
+  & Seed C & {\small 0.0253} & {\small 0.0298} & {\small 0.0290} & {\small 0.0379} & {\small 0.0417} \\
+  & Seed D & {\small 0.0215} & {\small 0.0291} & {\small 0.0322} & {\small 0.0371} & {\small 0.0450} \\
+  & Seed E & {\small 0.0204} & {\small 0.0250} & {\small 0.0299} & {\small 0.0529} & {\small 0.0377} \\
+  & Seed F & {\small 0.0235} & {\small 0.0282} & {\small 0.0312} & {\small 0.0382} & {\small 0.0448} \\
+  & Seed G & {\small 0.0223} & {\small 0.0253} & {\small 0.0300} & {\small 0.0378} & {\small 0.0478} \\
+  & Seed H & {\small 0.0220} & {\small 0.0285} & {\small 0.0344} & {\small 0.0357} & {\small 0.0638} \\
+  & Seed I & {\small 0.0207} & {\small 0.0258} & {\small 0.0329} & {\small 0.0371} & {\small 0.0388} \\
+  & Seed J & {\small 0.0208} & {\small 0.0259} & {\small 0.0298} & {\small 0.0370} & {\small 0.0401} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!25}0.023$\pm$0.003 & \cellcolor{ForestGreen!25}0.030$\pm$0.009 & \cellcolor{ForestGreen!25}0.032$\pm$0.003 & \cellcolor{ForestGreen!25}0.040$\pm$0.006 & \cellcolor{ForestGreen!25}0.046$\pm$0.007 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Mean-Window MAE ($^\circ\mathrm{C}$) — 2D Circle Domain.
+\cellcolor{RoyalBlue!65}\phantom{x} lowest mean per $k$;
+\cellcolor{RoyalBlue!20}\phantom{x} within $10\,^\circ\mathrm{C}$.}
+\label{tab:cons_circle_2d}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Arch. & Seed & \makecell{$k{=}1$\\(0\%)} & \makecell{$k{=}2$\\(50\%)} & \makecell{$k{=}3$\\(65\%)} & \makecell{$k{=}4$\\(75\%)} & \makecell{$k{=}5$\\(80\%)} \\
+\midrule
+\textbf{Bayesian/TPE} & Seed A & \cellcolor{RoyalBlue!10}{\small 2.70} & \cellcolor{RoyalBlue!10}{\small 2.70} & \cellcolor{RoyalBlue!10}{\small 3.63} & \cellcolor{RoyalBlue!10}{\small 4.30} & \cellcolor{RoyalBlue!10}{\small 5.70} \\
+ & Seed B & \cellcolor{RoyalBlue!10}{\small 3.13} & \cellcolor{RoyalBlue!10}{\small 5.14} & \cellcolor{RoyalBlue!10}{\small 7.17} & \cellcolor{RoyalBlue!10}{\small 4.08} & \cellcolor{RoyalBlue!10}{\small 5.60} \\
+ & Seed C & \cellcolor{RoyalBlue!10}{\small 2.84} & \cellcolor{RoyalBlue!10}{\small 4.60} & \cellcolor{RoyalBlue!10}{\small 7.03} & \cellcolor{RoyalBlue!10}{\small 4.53} & {\small\color{gray!60!black}14.80} \\
+ & Seed D & \cellcolor{RoyalBlue!10}{\small 3.00} & \cellcolor{RoyalBlue!10}{\small 4.69} & \cellcolor{RoyalBlue!10}{\small 7.30} & \cellcolor{RoyalBlue!10}{\small 4.00} & {\small\color{gray!60!black}15.02} \\
+ & Seed E & \cellcolor{RoyalBlue!10}{\small 2.69} & \cellcolor{RoyalBlue!10}{\small 3.27} & \cellcolor{RoyalBlue!10}{\small 3.15} & \cellcolor{RoyalBlue!10}{\small 4.02} & \cellcolor{RoyalBlue!10}{\small 5.23} \\
+ & Seed F & \cellcolor{RoyalBlue!10}{\small 2.52} & \cellcolor{RoyalBlue!10}{\small 2.53} & \cellcolor{RoyalBlue!10}{\small 3.35} & {\small\color{gray!60!black}10.95} & \cellcolor{RoyalBlue!10}{\small 4.70} \\
+ & Seed G & \cellcolor{RoyalBlue!10}{\small 2.90} & \cellcolor{RoyalBlue!10}{\small 2.45} & \cellcolor{RoyalBlue!10}{\small 7.21} & \cellcolor{RoyalBlue!10}{\small 3.93} & \cellcolor{RoyalBlue!10}{\small 4.41} \\
+ & Seed H & \cellcolor{RoyalBlue!10}{\small 3.13} & \cellcolor{RoyalBlue!10}{\small 5.16} & \cellcolor{RoyalBlue!10}{\small 4.02} & {\small\color{gray!60!black}11.15} & {\small\color{gray!60!black}14.93} \\
+ & Seed I & \cellcolor{RoyalBlue!10}{\small 2.07} & \cellcolor{RoyalBlue!10}{\small 2.70} & \cellcolor{RoyalBlue!10}{\small 3.29} & {\small\color{gray!60!black}10.82} & {\small\color{gray!60!black}14.74} \\
+ & Seed J & \cellcolor{RoyalBlue!10}{\small 2.49} & \cellcolor{RoyalBlue!10}{\small 2.56} & \cellcolor{RoyalBlue!10}{\small 3.13} & \cellcolor{RoyalBlue!10}{\small 3.48} & {\small\color{gray!60!black}14.93} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{2.75$\pm$0.33}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{3.58$\pm$1.17}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{4.93$\pm$1.95}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{6.13$\pm$3.36}} & \cellcolor{red!12}10.01$\pm$5.16 \\
+\midrule
+\textbf{NSGA-II} & Seed A & \cellcolor{RoyalBlue!10}{\small 2.03} & \cellcolor{RoyalBlue!10}{\small 4.58} & \cellcolor{RoyalBlue!10}{\small 6.73} & \cellcolor{RoyalBlue!10}{\small 9.17} & {\small\color{gray!60!black}12.13} \\
+ & Seed B & \cellcolor{RoyalBlue!10}{\small 4.77} & \cellcolor{RoyalBlue!10}{\small 4.23} & \cellcolor{RoyalBlue!10}{\small 6.52} & {\small\color{gray!60!black}18.01} & \cellcolor{RoyalBlue!10}{\small 8.50} \\
+ & Seed C & \cellcolor{RoyalBlue!10}{\small 4.89} & \cellcolor{RoyalBlue!10}{\small 9.27} & \cellcolor{RoyalBlue!10}{\small 5.41} & \cellcolor{RoyalBlue!10}{\small 5.37} & \cellcolor{RoyalBlue!10}{\small 5.19} \\
+ & Seed D & \cellcolor{RoyalBlue!10}{\small 7.11} & {\small\color{gray!60!black}10.13} & \cellcolor{RoyalBlue!10}{\small 5.45} & {\small\color{gray!60!black}17.39} & {\small\color{gray!60!black}22.37} \\
+ & Seed E & \cellcolor{RoyalBlue!10}{\small 5.41} & \cellcolor{RoyalBlue!10}{\small 7.70} & \cellcolor{RoyalBlue!10}{\small 6.94} & \cellcolor{RoyalBlue!10}{\small 7.71} & {\small\color{gray!60!black}20.82} \\
+ & Seed F & \cellcolor{RoyalBlue!10}{\small 4.26} & \cellcolor{RoyalBlue!10}{\small 9.04} & {\small\color{gray!60!black}14.67} & \cellcolor{RoyalBlue!10}{\small 7.17} & \cellcolor{RoyalBlue!10}{\small 6.26} \\
+ & Seed G & \cellcolor{RoyalBlue!10}{\small 4.23} & {\small\color{gray!60!black}10.05} & \cellcolor{RoyalBlue!10}{\small 4.88} & \cellcolor{RoyalBlue!10}{\small 6.60} & {\small\color{gray!60!black}23.30} \\
+ & Seed H & \cellcolor{RoyalBlue!10}{\small 3.55} & {\small\color{gray!60!black}11.68} & \cellcolor{RoyalBlue!10}{\small 4.87} & \cellcolor{RoyalBlue!10}{\small 7.68} & {\small\color{gray!60!black}21.16} \\
+ & Seed I & \cellcolor{RoyalBlue!10}{\small 6.57} & \cellcolor{RoyalBlue!10}{\small 5.03} & {\small\color{gray!60!black}13.38} & \cellcolor{RoyalBlue!10}{\small 8.90} & \cellcolor{RoyalBlue!10}{\small 6.92} \\
+ & Seed J & \cellcolor{RoyalBlue!10}{\small 6.08} & \cellcolor{RoyalBlue!10}{\small 4.07} & \cellcolor{RoyalBlue!10}{\small 4.58} & \cellcolor{RoyalBlue!10}{\small 5.14} & {\small\color{gray!60!black}23.07} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!20}4.89$\pm$1.50 & \cellcolor{RoyalBlue!20}7.58$\pm$2.86 & \cellcolor{RoyalBlue!20}7.34$\pm$3.63 & \cellcolor{RoyalBlue!20}9.31$\pm$4.61 & \cellcolor{red!12}14.97$\pm$7.81 \\
+\midrule
+\textbf{NSGA-III} & Seed A & \cellcolor{RoyalBlue!10}{\small 1.64} & \cellcolor{RoyalBlue!10}{\small 3.70} & \cellcolor{RoyalBlue!10}{\small 5.66} & \cellcolor{RoyalBlue!10}{\small 9.68} & {\small\color{gray!60!black}12.50} \\
+ & Seed B & \cellcolor{RoyalBlue!10}{\small 4.79} & \cellcolor{RoyalBlue!10}{\small 4.36} & \cellcolor{RoyalBlue!10}{\small 4.95} & {\small\color{gray!60!black}18.31} & \cellcolor{RoyalBlue!10}{\small 5.88} \\
+ & Seed C & \cellcolor{RoyalBlue!10}{\small 5.98} & \cellcolor{RoyalBlue!10}{\small 9.30} & \cellcolor{RoyalBlue!10}{\small 5.10} & \cellcolor{RoyalBlue!10}{\small 5.45} & \cellcolor{RoyalBlue!10}{\small 6.60} \\
+ & Seed D & \cellcolor{RoyalBlue!10}{\small 3.97} & \cellcolor{RoyalBlue!10}{\small 9.25} & \cellcolor{RoyalBlue!10}{\small 5.09} & \cellcolor{RoyalBlue!10}{\small 4.96} & {\small\color{gray!60!black}21.24} \\
+ & Seed E & \cellcolor{RoyalBlue!10}{\small 3.62} & \cellcolor{RoyalBlue!10}{\small 4.35} & \cellcolor{RoyalBlue!10}{\small 5.02} & \cellcolor{RoyalBlue!10}{\small 4.92} & \cellcolor{RoyalBlue!10}{\small 5.14} \\
+ & Seed F & \cellcolor{RoyalBlue!10}{\small 4.03} & \cellcolor{RoyalBlue!10}{\small 3.90} & \cellcolor{RoyalBlue!10}{\small 4.57} & \cellcolor{RoyalBlue!10}{\small 5.50} & {\small\color{gray!60!black}21.86} \\
+ & Seed G & \cellcolor{RoyalBlue!10}{\small 5.19} & \cellcolor{RoyalBlue!10}{\small 4.68} & {\small\color{gray!60!black}13.37} & {\small\color{gray!60!black}18.05} & \cellcolor{RoyalBlue!10}{\small 6.55} \\
+ & Seed H & \cellcolor{RoyalBlue!10}{\small 3.75} & \cellcolor{RoyalBlue!10}{\small 9.24} & \cellcolor{RoyalBlue!10}{\small 5.24} & {\small\color{gray!60!black}17.13} & \cellcolor{RoyalBlue!10}{\small 5.03} \\
+ & Seed I & \cellcolor{RoyalBlue!10}{\small 3.73} & \cellcolor{RoyalBlue!10}{\small 4.09} & \cellcolor{RoyalBlue!10}{\small 5.48} & \cellcolor{RoyalBlue!10}{\small 5.45} & \cellcolor{RoyalBlue!10}{\small 5.99} \\
+ & Seed J & \cellcolor{RoyalBlue!10}{\small 3.42} & \cellcolor{RoyalBlue!10}{\small 5.43} & {\small\color{gray!60!black}13.70} & \cellcolor{RoyalBlue!10}{\small 5.02} & {\small\color{gray!60!black}22.53} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!20}4.01$\pm$1.16 & \cellcolor{RoyalBlue!20}5.83$\pm$2.41 & \cellcolor{RoyalBlue!20}6.82$\pm$3.55 & \cellcolor{RoyalBlue!20}9.45$\pm$5.96 & \cellcolor{red!12}11.33$\pm$7.58 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Relative $L_2$ Error — 2D Circle Domain.
+\cellcolor{ForestGreen!55}\phantom{x} best; \cellcolor{ForestGreen!25}\phantom{x} ${<}0.07$;
+\cellcolor{YellowGreen!30}\phantom{x} $0.07$--$0.09$; \cellcolor{red!15}\phantom{x} ${\geq}0.09$.}
+\label{tab:l2_circle_2d}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Arch. & Seed & \makecell{$k{=1}$\\(0\%)} & \makecell{$k{=2}$\\(50\%)} & \makecell{$k{=3}$\\(65\%)} & \makecell{$k{=4}$\\(75\%)} & \makecell{$k{=5}$\\(80\%)} \\
+\midrule
+ \textbf{Bayesian/TPE} & Seed A & {\small 0.0167} & {\small 0.0148} & {\small 0.0158} & {\small 0.0194} & {\small 0.0233} \\
+  & Seed B & {\small 0.0145} & {\small 0.0234} & {\small 0.0314} & {\small 0.0155} & {\small 0.0219} \\
+  & Seed C & {\small 0.0132} & {\small 0.0214} & {\small 0.0306} & {\small 0.0184} & {\small 0.0599} \\
+  & Seed D & {\small 0.0121} & {\small 0.0224} & {\small 0.0319} & {\small 0.0159} & {\small 0.0606} \\
+  & Seed E & {\small 0.0110} & {\small 0.0131} & {\small 0.0125} & {\small 0.0158} & {\small 0.0199} \\
+  & Seed F & {\small 0.0104} & {\small 0.0104} & {\small 0.0139} & {\small 0.0456} & {\small 0.0176} \\
+  & Seed G & {\small 0.0113} & {\small 0.0109} & {\small 0.0313} & {\small 0.0152} & {\small 0.0164} \\
+  & Seed H & {\small 0.0123} & {\small 0.0225} & {\small 0.0162} & {\small 0.0465} & {\small 0.0602} \\
+  & Seed I & {\small 0.0086} & {\small 0.0115} & {\small 0.0139} & {\small 0.0451} & {\small 0.0595} \\
+  & Seed J & {\small 0.0112} & {\small 0.0108} & {\small 0.0126} & {\small 0.0131} & {\small 0.0601} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.012$\pm$0.002}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.016$\pm$0.005}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.021$\pm$0.008}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.025$\pm$0.014}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.040$\pm$0.020}} \\
+\midrule
+ \textbf{NSGA-II} & Seed A & {\small 0.0161} & {\small 0.0260} & {\small 0.0341} & {\small 0.0427} & {\small 0.0552} \\
+  & Seed B & {\small 0.0176} & {\small 0.0167} & {\small 0.0243} & {\small 0.0734} & {\small 0.0316} \\
+  & Seed C & {\small 0.0224} & {\small 0.0413} & {\small 0.0197} & {\small 0.0192} & {\small 0.0186} \\
+  & Seed D & {\small 0.0395} & {\small 0.0456} & {\small 0.0208} & {\small 0.0731} & {\small 0.0879} \\
+  & Seed E & {\small 0.0252} & {\small 0.0281} & {\small 0.0275} & {\small 0.0279} & {\small 0.0844} \\
+  & Seed F & {\small 0.0167} & {\small 0.0393} & {\small 0.0597} & {\small 0.0289} & {\small 0.0239} \\
+  & Seed G & {\small 0.0165} & {\small 0.0451} & {\small 0.0182} & {\small 0.0239} & {\small 0.0879} \\
+  & Seed H & {\small 0.0145} & {\small 0.0547} & {\small 0.0183} & {\small 0.0290} & {\small 0.0839} \\
+  & Seed I & {\small 0.0303} & {\small 0.0199} & {\small 0.0599} & {\small 0.0365} & {\small 0.0250} \\
+  & Seed J & {\small 0.0219} & {\small 0.0156} & {\small 0.0174} & {\small 0.0194} & {\small 0.0876} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!25}0.022$\pm$0.007 & \cellcolor{ForestGreen!25}0.033$\pm$0.013 & \cellcolor{ForestGreen!25}0.030$\pm$0.016 & \cellcolor{ForestGreen!25}0.037$\pm$0.019 & \cellcolor{ForestGreen!25}0.059$\pm$0.029 \\
+\midrule
+ \textbf{NSGA-III} & Seed A & {\small 0.0146} & {\small 0.0217} & {\small 0.0324} & {\small 0.0436} & {\small 0.0555} \\
+  & Seed B & {\small 0.0219} & {\small 0.0172} & {\small 0.0186} & {\small 0.0723} & {\small 0.0208} \\
+  & Seed C & {\small 0.0273} & {\small 0.0402} & {\small 0.0188} & {\small 0.0209} & {\small 0.0248} \\
+  & Seed D & {\small 0.0152} & {\small 0.0409} & {\small 0.0188} & {\small 0.0186} & {\small 0.0867} \\
+  & Seed E & {\small 0.0143} & {\small 0.0162} & {\small 0.0183} & {\small 0.0192} & {\small 0.0191} \\
+  & Seed F & {\small 0.0157} & {\small 0.0150} & {\small 0.0173} & {\small 0.0200} & {\small 0.0840} \\
+  & Seed G & {\small 0.0259} & {\small 0.0183} & {\small 0.0567} & {\small 0.0719} & {\small 0.0233} \\
+  & Seed H & {\small 0.0145} & {\small 0.0391} & {\small 0.0193} & {\small 0.0705} & {\small 0.0181} \\
+  & Seed I & {\small 0.0141} & {\small 0.0152} & {\small 0.0209} & {\small 0.0206} & {\small 0.0214} \\
+  & Seed J & {\small 0.0129} & {\small 0.0218} & {\small 0.0596} & {\small 0.0187} & {\small 0.0866} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!25}0.018$\pm$0.005 & \cellcolor{ForestGreen!25}0.025$\pm$0.010 & \cellcolor{ForestGreen!25}0.028$\pm$0.016 & \cellcolor{ForestGreen!25}0.038$\pm$0.023 & \cellcolor{ForestGreen!25}0.044$\pm$0.029 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Mean-Window MAE ($^\circ\mathrm{C}$) — 2D L-Shape Domain.
+\cellcolor{RoyalBlue!65}\phantom{x} lowest mean per $k$;
+\cellcolor{RoyalBlue!20}\phantom{x} within $10\,^\circ\mathrm{C}$.}
+\label{tab:cons_lshape_2d}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Arch. & Seed & \makecell{$k{=}1$\\(0\%)} & \makecell{$k{=}2$\\(50\%)} & \makecell{$k{=}3$\\(65\%)} & \makecell{$k{=}4$\\(75\%)} & \makecell{$k{=}5$\\(80\%)} \\
+\midrule
+\textbf{Bayesian/TPE} & Seed A & \cellcolor{RoyalBlue!10}{\small 1.93} & \cellcolor{RoyalBlue!10}{\small 2.48} & \cellcolor{RoyalBlue!10}{\small 3.25} & \cellcolor{RoyalBlue!10}{\small 4.10} & \cellcolor{RoyalBlue!10}{\small 5.23} \\
+ & Seed B & \cellcolor{RoyalBlue!10}{\small 2.25} & \cellcolor{RoyalBlue!10}{\small 3.32} & \cellcolor{RoyalBlue!10}{\small 2.99} & \cellcolor{RoyalBlue!10}{\small 4.19} & \cellcolor{RoyalBlue!10}{\small 4.65} \\
+ & Seed C & \cellcolor{RoyalBlue!10}{\small 2.32} & \cellcolor{RoyalBlue!10}{\small 3.30} & \cellcolor{RoyalBlue!10}{\small 3.51} & \cellcolor{RoyalBlue!10}{\small 6.67} & \cellcolor{RoyalBlue!10}{\small 8.20} \\
+ & Seed D & \cellcolor{RoyalBlue!10}{\small 2.16} & \cellcolor{RoyalBlue!10}{\small 3.50} & \cellcolor{RoyalBlue!10}{\small 3.93} & \cellcolor{RoyalBlue!10}{\small 4.20} & \cellcolor{RoyalBlue!10}{\small 4.69} \\
+ & Seed E & \cellcolor{RoyalBlue!10}{\small 2.34} & \cellcolor{RoyalBlue!10}{\small 3.87} & \cellcolor{RoyalBlue!10}{\small 3.26} & \cellcolor{RoyalBlue!10}{\small 4.12} & \cellcolor{RoyalBlue!10}{\small 5.81} \\
+ & Seed F & \cellcolor{RoyalBlue!10}{\small 2.84} & \cellcolor{RoyalBlue!10}{\small 3.50} & \cellcolor{RoyalBlue!10}{\small 4.53} & \cellcolor{RoyalBlue!10}{\small 4.37} & \cellcolor{RoyalBlue!10}{\small 4.65} \\
+ & Seed G & \cellcolor{RoyalBlue!10}{\small 2.20} & \cellcolor{RoyalBlue!10}{\small 3.32} & \cellcolor{RoyalBlue!10}{\small 4.80} & \cellcolor{RoyalBlue!10}{\small 4.39} & \cellcolor{RoyalBlue!10}{\small 5.19} \\
+ & Seed H & \cellcolor{RoyalBlue!10}{\small 2.18} & \cellcolor{RoyalBlue!10}{\small 3.75} & \cellcolor{RoyalBlue!10}{\small 3.08} & \cellcolor{RoyalBlue!10}{\small 4.48} & \cellcolor{RoyalBlue!10}{\small 5.01} \\
+ & Seed I & \cellcolor{RoyalBlue!10}{\small 2.47} & \cellcolor{RoyalBlue!10}{\small 3.51} & \cellcolor{RoyalBlue!10}{\small 4.33} & \cellcolor{RoyalBlue!10}{\small 6.61} & \cellcolor{RoyalBlue!10}{\small 5.69} \\
+ & Seed J & \cellcolor{RoyalBlue!10}{\small 2.26} & \cellcolor{RoyalBlue!10}{\small 3.51} & \cellcolor{RoyalBlue!10}{\small 3.17} & \cellcolor{RoyalBlue!10}{\small 4.31} & \cellcolor{RoyalBlue!10}{\small 4.98} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{2.29$\pm$0.24}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{3.41$\pm$0.37}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{3.69$\pm$0.66}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{4.74$\pm$1.01}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{5.41$\pm$1.06}} \\
+\midrule
+\textbf{NSGA-II} & Seed A & \cellcolor{RoyalBlue!10}{\small 2.96} & \cellcolor{RoyalBlue!10}{\small 4.96} & \cellcolor{RoyalBlue!10}{\small 7.59} & {\small\color{gray!60!black}11.74} & {\small\color{gray!60!black}17.24} \\
+ & Seed B & \cellcolor{RoyalBlue!10}{\small 3.59} & \cellcolor{RoyalBlue!10}{\small 5.61} & \cellcolor{RoyalBlue!10}{\small 9.05} & {\small\color{gray!60!black}13.30} & {\small\color{gray!60!black}13.04} \\
+ & Seed C & \cellcolor{RoyalBlue!10}{\small 3.45} & \cellcolor{RoyalBlue!10}{\small 7.46} & \cellcolor{RoyalBlue!10}{\small 8.40} & \cellcolor{RoyalBlue!10}{\small 8.05} & {\small\color{gray!60!black}12.08} \\
+ & Seed D & \cellcolor{RoyalBlue!10}{\small 3.70} & \cellcolor{RoyalBlue!10}{\small 6.43} & \cellcolor{RoyalBlue!10}{\small 8.63} & {\small\color{gray!60!black}12.57} & {\small\color{gray!60!black}11.70} \\
+ & Seed E & \cellcolor{RoyalBlue!10}{\small 3.39} & \cellcolor{RoyalBlue!10}{\small 6.47} & \cellcolor{RoyalBlue!10}{\small 9.39} & {\small\color{gray!60!black}11.41} & {\small\color{gray!60!black}15.09} \\
+ & Seed F & \cellcolor{RoyalBlue!10}{\small 3.59} & \cellcolor{RoyalBlue!10}{\small 7.22} & \cellcolor{RoyalBlue!10}{\small 6.40} & {\small\color{gray!60!black}12.40} & {\small\color{gray!60!black}15.86} \\
+ & Seed G & \cellcolor{RoyalBlue!10}{\small 3.76} & \cellcolor{RoyalBlue!10}{\small 6.69} & \cellcolor{RoyalBlue!10}{\small 8.40} & {\small\color{gray!60!black}11.64} & {\small\color{gray!60!black}15.56} \\
+ & Seed H & \cellcolor{RoyalBlue!10}{\small 3.70} & \cellcolor{RoyalBlue!10}{\small 6.65} & \cellcolor{RoyalBlue!10}{\small 8.97} & \cellcolor{RoyalBlue!10}{\small 7.41} & {\small\color{gray!60!black}15.65} \\
+ & Seed I & \cellcolor{RoyalBlue!10}{\small 3.28} & \cellcolor{RoyalBlue!10}{\small 8.12} & {\small\color{gray!60!black}10.02} & {\small\color{gray!60!black}12.56} & {\small\color{gray!60!black}16.10} \\
+ & Seed J & \cellcolor{RoyalBlue!10}{\small 3.55} & \cellcolor{RoyalBlue!10}{\small 6.45} & \cellcolor{RoyalBlue!10}{\small 8.43} & {\small\color{gray!60!black}12.18} & {\small\color{gray!60!black}11.42} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!20}3.50$\pm$0.24 & \cellcolor{RoyalBlue!20}6.61$\pm$0.89 & \cellcolor{RoyalBlue!20}8.53$\pm$0.99 & \cellcolor{red!12}11.33$\pm$1.98 & \cellcolor{red!12}14.37$\pm$2.10 \\
+\midrule
+\textbf{NSGA-III} & Seed A & \cellcolor{RoyalBlue!10}{\small 2.19} & \cellcolor{RoyalBlue!10}{\small 5.72} & \cellcolor{RoyalBlue!10}{\small 8.78} & {\small\color{gray!60!black}11.51} & {\small\color{gray!60!black}10.54} \\
+ & Seed B & \cellcolor{RoyalBlue!10}{\small 2.44} & \cellcolor{RoyalBlue!10}{\small 5.35} & \cellcolor{RoyalBlue!10}{\small 6.42} & \cellcolor{RoyalBlue!10}{\small 9.71} & {\small\color{gray!60!black}16.97} \\
+ & Seed C & \cellcolor{RoyalBlue!10}{\small 2.82} & \cellcolor{RoyalBlue!10}{\small 5.42} & \cellcolor{RoyalBlue!10}{\small 5.38} & \cellcolor{RoyalBlue!10}{\small 7.69} & {\small\color{gray!60!black}11.02} \\
+ & Seed D & \cellcolor{RoyalBlue!10}{\small 3.09} & \cellcolor{RoyalBlue!10}{\small 4.86} & \cellcolor{RoyalBlue!10}{\small 5.84} & \cellcolor{RoyalBlue!10}{\small 7.98} & \cellcolor{RoyalBlue!10}{\small 9.61} \\
+ & Seed E & \cellcolor{RoyalBlue!10}{\small 2.65} & \cellcolor{RoyalBlue!10}{\small 4.37} & \cellcolor{RoyalBlue!10}{\small 6.34} & {\small\color{gray!60!black}12.22} & {\small\color{gray!60!black}10.20} \\
+ & Seed F & \cellcolor{RoyalBlue!10}{\small 2.50} & \cellcolor{RoyalBlue!10}{\small 5.50} & \cellcolor{RoyalBlue!10}{\small 9.10} & \cellcolor{RoyalBlue!10}{\small 8.80} & \cellcolor{RoyalBlue!10}{\small 8.56} \\
+ & Seed G & \cellcolor{RoyalBlue!10}{\small 2.76} & \cellcolor{RoyalBlue!10}{\small 3.93} & \cellcolor{RoyalBlue!10}{\small 7.37} & {\small\color{gray!60!black}12.58} & \cellcolor{RoyalBlue!10}{\small 8.11} \\
+ & Seed H & \cellcolor{RoyalBlue!10}{\small 3.43} & \cellcolor{RoyalBlue!10}{\small 5.03} & \cellcolor{RoyalBlue!10}{\small 7.35} & \cellcolor{RoyalBlue!10}{\small 8.84} & \cellcolor{RoyalBlue!10}{\small 9.29} \\
+ & Seed I & \cellcolor{RoyalBlue!10}{\small 3.17} & \cellcolor{RoyalBlue!10}{\small 6.15} & \cellcolor{RoyalBlue!10}{\small 6.65} & \cellcolor{RoyalBlue!10}{\small 7.95} & {\small\color{gray!60!black}16.13} \\
+ & Seed J & \cellcolor{RoyalBlue!10}{\small 3.63} & \cellcolor{RoyalBlue!10}{\small 5.01} & \cellcolor{RoyalBlue!10}{\small 9.78} & {\small\color{gray!60!black}11.56} & {\small\color{gray!60!black}12.52} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!20}2.87$\pm$0.46 & \cellcolor{RoyalBlue!20}5.13$\pm$0.65 & \cellcolor{RoyalBlue!20}7.30$\pm$1.47 & \cellcolor{RoyalBlue!20}9.88$\pm$1.90 & \cellcolor{red!12}11.29$\pm$3.04 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Relative $L_2$ Error — 2D L-Shape Domain.
+\cellcolor{ForestGreen!55}\phantom{x} best; \cellcolor{ForestGreen!25}\phantom{x} ${<}0.07$;
+\cellcolor{YellowGreen!30}\phantom{x} $0.07$--$0.09$; \cellcolor{red!15}\phantom{x} ${\geq}0.09$.}
+\label{tab:l2_lshape_2d}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Arch. & Seed & \makecell{$k{=1}$\\(0\%)} & \makecell{$k{=2}$\\(50\%)} & \makecell{$k{=3}$\\(65\%)} & \makecell{$k{=4}$\\(75\%)} & \makecell{$k{=5}$\\(80\%)} \\
+\midrule
+ \textbf{Bayesian/TPE} & Seed A & {\small 0.0177} & {\small 0.0144} & {\small 0.0195} & {\small 0.0216} & {\small 0.0258} \\
+  & Seed B & {\small 0.0151} & {\small 0.0166} & {\small 0.0119} & {\small 0.0167} & {\small 0.0178} \\
+  & Seed C & {\small 0.0120} & {\small 0.0155} & {\small 0.0140} & {\small 0.0281} & {\small 0.0350} \\
+  & Seed D & {\small 0.0127} & {\small 0.0179} & {\small 0.0165} & {\small 0.0161} & {\small 0.0178} \\
+  & Seed E & {\small 0.0136} & {\small 0.0198} & {\small 0.0131} & {\small 0.0153} & {\small 0.0218} \\
+  & Seed F & {\small 0.0162} & {\small 0.0181} & {\small 0.0224} & {\small 0.0176} & {\small 0.0179} \\
+  & Seed G & {\small 0.0116} & {\small 0.0166} & {\small 0.0208} & {\small 0.0171} & {\small 0.0191} \\
+  & Seed H & {\small 0.0121} & {\small 0.0180} & {\small 0.0130} & {\small 0.0173} & {\small 0.0182} \\
+  & Seed I & {\small 0.0135} & {\small 0.0157} & {\small 0.0195} & {\small 0.0292} & {\small 0.0223} \\
+  & Seed J & {\small 0.0138} & {\small 0.0157} & {\small 0.0128} & {\small 0.0168} & {\small 0.0184} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.014$\pm$0.002}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.017$\pm$0.002}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.016$\pm$0.004}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.020$\pm$0.005}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.021$\pm$0.005}} \\
+\midrule
+ \textbf{NSGA-II} & Seed A & {\small 0.0156} & {\small 0.0230} & {\small 0.0323} & {\small 0.0475} & {\small 0.0620} \\
+  & Seed B & {\small 0.0301} & {\small 0.0358} & {\small 0.0453} & {\small 0.0587} & {\small 0.0537} \\
+  & Seed C & {\small 0.0288} & {\small 0.0382} & {\small 0.0405} & {\small 0.0368} & {\small 0.0486} \\
+  & Seed D & {\small 0.0317} & {\small 0.0375} & {\small 0.0415} & {\small 0.0548} & {\small 0.0490} \\
+  & Seed E & {\small 0.0259} & {\small 0.0353} & {\small 0.0467} & {\small 0.0522} & {\small 0.0646} \\
+  & Seed F & {\small 0.0252} & {\small 0.0376} & {\small 0.0283} & {\small 0.0570} & {\small 0.0655} \\
+  & Seed G & {\small 0.0262} & {\small 0.0383} & {\small 0.0398} & {\small 0.0550} & {\small 0.0663} \\
+  & Seed H & {\small 0.0254} & {\small 0.0391} & {\small 0.0455} & {\small 0.0309} & {\small 0.0626} \\
+  & Seed I & {\small 0.0262} & {\small 0.0395} & {\small 0.0456} & {\small 0.0570} & {\small 0.0655} \\
+  & Seed J & {\small 0.0238} & {\small 0.0364} & {\small 0.0431} & {\small 0.0543} & {\small 0.0488} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!25}0.026$\pm$0.004 & \cellcolor{ForestGreen!25}0.036$\pm$0.005 & \cellcolor{ForestGreen!25}0.041$\pm$0.006 & \cellcolor{ForestGreen!25}0.050$\pm$0.009 & \cellcolor{ForestGreen!25}0.059$\pm$0.007 \\
+\midrule
+ \textbf{NSGA-III} & Seed A & {\small 0.0139} & {\small 0.0259} & {\small 0.0358} & {\small 0.0469} & {\small 0.0419} \\
+  & Seed B & {\small 0.0106} & {\small 0.0235} & {\small 0.0254} & {\small 0.0402} & {\small 0.0666} \\
+  & Seed C & {\small 0.0143} & {\small 0.0324} & {\small 0.0229} & {\small 0.0314} & {\small 0.0446} \\
+  & Seed D & {\small 0.0172} & {\small 0.0215} & {\small 0.0256} & {\small 0.0330} & {\small 0.0406} \\
+  & Seed E & {\small 0.0129} & {\small 0.0182} & {\small 0.0265} & {\small 0.0533} & {\small 0.0412} \\
+  & Seed F & {\small 0.0142} & {\small 0.0260} & {\small 0.0465} & {\small 0.0386} & {\small 0.0336} \\
+  & Seed G & {\small 0.0163} & {\small 0.0174} & {\small 0.0367} & {\small 0.0578} & {\small 0.0333} \\
+  & Seed H & {\small 0.0203} & {\small 0.0333} & {\small 0.0313} & {\small 0.0360} & {\small 0.0375} \\
+  & Seed I & {\small 0.0196} & {\small 0.0382} & {\small 0.0269} & {\small 0.0316} & {\small 0.0669} \\
+  & Seed J & {\small 0.0244} & {\small 0.0261} & {\small 0.0504} & {\small 0.0531} & {\small 0.0503} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!25}0.016$\pm$0.004 & \cellcolor{ForestGreen!25}0.026$\pm$0.006 & \cellcolor{ForestGreen!25}0.033$\pm$0.009 & \cellcolor{ForestGreen!25}0.042$\pm$0.009 & \cellcolor{ForestGreen!25}0.046$\pm$0.012 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Condensed ten-seed mean$\pm$std relative $L_2$ error summary --- 2D Canonical Domains (Rectangle, Circle, L-Shape).
+\cellcolor{ForestGreen!55}\phantom{x} best; \cellcolor{ForestGreen!25}\phantom{x} ${<}0.07$;
+\cellcolor{YellowGreen!30}\phantom{x} $0.07$--$0.09$; \cellcolor{red!15}\phantom{x} ${\geq}0.09$.}
+\label{tab:l2_summary_2d_canonical}
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Domain & Architecture & \makecell{$k{=}1$\\(0\%)} & \makecell{$k{=}2$\\(50\%)} & \makecell{$k{=}3$\\(65\%)} & \makecell{$k{=}4$\\(75\%)} & \makecell{$k{=}5$\\(80\%)} \\
+\midrule
+\multirow{3}{*}{Rectangle 2D}
+  & \textbf{Bayesian/TPE} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.018$\pm$0.002}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.020$\pm$0.003}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.020$\pm$0.005}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.021$\pm$0.005}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.021$\pm$0.004}} \\
+  & \textbf{NSGA-II} & \cellcolor{ForestGreen!25}0.025$\pm$0.005 & \cellcolor{ForestGreen!25}0.034$\pm$0.006 & \cellcolor{ForestGreen!25}0.037$\pm$0.007 & \cellcolor{ForestGreen!25}0.042$\pm$0.008 & \cellcolor{ForestGreen!25}0.046$\pm$0.006 \\
+  & \textbf{NSGA-III} & \cellcolor{ForestGreen!25}0.023$\pm$0.003 & \cellcolor{ForestGreen!25}0.030$\pm$0.009 & \cellcolor{ForestGreen!25}0.032$\pm$0.003 & \cellcolor{ForestGreen!25}0.040$\pm$0.006 & \cellcolor{ForestGreen!25}0.046$\pm$0.007 \\
+\midrule
+\multirow{3}{*}{Circle 2D}
+  & \textbf{Bayesian/TPE} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.012$\pm$0.002}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.016$\pm$0.005}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.021$\pm$0.008}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.025$\pm$0.014}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.040$\pm$0.020}} \\
+  & \textbf{NSGA-II} & \cellcolor{ForestGreen!25}0.022$\pm$0.007 & \cellcolor{ForestGreen!25}0.033$\pm$0.013 & \cellcolor{ForestGreen!25}0.030$\pm$0.016 & \cellcolor{ForestGreen!25}0.037$\pm$0.019 & \cellcolor{ForestGreen!25}0.059$\pm$0.029 \\
+  & \textbf{NSGA-III} & \cellcolor{ForestGreen!25}0.018$\pm$0.005 & \cellcolor{ForestGreen!25}0.025$\pm$0.010 & \cellcolor{ForestGreen!25}0.028$\pm$0.016 & \cellcolor{ForestGreen!25}0.038$\pm$0.023 & \cellcolor{ForestGreen!25}0.044$\pm$0.029 \\
+\midrule
+\multirow{3}{*}{L-Shape 2D}
+  & \textbf{Bayesian/TPE} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.014$\pm$0.002}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.017$\pm$0.002}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.016$\pm$0.004}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.020$\pm$0.005}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.021$\pm$0.005}} \\
+  & \textbf{NSGA-II} & \cellcolor{ForestGreen!25}0.026$\pm$0.004 & \cellcolor{ForestGreen!25}0.036$\pm$0.005 & \cellcolor{ForestGreen!25}0.041$\pm$0.006 & \cellcolor{ForestGreen!25}0.050$\pm$0.009 & \cellcolor{ForestGreen!25}0.059$\pm$0.007 \\
+  & \textbf{NSGA-III} & \cellcolor{ForestGreen!25}0.016$\pm$0.004 & \cellcolor{ForestGreen!25}0.026$\pm$0.006 & \cellcolor{ForestGreen!25}0.033$\pm$0.009 & \cellcolor{ForestGreen!25}0.042$\pm$0.009 & \cellcolor{ForestGreen!25}0.046$\pm$0.012 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\section*{3D Canonical Domains}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Relative $L_2$ Error --- 3D Rectangular Prism.\newline\cellcolor{ForestGreen!55}\phantom{x} best; \cellcolor{ForestGreen!25}\phantom{x} ${<}0.07$; \cellcolor{YellowGreen!30}\phantom{x} $0.07$--$0.09$; \cellcolor{red!15}\phantom{x} ${\geq}0.09$.}
+\label{tab:l2_rectangular_3d}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Arch. & Seed & \makecell{$k{=1}$\\(0\%)} & \makecell{$k{=2}$\\(50\%)} & \makecell{$k{=3}$\\(65\%)} & \makecell{$k{=4}$\\(75\%)} & \makecell{$k{=5}$\\(80\%)} \\
+\midrule
+ \textbf{Bayesian/TPE} & Seed A & {\small 0.0465} & {\small 0.0495} & {\small 0.0510} & {\small 0.0539} & {\small 0.0570} \\
+  & Seed B & {\small 0.0278} & {\small 0.0293} & {\small 0.0248} & {\small 0.0315} & {\small 0.0254} \\
+  & Seed C & {\small 0.0322} & {\small 0.0272} & {\small 0.0235} & {\small 0.0268} & {\small 0.0305} \\
+  & Seed D & {\small 0.0371} & {\small 0.0368} & {\small 0.0346} & {\small 0.0353} & {\small 0.0354} \\
+  & Seed E & {\small 0.0387} & {\small 0.0380} & {\small 0.0360} & {\small 0.0353} & {\small 0.0357} \\
+  & Seed F & {\small 0.0377} & {\small 0.0342} & {\small 0.0332} & {\small 0.0365} & {\small 0.0384} \\
+  & Seed G & {\small 0.0410} & {\small 0.0335} & {\small 0.0402} & {\small 0.0432} & {\small 0.0346} \\
+  & Seed H & {\small 0.0375} & {\small 0.0402} & {\small 0.0384} & {\small 0.0371} & {\small 0.0425} \\
+  & Seed I & {\small 0.0331} & {\small 0.0355} & {\small 0.0395} & {\small 0.0359} & {\small 0.0329} \\
+  & Seed J & {\small 0.0332} & {\small 0.0354} & {\small 0.0374} & {\small 0.0365} & {\small 0.0355} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!25}0.036$\pm$0.005 & \cellcolor{ForestGreen!25}0.036$\pm$0.006 & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.036$\pm$0.008}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.037$\pm$0.007}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.037$\pm$0.008}} \\
+\midrule
+ \textbf{NSGA-II} & Seed A & {\small 0.0314} & {\small 0.0502} & {\small 0.0640} & {\small 0.0693} & {\small 0.0946} \\
+  & Seed B & {\small 0.0339} & {\small 0.0443} & {\small 0.0455} & {\small 0.0507} & {\small 0.0571} \\
+  & Seed C & {\small 0.0329} & {\small 0.0409} & {\small 0.0403} & {\small 0.0483} & {\small 0.0598} \\
+  & Seed D & {\small 0.0189} & {\small 0.0247} & {\small 0.0365} & {\small 0.0395} & {\small 0.0325} \\
+  & Seed E & {\small 0.0190} & {\small 0.0226} & {\small 0.0332} & {\small 0.0406} & {\small 0.0317} \\
+  & Seed F & {\small 0.0169} & {\small 0.0261} & {\small 0.0315} & {\small 0.0317} & {\small 0.0384} \\
+  & Seed G & {\small 0.0203} & {\small 0.0257} & {\small 0.0573} & {\small 0.0440} & {\small 0.0451} \\
+  & Seed H & {\small 0.0205} & {\small 0.0258} & {\small 0.0285} & {\small 0.0310} & {\small 0.0823} \\
+  & Seed I & {\small 0.0217} & {\small 0.0282} & {\small 0.0331} & {\small 0.0295} & {\small 0.0391} \\
+  & Seed J & {\small 0.0235} & {\small 0.0283} & {\small 0.0367} & {\small 0.0416} & {\small 0.0347} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.024$\pm$0.006}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.032$\pm$0.010}} & \cellcolor{ForestGreen!25}0.041$\pm$0.012 & \cellcolor{ForestGreen!25}0.043$\pm$0.012 & \cellcolor{ForestGreen!25}0.052$\pm$0.022 \\
+\midrule
+ \textbf{NSGA-III} & Seed A & {\small 0.0364} & {\small 0.0546} & {\small 0.0479} & {\small 0.0675} & {\small 0.0718} \\
+  & Seed B & {\small 0.0387} & {\small 0.0378} & {\small 0.0493} & {\small 0.0514} & {\small 0.0615} \\
+  & Seed C & {\small 0.0339} & {\small 0.0559} & {\small 0.0768} & {\small 0.0552} & {\small 0.0633} \\
+  & Seed D & {\small 0.0199} & {\small 0.0334} & {\small 0.0322} & {\small 0.0322} & {\small 0.0878} \\
+  & Seed E & {\small 0.0292} & {\small 0.0270} & {\small 0.0335} & {\small 0.0343} & {\small 0.0424} \\
+  & Seed F & {\small 0.0211} & {\small 0.0280} & {\small 0.0317} & {\small 0.0378} & {\small 0.0336} \\
+  & Seed G & {\small 0.0212} & {\small 0.0326} & {\small 0.0301} & {\small 0.0352} & {\small 0.0403} \\
+  & Seed H & {\small 0.0202} & {\small 0.0268} & {\small 0.0432} & {\small 0.0330} & {\small 0.0406} \\
+  & Seed I & {\small 0.0227} & {\small 0.0309} & {\small 0.0281} & {\small 0.0374} & {\small 0.0439} \\
+  & Seed J & {\small 0.0163} & {\small 0.0283} & {\small 0.0318} & {\small 0.0420} & {\small 0.0320} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!25}0.026$\pm$0.008 & \cellcolor{ForestGreen!25}0.036$\pm$0.011 & \cellcolor{ForestGreen!25}0.040$\pm$0.015 & \cellcolor{ForestGreen!25}0.043$\pm$0.012 & \cellcolor{ForestGreen!25}0.052$\pm$0.018 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Mean-Window MAE ($^\circ\mathrm{C}$) --- 3D Cylinder.\newline\cellcolor{RoyalBlue!65}\phantom{x} lowest mean per $k$; \cellcolor{RoyalBlue!20}\phantom{x} within $15\,^\circ\mathrm{C}$.}
+\label{tab:cons_cylinder_3d}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Arch. & Seed & \makecell{$k{=1}$\\(0\%)} & \makecell{$k{=2}$\\(50\%)} & \makecell{$k{=3}$\\(65\%)} & \makecell{$k{=4}$\\(75\%)} & \makecell{$k{=5}$\\(80\%)} \\
+\midrule
+ \textbf{Bayesian/TPE} & Seed A & \cellcolor{RoyalBlue!10}{\small 6.43} & \cellcolor{RoyalBlue!10}{\small 6.64} & \cellcolor{RoyalBlue!10}{\small 7.98} & \cellcolor{RoyalBlue!10}{\small 9.48} & \cellcolor{RoyalBlue!10}{\small 11.90} \\
+  & Seed B & \cellcolor{RoyalBlue!10}{\small 3.46} & \cellcolor{RoyalBlue!10}{\small 4.15} & \cellcolor{RoyalBlue!10}{\small 5.69} & \cellcolor{RoyalBlue!10}{\small 7.16} & \cellcolor{RoyalBlue!10}{\small 8.48} \\
+  & Seed C & \cellcolor{RoyalBlue!10}{\small 3.66} & \cellcolor{RoyalBlue!10}{\small 3.94} & \cellcolor{RoyalBlue!10}{\small 5.08} & \cellcolor{RoyalBlue!10}{\small 6.43} & \cellcolor{RoyalBlue!10}{\small 7.91} \\
+  & Seed D & \cellcolor{RoyalBlue!10}{\small 5.70} & \cellcolor{RoyalBlue!10}{\small 7.72} & \cellcolor{RoyalBlue!10}{\small 7.65} & \cellcolor{RoyalBlue!10}{\small 9.29} & \cellcolor{RoyalBlue!10}{\small 9.76} \\
+  & Seed E & \cellcolor{RoyalBlue!10}{\small 5.91} & \cellcolor{RoyalBlue!10}{\small 7.47} & \cellcolor{RoyalBlue!10}{\small 7.78} & \cellcolor{RoyalBlue!10}{\small 7.93} & \cellcolor{RoyalBlue!10}{\small 8.93} \\
+  & Seed F & \cellcolor{RoyalBlue!10}{\small 5.76} & \cellcolor{RoyalBlue!10}{\small 6.99} & \cellcolor{RoyalBlue!10}{\small 7.91} & \cellcolor{RoyalBlue!10}{\small 9.30} & \cellcolor{RoyalBlue!10}{\small 9.49} \\
+  & Seed G & \cellcolor{RoyalBlue!10}{\small 5.03} & \cellcolor{RoyalBlue!10}{\small 6.78} & \cellcolor{RoyalBlue!10}{\small 7.38} & \cellcolor{RoyalBlue!10}{\small 9.24} & \cellcolor{RoyalBlue!10}{\small 9.35} \\
+  & Seed H & \cellcolor{RoyalBlue!10}{\small 5.30} & \cellcolor{RoyalBlue!10}{\small 7.72} & \cellcolor{RoyalBlue!10}{\small 7.23} & \cellcolor{RoyalBlue!10}{\small 8.87} & \cellcolor{RoyalBlue!10}{\small 10.33} \\
+  & Seed I & \cellcolor{RoyalBlue!10}{\small 5.62} & \cellcolor{RoyalBlue!10}{\small 6.51} & \cellcolor{RoyalBlue!10}{\small 8.28} & \cellcolor{RoyalBlue!10}{\small 9.22} & \cellcolor{RoyalBlue!10}{\small 10.49} \\
+  & Seed J & \cellcolor{RoyalBlue!10}{\small 5.77} & \cellcolor{RoyalBlue!10}{\small 7.20} & \cellcolor{RoyalBlue!10}{\small 7.51} & \cellcolor{RoyalBlue!10}{\small 9.02} & \cellcolor{RoyalBlue!10}{\small 9.10} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{5.26$\pm$0.97}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{6.51$\pm$1.37}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{7.25$\pm$1.04}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{8.59$\pm$1.06}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{9.58$\pm$1.13}} \\
+\midrule
+ \textbf{NSGA-II} & Seed A & \cellcolor{RoyalBlue!10}{\small 10.19} & {\small\color{gray!60!black}15.80} & {\small\color{gray!60!black}18.16} & {\small\color{gray!60!black}25.37} & {\small\color{gray!60!black}21.50} \\
+  & Seed B & \cellcolor{RoyalBlue!10}{\small 7.64} & \cellcolor{RoyalBlue!10}{\small 8.77} & {\small\color{gray!60!black}18.49} & {\small\color{gray!60!black}25.97} & {\small\color{gray!60!black}34.52} \\
+  & Seed C & \cellcolor{RoyalBlue!10}{\small 7.09} & \cellcolor{RoyalBlue!10}{\small 9.28} & {\small\color{gray!60!black}17.45} & \cellcolor{RoyalBlue!10}{\small 10.65} & {\small\color{gray!60!black}35.44} \\
+  & Seed D & \cellcolor{RoyalBlue!10}{\small 4.99} & \cellcolor{RoyalBlue!10}{\small 9.89} & \cellcolor{RoyalBlue!10}{\small 6.02} & \cellcolor{RoyalBlue!10}{\small 6.11} & \cellcolor{RoyalBlue!10}{\small 6.94} \\
+  & Seed E & \cellcolor{RoyalBlue!10}{\small 4.85} & \cellcolor{RoyalBlue!10}{\small 9.72} & \cellcolor{RoyalBlue!10}{\small 5.04} & \cellcolor{RoyalBlue!10}{\small 7.79} & \cellcolor{RoyalBlue!10}{\small 8.60} \\
+  & Seed F & \cellcolor{RoyalBlue!10}{\small 5.15} & \cellcolor{RoyalBlue!10}{\small 5.70} & \cellcolor{RoyalBlue!10}{\small 5.32} & \cellcolor{RoyalBlue!10}{\small 7.13} & {\small\color{gray!60!black}31.80} \\
+  & Seed G & \cellcolor{RoyalBlue!10}{\small 3.76} & \cellcolor{RoyalBlue!10}{\small 5.44} & {\small\color{gray!60!black}15.11} & \cellcolor{RoyalBlue!10}{\small 6.72} & \cellcolor{RoyalBlue!10}{\small 7.16} \\
+  & Seed H & \cellcolor{RoyalBlue!10}{\small 5.09} & \cellcolor{RoyalBlue!10}{\small 4.81} & \cellcolor{RoyalBlue!10}{\small 6.63} & {\small\color{gray!60!black}23.81} & {\small\color{gray!60!black}31.59} \\
+  & Seed I & \cellcolor{RoyalBlue!10}{\small 4.98} & \cellcolor{RoyalBlue!10}{\small 4.92} & {\small\color{gray!60!black}15.20} & \cellcolor{RoyalBlue!10}{\small 7.02} & \cellcolor{RoyalBlue!10}{\small 7.28} \\
+  & Seed J & \cellcolor{RoyalBlue!10}{\small 4.18} & \cellcolor{RoyalBlue!10}{\small 5.23} & \cellcolor{RoyalBlue!10}{\small 6.19} & \cellcolor{RoyalBlue!10}{\small 6.17} & \cellcolor{RoyalBlue!10}{\small 7.23} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!20}5.79$\pm$1.95 & \cellcolor{RoyalBlue!20}7.96$\pm$3.47 & \cellcolor{RoyalBlue!20}11.36$\pm$5.94 & \cellcolor{RoyalBlue!20}12.67$\pm$8.65 & \cellcolor{red!12}19.21$\pm$12.95 \\
+\midrule
+ \textbf{NSGA-III} & Seed A & \cellcolor{RoyalBlue!10}{\small 12.29} & \cellcolor{RoyalBlue!10}{\small 11.93} & {\small\color{gray!60!black}16.91} & {\small\color{gray!60!black}18.47} & {\small\color{gray!60!black}17.12} \\
+  & Seed B & \cellcolor{RoyalBlue!10}{\small 6.97} & \cellcolor{RoyalBlue!10}{\small 8.50} & \cellcolor{RoyalBlue!10}{\small 8.80} & \cellcolor{RoyalBlue!10}{\small 9.61} & \cellcolor{RoyalBlue!10}{\small 11.33} \\
+  & Seed C & \cellcolor{RoyalBlue!10}{\small 7.60} & \cellcolor{RoyalBlue!10}{\small 8.83} & {\small\color{gray!60!black}17.53} & {\small\color{gray!60!black}25.61} & \cellcolor{RoyalBlue!10}{\small 12.22} \\
+  & Seed D & \cellcolor{RoyalBlue!10}{\small 4.48} & \cellcolor{RoyalBlue!10}{\small 10.13} & \cellcolor{RoyalBlue!10}{\small 5.38} & \cellcolor{RoyalBlue!10}{\small 6.92} & \cellcolor{RoyalBlue!10}{\small 8.22} \\
+  & Seed E & \cellcolor{RoyalBlue!10}{\small 3.88} & \cellcolor{RoyalBlue!10}{\small 5.50} & \cellcolor{RoyalBlue!10}{\small 6.35} & \cellcolor{RoyalBlue!10}{\small 6.56} & \cellcolor{RoyalBlue!10}{\small 8.66} \\
+  & Seed F & \cellcolor{RoyalBlue!10}{\small 5.40} & \cellcolor{RoyalBlue!10}{\small 5.45} & \cellcolor{RoyalBlue!10}{\small 5.51} & \cellcolor{RoyalBlue!10}{\small 6.06} & \cellcolor{RoyalBlue!10}{\small 7.13} \\
+  & Seed G & \cellcolor{RoyalBlue!10}{\small 5.65} & \cellcolor{RoyalBlue!10}{\small 4.56} & \cellcolor{RoyalBlue!10}{\small 6.27} & \cellcolor{RoyalBlue!10}{\small 7.84} & \cellcolor{RoyalBlue!10}{\small 7.98} \\
+  & Seed H & \cellcolor{RoyalBlue!10}{\small 4.37} & \cellcolor{RoyalBlue!10}{\small 5.22} & \cellcolor{RoyalBlue!10}{\small 6.21} & \cellcolor{RoyalBlue!10}{\small 7.10} & \cellcolor{RoyalBlue!10}{\small 7.64} \\
+  & Seed I & \cellcolor{RoyalBlue!10}{\small 3.22} & \cellcolor{RoyalBlue!10}{\small 4.53} & \cellcolor{RoyalBlue!10}{\small 6.03} & {\small\color{gray!60!black}23.92} & \cellcolor{RoyalBlue!10}{\small 7.02} \\
+  & Seed J & \cellcolor{RoyalBlue!10}{\small 4.06} & \cellcolor{RoyalBlue!10}{\small 10.19} & \cellcolor{RoyalBlue!10}{\small 6.09} & \cellcolor{RoyalBlue!10}{\small 8.46} & \cellcolor{RoyalBlue!10}{\small 8.64} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!20}5.79$\pm$2.67 & \cellcolor{RoyalBlue!20}7.48$\pm$2.74 & \cellcolor{RoyalBlue!20}8.51$\pm$4.69 & \cellcolor{RoyalBlue!20}12.06$\pm$7.60 & \cellcolor{RoyalBlue!20}9.60$\pm$3.15 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Relative $L_2$ Error --- 3D Cylinder.\newline\cellcolor{ForestGreen!55}\phantom{x} best; \cellcolor{ForestGreen!25}\phantom{x} ${<}0.07$; \cellcolor{YellowGreen!30}\phantom{x} $0.07$--$0.09$; \cellcolor{red!15}\phantom{x} ${\geq}0.09$.}
+\label{tab:l2_cylinder_3d}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Arch. & Seed & \makecell{$k{=1}$\\(0\%)} & \makecell{$k{=2}$\\(50\%)} & \makecell{$k{=3}$\\(65\%)} & \makecell{$k{=4}$\\(75\%)} & \makecell{$k{=5}$\\(80\%)} \\
+\midrule
+ \textbf{Bayesian/TPE} & Seed A & {\small 0.0402} & {\small 0.0359} & {\small 0.0380} & {\small 0.0426} & {\small 0.0474} \\
+  & Seed B & {\small 0.0199} & {\small 0.0181} & {\small 0.0262} & {\small 0.0305} & {\small 0.0371} \\
+  & Seed C & {\small 0.0238} & {\small 0.0209} & {\small 0.0202} & {\small 0.0255} & {\small 0.0329} \\
+  & Seed D & {\small 0.0234} & {\small 0.0280} & {\small 0.0283} & {\small 0.0329} & {\small 0.0344} \\
+  & Seed E & {\small 0.0238} & {\small 0.0290} & {\small 0.0283} & {\small 0.0289} & {\small 0.0317} \\
+  & Seed F & {\small 0.0235} & {\small 0.0257} & {\small 0.0286} & {\small 0.0328} & {\small 0.0339} \\
+  & Seed G & {\small 0.0201} & {\small 0.0251} & {\small 0.0266} & {\small 0.0323} & {\small 0.0333} \\
+  & Seed H & {\small 0.0205} & {\small 0.0277} & {\small 0.0262} & {\small 0.0317} & {\small 0.0372} \\
+  & Seed I & {\small 0.0238} & {\small 0.0250} & {\small 0.0298} & {\small 0.0323} & {\small 0.0372} \\
+  & Seed J & {\small 0.0224} & {\small 0.0269} & {\small 0.0274} & {\small 0.0328} & {\small 0.0330} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.024$\pm$0.006}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.026$\pm$0.005}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.028$\pm$0.004}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.032$\pm$0.004}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.036$\pm$0.005}} \\
+\midrule
+ \textbf{NSGA-II} & Seed A & {\small 0.0825} & {\small 0.1080} & {\small 0.1022} & {\small 0.1245} & {\small 0.1005} \\
+  & Seed B & {\small 0.0309} & {\small 0.0340} & {\small 0.0626} & {\small 0.0842} & {\small 0.1117} \\
+  & Seed C & {\small 0.0282} & {\small 0.0361} & {\small 0.0589} & {\small 0.0392} & {\small 0.1153} \\
+  & Seed D & {\small 0.0195} & {\small 0.0348} & {\small 0.0218} & {\small 0.0225} & {\small 0.0245} \\
+  & Seed E & {\small 0.0189} & {\small 0.0341} & {\small 0.0194} & {\small 0.0277} & {\small 0.0297} \\
+  & Seed F & {\small 0.0199} & {\small 0.0207} & {\small 0.0198} & {\small 0.0255} & {\small 0.1037} \\
+  & Seed G & {\small 0.0147} & {\small 0.0198} & {\small 0.0516} & {\small 0.0236} & {\small 0.0255} \\
+  & Seed H & {\small 0.0197} & {\small 0.0181} & {\small 0.0244} & {\small 0.0782} & {\small 0.1031} \\
+  & Seed I & {\small 0.0192} & {\small 0.0182} & {\small 0.0519} & {\small 0.0248} & {\small 0.0262} \\
+  & Seed J & {\small 0.0160} & {\small 0.0192} & {\small 0.0223} & {\small 0.0224} & {\small 0.0255} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!25}0.027$\pm$0.020 & \cellcolor{ForestGreen!25}0.034$\pm$0.027 & \cellcolor{ForestGreen!25}0.043$\pm$0.027 & \cellcolor{ForestGreen!25}0.047$\pm$0.036 & \cellcolor{ForestGreen!25}0.067$\pm$0.043 \\
+\midrule
+ \textbf{NSGA-III} & Seed A & {\small 0.0961} & {\small 0.0672} & {\small 0.0917} & {\small 0.1001} & {\small 0.0753} \\
+  & Seed B & {\small 0.0278} & {\small 0.0329} & {\small 0.0336} & {\small 0.0347} & {\small 0.0406} \\
+  & Seed C & {\small 0.0296} & {\small 0.0341} & {\small 0.0592} & {\small 0.0840} & {\small 0.0432} \\
+  & Seed D & {\small 0.0171} & {\small 0.0357} & {\small 0.0202} & {\small 0.0251} & {\small 0.0298} \\
+  & Seed E & {\small 0.0152} & {\small 0.0202} & {\small 0.0230} & {\small 0.0237} & {\small 0.0307} \\
+  & Seed F & {\small 0.0208} & {\small 0.0199} & {\small 0.0206} & {\small 0.0218} & {\small 0.0259} \\
+  & Seed G & {\small 0.0215} & {\small 0.0174} & {\small 0.0229} & {\small 0.0282} & {\small 0.0284} \\
+  & Seed H & {\small 0.0168} & {\small 0.0194} & {\small 0.0228} & {\small 0.0255} & {\small 0.0278} \\
+  & Seed I & {\small 0.0133} & {\small 0.0173} & {\small 0.0221} & {\small 0.0789} & {\small 0.0257} \\
+  & Seed J & {\small 0.0156} & {\small 0.0360} & {\small 0.0224} & {\small 0.0300} & {\small 0.0310} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!25}0.027$\pm$0.025 & \cellcolor{ForestGreen!25}0.030$\pm$0.015 & \cellcolor{ForestGreen!25}0.034$\pm$0.024 & \cellcolor{ForestGreen!25}0.045$\pm$0.030 & \cellcolor{ForestGreen!25}0.036$\pm$0.015 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Mean-Window MAE ($^\circ\mathrm{C}$) --- 3D Stacked Cubes.\newline\cellcolor{RoyalBlue!65}\phantom{x} lowest mean per $k$; \cellcolor{RoyalBlue!20}\phantom{x} within $15\,^\circ\mathrm{C}$.}
+\label{tab:cons_stacked_3d}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Arch. & Seed & \makecell{$k{=1}$\\(0\%)} & \makecell{$k{=2}$\\(50\%)} & \makecell{$k{=3}$\\(65\%)} & \makecell{$k{=4}$\\(75\%)} & \makecell{$k{=5}$\\(80\%)} \\
+\midrule
+ \textbf{Bayesian/TPE} & Seed A & \cellcolor{RoyalBlue!10}{\small 7.58} & \cellcolor{RoyalBlue!10}{\small 9.25} & \cellcolor{RoyalBlue!10}{\small 11.19} & \cellcolor{RoyalBlue!10}{\small 11.37} & \cellcolor{RoyalBlue!10}{\small 12.26} \\
+  & Seed B & \cellcolor{RoyalBlue!10}{\small 10.19} & \cellcolor{RoyalBlue!10}{\small 7.95} & \cellcolor{RoyalBlue!10}{\small 10.95} & {\small\color{gray!60!black}15.80} & {\small\color{gray!60!black}19.02} \\
+  & Seed C & \cellcolor{RoyalBlue!10}{\small 8.44} & \cellcolor{RoyalBlue!10}{\small 7.14} & \cellcolor{RoyalBlue!10}{\small 8.03} & \cellcolor{RoyalBlue!10}{\small 8.34} & \cellcolor{RoyalBlue!10}{\small 9.43} \\
+  & Seed D & \cellcolor{RoyalBlue!10}{\small 11.46} & \cellcolor{RoyalBlue!10}{\small 14.32} & \cellcolor{RoyalBlue!10}{\small 11.82} & {\small\color{gray!60!black}16.03} & {\small\color{gray!60!black}17.64} \\
+  & Seed E & \cellcolor{RoyalBlue!10}{\small 11.00} & \cellcolor{RoyalBlue!10}{\small 12.02} & \cellcolor{RoyalBlue!10}{\small 14.25} & \cellcolor{RoyalBlue!10}{\small 12.11} & \cellcolor{RoyalBlue!10}{\small 11.84} \\
+  & Seed F & \cellcolor{RoyalBlue!10}{\small 11.34} & \cellcolor{RoyalBlue!10}{\small 12.27} & \cellcolor{RoyalBlue!10}{\small 13.08} & \cellcolor{RoyalBlue!10}{\small 13.68} & {\small\color{gray!60!black}17.82} \\
+  & Seed G & \cellcolor{RoyalBlue!10}{\small 11.57} & \cellcolor{RoyalBlue!10}{\small 11.50} & \cellcolor{RoyalBlue!10}{\small 11.91} & \cellcolor{RoyalBlue!10}{\small 12.08} & \cellcolor{RoyalBlue!10}{\small 11.50} \\
+  & Seed H & \cellcolor{RoyalBlue!10}{\small 10.80} & \cellcolor{RoyalBlue!10}{\small 13.41} & \cellcolor{RoyalBlue!10}{\small 11.69} & \cellcolor{RoyalBlue!10}{\small 12.62} & \cellcolor{RoyalBlue!10}{\small 13.28} \\
+  & Seed I & \cellcolor{RoyalBlue!10}{\small 11.59} & \cellcolor{RoyalBlue!10}{\small 13.66} & \cellcolor{RoyalBlue!10}{\small 13.72} & \cellcolor{RoyalBlue!10}{\small 12.07} & \cellcolor{RoyalBlue!10}{\small 13.83} \\
+  & Seed J & \cellcolor{RoyalBlue!10}{\small 11.12} & \cellcolor{RoyalBlue!10}{\small 11.98} & \cellcolor{RoyalBlue!10}{\small 11.74} & {\small\color{gray!60!black}16.21} & \cellcolor{RoyalBlue!10}{\small 14.08} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!20}10.51$\pm$1.40 & \cellcolor{RoyalBlue!20}11.35$\pm$2.44 & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{11.84$\pm$1.72}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{13.03$\pm$2.47}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{14.07$\pm$3.13}} \\
+\midrule
+ \textbf{NSGA-II} & Seed A & \cellcolor{RoyalBlue!10}{\small 10.12} & \cellcolor{RoyalBlue!10}{\small 12.11} & \cellcolor{RoyalBlue!10}{\small 13.32} & {\small\color{gray!60!black}17.60} & {\small\color{gray!60!black}19.55} \\
+  & Seed B & {\small\color{gray!60!black}15.87} & {\small\color{gray!60!black}15.38} & {\small\color{gray!60!black}21.87} & {\small\color{gray!60!black}24.66} & {\small\color{gray!60!black}22.88} \\
+  & Seed C & \cellcolor{RoyalBlue!10}{\small 14.99} & {\small\color{gray!60!black}20.63} & {\small\color{gray!60!black}23.25} & {\small\color{gray!60!black}20.20} & {\small\color{gray!60!black}21.91} \\
+  & Seed D & \cellcolor{RoyalBlue!10}{\small 5.68} & \cellcolor{RoyalBlue!10}{\small 12.39} & \cellcolor{RoyalBlue!10}{\small 10.17} & \cellcolor{RoyalBlue!10}{\small 11.59} & {\small\color{gray!60!black}25.33} \\
+  & Seed E & \cellcolor{RoyalBlue!10}{\small 6.72} & \cellcolor{RoyalBlue!10}{\small 7.78} & \cellcolor{RoyalBlue!10}{\small 9.18} & \cellcolor{RoyalBlue!10}{\small 12.11} & \cellcolor{RoyalBlue!10}{\small 12.72} \\
+  & Seed F & \cellcolor{RoyalBlue!10}{\small 7.00} & \cellcolor{RoyalBlue!10}{\small 7.58} & \cellcolor{RoyalBlue!10}{\small 9.11} & {\small\color{gray!60!black}19.15} & \cellcolor{RoyalBlue!10}{\small 14.83} \\
+  & Seed G & \cellcolor{RoyalBlue!10}{\small 8.00} & \cellcolor{RoyalBlue!10}{\small 9.78} & \cellcolor{RoyalBlue!10}{\small 10.61} & \cellcolor{RoyalBlue!10}{\small 12.82} & \cellcolor{RoyalBlue!10}{\small 13.98} \\
+  & Seed H & \cellcolor{RoyalBlue!10}{\small 6.80} & \cellcolor{RoyalBlue!10}{\small 8.15} & \cellcolor{RoyalBlue!10}{\small 14.95} & \cellcolor{RoyalBlue!10}{\small 12.28} & {\small\color{gray!60!black}26.26} \\
+  & Seed I & \cellcolor{RoyalBlue!10}{\small 5.82} & \cellcolor{RoyalBlue!10}{\small 7.93} & \cellcolor{RoyalBlue!10}{\small 9.30} & \cellcolor{RoyalBlue!10}{\small 11.97} & \cellcolor{RoyalBlue!10}{\small 12.49} \\
+  & Seed J & \cellcolor{RoyalBlue!10}{\small 5.87} & \cellcolor{RoyalBlue!10}{\small 11.55} & \cellcolor{RoyalBlue!10}{\small 11.32} & \cellcolor{RoyalBlue!10}{\small 9.98} & \cellcolor{RoyalBlue!10}{\small 11.97} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{8.69$\pm$3.79}} & \cellcolor{RoyalBlue!20}11.33$\pm$4.15 & \cellcolor{RoyalBlue!20}13.31$\pm$5.24 & \cellcolor{red!12}15.24$\pm$4.83 & \cellcolor{red!12}18.19$\pm$5.62 \\
+\midrule
+ \textbf{NSGA-III} & Seed A & \cellcolor{RoyalBlue!10}{\small 8.94} & \cellcolor{RoyalBlue!10}{\small 11.68} & \cellcolor{RoyalBlue!10}{\small 13.28} & {\small\color{gray!60!black}16.94} & {\small\color{gray!60!black}19.22} \\
+  & Seed B & \cellcolor{RoyalBlue!10}{\small 13.41} & {\small\color{gray!60!black}19.58} & {\small\color{gray!60!black}18.31} & {\small\color{gray!60!black}18.38} & {\small\color{gray!60!black}17.78} \\
+  & Seed C & \cellcolor{RoyalBlue!10}{\small 13.94} & {\small\color{gray!60!black}15.37} & {\small\color{gray!60!black}17.30} & {\small\color{gray!60!black}19.28} & {\small\color{gray!60!black}29.46} \\
+  & Seed D & \cellcolor{RoyalBlue!10}{\small 7.67} & \cellcolor{RoyalBlue!10}{\small 10.64} & \cellcolor{RoyalBlue!10}{\small 10.41} & {\small\color{gray!60!black}20.80} & {\small\color{gray!60!black}16.21} \\
+  & Seed E & \cellcolor{RoyalBlue!10}{\small 5.77} & \cellcolor{RoyalBlue!10}{\small 13.50} & \cellcolor{RoyalBlue!10}{\small 10.10} & \cellcolor{RoyalBlue!10}{\small 12.04} & {\small\color{gray!60!black}15.87} \\
+  & Seed F & \cellcolor{RoyalBlue!10}{\small 9.13} & \cellcolor{RoyalBlue!10}{\small 7.49} & {\small\color{gray!60!black}15.44} & \cellcolor{RoyalBlue!10}{\small 11.31} & \cellcolor{RoyalBlue!10}{\small 14.16} \\
+  & Seed G & \cellcolor{RoyalBlue!10}{\small 8.63} & \cellcolor{RoyalBlue!10}{\small 7.86} & \cellcolor{RoyalBlue!10}{\small 9.81} & \cellcolor{RoyalBlue!10}{\small 9.80} & {\small\color{gray!60!black}25.28} \\
+  & Seed H & \cellcolor{RoyalBlue!10}{\small 7.23} & \cellcolor{RoyalBlue!10}{\small 7.55} & \cellcolor{RoyalBlue!10}{\small 10.67} & \cellcolor{RoyalBlue!10}{\small 10.75} & \cellcolor{RoyalBlue!10}{\small 12.74} \\
+  & Seed I & \cellcolor{RoyalBlue!10}{\small 6.54} & \cellcolor{RoyalBlue!10}{\small 8.11} & \cellcolor{RoyalBlue!10}{\small 9.19} & \cellcolor{RoyalBlue!10}{\small 11.29} & {\small\color{gray!60!black}26.11} \\
+  & Seed J & \cellcolor{RoyalBlue!10}{\small 8.27} & \cellcolor{RoyalBlue!10}{\small 7.77} & \cellcolor{RoyalBlue!10}{\small 9.53} & \cellcolor{RoyalBlue!10}{\small 12.34} & \cellcolor{RoyalBlue!10}{\small 11.25} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!20}8.95$\pm$2.71 & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{10.96$\pm$4.11}} & \cellcolor{RoyalBlue!20}12.40$\pm$3.44 & \cellcolor{RoyalBlue!20}14.29$\pm$4.09 & \cellcolor{red!12}18.81$\pm$6.15 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Relative $L_2$ Error --- 3D Stacked Cubes.\newline\cellcolor{ForestGreen!55}\phantom{x} best; \cellcolor{ForestGreen!25}\phantom{x} ${<}0.07$; \cellcolor{YellowGreen!30}\phantom{x} $0.07$--$0.09$; \cellcolor{red!15}\phantom{x} ${\geq}0.09$.}
+\label{tab:l2_stacked_3d}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Arch. & Seed & \makecell{$k{=1}$\\(0\%)} & \makecell{$k{=2}$\\(50\%)} & \makecell{$k{=3}$\\(65\%)} & \makecell{$k{=4}$\\(75\%)} & \makecell{$k{=5}$\\(80\%)} \\
+\midrule
+ \textbf{Bayesian/TPE} & Seed A & {\small 0.0570} & {\small 0.0585} & {\small 0.0668} & {\small 0.0545} & {\small 0.0599} \\
+  & Seed B & {\small 0.0510} & {\small 0.0390} & {\small 0.0590} & {\small 0.0761} & {\small 0.0818} \\
+  & Seed C & {\small 0.0449} & {\small 0.0415} & {\small 0.0418} & {\small 0.0388} & {\small 0.0393} \\
+  & Seed D & {\small 0.0387} & {\small 0.0477} & {\small 0.0427} & {\small 0.0553} & {\small 0.0646} \\
+  & Seed E & {\small 0.0365} & {\small 0.0413} & {\small 0.0487} & {\small 0.0461} & {\small 0.0459} \\
+  & Seed F & {\small 0.0385} & {\small 0.0442} & {\small 0.0444} & {\small 0.0467} & {\small 0.0659} \\
+  & Seed G & {\small 0.0385} & {\small 0.0399} & {\small 0.0447} & {\small 0.0480} & {\small 0.0445} \\
+  & Seed H & {\small 0.0364} & {\small 0.0437} & {\small 0.0437} & {\small 0.0451} & {\small 0.0493} \\
+  & Seed I & {\small 0.0388} & {\small 0.0453} & {\small 0.0472} & {\small 0.0433} & {\small 0.0485} \\
+  & Seed J & {\small 0.0376} & {\small 0.0409} & {\small 0.0441} & {\small 0.0559} & {\small 0.0538} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!25}0.042$\pm$0.008 & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.044$\pm$0.006}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.048$\pm$0.008}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.051$\pm$0.010}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.055$\pm$0.013}} \\
+\midrule
+ \textbf{NSGA-II} & Seed A & {\small 0.0771} & {\small 0.0619} & {\small 0.0753} & {\small 0.0943} & {\small 0.0957} \\
+  & Seed B & {\small 0.0592} & {\small 0.0595} & {\small 0.0940} & {\small 0.1013} & {\small 0.0842} \\
+  & Seed C & {\small 0.0866} & {\small 0.0935} & {\small 0.0884} & {\small 0.0792} & {\small 0.0835} \\
+  & Seed D & {\small 0.0198} & {\small 0.0667} & {\small 0.0341} & {\small 0.0390} & {\small 0.1075} \\
+  & Seed E & {\small 0.0236} & {\small 0.0266} & {\small 0.0304} & {\small 0.0397} & {\small 0.0422} \\
+  & Seed F & {\small 0.0359} & {\small 0.0255} & {\small 0.0301} & {\small 0.0813} & {\small 0.0489} \\
+  & Seed G & {\small 0.0332} & {\small 0.0342} & {\small 0.0352} & {\small 0.0423} & {\small 0.0461} \\
+  & Seed H & {\small 0.0235} & {\small 0.0269} & {\small 0.0763} & {\small 0.0414} & {\small 0.1030} \\
+  & Seed I & {\small 0.0211} & {\small 0.0269} & {\small 0.0307} & {\small 0.0394} & {\small 0.0409} \\
+  & Seed J & {\small 0.0210} & {\small 0.0699} & {\small 0.0378} & {\small 0.0344} & {\small 0.0404} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!25}0.040$\pm$0.025 & \cellcolor{ForestGreen!25}0.049$\pm$0.024 & \cellcolor{ForestGreen!25}0.053$\pm$0.027 & \cellcolor{ForestGreen!25}0.059$\pm$0.026 & \cellcolor{ForestGreen!25}0.069$\pm$0.028 \\
+\midrule
+ \textbf{NSGA-III} & Seed A & {\small 0.0669} & {\small 0.0745} & {\small 0.0715} & {\small 0.0842} & {\small 0.0853} \\
+  & Seed B & {\small 0.0508} & {\small 0.0708} & {\small 0.0716} & {\small 0.0681} & {\small 0.0700} \\
+  & Seed C & {\small 0.0523} & {\small 0.0613} & {\small 0.0638} & {\small 0.0728} & {\small 0.1199} \\
+  & Seed D & {\small 0.0266} & {\small 0.0385} & {\small 0.0350} & {\small 0.1031} & {\small 0.0566} \\
+  & Seed E & {\small 0.0209} & {\small 0.0704} & {\small 0.0337} & {\small 0.0404} & {\small 0.0527} \\
+  & Seed F & {\small 0.0333} & {\small 0.0266} & {\small 0.0809} & {\small 0.0372} & {\small 0.0462} \\
+  & Seed G & {\small 0.0298} & {\small 0.0271} & {\small 0.0325} & {\small 0.0332} & {\small 0.1102} \\
+  & Seed H & {\small 0.0250} & {\small 0.0255} & {\small 0.0361} & {\small 0.0380} & {\small 0.0428} \\
+  & Seed I & {\small 0.0227} & {\small 0.0291} & {\small 0.0314} & {\small 0.0382} & {\small 0.1216} \\
+  & Seed J & {\small 0.0450} & {\small 0.0266} & {\small 0.0316} & {\small 0.0413} & {\small 0.0367} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.037$\pm$0.015}} & \cellcolor{ForestGreen!25}0.045$\pm$0.021 & \cellcolor{ForestGreen!25}0.049$\pm$0.020 & \cellcolor{ForestGreen!25}0.056$\pm$0.025 & \cellcolor{YellowGreen!30}0.074$\pm$0.033 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Mean-Window MAE ($^\circ\mathrm{C}$) --- 3D L-Shape Prism.\newline\cellcolor{RoyalBlue!65}\phantom{x} lowest mean per $k$; \cellcolor{RoyalBlue!20}\phantom{x} within $15\,^\circ\mathrm{C}$.}
+\label{tab:cons_lshape_3d}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Arch. & Seed & \makecell{$k{=1}$\\(0\%)} & \makecell{$k{=2}$\\(50\%)} & \makecell{$k{=3}$\\(65\%)} & \makecell{$k{=4}$\\(75\%)} & \makecell{$k{=5}$\\(80\%)} \\
+\midrule
+ \textbf{Bayesian/TPE} & Seed A & \cellcolor{RoyalBlue!10}{\small 8.41} & \cellcolor{RoyalBlue!10}{\small 7.18} & \cellcolor{RoyalBlue!10}{\small 7.08} & \cellcolor{RoyalBlue!10}{\small 8.73} & \cellcolor{RoyalBlue!10}{\small 9.93} \\
+  & Seed B & \cellcolor{RoyalBlue!10}{\small 10.74} & \cellcolor{RoyalBlue!10}{\small 8.40} & \cellcolor{RoyalBlue!10}{\small 11.22} & \cellcolor{RoyalBlue!10}{\small 9.96} & \cellcolor{RoyalBlue!10}{\small 11.14} \\
+  & Seed C & \cellcolor{RoyalBlue!10}{\small 9.41} & \cellcolor{RoyalBlue!10}{\small 9.45} & \cellcolor{RoyalBlue!10}{\small 11.54} & \cellcolor{RoyalBlue!10}{\small 9.55} & \cellcolor{RoyalBlue!10}{\small 11.63} \\
+  & Seed D & \cellcolor{RoyalBlue!10}{\small 9.46} & {\small\color{gray!60!black}15.05} & \cellcolor{RoyalBlue!10}{\small 13.02} & \cellcolor{RoyalBlue!10}{\small 14.14} & \cellcolor{RoyalBlue!10}{\small 14.67} \\
+  & Seed E & \cellcolor{RoyalBlue!10}{\small 9.47} & \cellcolor{RoyalBlue!10}{\small 13.58} & {\small\color{gray!60!black}15.91} & \cellcolor{RoyalBlue!10}{\small 12.03} & {\small\color{gray!60!black}15.31} \\
+  & Seed F & \cellcolor{RoyalBlue!10}{\small 13.19} & \cellcolor{RoyalBlue!10}{\small 12.62} & \cellcolor{RoyalBlue!10}{\small 12.45} & \cellcolor{RoyalBlue!10}{\small 14.80} & \cellcolor{RoyalBlue!10}{\small 14.00} \\
+  & Seed G & \cellcolor{RoyalBlue!10}{\small 10.85} & \cellcolor{RoyalBlue!10}{\small 12.56} & \cellcolor{RoyalBlue!10}{\small 11.77} & \cellcolor{RoyalBlue!10}{\small 11.44} & {\small\color{gray!60!black}15.36} \\
+  & Seed H & \cellcolor{RoyalBlue!10}{\small 9.03} & \cellcolor{RoyalBlue!10}{\small 14.38} & \cellcolor{RoyalBlue!10}{\small 10.75} & \cellcolor{RoyalBlue!10}{\small 13.58} & {\small\color{gray!60!black}16.33} \\
+  & Seed I & \cellcolor{RoyalBlue!10}{\small 11.96} & {\small\color{gray!60!black}15.20} & \cellcolor{RoyalBlue!10}{\small 10.93} & \cellcolor{RoyalBlue!10}{\small 12.99} & {\small\color{gray!60!black}16.38} \\
+  & Seed J & \cellcolor{RoyalBlue!10}{\small 9.45} & \cellcolor{RoyalBlue!10}{\small 12.59} & {\small\color{gray!60!black}15.91} & \cellcolor{RoyalBlue!10}{\small 14.71} & \cellcolor{RoyalBlue!10}{\small 14.79} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!20}10.20$\pm$1.48 & \cellcolor{RoyalBlue!20}12.10$\pm$2.82 & \cellcolor{RoyalBlue!20}12.06$\pm$2.57 & \cellcolor{RoyalBlue!20}12.19$\pm$2.21 & \cellcolor{RoyalBlue!20}13.96$\pm$2.26 \\
+\midrule
+ \textbf{NSGA-II} & Seed A & \cellcolor{RoyalBlue!10}{\small 3.43} & \cellcolor{RoyalBlue!10}{\small 5.97} & \cellcolor{RoyalBlue!10}{\small 13.12} & \cellcolor{RoyalBlue!10}{\small 9.28} & {\small\color{gray!60!black}27.05} \\
+  & Seed B & \cellcolor{RoyalBlue!10}{\small 7.01} & \cellcolor{RoyalBlue!10}{\small 10.51} & \cellcolor{RoyalBlue!10}{\small 10.99} & \cellcolor{RoyalBlue!10}{\small 13.41} & {\small\color{gray!60!black}19.70} \\
+  & Seed C & \cellcolor{RoyalBlue!10}{\small 6.74} & \cellcolor{RoyalBlue!10}{\small 13.86} & \cellcolor{RoyalBlue!10}{\small 11.44} & \cellcolor{RoyalBlue!10}{\small 14.82} & {\small\color{gray!60!black}36.75} \\
+  & Seed D & \cellcolor{RoyalBlue!10}{\small 3.67} & \cellcolor{RoyalBlue!10}{\small 6.87} & \cellcolor{RoyalBlue!10}{\small 7.20} & \cellcolor{RoyalBlue!10}{\small 8.87} & \cellcolor{RoyalBlue!10}{\small 10.66} \\
+  & Seed E & \cellcolor{RoyalBlue!10}{\small 3.92} & \cellcolor{RoyalBlue!10}{\small 7.80} & \cellcolor{RoyalBlue!10}{\small 6.40} & \cellcolor{RoyalBlue!10}{\small 8.71} & \cellcolor{RoyalBlue!10}{\small 10.09} \\
+  & Seed F & \cellcolor{RoyalBlue!10}{\small 4.04} & \cellcolor{RoyalBlue!10}{\small 5.61} & \cellcolor{RoyalBlue!10}{\small 9.72} & \cellcolor{RoyalBlue!10}{\small 9.13} & \cellcolor{RoyalBlue!10}{\small 10.40} \\
+  & Seed G & \cellcolor{RoyalBlue!10}{\small 4.02} & \cellcolor{RoyalBlue!10}{\small 9.38} & \cellcolor{RoyalBlue!10}{\small 6.33} & \cellcolor{RoyalBlue!10}{\small 9.09} & \cellcolor{RoyalBlue!10}{\small 10.39} \\
+  & Seed H & \cellcolor{RoyalBlue!10}{\small 3.99} & \cellcolor{RoyalBlue!10}{\small 5.35} & \cellcolor{RoyalBlue!10}{\small 7.40} & \cellcolor{RoyalBlue!10}{\small 9.07} & \cellcolor{RoyalBlue!10}{\small 10.54} \\
+  & Seed I & \cellcolor{RoyalBlue!10}{\small 4.62} & \cellcolor{RoyalBlue!10}{\small 5.01} & \cellcolor{RoyalBlue!10}{\small 7.90} & \cellcolor{RoyalBlue!10}{\small 8.96} & \cellcolor{RoyalBlue!10}{\small 10.21} \\
+  & Seed J & \cellcolor{RoyalBlue!10}{\small 3.91} & \cellcolor{RoyalBlue!10}{\small 5.57} & \cellcolor{RoyalBlue!10}{\small 7.80} & \cellcolor{RoyalBlue!10}{\small 10.53} & \cellcolor{RoyalBlue!10}{\small 10.75} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!20}4.54$\pm$1.27 & \cellcolor{RoyalBlue!20}7.59$\pm$2.87 & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{8.83$\pm$2.34}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{10.19$\pm$2.15}} & \cellcolor{red!12}15.65$\pm$9.32 \\
+\midrule
+ \textbf{NSGA-III} & Seed A & \cellcolor{RoyalBlue!10}{\small 3.54} & \cellcolor{RoyalBlue!10}{\small 5.97} & \cellcolor{RoyalBlue!10}{\small 12.58} & \cellcolor{RoyalBlue!10}{\small 10.22} & \cellcolor{RoyalBlue!10}{\small 11.93} \\
+  & Seed B & \cellcolor{RoyalBlue!10}{\small 5.82} & \cellcolor{RoyalBlue!10}{\small 11.31} & {\small\color{gray!60!black}15.93} & \cellcolor{RoyalBlue!10}{\small 14.53} & {\small\color{gray!60!black}17.31} \\
+  & Seed C & \cellcolor{RoyalBlue!10}{\small 6.62} & \cellcolor{RoyalBlue!10}{\small 11.14} & \cellcolor{RoyalBlue!10}{\small 10.43} & \cellcolor{RoyalBlue!10}{\small 13.36} & {\small\color{gray!60!black}15.88} \\
+  & Seed D & \cellcolor{RoyalBlue!10}{\small 4.40} & \cellcolor{RoyalBlue!10}{\small 5.90} & \cellcolor{RoyalBlue!10}{\small 7.08} & \cellcolor{RoyalBlue!10}{\small 9.36} & \cellcolor{RoyalBlue!10}{\small 10.81} \\
+  & Seed E & \cellcolor{RoyalBlue!10}{\small 4.93} & \cellcolor{RoyalBlue!10}{\small 7.07} & \cellcolor{RoyalBlue!10}{\small 7.07} & \cellcolor{RoyalBlue!10}{\small 8.67} & \cellcolor{RoyalBlue!10}{\small 11.61} \\
+  & Seed F & \cellcolor{RoyalBlue!10}{\small 3.74} & \cellcolor{RoyalBlue!10}{\small 6.66} & \cellcolor{RoyalBlue!10}{\small 7.55} & \cellcolor{RoyalBlue!10}{\small 9.80} & \cellcolor{RoyalBlue!10}{\small 11.17} \\
+  & Seed G & \cellcolor{RoyalBlue!10}{\small 3.96} & \cellcolor{RoyalBlue!10}{\small 7.00} & \cellcolor{RoyalBlue!10}{\small 7.63} & \cellcolor{RoyalBlue!10}{\small 9.15} & \cellcolor{RoyalBlue!10}{\small 10.99} \\
+  & Seed H & \cellcolor{RoyalBlue!10}{\small 3.30} & \cellcolor{RoyalBlue!10}{\small 5.89} & \cellcolor{RoyalBlue!10}{\small 7.25} & \cellcolor{RoyalBlue!10}{\small 9.06} & \cellcolor{RoyalBlue!10}{\small 10.55} \\
+  & Seed I & \cellcolor{RoyalBlue!10}{\small 4.05} & \cellcolor{RoyalBlue!10}{\small 6.05} & \cellcolor{RoyalBlue!10}{\small 6.91} & \cellcolor{RoyalBlue!10}{\small 8.46} & \cellcolor{RoyalBlue!10}{\small 10.94} \\
+  & Seed J & \cellcolor{RoyalBlue!10}{\small 3.77} & \cellcolor{RoyalBlue!10}{\small 7.99} & \cellcolor{RoyalBlue!10}{\small 7.03} & \cellcolor{RoyalBlue!10}{\small 10.73} & \cellcolor{RoyalBlue!10}{\small 11.46} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{4.41$\pm$1.07}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{7.50$\pm$2.07}} & \cellcolor{RoyalBlue!20}8.94$\pm$3.08 & \cellcolor{RoyalBlue!20}10.33$\pm$2.04 & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{12.26$\pm$2.34}} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Relative $L_2$ Error --- 3D L-Shape Prism.\newline\cellcolor{ForestGreen!55}\phantom{x} best; \cellcolor{ForestGreen!25}\phantom{x} ${<}0.07$; \cellcolor{YellowGreen!30}\phantom{x} $0.07$--$0.09$; \cellcolor{red!15}\phantom{x} ${\geq}0.09$.}
+\label{tab:l2_lshape_3d}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Arch. & Seed & \makecell{$k{=1}$\\(0\%)} & \makecell{$k{=2}$\\(50\%)} & \makecell{$k{=3}$\\(65\%)} & \makecell{$k{=4}$\\(75\%)} & \makecell{$k{=5}$\\(80\%)} \\
+\midrule
+ \textbf{Bayesian/TPE} & Seed A & {\small 0.0347} & {\small 0.0292} & {\small 0.0267} & {\small 0.0316} & {\small 0.0359} \\
+  & Seed B & {\small 0.0447} & {\small 0.0336} & {\small 0.0464} & {\small 0.0378} & {\small 0.0402} \\
+  & Seed C & {\small 0.0392} & {\small 0.0373} & {\small 0.0450} & {\small 0.0347} & {\small 0.0430} \\
+  & Seed D & {\small 0.0386} & {\small 0.0576} & {\small 0.0503} & {\small 0.0532} & {\small 0.0517} \\
+  & Seed E & {\small 0.0382} & {\small 0.0512} & {\small 0.0584} & {\small 0.0450} & {\small 0.0548} \\
+  & Seed F & {\small 0.0504} & {\small 0.0469} & {\small 0.0498} & {\small 0.0544} & {\small 0.0496} \\
+  & Seed G & {\small 0.0441} & {\small 0.0469} & {\small 0.0444} & {\small 0.0426} & {\small 0.0547} \\
+  & Seed H & {\small 0.0365} & {\small 0.0535} & {\small 0.0407} & {\small 0.0503} & {\small 0.0605} \\
+  & Seed I & {\small 0.0495} & {\small 0.0554} & {\small 0.0392} & {\small 0.0485} & {\small 0.0590} \\
+  & Seed J & {\small 0.0394} & {\small 0.0481} & {\small 0.0590} & {\small 0.0548} & {\small 0.0538} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!25}0.042$\pm$0.005 & \cellcolor{ForestGreen!25}0.046$\pm$0.010 & \cellcolor{ForestGreen!25}0.046$\pm$0.010 & \cellcolor{ForestGreen!25}0.045$\pm$0.008 & \cellcolor{ForestGreen!25}0.050$\pm$0.008 \\
+\midrule
+ \textbf{NSGA-II} & Seed A & {\small 0.0134} & {\small 0.0211} & {\small 0.0485} & {\small 0.0321} & {\small 0.0867} \\
+  & Seed B & {\small 0.0270} & {\small 0.0377} & {\small 0.0410} & {\small 0.0476} & {\small 0.0666} \\
+  & Seed C & {\small 0.0254} & {\small 0.0483} & {\small 0.0405} & {\small 0.0537} & {\small 0.1278} \\
+  & Seed D & {\small 0.0141} & {\small 0.0238} & {\small 0.0253} & {\small 0.0304} & {\small 0.0364} \\
+  & Seed E & {\small 0.0148} & {\small 0.0272} & {\small 0.0229} & {\small 0.0302} & {\small 0.0343} \\
+  & Seed F & {\small 0.0153} & {\small 0.0207} & {\small 0.0342} & {\small 0.0315} & {\small 0.0360} \\
+  & Seed G & {\small 0.0154} & {\small 0.0318} & {\small 0.0225} & {\small 0.0315} & {\small 0.0358} \\
+  & Seed H & {\small 0.0150} & {\small 0.0195} & {\small 0.0269} & {\small 0.0313} & {\small 0.0359} \\
+  & Seed I & {\small 0.0172} & {\small 0.0187} & {\small 0.0276} & {\small 0.0307} & {\small 0.0353} \\
+  & Seed J & {\small 0.0147} & {\small 0.0202} & {\small 0.0272} & {\small 0.0350} & {\small 0.0367} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!25}0.017$\pm$0.005 & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.027$\pm$0.010}} & \cellcolor{ForestGreen!25}0.032$\pm$0.009 & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.035$\pm$0.008}} & \cellcolor{ForestGreen!25}0.053$\pm$0.032 \\
+\midrule
+ \textbf{NSGA-III} & Seed A & {\small 0.0138} & {\small 0.0213} & {\small 0.0411} & {\small 0.0351} & {\small 0.0416} \\
+  & Seed B & {\small 0.0237} & {\small 0.0400} & {\small 0.0559} & {\small 0.0522} & {\small 0.0584} \\
+  & Seed C & {\small 0.0263} & {\small 0.0399} & {\small 0.0384} & {\small 0.0464} & {\small 0.0549} \\
+  & Seed D & {\small 0.0171} & {\small 0.0219} & {\small 0.0252} & {\small 0.0326} & {\small 0.0372} \\
+  & Seed E & {\small 0.0183} & {\small 0.0253} & {\small 0.0253} & {\small 0.0302} & {\small 0.0398} \\
+  & Seed F & {\small 0.0143} & {\small 0.0245} & {\small 0.0270} & {\small 0.0335} & {\small 0.0381} \\
+  & Seed G & {\small 0.0151} & {\small 0.0247} & {\small 0.0270} & {\small 0.0316} & {\small 0.0382} \\
+  & Seed H & {\small 0.0126} & {\small 0.0216} & {\small 0.0259} & {\small 0.0314} & {\small 0.0367} \\
+  & Seed I & {\small 0.0153} & {\small 0.0221} & {\small 0.0246} & {\small 0.0292} & {\small 0.0382} \\
+  & Seed J & {\small 0.0142} & {\small 0.0279} & {\small 0.0251} & {\small 0.0366} & {\small 0.0391} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.017$\pm$0.005}} & \cellcolor{ForestGreen!25}0.027$\pm$0.007 & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.032$\pm$0.010}} & \cellcolor{ForestGreen!25}0.036$\pm$0.008 & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.042$\pm$0.008}} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Condensed ten-seed mean$\pm$std relative $L_2$ error summary --- 3D Domains (Rectangular Prism, Cylinder, Stacked Cubes, L-Shape Prism).
+\cellcolor{ForestGreen!55}\phantom{x} best; \cellcolor{ForestGreen!25}\phantom{x} ${<}0.07$;
+\cellcolor{YellowGreen!30}\phantom{x} $0.07$--$0.09$; \cellcolor{red!15}\phantom{x} ${\geq}0.09$.}
+\label{tab:l2_summary_3d}
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Domain & Architecture & \makecell{$k{=}1$\\(0\%)} & \makecell{$k{=}2$\\(50\%)} & \makecell{$k{=}3$\\(65\%)} & \makecell{$k{=}4$\\(75\%)} & \makecell{$k{=}5$\\(80\%)} \\
+\midrule
+\multirow{3}{*}{Rect. Prism 3D}
+  & \textbf{Bayesian/TPE} & \cellcolor{ForestGreen!25}0.036$\pm$0.005 & \cellcolor{ForestGreen!25}0.036$\pm$0.006 & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.036$\pm$0.008}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.037$\pm$0.007}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.037$\pm$0.008}} \\
+  & \textbf{NSGA-II} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.024$\pm$0.006}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.032$\pm$0.010}} & \cellcolor{ForestGreen!25}0.041$\pm$0.012 & \cellcolor{ForestGreen!25}0.043$\pm$0.012 & \cellcolor{ForestGreen!25}0.052$\pm$0.022 \\
+  & \textbf{NSGA-III} & \cellcolor{ForestGreen!25}0.026$\pm$0.008 & \cellcolor{ForestGreen!25}0.036$\pm$0.011 & \cellcolor{ForestGreen!25}0.040$\pm$0.015 & \cellcolor{ForestGreen!25}0.043$\pm$0.012 & \cellcolor{ForestGreen!25}0.052$\pm$0.018 \\
+\midrule
+\multirow{3}{*}{Cylinder 3D}
+  & \textbf{Bayesian/TPE} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.024$\pm$0.006}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.026$\pm$0.005}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.028$\pm$0.004}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.032$\pm$0.004}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.036$\pm$0.005}} \\
+  & \textbf{NSGA-II} & \cellcolor{ForestGreen!25}0.027$\pm$0.020 & \cellcolor{ForestGreen!25}0.034$\pm$0.027 & \cellcolor{ForestGreen!25}0.043$\pm$0.027 & \cellcolor{ForestGreen!25}0.047$\pm$0.036 & \cellcolor{ForestGreen!25}0.067$\pm$0.043 \\
+  & \textbf{NSGA-III} & \cellcolor{ForestGreen!25}0.027$\pm$0.025 & \cellcolor{ForestGreen!25}0.030$\pm$0.015 & \cellcolor{ForestGreen!25}0.034$\pm$0.024 & \cellcolor{ForestGreen!25}0.045$\pm$0.030 & \cellcolor{ForestGreen!25}0.036$\pm$0.015 \\
+\midrule
+\multirow{3}{*}{Stacked Cubes 3D}
+  & \textbf{Bayesian/TPE} & \cellcolor{ForestGreen!25}0.042$\pm$0.008 & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.044$\pm$0.006}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.048$\pm$0.008}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.051$\pm$0.010}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.055$\pm$0.013}} \\
+  & \textbf{NSGA-II} & \cellcolor{ForestGreen!25}0.040$\pm$0.025 & \cellcolor{ForestGreen!25}0.049$\pm$0.024 & \cellcolor{ForestGreen!25}0.053$\pm$0.027 & \cellcolor{ForestGreen!25}0.059$\pm$0.026 & \cellcolor{ForestGreen!25}0.069$\pm$0.028 \\
+  & \textbf{NSGA-III} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.037$\pm$0.015}} & \cellcolor{ForestGreen!25}0.045$\pm$0.021 & \cellcolor{ForestGreen!25}0.049$\pm$0.020 & \cellcolor{ForestGreen!25}0.056$\pm$0.025 & \cellcolor{YellowGreen!30}0.074$\pm$0.033 \\
+\midrule
+\multirow{3}{*}{L-Shape Prism 3D}
+  & \textbf{Bayesian/TPE} & \cellcolor{ForestGreen!25}0.042$\pm$0.005 & \cellcolor{ForestGreen!25}0.046$\pm$0.010 & \cellcolor{ForestGreen!25}0.046$\pm$0.010 & \cellcolor{ForestGreen!25}0.045$\pm$0.008 & \cellcolor{ForestGreen!25}0.050$\pm$0.008 \\
+  & \textbf{NSGA-II} & \cellcolor{ForestGreen!25}0.017$\pm$0.005 & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.027$\pm$0.010}} & \cellcolor{ForestGreen!25}0.032$\pm$0.009 & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.035$\pm$0.008}} & \cellcolor{ForestGreen!25}0.053$\pm$0.032 \\
+  & \textbf{NSGA-III} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.017$\pm$0.005}} & \cellcolor{ForestGreen!25}0.027$\pm$0.007 & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.032$\pm$0.010}} & \cellcolor{ForestGreen!25}0.036$\pm$0.008 & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.042$\pm$0.008}} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\section*{Thermal Fin Benchmark}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Mean-Window MAE ($^\circ\mathrm{C}$) --- Thermal Fin.\newline\cellcolor{RoyalBlue!65}\phantom{x} lowest mean per $k$; \cellcolor{RoyalBlue!20}\phantom{x} within $15\,^\circ\mathrm{C}$. $^*$Bayesian/TPE uses Fourier embedding.}
+\label{tab:tf_consolidated}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Arch. & Seed & \makecell{$k{=1}$\\(0\%)} & \makecell{$k{=2}$\\(50\%)} & \makecell{$k{=3}$\\(65\%)} & \makecell{$k{=4}$\\(75\%)} & \makecell{$k{=5}$\\(80\%)} \\
+\midrule
+ \textbf{Bayesian/TPE$^*$} & Seed A & \cellcolor{RoyalBlue!10}{\small 5.02} & \cellcolor{RoyalBlue!10}{\small 6.81} & \cellcolor{RoyalBlue!10}{\small 8.81} & \cellcolor{RoyalBlue!10}{\small 10.56} & \cellcolor{RoyalBlue!10}{\small 12.57} \\
+  & Seed B & \cellcolor{RoyalBlue!10}{\small 5.04} & \cellcolor{RoyalBlue!10}{\small 7.02} & \cellcolor{RoyalBlue!10}{\small 8.93} & \cellcolor{RoyalBlue!10}{\small 10.66} & \cellcolor{RoyalBlue!10}{\small 12.85} \\
+  & Seed C & \cellcolor{RoyalBlue!10}{\small 5.14} & \cellcolor{RoyalBlue!10}{\small 6.77} & \cellcolor{RoyalBlue!10}{\small 8.91} & \cellcolor{RoyalBlue!10}{\small 11.14} & \cellcolor{RoyalBlue!10}{\small 12.14} \\
+  & Seed D & \cellcolor{RoyalBlue!10}{\small 5.17} & \cellcolor{RoyalBlue!10}{\small 6.84} & \cellcolor{RoyalBlue!10}{\small 8.75} & \cellcolor{RoyalBlue!10}{\small 10.80} & \cellcolor{RoyalBlue!10}{\small 13.03} \\
+  & Seed E & \cellcolor{RoyalBlue!10}{\small 4.89} & \cellcolor{RoyalBlue!10}{\small 6.77} & \cellcolor{RoyalBlue!10}{\small 8.35} & \cellcolor{RoyalBlue!10}{\small 10.85} & \cellcolor{RoyalBlue!10}{\small 12.78} \\
+  & Seed F & \cellcolor{RoyalBlue!10}{\small 5.43} & \cellcolor{RoyalBlue!10}{\small 6.90} & \cellcolor{RoyalBlue!10}{\small 8.68} & \cellcolor{RoyalBlue!10}{\small 10.71} & \cellcolor{RoyalBlue!10}{\small 12.62} \\
+  & Seed G & \cellcolor{RoyalBlue!10}{\small 4.93} & \cellcolor{RoyalBlue!10}{\small 6.91} & \cellcolor{RoyalBlue!10}{\small 8.63} & \cellcolor{RoyalBlue!10}{\small 10.84} & \cellcolor{RoyalBlue!10}{\small 12.31} \\
+  & Seed H & \cellcolor{RoyalBlue!10}{\small 5.17} & \cellcolor{RoyalBlue!10}{\small 6.71} & \cellcolor{RoyalBlue!10}{\small 8.60} & \cellcolor{RoyalBlue!10}{\small 10.70} & \cellcolor{RoyalBlue!10}{\small 12.23} \\
+  & Seed I & \cellcolor{RoyalBlue!10}{\small 5.07} & \cellcolor{RoyalBlue!10}{\small 6.82} & \cellcolor{RoyalBlue!10}{\small 8.93} & \cellcolor{RoyalBlue!10}{\small 10.65} & \cellcolor{RoyalBlue!10}{\small 12.26} \\
+  & Seed J & \cellcolor{RoyalBlue!10}{\small 5.19} & \cellcolor{RoyalBlue!10}{\small 6.80} & \cellcolor{RoyalBlue!10}{\small 8.88} & \cellcolor{RoyalBlue!10}{\small 11.28} & \cellcolor{RoyalBlue!10}{\small 12.68} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{5.10$\pm$0.15}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{6.84$\pm$0.09}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{8.75$\pm$0.19}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{10.82$\pm$0.23}} & \cellcolor{RoyalBlue!65}\textcolor{white}{\textbf{12.55$\pm$0.30}} \\
+\midrule
+ \textbf{NSGA-II} & Seed A & \cellcolor{RoyalBlue!10}{\small 8.71} & \cellcolor{RoyalBlue!10}{\small 9.81} & \cellcolor{RoyalBlue!10}{\small 12.52} & \cellcolor{RoyalBlue!10}{\small 13.60} & {\small\color{gray!60!black}16.08} \\
+  & Seed B & \cellcolor{RoyalBlue!10}{\small 9.13} & \cellcolor{RoyalBlue!10}{\small 11.70} & \cellcolor{RoyalBlue!10}{\small 12.66} & \cellcolor{RoyalBlue!10}{\small 14.10} & {\small\color{gray!60!black}15.29} \\
+  & Seed C & \cellcolor{RoyalBlue!10}{\small 9.06} & \cellcolor{RoyalBlue!10}{\small 10.33} & \cellcolor{RoyalBlue!10}{\small 12.63} & \cellcolor{RoyalBlue!10}{\small 14.45} & {\small\color{gray!60!black}15.47} \\
+  & Seed D & \cellcolor{RoyalBlue!10}{\small 8.24} & \cellcolor{RoyalBlue!10}{\small 11.61} & \cellcolor{RoyalBlue!10}{\small 12.36} & \cellcolor{RoyalBlue!10}{\small 13.84} & {\small\color{gray!60!black}16.01} \\
+  & Seed E & \cellcolor{RoyalBlue!10}{\small 8.86} & \cellcolor{RoyalBlue!10}{\small 11.40} & \cellcolor{RoyalBlue!10}{\small 12.92} & \cellcolor{RoyalBlue!10}{\small 13.58} & {\small\color{gray!60!black}15.75} \\
+  & Seed F & \cellcolor{RoyalBlue!10}{\small 8.78} & \cellcolor{RoyalBlue!10}{\small 10.66} & \cellcolor{RoyalBlue!10}{\small 12.50} & \cellcolor{RoyalBlue!10}{\small 14.48} & {\small\color{gray!60!black}15.23} \\
+  & Seed G & \cellcolor{RoyalBlue!10}{\small 8.59} & \cellcolor{RoyalBlue!10}{\small 10.69} & \cellcolor{RoyalBlue!10}{\small 12.29} & \cellcolor{RoyalBlue!10}{\small 14.58} & {\small\color{gray!60!black}16.03} \\
+  & Seed H & \cellcolor{RoyalBlue!10}{\small 9.51} & \cellcolor{RoyalBlue!10}{\small 10.72} & \cellcolor{RoyalBlue!10}{\small 12.87} & {\small\color{gray!60!black}15.19} & \cellcolor{RoyalBlue!10}{\small 14.53} \\
+  & Seed I & \cellcolor{RoyalBlue!10}{\small 10.08} & \cellcolor{RoyalBlue!10}{\small 11.75} & \cellcolor{RoyalBlue!10}{\small 12.01} & \cellcolor{RoyalBlue!10}{\small 13.99} & {\small\color{gray!60!black}15.21} \\
+  & Seed J & \cellcolor{RoyalBlue!10}{\small 8.87} & \cellcolor{RoyalBlue!10}{\small 11.65} & \cellcolor{RoyalBlue!10}{\small 12.10} & \cellcolor{RoyalBlue!10}{\small 13.62} & {\small\color{gray!60!black}16.00} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!20}8.98$\pm$0.51 & \cellcolor{RoyalBlue!20}11.03$\pm$0.68 & \cellcolor{RoyalBlue!20}12.49$\pm$0.30 & \cellcolor{RoyalBlue!20}14.14$\pm$0.53 & \cellcolor{red!12}15.56$\pm$0.50 \\
+\midrule
+ \textbf{NSGA-III} & Seed A & \cellcolor{RoyalBlue!10}{\small 8.35} & \cellcolor{RoyalBlue!10}{\small 11.40} & \cellcolor{RoyalBlue!10}{\small 12.56} & \cellcolor{RoyalBlue!10}{\small 14.59} & {\small\color{gray!60!black}16.24} \\
+  & Seed B & \cellcolor{RoyalBlue!10}{\small 7.61} & \cellcolor{RoyalBlue!10}{\small 12.24} & \cellcolor{RoyalBlue!10}{\small 13.17} & \cellcolor{RoyalBlue!10}{\small 14.11} & {\small\color{gray!60!black}16.39} \\
+  & Seed C & \cellcolor{RoyalBlue!10}{\small 10.36} & \cellcolor{RoyalBlue!10}{\small 11.16} & \cellcolor{RoyalBlue!10}{\small 13.11} & \cellcolor{RoyalBlue!10}{\small 14.98} & {\small\color{gray!60!black}15.00} \\
+  & Seed D & \cellcolor{RoyalBlue!10}{\small 8.52} & \cellcolor{RoyalBlue!10}{\small 12.16} & \cellcolor{RoyalBlue!10}{\small 11.69} & \cellcolor{RoyalBlue!10}{\small 14.26} & {\small\color{gray!60!black}15.86} \\
+  & Seed E & \cellcolor{RoyalBlue!10}{\small 9.67} & \cellcolor{RoyalBlue!10}{\small 11.03} & \cellcolor{RoyalBlue!10}{\small 12.31} & \cellcolor{RoyalBlue!10}{\small 14.50} & {\small\color{gray!60!black}15.89} \\
+  & Seed F & \cellcolor{RoyalBlue!10}{\small 8.81} & \cellcolor{RoyalBlue!10}{\small 11.25} & \cellcolor{RoyalBlue!10}{\small 11.95} & \cellcolor{RoyalBlue!10}{\small 14.48} & {\small\color{gray!60!black}15.54} \\
+  & Seed G & \cellcolor{RoyalBlue!10}{\small 8.71} & \cellcolor{RoyalBlue!10}{\small 11.97} & \cellcolor{RoyalBlue!10}{\small 11.90} & \cellcolor{RoyalBlue!10}{\small 14.55} & {\small\color{gray!60!black}15.18} \\
+  & Seed H & \cellcolor{RoyalBlue!10}{\small 10.39} & \cellcolor{RoyalBlue!10}{\small 12.19} & \cellcolor{RoyalBlue!10}{\small 13.61} & \cellcolor{RoyalBlue!10}{\small 14.15} & {\small\color{gray!60!black}16.16} \\
+  & Seed I & \cellcolor{RoyalBlue!10}{\small 8.35} & \cellcolor{RoyalBlue!10}{\small 11.23} & \cellcolor{RoyalBlue!10}{\small 12.37} & \cellcolor{RoyalBlue!10}{\small 13.66} & {\small\color{gray!60!black}15.23} \\
+  & Seed J & \cellcolor{RoyalBlue!10}{\small 8.89} & \cellcolor{RoyalBlue!10}{\small 10.67} & \cellcolor{RoyalBlue!10}{\small 12.39} & \cellcolor{RoyalBlue!10}{\small 14.77} & {\small\color{gray!60!black}15.92} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{RoyalBlue!20}8.97$\pm$0.90 & \cellcolor{RoyalBlue!20}11.53$\pm$0.56 & \cellcolor{RoyalBlue!20}12.51$\pm$0.62 & \cellcolor{RoyalBlue!20}14.40$\pm$0.38 & \cellcolor{red!12}15.74$\pm$0.48 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Relative $L_2$ Error --- Thermal Fin.\newline\cellcolor{ForestGreen!55}\phantom{x} best; \cellcolor{ForestGreen!25}\phantom{x} ${<}0.07$; \cellcolor{YellowGreen!30}\phantom{x} $0.07$--$0.09$; \cellcolor{red!15}\phantom{x} ${\geq}0.09$.}
+\label{tab:tf_l2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Arch. & Seed & \makecell{$k{=1}$\\(0\%)} & \makecell{$k{=2}$\\(50\%)} & \makecell{$k{=3}$\\(65\%)} & \makecell{$k{=4}$\\(75\%)} & \makecell{$k{=5}$\\(80\%)} \\
+\midrule
+ \textbf{Bayesian/TPE$^*$} & Seed A & {\small 0.0488} & {\small 0.0519} & {\small 0.0622} & {\small 0.0692} & {\small 0.0793} \\
+  & Seed B & {\small 0.0479} & {\small 0.0553} & {\small 0.0654} & {\small 0.0701} & {\small 0.0834} \\
+  & Seed C & {\small 0.0492} & {\small 0.0514} & {\small 0.0626} & {\small 0.0748} & {\small 0.0784} \\
+  & Seed D & {\small 0.0490} & {\small 0.0523} & {\small 0.0630} & {\small 0.0710} & {\small 0.0826} \\
+  & Seed E & {\small 0.0464} & {\small 0.0521} & {\small 0.0575} & {\small 0.0680} & {\small 0.0802} \\
+  & Seed F & {\small 0.0537} & {\small 0.0542} & {\small 0.0592} & {\small 0.0690} & {\small 0.0825} \\
+  & Seed G & {\small 0.0462} & {\small 0.0526} & {\small 0.0592} & {\small 0.0682} & {\small 0.0759} \\
+  & Seed H & {\small 0.0493} & {\small 0.0521} & {\small 0.0627} & {\small 0.0683} & {\small 0.0770} \\
+  & Seed I & {\small 0.0485} & {\small 0.0529} & {\small 0.0653} & {\small 0.0715} & {\small 0.0798} \\
+  & Seed J & {\small 0.0490} & {\small 0.0513} & {\small 0.0604} & {\small 0.0710} & {\small 0.0809} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.049$\pm$0.002}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.053$\pm$0.001}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.062$\pm$0.003}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.070$\pm$0.002}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.080$\pm$0.002}} \\
+\midrule
+ \textbf{NSGA-II} & Seed A & {\small 0.0527} & {\small 0.0580} & {\small 0.0705} & {\small 0.0749} & {\small 0.0850} \\
+  & Seed B & {\small 0.0528} & {\small 0.0646} & {\small 0.0698} & {\small 0.0768} & {\small 0.0816} \\
+  & Seed C & {\small 0.0526} & {\small 0.0602} & {\small 0.0694} & {\small 0.0790} & {\small 0.0834} \\
+  & Seed D & {\small 0.0514} & {\small 0.0655} & {\small 0.0693} & {\small 0.0753} & {\small 0.0871} \\
+  & Seed E & {\small 0.0515} & {\small 0.0632} & {\small 0.0718} & {\small 0.0752} & {\small 0.0822} \\
+  & Seed F & {\small 0.0543} & {\small 0.0624} & {\small 0.0678} & {\small 0.0757} & {\small 0.0798} \\
+  & Seed G & {\small 0.0547} & {\small 0.0620} & {\small 0.0693} & {\small 0.0789} & {\small 0.0860} \\
+  & Seed H & {\small 0.0561} & {\small 0.0637} & {\small 0.0731} & {\small 0.0806} & {\small 0.0776} \\
+  & Seed I & {\small 0.0606} & {\small 0.0684} & {\small 0.0688} & {\small 0.0776} & {\small 0.0800} \\
+  & Seed J & {\small 0.0554} & {\small 0.0670} & {\small 0.0680} & {\small 0.0748} & {\small 0.0818} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!25}0.054$\pm$0.003 & \cellcolor{ForestGreen!25}0.064$\pm$0.003 & \cellcolor{ForestGreen!25}0.070$\pm$0.002 & \cellcolor{YellowGreen!30}0.077$\pm$0.002 & \cellcolor{YellowGreen!30}0.082$\pm$0.003 \\
+\midrule
+ \textbf{NSGA-III} & Seed A & {\small 0.0557} & {\small 0.0662} & {\small 0.0715} & {\small 0.0801} & {\small 0.0864} \\
+  & Seed B & {\small 0.0476} & {\small 0.0668} & {\small 0.0703} & {\small 0.0754} & {\small 0.0842} \\
+  & Seed C & {\small 0.0646} & {\small 0.0641} & {\small 0.0737} & {\small 0.0785} & {\small 0.0814} \\
+  & Seed D & {\small 0.0559} & {\small 0.0673} & {\small 0.0703} & {\small 0.0767} & {\small 0.0861} \\
+  & Seed E & {\small 0.0584} & {\small 0.0660} & {\small 0.0694} & {\small 0.0776} & {\small 0.0875} \\
+  & Seed F & {\small 0.0574} & {\small 0.0662} & {\small 0.0682} & {\small 0.0763} & {\small 0.0846} \\
+  & Seed G & {\small 0.0552} & {\small 0.0676} & {\small 0.0675} & {\small 0.0775} & {\small 0.0846} \\
+  & Seed H & {\small 0.0641} & {\small 0.0681} & {\small 0.0780} & {\small 0.0776} & {\small 0.0834} \\
+  & Seed I & {\small 0.0519} & {\small 0.0662} & {\small 0.0697} & {\small 0.0742} & {\small 0.0842} \\
+  & Seed J & {\small 0.0560} & {\small 0.0631} & {\small 0.0701} & {\small 0.0799} & {\small 0.0856} \\
+ & \textbf{Mean$\pm$std} & \cellcolor{ForestGreen!25}0.057$\pm$0.005 & \cellcolor{ForestGreen!25}0.066$\pm$0.002 & \cellcolor{YellowGreen!30}0.071$\pm$0.003 & \cellcolor{YellowGreen!30}0.077$\pm$0.002 & \cellcolor{YellowGreen!30}0.085$\pm$0.002 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Condensed ten-seed mean$\pm$std relative $L_2$ error summary --- Thermal Fin.
+\cellcolor{ForestGreen!55}\phantom{x} best; \cellcolor{ForestGreen!25}\phantom{x} ${<}0.07$;
+\cellcolor{YellowGreen!30}\phantom{x} $0.07$--$0.09$; \cellcolor{red!15}\phantom{x} ${\geq}0.09$.}
+\label{tab:l2_summary_thermal_fin}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Architecture & \makecell{$k{=}1$\\(0\%)} & \makecell{$k{=}2$\\(50\%)} & \makecell{$k{=}3$\\(65\%)} & \makecell{$k{=}4$\\(75\%)} & \makecell{$k{=}5$\\(80\%)} \\
+\midrule
+ \textbf{Bayesian/TPE$^*$} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.049$\pm$0.002}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.053$\pm$0.001}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.062$\pm$0.003}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.070$\pm$0.002}} & \cellcolor{ForestGreen!55}\textcolor{white}{\textbf{0.080$\pm$0.002}} \\
+ \textbf{NSGA-II} & \cellcolor{ForestGreen!25}0.054$\pm$0.003 & \cellcolor{ForestGreen!25}0.064$\pm$0.003 & \cellcolor{ForestGreen!25}0.070$\pm$0.002 & \cellcolor{YellowGreen!30}0.077$\pm$0.002 & \cellcolor{YellowGreen!30}0.082$\pm$0.003 \\
+ \textbf{NSGA-III} & \cellcolor{ForestGreen!25}0.057$\pm$0.005 & \cellcolor{ForestGreen!25}0.066$\pm$0.002 & \cellcolor{YellowGreen!30}0.071$\pm$0.003 & \cellcolor{YellowGreen!30}0.077$\pm$0.002 & \cellcolor{YellowGreen!30}0.085$\pm$0.002 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% ─────────────────────────────────────────────────────────────────────────────
+\chapter{Temperature Field Visualizations}
+\label{app:temp_fields}
+
+This appendix collects all temperature field comparisons across the three
+benchmark groups.
+Each figure shows FEM reference, PINN prediction, and absolute error at
+$t=30\,\mathrm{s}$.
+
+% ── 2D Canonical ─────────────────────────────────────────────────────────────
+\section*{2D Canonical Domains}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.30\textwidth}
+  \includegraphics[width=\textwidth]{2d_bestk_bayesian_rectangle.png}
+  \caption{Bayesian --- Rectangle ($k{=}1$)}
+\end{subfigure}
+\begin{subfigure}{0.30\textwidth}
+  \includegraphics[width=\textwidth]{2d_bestk_bayesian_circle.png}
+  \caption{Bayesian --- Circle ($k{=}2$)}
+\end{subfigure}
+\begin{subfigure}{0.30\textwidth}
+  \includegraphics[width=\textwidth]{2d_bestk_bayesian_lshape.png}
+  \caption{Bayesian --- L-shape ($k{=}1$)}
+\end{subfigure}
+
+\vspace{0.2em}
+\begin{subfigure}{0.30\textwidth}
+  \includegraphics[width=\textwidth]{2d_bestk_nsga2_rectangle.png}
+  \caption{NSGA-II --- Rectangle ($k{=}1$)}
+\end{subfigure}
+\begin{subfigure}{0.30\textwidth}
+  \includegraphics[width=\textwidth]{2d_bestk_nsga2_circle.png}
+  \caption{NSGA-II --- Circle ($k{=}1$)}
+\end{subfigure}
+\begin{subfigure}{0.30\textwidth}
+  \includegraphics[width=\textwidth]{2d_bestk_nsga2_lshape.png}
+  \caption{NSGA-II --- L-shape ($k{=}1$)}
+\end{subfigure}
+
+\vspace{0.2em}
+\begin{subfigure}{0.30\textwidth}
+  \includegraphics[width=\textwidth]{2d_bestk_nsga3_rectangle.png}
+  \caption{NSGA-III --- Rectangle ($k{=}1$)}
+\end{subfigure}
+\begin{subfigure}{0.30\textwidth}
+  \includegraphics[width=\textwidth]{2d_bestk_nsga3_circle.png}
+  \caption{NSGA-III --- Circle ($k{=}1$)}
+\end{subfigure}
+\begin{subfigure}{0.30\textwidth}
+  \includegraphics[width=\textwidth]{2d_bestk_nsga3_lshape.png}
+  \caption{NSGA-III --- L-shape ($k{=}1$)}
+\end{subfigure}
+\caption{2D canonical domains: temperature field at the lowest-error skip factor.
+Rows: FEM reference, PINN prediction, absolute error. Columns: $t=3,9,18,27\,\mathrm{s}$.}
+\label{fig:app_2d_bestk}
+\end{figure}
+
+% ── 3D Canonical ─────────────────────────────────────────────────────────────
+\section*{3D Canonical Domains}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.23\textwidth}
+  \includegraphics[width=\textwidth]{3d_bestk_bayesian_rectangular.png}
+  \caption{Bayesian\\Rectangular ($k{=}1$)}
+\end{subfigure}
+\begin{subfigure}{0.23\textwidth}
+  \includegraphics[width=\textwidth]{3d_bestk_bayesian_cylinder.png}
+  \caption{Bayesian\\Cylinder ($k{=}1$)}
+\end{subfigure}
+\begin{subfigure}{0.23\textwidth}
+  \includegraphics[width=\textwidth]{3d_bestk_bayesian_stacked.png}
+  \caption{Bayesian\\Stacked ($k{=}1$)}
+\end{subfigure}
+\begin{subfigure}{0.23\textwidth}
+  \includegraphics[width=\textwidth]{3d_bestk_bayesian_lshape.png}
+  \caption{Bayesian\\L-shape ($k{=}3$)}
+\end{subfigure}
+
+\vspace{0.2em}
+\begin{subfigure}{0.23\textwidth}
+  \includegraphics[width=\textwidth]{3d_bestk_nsga2_rectangular.png}
+  \caption{NSGA-II\\Rectangular ($k{=}1$)}
+\end{subfigure}
+\begin{subfigure}{0.23\textwidth}
+  \includegraphics[width=\textwidth]{3d_bestk_nsga2_cylinder.png}
+  \caption{NSGA-II\\Cylinder ($k{=}1$)}
+\end{subfigure}
+\begin{subfigure}{0.23\textwidth}
+  \includegraphics[width=\textwidth]{3d_bestk_nsga2_stacked.png}
+  \caption{NSGA-II\\Stacked ($k{=}1$)}
+\end{subfigure}
+\begin{subfigure}{0.23\textwidth}
+  \includegraphics[width=\textwidth]{3d_bestk_nsga2_lshape.png}
+  \caption{NSGA-II\\L-shape ($k{=}3$)}
+\end{subfigure}
+
+\vspace{0.2em}
+\begin{subfigure}{0.23\textwidth}
+  \includegraphics[width=\textwidth]{3d_bestk_nsga3_rectangular.png}
+  \caption{NSGA-III\\Rectangular ($k{=}1$)}
+\end{subfigure}
+\begin{subfigure}{0.23\textwidth}
+  \includegraphics[width=\textwidth]{3d_bestk_nsga3_cylinder.png}
+  \caption{NSGA-III\\Cylinder ($k{=}1$)}
+\end{subfigure}
+\begin{subfigure}{0.23\textwidth}
+  \includegraphics[width=\textwidth]{3d_bestk_nsga3_stacked.png}
+  \caption{NSGA-III\\Stacked ($k{=}1$)}
+\end{subfigure}
+\begin{subfigure}{0.23\textwidth}
+  \includegraphics[width=\textwidth]{3d_bestk_nsga3_lshape.png}
+  \caption{NSGA-III\\L-shape ($k{=}1$)}
+\end{subfigure}
+\caption{3D canonical domains: volumetric temperature field at the lowest-error skip factor.
+Rows: FEM reference (top), PINN prediction (bottom). Columns: $t=3,9,18,27\,\mathrm{s}$.}
+\label{fig:app_3d_bestk}
+\end{figure}
+
+% ── Thermal Fin ───────────────────────────────────────────────────────────────
+\section*{Thermal Fin Benchmark}
+\label{app:tf_heatmaps}
+
+\subsection*{2D Cross-Section Views}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.30\textwidth}
+  \includegraphics[width=\textwidth]{thermal_fin_bayesian_fixed_k_clean_heatmaps.png}
+  \caption{Bayesian/TPE}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.30\textwidth}
+  \includegraphics[width=\textwidth]{thermal_fin_nsga2_fixed_k_clean_heatmaps.png}
+  \caption{NSGA-II}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.30\textwidth}
+  \includegraphics[width=\textwidth]{thermal_fin_nsga3_fixed_k_clean_heatmaps.png}
+  \caption{NSGA-III}
+\end{subfigure}
+\caption{Thermal Fin fixed-$k$ temperature fields at $t=30\,\mathrm{s}$ (2D cross-section).
+Rows: FEM reference, PINN prediction, absolute error $|\hat{T}-T^\mathrm{FEM}|$.}
+\label{fig:app_tf_fixed_2d}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.48\textwidth}
+  \includegraphics[width=\textwidth]{thermal_fin_fem_adaptive_clean_heatmaps.png}
+  \caption{FEM-anchored adaptive-$k$}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.48\textwidth}
+  \includegraphics[width=\textwidth]{thermal_fin_pinn_only_best_clean_heatmaps.png}
+  \caption{PINN-only (best $k$ per architecture)}
+\end{subfigure}
+\caption{Thermal Fin adaptive-$k$ and PINN-only temperature fields at $t=30\,\mathrm{s}$ (2D cross-section).}
+\label{fig:app_tf_adap_pinn_2d}
+\end{figure}
+
+\subsection*{3D Volumetric Views}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.30\textwidth}
+  \includegraphics[width=\textwidth]{thermal_fin_bayesian_fixed_k_clean_3d.png}
+  \caption{Bayesian/TPE}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.30\textwidth}
+  \includegraphics[width=\textwidth]{thermal_fin_nsga2_fixed_k_clean_3d.png}
+  \caption{NSGA-II}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.30\textwidth}
+  \includegraphics[width=\textwidth]{thermal_fin_nsga3_fixed_k_clean_3d.png}
+  \caption{NSGA-III}
+\end{subfigure}
+\caption{Thermal Fin fixed-$k$ temperature fields at $t=30\,\mathrm{s}$ (3D volumetric view).
+Rows: FEM reference, PINN prediction, absolute error $|\hat{T}-T^\mathrm{FEM}|$.}
+\label{fig:app_tf_fixed_3d}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.48\textwidth}
+  \includegraphics[width=\textwidth]{thermal_fin_fem_adaptive_clean_3d.png}
+  \caption{FEM-anchored adaptive-$k$}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.48\textwidth}
+  \includegraphics[width=\textwidth]{thermal_fin_pinn_only_best_clean_3d.png}
+  \caption{PINN-only (best $k$ per architecture)}
+\end{subfigure}
+\caption{Thermal Fin adaptive-$k$ and PINN-only temperature fields at $t=30\,\mathrm{s}$ (3D volumetric view).}
+\label{fig:app_tf_adap_pinn_3d}
+\end{figure}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\chapter{Ablation Study}
+\label{app:ablation}
+
+We conducted two targeted ablation experiments on the Thermal Fin benchmark
+with the Bayesian/TPE architecture, using three seeds each.
+
+\section{Fourier Feature Ablation}
+\label{sec:app_fourier}
+
+\begin{table}[H]
+\centering
+\caption{Fourier feature ablation --- Thermal Fin, Bayesian/TPE.
+Mean-window MAE ($^\circ\mathrm{C}$), $\bar{x}\pm\sigma$ across 3 seeds.
+$\Delta$ = Fourier $-$ plain.}
+\label{tab:fourier_ablation}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Configuration & $k{=}1$ & $k{=}2$ & $k{=}3$ & $k{=}4$ & $k{=}5$ \\
+\midrule
+Plain MLP  & $9.45\pm0.12$ & $10.41\pm0.86$ & $10.73\pm0.32$ & $13.78\pm1.18$ & $14.29\pm0.64$ \\
+Fourier ON & $5.07\pm0.05$ & $6.87\pm0.11$  & $8.84\pm0.11$  & $10.81\pm0.24$ & $12.50\pm0.29$ \\
+\midrule
+$\Delta$   & $-4.38$ & $-3.55$ & $-1.89$ & $-2.97$ & $-1.79$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Fourier features reduce MAE by $1.8$--$4.4\,^\circ\mathrm{C}$ across all skip
+factors and also reduce seed variance.
+The improvement is specific to Bayesian/TPE; applying the same embedding to
+NSGA-II and NSGA-III produced substantially higher errors because the
+128-dimensional Fourier input overwhelms their three-layer tanh capacity.
+
+\section{Endpoint Supervision Ablation}
+\label{sec:app_endpoint}
+
+\begin{table}[H]
+\centering
+\caption{Endpoint supervision ablation --- Thermal Fin, Bayesian/TPE, plain MLP.
+Mean-window MAE ($^\circ\mathrm{C}$).}
+\label{tab:endpoint_ablation}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Configuration & $k{=}1$ & $k{=}2$ & $k{=}3$ & $k{=}4$ & $k{=}5$ \\
+\midrule
+With endpoint supervision    &  9.57 &  9.67 & 10.65 & 12.35 & 15.19 \\
+Without endpoint supervision & 58.83 & 66.63 & 70.38 & 89.45 & 92.06 \\
+\midrule
+$\Delta$ (without $-$ with)  & $+49.3$ & $+57.0$ & $+59.7$ & $+77.1$ & $+76.9$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Removing endpoint supervision causes catastrophic degradation
+($+49$--$77\,^\circ\mathrm{C}$), confirming that the FEM anchor field at the
+end of each window is an essential training signal.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\chapter{Source Code and Data}
+\label{app:code}
+
+
+% TODO: Update repository link and structure after final commit.
+\section*{Repository}
+
+\begin{center}
+\url{https://github.com/Omer8693/thermal_pinn}
+\end{center}
+
+\section*{Software Dependencies}
+
+\begin{itemize}
+  \item \textbf{PyTorch}~\cite{paszke2019pytorch}: PINN model.
+  \item \textbf{Optuna}~\cite{akiba2019}: Bayesian/TPE search.
+  \item \textbf{pymoo}~\cite{blank2020pymoo}: NSGA-II/III search.
+  \item \textbf{scikit-fem}~\cite{gustafsson2020scikit}: FEM solver.
+  \item \textbf{NumPy}, \textbf{Matplotlib}, \textbf{SciPy}: computation.
+\end{itemize}

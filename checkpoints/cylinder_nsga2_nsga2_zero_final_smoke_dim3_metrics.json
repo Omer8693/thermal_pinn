@@ -1,0 +1,99 @@
+{
+  "domain": "cylinder",
+  "arch": "nsga2",
+  "dim": 3,
+  "tag": "nsga2_zero_final_smoke",
+  "strategy": "pinn_only_adaptive_k_rollout",
+  "controller_uses_reference": false,
+  "reference_used_for_final_evaluation": true,
+  "completed": false,
+  "t_total_s": 30.0,
+  "t_reached_s": 1.5,
+  "t_eval_s": 1.5,
+  "dt_fem_s": 1.5,
+  "n_reference_steps": 20,
+  "n_reference_steps_reached": 1,
+  "n_windows": 1,
+  "fem_savings_pct": 0.0,
+  "k_schedule": [
+    1
+  ],
+  "score_tol": 0.7,
+  "phase_caps": {
+    "early_until": 10.0,
+    "mid_until": 18.0,
+    "early_k_max": 1,
+    "mid_k_max": 1,
+    "late_k_max": 1
+  },
+  "physics_end_prior": {
+    "enabled": true,
+    "lumped_cooling_scale": 0.8,
+    "early_lumped_cooling_scale": 1.0,
+    "mid_lumped_cooling_scale": 0.85,
+    "late_lumped_cooling_scale": 0.75,
+    "train_end_weight": 90.0,
+    "end_prior_weight": 70.0,
+    "end_prior_mode": "surface",
+    "surface_prior_min_factor": 0.05,
+    "surface_prior_strength": 2.0,
+    "surface_prior_length_scale": 0.25
+  },
+  "train_kwargs": {
+    "n_domain": 64,
+    "n_bc": 32,
+    "n_epochs": 3,
+    "lr": 0.001,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 0,
+    "use_end_supervision": true,
+    "w_end": 90.0,
+    "use_physical_scaling": true
+  },
+  "final_eval": {
+    "t_eval_s": 1.5,
+    "mae_C": 44.133135940966866,
+    "l2_rel": 0.11351336424359267,
+    "n_eval": 64
+  },
+  "total_s": 2.186079502105713,
+  "windows": [
+    {
+      "window": 1,
+      "t_start": 0.0,
+      "t_end": 1.5,
+      "k_used": 1,
+      "controller_mode": "adaptive",
+      "selected_reason": "fallback smallest k",
+      "runtime_s": 0.7793562412261963,
+      "score": 1.0381006380775943,
+      "pde_loss": 0.006040784064680338,
+      "bc_loss": 0.9150646924972534,
+      "monotonic_loss": 0.0,
+      "end_prior_loss": 0.001736082136631012,
+      "undercooling_loss": 1.3156666682334617e-05,
+      "mean_theta_drop": 0.07776322960853577,
+      "target_theta_drop": 0.04449009150266647,
+      "passed": false,
+      "cooling_scale": 1.0,
+      "candidates": [
+        {
+          "k": 1,
+          "t_start": 0.0,
+          "t_end": 1.5,
+          "runtime_s": 0.7793562412261963,
+          "score": 1.0381006380775943,
+          "pde_loss": 0.006040784064680338,
+          "bc_loss": 0.9150646924972534,
+          "monotonic_loss": 0.0,
+          "end_prior_loss": 0.001736082136631012,
+          "undercooling_loss": 1.3156666682334617e-05,
+          "mean_theta_drop": 0.07776322960853577,
+          "target_theta_drop": 0.04449009150266647,
+          "passed": false,
+          "cooling_scale": 1.0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+2026-05-21 21:24:46 [fem_solver][square][fem][k=-][s=-] INFO Mesh built: 289 vertices, 512 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-21 21:24:46 [fem_solver][square][fem][k=-][s=-] INFO Assembly done in 0.007 s  (dofs=289)
+2026-05-21 21:24:46 [fem_solver][square][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.04 s, T_mean(end)=20.00 C
+2026-05-21 21:24:46 [fem_solver][circle][fem][k=-][s=-] INFO Mesh built: 8321 vertices, 16384 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-21 21:24:46 [fem_solver][circle][fem][k=-][s=-] INFO Assembly done in 0.083 s  (dofs=8321)
+2026-05-21 21:24:49 [fem_solver][circle][fem][k=-][s=-] INFO solve_full complete: 60 steps, 3.50 s, T_mean(end)=20.00 C
+2026-05-21 21:24:50 [fem_solver][lshape][fem][k=-][s=-] INFO Mesh built: 225 vertices, 384 cells, bounding box x=[0.0000,0.0200] y=[0.0000,0.0200] m
+2026-05-21 21:24:50 [fem_solver][lshape][fem][k=-][s=-] INFO Assembly done in 0.008 s  (dofs=225)
+2026-05-21 21:24:50 [fem_solver][lshape][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.04 s, T_mean(end)=20.00 C
+2026-05-21 21:24:50 [fem_solver][flower][fem][k=-][s=-] INFO Mesh built: 48577 vertices, 93952 cells, bounding box x=[-0.0067,0.0067] y=[-0.0058,0.0070] m
+2026-05-21 21:24:50 [fem_solver][flower][fem][k=-][s=-] INFO Assembly done in 0.543 s  (dofs=48577)
+2026-05-21 21:25:06 [fem_solver][flower][fem][k=-][s=-] INFO solve_full complete: 60 steps, 15.80 s, T_mean(end)=20.00 C
+2026-05-21 21:25:52 [fem_solver][square][fem][k=-][s=-] INFO Mesh built: 1089 vertices, 2048 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-21 21:25:52 [fem_solver][square][fem][k=-][s=-] INFO Assembly done in 0.019 s  (dofs=1089)
+2026-05-21 21:25:52 [fem_solver][square][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.21 s, T_mean(end)=20.00 C
+2026-05-21 21:25:52 [fem_solver][circle][fem][k=-][s=-] INFO Mesh built: 33025 vertices, 65536 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-21 21:25:52 [fem_solver][circle][fem][k=-][s=-] INFO Assembly done in 0.343 s  (dofs=33025)
+2026-05-21 21:26:14 [fem_solver][circle][fem][k=-][s=-] INFO solve_full complete: 60 steps, 21.85 s, T_mean(end)=20.00 C
+2026-05-21 21:26:15 [fem_solver][lshape][fem][k=-][s=-] INFO Mesh built: 833 vertices, 1536 cells, bounding box x=[0.0000,0.0200] y=[0.0000,0.0200] m
+2026-05-21 21:26:15 [fem_solver][lshape][fem][k=-][s=-] INFO Assembly done in 0.012 s  (dofs=833)
+2026-05-21 21:26:15 [fem_solver][lshape][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.14 s, T_mean(end)=20.00 C
+2026-05-21 21:26:15 [fem_solver][flower][fem][k=-][s=-] INFO Mesh built: 935 vertices, 1468 cells, bounding box x=[-0.0067,0.0067] y=[-0.0058,0.0070] m
+2026-05-21 21:26:15 [fem_solver][flower][fem][k=-][s=-] INFO Assembly done in 0.016 s  (dofs=935)
+2026-05-21 21:26:15 [fem_solver][flower][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.13 s, T_mean(end)=20.00 C
+2026-05-21 21:27:28 [fem_solver][square][fem][k=-][s=-] INFO Mesh built: 1089 vertices, 2048 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-21 21:27:28 [fem_solver][square][fem][k=-][s=-] INFO Assembly done in 0.015 s  (dofs=1089)
+2026-05-21 21:27:28 [fem_solver][square][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.20 s, T_mean(end)=20.00 C
+2026-05-21 21:27:28 [fem_solver][circle][fem][k=-][s=-] INFO Mesh built: 8321 vertices, 16384 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-21 21:27:28 [fem_solver][circle][fem][k=-][s=-] INFO Assembly done in 0.089 s  (dofs=8321)
+2026-05-21 21:27:32 [fem_solver][circle][fem][k=-][s=-] INFO solve_full complete: 60 steps, 3.42 s, T_mean(end)=20.00 C
+2026-05-21 21:27:32 [fem_solver][lshape][fem][k=-][s=-] INFO Mesh built: 833 vertices, 1536 cells, bounding box x=[0.0000,0.0200] y=[0.0000,0.0200] m
+2026-05-21 21:27:32 [fem_solver][lshape][fem][k=-][s=-] INFO Assembly done in 0.012 s  (dofs=833)
+2026-05-21 21:27:32 [fem_solver][lshape][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.14 s, T_mean(end)=20.00 C
+2026-05-21 21:27:32 [fem_solver][flower][fem][k=-][s=-] INFO Mesh built: 935 vertices, 1468 cells, bounding box x=[-0.0067,0.0067] y=[-0.0058,0.0070] m
+2026-05-21 21:27:32 [fem_solver][flower][fem][k=-][s=-] INFO Assembly done in 0.017 s  (dofs=935)
+2026-05-21 21:27:32 [fem_solver][flower][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.12 s, T_mean(end)=20.00 C
+2026-05-23 18:47:41 [fem_solver][circle][fem][k=-][s=-] INFO Mesh built: 8321 vertices, 16384 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-23 18:47:41 [fem_solver][circle][fem][k=-][s=-] INFO Assembly done in 0.109 s  (dofs=8321)
+2026-05-23 18:47:42 [fem_solver][circle][fem][k=-][s=-] INFO solve_full complete: 20 steps, 1.16 s, T_mean(end)=20.61 C
+2026-05-23 19:12:29 [fem_solver][circle][fem][k=-][s=-] INFO Mesh built: 8321 vertices, 16384 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-23 19:12:29 [fem_solver][circle][fem][k=-][s=-] INFO Assembly done in 0.087 s  (dofs=8321)
+2026-05-23 19:12:30 [fem_solver][circle][fem][k=-][s=-] INFO solve_full complete: 30 steps, 1.71 s, T_mean(end)=20.02 C
+2026-05-23 21:02:43 [fem_solver][square][fem][k=-][s=-] INFO Mesh built: 1089 vertices, 2048 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-23 21:02:43 [fem_solver][square][fem][k=-][s=-] INFO Assembly done in 0.016 s  (dofs=1089)
+2026-05-23 21:02:43 [fem_solver][square][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.20 s, T_mean(end)=20.00 C
+2026-05-23 21:02:43 [fem_solver][circle][fem][k=-][s=-] INFO Mesh built: 8321 vertices, 16384 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-23 21:02:43 [fem_solver][circle][fem][k=-][s=-] INFO Assembly done in 0.081 s  (dofs=8321)
+2026-05-23 21:02:46 [fem_solver][circle][fem][k=-][s=-] INFO solve_full complete: 60 steps, 3.53 s, T_mean(end)=20.00 C
+2026-05-23 21:02:47 [fem_solver][lshape][fem][k=-][s=-] INFO Mesh built: 833 vertices, 1536 cells, bounding box x=[0.0000,0.0200] y=[0.0000,0.0200] m
+2026-05-23 21:02:47 [fem_solver][lshape][fem][k=-][s=-] INFO Assembly done in 0.011 s  (dofs=833)
+2026-05-23 21:02:47 [fem_solver][lshape][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.14 s, T_mean(end)=20.00 C
+2026-05-23 21:02:47 [fem_solver][flower][fem][k=-][s=-] INFO Mesh built: 935 vertices, 1468 cells, bounding box x=[-0.0067,0.0067] y=[-0.0058,0.0070] m
+2026-05-23 21:02:47 [fem_solver][flower][fem][k=-][s=-] INFO Assembly done in 0.017 s  (dofs=935)
+2026-05-23 21:02:47 [fem_solver][flower][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.12 s, T_mean(end)=20.00 C
+2026-05-23 21:22:38 [fem_solver][square][fem][k=-][s=-] INFO Mesh built: 25 vertices, 32 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-23 21:22:38 [fem_solver][square][fem][k=-][s=-] INFO Assembly done in 0.008 s  (dofs=25)
+2026-05-23 21:22:38 [fem_solver][square][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.01 s, T_mean(end)=20.00 C
+2026-05-23 21:22:38 [fem_solver][circle][fem][k=-][s=-] INFO Mesh built: 545 vertices, 1024 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-23 21:22:38 [fem_solver][circle][fem][k=-][s=-] INFO Assembly done in 0.010 s  (dofs=545)
+2026-05-23 21:22:38 [fem_solver][circle][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.11 s, T_mean(end)=20.00 C
+2026-05-23 21:22:38 [fem_solver][lshape][fem][k=-][s=-] INFO Mesh built: 21 vertices, 24 cells, bounding box x=[0.0000,0.0200] y=[0.0000,0.0200] m
+2026-05-23 21:22:38 [fem_solver][lshape][fem][k=-][s=-] INFO Assembly done in 0.003 s  (dofs=21)
+2026-05-23 21:22:38 [fem_solver][lshape][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.00 s, T_mean(end)=20.00 C
+2026-05-23 21:22:38 [fem_solver][flower][fem][k=-][s=-] INFO Mesh built: 457 vertices, 512 cells, bounding box x=[-0.0067,0.0067] y=[-0.0058,0.0070] m
+2026-05-23 21:22:38 [fem_solver][flower][fem][k=-][s=-] INFO Assembly done in 0.009 s  (dofs=457)
+2026-05-23 21:22:38 [fem_solver][flower][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.04 s, T_mean(end)=20.00 C
+2026-05-23 21:36:53 [fem_solver][square][fem_convergence][k=-][s=-] INFO Mesh built: 25 vertices, 32 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-23 21:36:53 [fem_solver][square][fem_convergence][k=-][s=-] INFO Assembly done in 0.007 s  (dofs=25)
+2026-05-23 21:36:53 [fem_solver][square][fem_convergence][k=-][s=-] INFO solve_full complete: 60 steps, 0.01 s, T_mean(end)=20.00 C
+2026-05-23 21:36:53 [fem_solver][square][fem_convergence][k=-][s=-] INFO Mesh built: 81 vertices, 128 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-23 21:36:53 [fem_solver][square][fem_convergence][k=-][s=-] INFO Assembly done in 0.004 s  (dofs=81)
+2026-05-23 21:36:53 [fem_solver][square][fem_convergence][k=-][s=-] INFO solve_full complete: 60 steps, 0.01 s, T_mean(end)=20.00 C
+2026-05-23 21:36:53 [fem_solver][square][fem_convergence][k=-][s=-] INFO Mesh built: 289 vertices, 512 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-23 21:36:53 [fem_solver][square][fem_convergence][k=-][s=-] INFO Assembly done in 0.006 s  (dofs=289)
+2026-05-23 21:36:53 [fem_solver][square][fem_convergence][k=-][s=-] INFO solve_full complete: 60 steps, 0.05 s, T_mean(end)=20.00 C
+2026-05-23 21:36:53 [fem_solver][square][fem_convergence][k=-][s=-] INFO Mesh built: 1089 vertices, 2048 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-23 21:36:53 [fem_solver][square][fem_convergence][k=-][s=-] INFO Assembly done in 0.013 s  (dofs=1089)
+2026-05-23 21:36:53 [fem_solver][square][fem_convergence][k=-][s=-] INFO solve_full complete: 60 steps, 0.22 s, T_mean(end)=20.00 C
+2026-05-23 21:36:55 [fem_solver][circle][fem_convergence][k=-][s=-] INFO Mesh built: 545 vertices, 1024 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-23 21:36:55 [fem_solver][circle][fem_convergence][k=-][s=-] INFO Assembly done in 0.010 s  (dofs=545)
+2026-05-23 21:36:55 [fem_solver][circle][fem_convergence][k=-][s=-] INFO solve_full complete: 60 steps, 0.11 s, T_mean(end)=20.00 C
+2026-05-23 21:36:55 [fem_solver][circle][fem_convergence][k=-][s=-] INFO Mesh built: 2113 vertices, 4096 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-23 21:36:55 [fem_solver][circle][fem_convergence][k=-][s=-] INFO Assembly done in 0.025 s  (dofs=2113)
+2026-05-23 21:36:55 [fem_solver][circle][fem_convergence][k=-][s=-] INFO solve_full complete: 60 steps, 0.59 s, T_mean(end)=20.00 C
+2026-05-23 21:36:55 [fem_solver][circle][fem_convergence][k=-][s=-] INFO Mesh built: 8321 vertices, 16384 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-23 21:36:55 [fem_solver][circle][fem_convergence][k=-][s=-] INFO Assembly done in 0.089 s  (dofs=8321)
+2026-05-23 21:36:59 [fem_solver][circle][fem_convergence][k=-][s=-] INFO solve_full complete: 60 steps, 3.57 s, T_mean(end)=20.00 C
+2026-05-23 21:37:10 [fem_solver][lshape][fem_convergence][k=-][s=-] INFO Mesh built: 21 vertices, 24 cells, bounding box x=[0.0000,0.0200] y=[0.0000,0.0200] m
+2026-05-23 21:37:10 [fem_solver][lshape][fem_convergence][k=-][s=-] INFO Assembly done in 0.006 s  (dofs=21)
+2026-05-23 21:37:11 [fem_solver][lshape][fem_convergence][k=-][s=-] INFO solve_full complete: 60 steps, 0.00 s, T_mean(end)=20.00 C
+2026-05-23 21:37:11 [fem_solver][lshape][fem_convergence][k=-][s=-] INFO Mesh built: 65 vertices, 96 cells, bounding box x=[0.0000,0.0200] y=[0.0000,0.0200] m
+2026-05-23 21:37:11 [fem_solver][lshape][fem_convergence][k=-][s=-] INFO Assembly done in 0.005 s  (dofs=65)
+2026-05-23 21:37:11 [fem_solver][lshape][fem_convergence][k=-][s=-] INFO solve_full complete: 60 steps, 0.01 s, T_mean(end)=20.00 C
+2026-05-23 21:37:11 [fem_solver][lshape][fem_convergence][k=-][s=-] INFO Mesh built: 225 vertices, 384 cells, bounding box x=[0.0000,0.0200] y=[0.0000,0.0200] m
+2026-05-23 21:37:11 [fem_solver][lshape][fem_convergence][k=-][s=-] INFO Assembly done in 0.005 s  (dofs=225)
+2026-05-23 21:37:11 [fem_solver][lshape][fem_convergence][k=-][s=-] INFO solve_full complete: 60 steps, 0.04 s, T_mean(end)=20.00 C
+2026-05-23 21:37:11 [fem_solver][lshape][fem_convergence][k=-][s=-] INFO Mesh built: 833 vertices, 1536 cells, bounding box x=[0.0000,0.0200] y=[0.0000,0.0200] m
+2026-05-23 21:37:11 [fem_solver][lshape][fem_convergence][k=-][s=-] INFO Assembly done in 0.011 s  (dofs=833)
+2026-05-23 21:37:11 [fem_solver][lshape][fem_convergence][k=-][s=-] INFO solve_full complete: 60 steps, 0.15 s, T_mean(end)=20.00 C
+2026-05-23 21:37:12 [fem_solver][flower][fem_convergence][k=-][s=-] INFO Mesh built: 457 vertices, 512 cells, bounding box x=[-0.0067,0.0067] y=[-0.0058,0.0070] m
+2026-05-23 21:37:12 [fem_solver][flower][fem_convergence][k=-][s=-] INFO Assembly done in 0.009 s  (dofs=457)
+2026-05-23 21:37:12 [fem_solver][flower][fem_convergence][k=-][s=-] INFO solve_full complete: 60 steps, 0.04 s, T_mean(end)=20.00 C
+2026-05-23 21:37:12 [fem_solver][flower][fem_convergence][k=-][s=-] INFO Mesh built: 531 vertices, 660 cells, bounding box x=[-0.0067,0.0067] y=[-0.0058,0.0070] m
+2026-05-23 21:37:12 [fem_solver][flower][fem_convergence][k=-][s=-] INFO Assembly done in 0.010 s  (dofs=531)
+2026-05-23 21:37:12 [fem_solver][flower][fem_convergence][k=-][s=-] INFO solve_full complete: 60 steps, 0.05 s, T_mean(end)=20.00 C
+2026-05-23 21:37:12 [fem_solver][flower][fem_convergence][k=-][s=-] INFO Mesh built: 636 vertices, 870 cells, bounding box x=[-0.0067,0.0067] y=[-0.0058,0.0070] m
+2026-05-23 21:37:12 [fem_solver][flower][fem_convergence][k=-][s=-] INFO Assembly done in 0.012 s  (dofs=636)
+2026-05-23 21:37:12 [fem_solver][flower][fem_convergence][k=-][s=-] INFO solve_full complete: 60 steps, 0.07 s, T_mean(end)=20.00 C
+2026-05-23 21:37:12 [fem_solver][flower][fem_convergence][k=-][s=-] INFO Mesh built: 935 vertices, 1468 cells, bounding box x=[-0.0067,0.0067] y=[-0.0058,0.0070] m
+2026-05-23 21:37:12 [fem_solver][flower][fem_convergence][k=-][s=-] INFO Assembly done in 0.017 s  (dofs=935)
+2026-05-23 21:37:12 [fem_solver][flower][fem_convergence][k=-][s=-] INFO solve_full complete: 60 steps, 0.13 s, T_mean(end)=20.00 C
+2026-05-23 21:39:25 [fem_solver][square][fem][k=-][s=-] INFO Mesh built: 1089 vertices, 2048 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-23 21:39:25 [fem_solver][square][fem][k=-][s=-] INFO Assembly done in 0.017 s  (dofs=1089)
+2026-05-23 21:39:26 [fem_solver][square][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.21 s, T_mean(end)=20.00 C
+2026-05-23 21:39:26 [fem_solver][circle][fem][k=-][s=-] INFO Mesh built: 8321 vertices, 16384 cells, bounding box x=[0.0000,0.0100] y=[0.0000,0.0100] m
+2026-05-23 21:39:26 [fem_solver][circle][fem][k=-][s=-] INFO Assembly done in 0.082 s  (dofs=8321)
+2026-05-23 21:39:29 [fem_solver][circle][fem][k=-][s=-] INFO solve_full complete: 60 steps, 3.44 s, T_mean(end)=20.00 C
+2026-05-23 21:39:29 [fem_solver][lshape][fem][k=-][s=-] INFO Mesh built: 833 vertices, 1536 cells, bounding box x=[0.0000,0.0200] y=[0.0000,0.0200] m
+2026-05-23 21:39:29 [fem_solver][lshape][fem][k=-][s=-] INFO Assembly done in 0.012 s  (dofs=833)
+2026-05-23 21:39:29 [fem_solver][lshape][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.14 s, T_mean(end)=20.00 C
+2026-05-23 21:39:29 [fem_solver][flower][fem][k=-][s=-] INFO Mesh built: 935 vertices, 1468 cells, bounding box x=[-0.0067,0.0067] y=[-0.0058,0.0070] m
+2026-05-23 21:39:29 [fem_solver][flower][fem][k=-][s=-] INFO Assembly done in 0.018 s  (dofs=935)
+2026-05-23 21:39:30 [fem_solver][flower][fem][k=-][s=-] INFO solve_full complete: 60 steps, 0.12 s, T_mean(end)=20.00 C

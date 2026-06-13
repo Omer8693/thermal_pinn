@@ -1,0 +1,15 @@
+{
+  "geometry": "circle",
+  "level": "refine_3",
+  "n_refine": 3,
+  "flower_grid": 0.04,
+  "n_nodes": 8321,
+  "n_cells": 16384,
+  "dt": 0.5,
+  "t_end": 30.0,
+  "n_steps": 60,
+  "t_assemble_s": 0.088859,
+  "t_solve_s": 3.57116,
+  "t_total_s": 3.660019,
+  "T_mean_final": 20.000001
+}

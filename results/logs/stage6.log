@@ -1,0 +1,92 @@
+2026-05-22 22:20:10 [stage6][all][mswp][k=-][s=-] INFO Stage 6 MSWP sweep | geometries=['square'] | k=[2, 3, 4, 5] | seeds=[0] | epochs_adam=1000
+2026-05-22 22:20:10 [stage6][all][mswp][k=-][s=-] INFO === square  arch=[110, 110, 110, 90] ===
+2026-05-22 22:20:10 [stage6][all][mswp][k=-][s=-] INFO [1/4] geo=square k=2 seed=0
+2026-05-22 22:23:13 [stage6][all][mswp][k=-][s=-] INFO geo=square   k=2 seed=0  MAE=6.187 C  L2=0.0498  FEM=83%  t=183 s
+2026-05-22 22:23:13 [stage6][all][mswp][k=-][s=-] INFO [2/4] geo=square k=3 seed=0
+2026-05-22 22:25:19 [stage6][all][mswp][k=-][s=-] INFO geo=square   k=3 seed=0  MAE=9.939 C  L2=0.0966  FEM=88%  t=126 s
+2026-05-22 22:25:19 [stage6][all][mswp][k=-][s=-] INFO [3/4] geo=square k=4 seed=0
+2026-05-22 22:26:49 [stage6][all][mswp][k=-][s=-] INFO geo=square   k=4 seed=0  MAE=13.571 C  L2=0.1542  FEM=92%  t=90 s
+2026-05-22 22:26:49 [stage6][all][mswp][k=-][s=-] INFO [4/4] geo=square k=5 seed=0
+2026-05-22 22:28:01 [stage6][all][mswp][k=-][s=-] INFO geo=square   k=5 seed=0  MAE=15.711 C  L2=0.2310  FEM=93%  t=72 s
+2026-05-22 22:28:01 [stage6][all][mswp][k=-][s=-] INFO CSV kaydedildi: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/nas_original/stage6_summary.csv
+2026-05-22 22:28:01 [stage6][all][mswp][k=-][s=-] INFO k-vs-MAE figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage6_k_vs_mae.png
+2026-05-22 22:28:01 [stage6][all][mswp][k=-][s=-] INFO === Stage 6 Özet ===
+2026-05-22 22:28:01 [stage6][all][mswp][k=-][s=-] INFO Geo       k=2(MAE)  k=3(MAE)  k=4(MAE)  k=5(MAE)
+2026-05-22 22:28:01 [stage6][all][mswp][k=-][s=-] INFO square    6.187  9.939  13.571  15.711
+2026-05-22 22:32:33 [stage6][all][mswp][k=-][s=-] INFO Stage 6 MSWP sweep | geometries=['circle', 'lshape', 'flower'] | k=[2, 3, 4, 5] | seeds=[0] | epochs_adam=1000
+2026-05-22 22:32:33 [stage6][all][mswp][k=-][s=-] INFO === circle  arch=[90, 110, 110, 70] ===
+2026-05-22 22:32:33 [stage6][all][mswp][k=-][s=-] INFO [1/12] geo=circle k=2 seed=0
+2026-05-22 22:35:28 [stage6][all][mswp][k=-][s=-] INFO geo=circle   k=2 seed=0  MAE=5.755 C  L2=0.0475  FEM=83%  t=174 s
+2026-05-22 22:35:28 [stage6][all][mswp][k=-][s=-] INFO [2/12] geo=circle k=3 seed=0
+2026-05-22 22:37:29 [stage6][all][mswp][k=-][s=-] INFO geo=circle   k=3 seed=0  MAE=9.947 C  L2=0.0982  FEM=88%  t=120 s
+2026-05-22 22:37:29 [stage6][all][mswp][k=-][s=-] INFO [3/12] geo=circle k=4 seed=0
+2026-05-22 22:38:56 [stage6][all][mswp][k=-][s=-] INFO geo=circle   k=4 seed=0  MAE=13.056 C  L2=0.1596  FEM=92%  t=86 s
+2026-05-22 22:38:56 [stage6][all][mswp][k=-][s=-] INFO [4/12] geo=circle k=5 seed=0
+2026-05-22 22:40:05 [stage6][all][mswp][k=-][s=-] INFO geo=circle   k=5 seed=0  MAE=17.151 C  L2=0.2581  FEM=93%  t=68 s
+2026-05-22 22:40:05 [stage6][all][mswp][k=-][s=-] INFO === lshape  arch=[10, 90, 10, 50] ===
+2026-05-22 22:40:05 [stage6][all][mswp][k=-][s=-] INFO [5/12] geo=lshape k=2 seed=0
+2026-05-22 22:42:52 [stage6][all][mswp][k=-][s=-] INFO geo=lshape   k=2 seed=0  MAE=4.999 C  L2=0.0368  FEM=83%  t=167 s
+2026-05-22 22:42:52 [stage6][all][mswp][k=-][s=-] INFO [6/12] geo=lshape k=3 seed=0
+2026-05-22 22:44:51 [stage6][all][mswp][k=-][s=-] INFO geo=lshape   k=3 seed=0  MAE=9.594 C  L2=0.0778  FEM=88%  t=120 s
+2026-05-22 22:44:51 [stage6][all][mswp][k=-][s=-] INFO [7/12] geo=lshape k=4 seed=0
+2026-05-22 22:46:15 [stage6][all][mswp][k=-][s=-] INFO geo=lshape   k=4 seed=0  MAE=14.022 C  L2=0.1257  FEM=92%  t=84 s
+2026-05-22 22:46:15 [stage6][all][mswp][k=-][s=-] INFO [8/12] geo=lshape k=5 seed=0
+2026-05-22 22:47:23 [stage6][all][mswp][k=-][s=-] INFO geo=lshape   k=5 seed=0  MAE=19.386 C  L2=0.2023  FEM=93%  t=67 s
+2026-05-22 22:47:23 [stage6][all][mswp][k=-][s=-] INFO === flower  arch=[70] ===
+2026-05-22 22:47:23 [stage6][all][mswp][k=-][s=-] INFO [9/12] geo=flower k=2 seed=0
+2026-05-22 22:49:15 [stage6][all][mswp][k=-][s=-] INFO geo=flower   k=2 seed=0  MAE=10.672 C  L2=0.1033  FEM=83%  t=112 s
+2026-05-22 22:49:15 [stage6][all][mswp][k=-][s=-] INFO [10/12] geo=flower k=3 seed=0
+2026-05-22 22:50:34 [stage6][all][mswp][k=-][s=-] INFO geo=flower   k=3 seed=0  MAE=17.402 C  L2=0.2315  FEM=88%  t=79 s
+2026-05-22 22:50:34 [stage6][all][mswp][k=-][s=-] INFO [11/12] geo=flower k=4 seed=0
+2026-05-22 22:51:29 [stage6][all][mswp][k=-][s=-] INFO geo=flower   k=4 seed=0  MAE=19.760 C  L2=0.3157  FEM=92%  t=55 s
+2026-05-22 22:51:29 [stage6][all][mswp][k=-][s=-] INFO [12/12] geo=flower k=5 seed=0
+2026-05-22 22:52:14 [stage6][all][mswp][k=-][s=-] INFO geo=flower   k=5 seed=0  MAE=25.275 C  L2=0.4592  FEM=93%  t=45 s
+2026-05-22 22:52:14 [stage6][all][mswp][k=-][s=-] INFO CSV kaydedildi: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/nas_original/stage6_summary.csv
+2026-05-22 22:52:15 [stage6][all][mswp][k=-][s=-] INFO k-vs-MAE figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage6_k_vs_mae.png
+2026-05-22 22:52:15 [stage6][all][mswp][k=-][s=-] INFO === Stage 6 Özet ===
+2026-05-22 22:52:15 [stage6][all][mswp][k=-][s=-] INFO Geo       k=2(MAE)  k=3(MAE)  k=4(MAE)  k=5(MAE)
+2026-05-22 22:52:15 [stage6][all][mswp][k=-][s=-] INFO circle    5.755  9.947  13.056  17.151
+2026-05-22 22:52:15 [stage6][all][mswp][k=-][s=-] INFO lshape    4.999  9.594  14.022  19.386
+2026-05-22 22:52:15 [stage6][all][mswp][k=-][s=-] INFO flower    10.672  17.402  19.760  25.275
+2026-05-23 18:09:46 [stage6][all][mswp][k=-][s=-] INFO Stage 6 MSWP sweep | geometries=['circle'] | k=[1, 2, 3, 4, 5] | seeds=[0] | epochs_adam=1000 | epochs_lbfgs=50
+2026-05-23 18:09:46 [stage6][all][mswp][k=-][s=-] INFO === circle  arch=[90, 110, 110, 70] ===
+2026-05-23 18:09:46 [stage6][all][mswp][k=-][s=-] INFO [1/5] geo=circle k=1 seed=0
+2026-05-23 18:15:29 [stage6][all][mswp][k=-][s=-] INFO geo=circle   k=1 seed=0  MAE=1.777 C  L2=0.0127  FEM=67%  t=342 s
+2026-05-23 18:15:29 [stage6][all][mswp][k=-][s=-] INFO [2/5] geo=circle k=2 seed=0
+2026-05-23 18:18:21 [stage6][all][mswp][k=-][s=-] INFO geo=circle   k=2 seed=0  MAE=6.009 C  L2=0.0484  FEM=83%  t=171 s
+2026-05-23 18:18:21 [stage6][all][mswp][k=-][s=-] INFO [3/5] geo=circle k=3 seed=0
+2026-05-23 18:20:22 [stage6][all][mswp][k=-][s=-] INFO geo=circle   k=3 seed=0  MAE=10.274 C  L2=0.1009  FEM=88%  t=119 s
+2026-05-23 18:20:22 [stage6][all][mswp][k=-][s=-] INFO [4/5] geo=circle k=4 seed=0
+2026-05-23 18:21:48 [stage6][all][mswp][k=-][s=-] INFO geo=circle   k=4 seed=0  MAE=13.895 C  L2=0.1641  FEM=92%  t=86 s
+2026-05-23 18:21:48 [stage6][all][mswp][k=-][s=-] INFO [5/5] geo=circle k=5 seed=0
+2026-05-23 18:22:57 [stage6][all][mswp][k=-][s=-] INFO geo=circle   k=5 seed=0  MAE=16.745 C  L2=0.2594  FEM=93%  t=69 s
+2026-05-23 18:22:57 [stage6][all][mswp][k=-][s=-] INFO CSV kaydedildi: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/nas_original/stage6_summary.csv
+2026-05-23 18:22:58 [stage6][all][mswp][k=-][s=-] INFO k-vs-MAE figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage6_k_vs_mae.png
+2026-05-23 18:22:58 [stage6][all][mswp][k=-][s=-] INFO === Stage 6 Özet ===
+2026-05-23 18:22:58 [stage6][all][mswp][k=-][s=-] INFO Geo       k=1(MAE)  k=2(MAE)  k=3(MAE)  k=4(MAE)  k=5(MAE)
+2026-05-23 18:22:58 [stage6][all][mswp][k=-][s=-] INFO circle    1.777  6.009  10.274  13.895  16.745
+2026-05-23 20:33:33 [stage6][all][mswp][k=-][s=-] INFO Stage 6 MSWP sweep | geometries=['circle'] | k=[1, 2, 3, 4, 5] | seeds=[0] | epochs_adam=1000 | epochs_lbfgs=0
+2026-05-23 20:33:33 [stage6][all][mswp][k=-][s=-] INFO === circle  arch=[90, 110, 110, 70] ===
+2026-05-23 20:33:33 [stage6][all][mswp][k=-][s=-] INFO [1/5] geo=circle k=1 seed=0
+2026-05-23 20:38:49 [stage6][all][mswp][k=-][s=-] INFO geo=circle   k=1 seed=0  MAE=2.434 C  L2=0.0639  FEM=50%  t=316 s
+2026-05-23 20:38:49 [stage6][all][mswp][k=-][s=-] INFO [2/5] geo=circle k=2 seed=0
+2026-05-23 22:32:31 [stage6][all][mswp][k=-][s=-] INFO Stage 6 MSWP sweep | geometries=['square'] | k=[1, 2, 3, 4, 5] | seeds=[0] | epochs_adam=3000 | epochs_lbfgs=500
+2026-05-23 22:32:31 [stage6][all][mswp][k=-][s=-] INFO === square  arch=[70] ===
+2026-05-23 22:32:31 [stage6][all][mswp][k=-][s=-] INFO [1/5] geo=square k=1 seed=0
+2026-05-23 22:43:22 [stage6][all][mswp][k=-][s=-] INFO geo=square   k=1 seed=0  MAE=1.815 C  L2=0.0129  FEM=67%  t=651 s
+2026-05-23 22:43:22 [stage6][all][mswp][k=-][s=-] INFO [2/5] geo=square k=2 seed=0
+2026-05-23 22:48:40 [stage6][all][mswp][k=-][s=-] INFO geo=square   k=2 seed=0  MAE=3.726 C  L2=0.0255  FEM=83%  t=317 s
+2026-05-23 22:48:40 [stage6][all][mswp][k=-][s=-] INFO [3/5] geo=square k=3 seed=0
+2026-05-23 22:52:24 [stage6][all][mswp][k=-][s=-] INFO geo=square   k=3 seed=0  MAE=3.809 C  L2=0.0264  FEM=88%  t=225 s
+2026-05-23 22:52:24 [stage6][all][mswp][k=-][s=-] INFO [4/5] geo=square k=4 seed=0
+2026-05-23 22:55:02 [stage6][all][mswp][k=-][s=-] INFO geo=square   k=4 seed=0  MAE=4.380 C  L2=0.0332  FEM=92%  t=157 s
+2026-05-23 22:55:02 [stage6][all][mswp][k=-][s=-] INFO [5/5] geo=square k=5 seed=0
+2026-05-23 22:57:07 [stage6][all][mswp][k=-][s=-] INFO geo=square   k=5 seed=0  MAE=4.335 C  L2=0.0354  FEM=93%  t=125 s
+2026-05-23 22:57:07 [stage6][all][mswp][k=-][s=-] INFO CSV kaydedildi: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/nas_original/stage6_summary.csv
+2026-05-23 22:57:08 [stage6][all][mswp][k=-][s=-] INFO k-vs-MAE figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage6_k_vs_mae.png
+2026-05-23 22:57:08 [stage6][all][mswp][k=-][s=-] INFO === Stage 6 Özet ===
+2026-05-23 22:57:08 [stage6][all][mswp][k=-][s=-] INFO Geo       k=1(MAE)  k=2(MAE)  k=3(MAE)  k=4(MAE)  k=5(MAE)
+2026-05-23 22:57:08 [stage6][all][mswp][k=-][s=-] INFO square    1.815  3.726  3.809  4.380  4.335
+2026-05-23 23:45:30 [stage6][all][mswp][k=-][s=-] INFO Stage 6 MSWP sweep | geometries=['square'] | k=[1, 2, 3, 4, 5] | seeds=[0] | epochs_adam=3000 | epochs_lbfgs=500
+2026-05-23 23:45:30 [stage6][all][mswp][k=-][s=-] INFO === square  arch=[90] ===
+2026-05-23 23:45:30 [stage6][all][mswp][k=-][s=-] INFO [1/5] geo=square k=1 seed=0
