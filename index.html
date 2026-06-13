@@ -294,7 +294,10 @@
 <!-- ═══════════════════════════ STICKY NAV ════════════════════════════════ -->
 <nav>
   <a href="#abstract">Abstract</a>
+  <a href="#problem">Problem</a>
+  <a href="#reference">Reference Paper</a>
   <a href="#method">Method</a>
+  <a href="#architectures">Architectures</a>
   <a href="#study1">2D Adaptive-k</a>
   <a href="#study2">2D Canonical</a>
   <a href="#study3">3D Canonical</a>
@@ -313,6 +316,97 @@
     <br><br>
     This thesis extends the <strong>NAS-PINN</strong> framework <a href="#references">[2]</a> to transient thermal problems through a <strong>Multi-Step Window Prediction (MSWP)</strong> strategy. The simulation is divided into short time windows; a Physics-Informed Neural Network (PINN) predicts the temperature field within each window, periodically re-anchored by a FEM solve. A skip factor <em>k</em> governs the accuracy–cost trade-off. Three neural architectures, selected by Neural Architecture Search (NAS), are evaluated across ten benchmark geometries spanning 2D, 3D, and a 3D Thermal Fin — achieving up to <strong>85% reduction in FEM solver calls</strong> while keeping mean absolute error below the 15°C engineering acceptance threshold.
   </div>
+</section>
+
+<!-- ═══════════════════════════ PROBLEM STATEMENT ═════════════════════════ -->
+<section id="problem">
+  <h2><span class="num">Introduction</span>Problem Statement</h2>
+
+  <p>
+    Water quenching is a key manufacturing step for aluminium automotive castings. After heat treatment, the part is submerged in water and cooled rapidly. The temperature does not drop uniformly — thin walls and exposed surfaces lose heat much faster than thick interior regions. These spatial temperature differences, called <strong>thermal gradients</strong>, drive residual stress and shape distortion in the finished part.
+  </p>
+  <p>
+    In complex 3D components such as automotive subframes, different regions cool at different rates simultaneously. Correcting distortion after manufacture is expensive. Accurate thermal simulation is therefore central to the design process.
+  </p>
+  <p>
+    The standard tool for this simulation is the <strong>Finite Element Method (FEM)</strong>. It is reliable but computationally expensive. A single solve on a fine industrial mesh can take minutes. Design optimisation studies that repeat the same simulation hundreds of times make this a practical bottleneck. For context, the industrial problem studied by Mortensen et al. <a href="#references">[1]</a> involves approximately 3 million finite elements across 27–30 coupled domains.
+  </p>
+
+  <div class="abstract" style="margin-top:20px;">
+    <strong>Central question:</strong> What is the maximum fraction of FEM solver calls that a NAS-guided PINN can replace while keeping temperature errors within the industrial tolerance required for distortion prediction (≤ 15°C)?
+  </div>
+
+  <p style="margin-top:20px;">
+    This thesis proposes a <strong>FEM-accelerated hybrid</strong>: FEM is retained as the source of physical truth at periodic anchor points, while NAS-guided PINN predictions replace the majority of time-step solves. The method is not a general-purpose FEM replacement — it is a FEM-call reduction strategy for transient quenching simulation, designed so that its thermal predictions can serve as input to the mechanical distortion model of Mortensen et al.
+  </p>
+</section>
+
+<!-- ═══════════════════════════ REFERENCE PAPER ══════════════════════════ -->
+<section id="reference">
+  <h2><span class="num">Background</span>Reference Paper &amp; Original Contributions</h2>
+
+  <p>
+    This thesis builds on two reference works. The physical problem, material parameters, and engineering tolerance are taken from <strong>Mortensen et al. (2026)</strong> <a href="#references">[1]</a>. The neural architecture search methodology is taken from <strong>Wang &amp; Zhong (2024)</strong> <a href="#references">[2]</a>, who introduced the NAS-PINN framework for steady-state PDEs.
+  </p>
+
+  <h3>What was taken from Wang &amp; Zhong (2024) — NAS-PINN</h3>
+  <div class="two-col">
+    <div class="card">
+      <h4>NAS concept</h4>
+      <p>The idea of using Neural Architecture Search to automatically find the best PINN architecture (depth, width, activation function) rather than choosing it manually.</p>
+    </div>
+    <div class="card">
+      <h4>Architecture candidates</h4>
+      <p>The NAS Transfer architecture [90, 70, 30, 110] from the reference paper is used as a baseline to measure whether our own NAS search adds value.</p>
+    </div>
+    <div class="card">
+      <h4>Search strategies</h4>
+      <p>Bayesian optimisation with TPE and multi-objective evolutionary search (NSGA-II, NSGA-III) as the NAS search algorithms, applied to minimise mean-window MAE.</p>
+    </div>
+    <div class="card">
+      <h4>Training procedure</h4>
+      <p>Adam followed by L-BFGS optimisation per prediction window — the same two-phase training protocol used in the original NAS-PINN paper.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px;">What is original in this thesis</h3>
+  <div class="two-col">
+    <div class="card">
+      <h4>MSWP — Transient extension</h4>
+      <p>Wang &amp; Zhong (2024) solve <em>steady-state</em> PDEs. This thesis extends NAS-PINN to <em>transient</em> heat transfer by introducing the Multi-Step Window Prediction (MSWP) strategy with FEM anchoring at each window start.</p>
+    </div>
+    <div class="card">
+      <h4>Skip factor k &amp; adaptive controller</h4>
+      <p>The skip factor k and the window-by-window adaptive-k controller are entirely new. They allow the framework to trade accuracy for FEM cost reduction in a controlled and automatic way.</p>
+    </div>
+    <div class="card">
+      <h4>Ten benchmark geometries</h4>
+      <p>The original NAS-PINN paper tests on standard PDE benchmarks. This thesis evaluates on ten geometries designed to reflect the quenching problem: 2D and 3D canonical domains plus the 3D Thermal Fin.</p>
+    </div>
+    <div class="card">
+      <h4>Fourier embedding &amp; endpoint supervision</h4>
+      <p>Two architectural extensions critical for the Thermal Fin: Fourier coordinate embedding to capture sharp gradients at fin junctions, and endpoint supervision to prevent error drift between windows.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px;">What was taken from Mortensen et al. (2026)</h3>
+  <table class="tbl" style="margin-top:12px;">
+    <thead>
+      <tr><th>Element</th><th>Mortensen et al. (2026) — industrial</th><th>This thesis — simplified surrogate</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Material</td><td>A356 aluminium alloy</td><td>A356 aluminium alloy ✓ (same)</td></tr>
+      <tr><td>Initial temperature T₀</td><td>540°C</td><td>540°C ✓ (same)</td></tr>
+      <tr><td>Quench temperature T_w</td><td>20°C</td><td>20°C ✓ (same)</td></tr>
+      <tr><td>Quench duration</td><td>30 seconds</td><td>30 seconds ✓ (same)</td></tr>
+      <tr><td>Engineering tolerance</td><td>Distortion ≲ few hundred μm</td><td>Temperature MAE ≤ 15°C (equivalent)</td></tr>
+      <tr><td>Physical problem</td><td>Thermal + mechanical coupled (thermo-elastoviscoplastic)</td><td>Thermal only (heat equation)</td></tr>
+      <tr><td>Mesh size</td><td>~3 million finite elements, 27–30 coupled domains</td><td>≤ 1 300 structured grid nodes, 1 domain</td></tr>
+      <tr><td>Convection h</td><td>Full 5-regime boiling curve, spatial variation</td><td>Constant h = 4 000 W/(m²K)</td></tr>
+      <tr><td>Geometry</td><td>Proprietary A356 subframe CAD</td><td>Canonical 2D/3D + 3D Thermal Fin</td></tr>
+    </tbody>
+  </table>
+  <p style="font-family:system-ui,sans-serif;font-size:13px;color:var(--muted);margin-top:8px;">The industrial mesh and solver data of Mortensen et al. are not publicly available. This thesis constructs reproducible surrogate benchmark domains using the same physical parameters and quenching behaviour.</p>
 </section>
 
 <!-- ═══════════════════════════ METHOD ════════════════════════════════════ -->
@@ -383,32 +477,78 @@
     Rather than fixing k for the entire simulation, the adaptive-k controller adjusts it window-by-window. After each prediction window, the controller compares the per-window MAE to two thresholds: if error is low it promotes k (skip more FEM calls); if error exceeds the upper threshold it demotes k (call FEM sooner). This allows the system to behave like k=1 during the steep early transient and shift toward k=5 as the field relaxes — automatically and without any manual tuning.
   </p>
 
-  <h3>NAS-Selected Architectures</h3>
-  <div class="two-col">
-    <div class="card">
-      <h4>Bayesian / TPE</h4>
-      <p>5 hidden layers × 151 neurons, ReLU activation, Fourier coordinate embedding. Largest capacity (~93K parameters). Best on geometrically irregular domains.</p>
-    </div>
-    <div class="card">
-      <h4>NSGA-II</h4>
-      <p>3 hidden layers × 153 neurons, tanh activation. Compact architecture (~70K parameters). Competitive on smooth geometries at lower training cost.</p>
-    </div>
-  </div>
-  <div class="two-col" style="margin-top:12px;">
-    <div class="card">
-      <h4>NSGA-III</h4>
-      <p>3 hidden layers × 75 neurons, tanh activation. Smallest footprint (~17K parameters). Performs similarly to NSGA-II on regular domains.</p>
-    </div>
-    <div class="card">
-      <h4>NAS Transfer (baseline)</h4>
-      <p>Architecture [90, 70, 30, 110] taken directly from Wang &amp; Zhong (2024) without modification. Used as a baseline reference in the 2D adaptive-k study.</p>
-    </div>
-  </div>
-
   <figure>
     <img src="assets/process/naspinn_process.png" alt="Complete MSWP and NAS-PINN process" class="wide" />
     <figcaption><strong>Figure 5.</strong> Complete MSWP process: architecture candidates found by NAS are trained window-by-window under the FEM-anchored MSWP framework. At each window the PINN is trained from the FEM anchor, predicts the field forward, and the adaptive-k controller decides whether to call FEM again or continue with the next PINN window.</figcaption>
   </figure>
+</section>
+
+<!-- ═══════════════════════════ ARCHITECTURES ════════════════════════════ -->
+<section id="architectures">
+  <h2><span class="num">NAS-Selected Architectures</span>The Three Neural Network Architectures</h2>
+
+  <p>
+    Three architectures were found by running NAS on the quenching problem. Each uses a different search strategy and produces a different network shape. They are compared side by side across all ten benchmark geometries. A fourth architecture — the NAS Transfer from the reference paper — is included as a single-seed baseline in Study 1 only.
+  </p>
+
+  <table class="tbl" style="margin-top:16px;">
+    <thead>
+      <tr>
+        <th>Architecture</th>
+        <th>Search method</th>
+        <th>Layers × Neurons</th>
+        <th>Activation</th>
+        <th>Embedding</th>
+        <th>Parameters</th>
+        <th>Strength</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Bayesian / TPE</strong></td>
+        <td>Bayesian optimisation (Tree-structured Parzen Estimator)</td>
+        <td>5 × 151</td>
+        <td>ReLU</td>
+        <td>Fourier (on Thermal Fin)</td>
+        <td>~93K</td>
+        <td>Best on irregular geometries — lowest MAE in 7 of 8 benchmarks</td>
+      </tr>
+      <tr>
+        <td><strong>NSGA-II</strong></td>
+        <td>Multi-objective evolutionary (NSGA-II)</td>
+        <td>3 × 153</td>
+        <td>tanh</td>
+        <td>None</td>
+        <td>~70K</td>
+        <td>Competitive on smooth geometries; occasionally lowest MAE on 3D L-Shape</td>
+      </tr>
+      <tr>
+        <td><strong>NSGA-III</strong></td>
+        <td>Multi-objective evolutionary (NSGA-III)</td>
+        <td>3 × 75</td>
+        <td>tanh</td>
+        <td>None</td>
+        <td>~17K</td>
+        <td>Smallest model; comparable to NSGA-II on regular domains; faster inference</td>
+      </tr>
+      <tr>
+        <td>NAS Transfer <em>(baseline)</em></td>
+        <td>Taken from Wang &amp; Zhong (2024)</td>
+        <td>[90, 70, 30, 110]</td>
+        <td>tanh</td>
+        <td>None</td>
+        <td>~30K</td>
+        <td>Reference only — comparable on smooth 2D; worse on irregular geometries</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="margin-top:20px;">
+    The NAS search objective is mean-window MAE on a held-out validation window. Bayesian/TPE performs a single-objective search over a continuous architecture space. NSGA-II and NSGA-III perform multi-objective search (MAE vs parameter count) using evolutionary operators over a discrete search space. All three final architectures were selected from a search space of over 10 000 candidate configurations.
+  </p>
+  <p>
+    A key finding is that Bayesian/TPE — despite having fewer layers than the compact NSGA networks — achieves the best results on geometrically complex domains because its wider layers and ReLU activation represent sharp spatial gradients more effectively than the deeper-but-narrower tanh networks.
+  </p>
 </section>
 
 <!-- ═══════════════════════════ STUDY 1 ═══════════════════════════════════ -->
