@@ -45,8 +45,7 @@ thermal_pinn/
 ├── plots/            # Plotting scripts for results
 ├── checkpoints/      # Experiment metrics (JSON) — .pt model files excluded
 ├── results/          # Generated figures and tables
-├── quenching_mswp/   # Quenching MSWP experiments (4 geometries, 10 seeds)
-└── reports/          # Thesis LaTeX source and figures
+└── quenching_mswp/   # Quenching MSWP experiments (4 geometries, 10 seeds)
 ```
 
 ## Physical Setup
