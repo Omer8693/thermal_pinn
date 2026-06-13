@@ -1,0 +1,62 @@
+{
+  "domain": "stacked",
+  "arch": "bayesian",
+  "tag": "seed_C",
+  "strategy": "fem_anchor_fixed_k_sweep",
+  "reference_used_each_window": true,
+  "reference_used_for_final_evaluation": true,
+  "k": 4,
+  "dim": 3,
+  "mean_mae": 8.33813709503151,
+  "n_windows": 5,
+  "windows": [
+    {
+      "t_start": 0.0,
+      "t_end": 6.0,
+      "mae_C": 11.96172964035081,
+      "l2_rel": 0.0409461838958133,
+      "runtime_s": 11.84820032119751
+    },
+    {
+      "t_start": 6.0,
+      "t_end": 12.0,
+      "mae_C": 10.4370126566436,
+      "l2_rel": 0.057222691594029824,
+      "runtime_s": 11.661787748336792
+    },
+    {
+      "t_start": 12.0,
+      "t_end": 18.0,
+      "mae_C": 6.566143472023797,
+      "l2_rel": 0.03197692555092062,
+      "runtime_s": 11.369648456573486
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 24.0,
+      "mae_C": 7.404124792652289,
+      "l2_rel": 0.03497908893084334,
+      "runtime_s": 11.410968780517578
+    },
+    {
+      "t_start": 24.0,
+      "t_end": 30.0,
+      "mae_C": 5.321674913487057,
+      "l2_rel": 0.02891496354499478,
+      "runtime_s": 11.390520572662354
+    }
+  ],
+  "total_s": 57.7206449508667,
+  "checkpoint": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/stacked_bayesian_seed_C_k4_dim3.pt",
+  "train_kwargs": {
+    "n_domain": 1500,
+    "n_bc": 300,
+    "n_epochs": 800,
+    "lr": 0.001,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 50,
+    "use_end_supervision": true,
+    "use_physical_scaling": false,
+    "balanced_feature_sampling": false
+  }
+}

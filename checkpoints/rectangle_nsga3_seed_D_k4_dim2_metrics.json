@@ -1,0 +1,62 @@
+{
+  "domain": "rectangle",
+  "arch": "nsga3",
+  "tag": "seed_D",
+  "strategy": "fem_anchor_fixed_k_sweep",
+  "reference_used_each_window": true,
+  "reference_used_for_final_evaluation": true,
+  "k": 4,
+  "dim": 2,
+  "mean_mae": 7.2732280303691095,
+  "n_windows": 5,
+  "windows": [
+    {
+      "t_start": 0.0,
+      "t_end": 6.0,
+      "mae_C": 16.931145428888552,
+      "l2_rel": 0.08903533255985344,
+      "runtime_s": 8.804555177688599
+    },
+    {
+      "t_start": 6.0,
+      "t_end": 12.0,
+      "mae_C": 6.416817417554861,
+      "l2_rel": 0.02972000161869042,
+      "runtime_s": 8.714581727981567
+    },
+    {
+      "t_start": 12.0,
+      "t_end": 18.0,
+      "mae_C": 4.820008647239687,
+      "l2_rel": 0.025317603929011126,
+      "runtime_s": 8.86329174041748
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 24.0,
+      "mae_C": 4.379407239200019,
+      "l2_rel": 0.022609957996841862,
+      "runtime_s": 8.977779388427734
+    },
+    {
+      "t_start": 24.0,
+      "t_end": 30.0,
+      "mae_C": 3.8187614189624344,
+      "l2_rel": 0.018759271568840507,
+      "runtime_s": 8.888316631317139
+    }
+  ],
+  "total_s": 44.2744083404541,
+  "checkpoint": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/rectangle_nsga3_seed_D_k4_dim2.pt",
+  "train_kwargs": {
+    "n_domain": 1500,
+    "n_bc": 300,
+    "n_epochs": 800,
+    "lr": 0.001,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 50,
+    "use_end_supervision": true,
+    "use_physical_scaling": false,
+    "balanced_feature_sampling": false
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "domain": "thermal_fin",
+  "arch": "bayesian",
+  "k": 4,
+  "dim": 3,
+  "mean_mae": 10.847872085596478,
+  "n_windows": 5,
+  "windows": [
+    {
+      "t_start": 0.0,
+      "t_end": 6.0,
+      "mae_C": 24.150840221298882,
+      "l2_rel": 0.10805127316268864,
+      "runtime_s": 52.36354637145996
+    },
+    {
+      "t_start": 6.0,
+      "t_end": 12.0,
+      "mae_C": 12.673292724140085,
+      "l2_rel": 0.07491450766271661,
+      "runtime_s": 50.558605670928955
+    },
+    {
+      "t_start": 12.0,
+      "t_end": 18.0,
+      "mae_C": 7.800001497459767,
+      "l2_rel": 0.06105042419363222,
+      "runtime_s": 51.41945552825928
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 24.0,
+      "mae_C": 5.8302479982123225,
+      "l2_rel": 0.05495038697503723,
+      "runtime_s": 49.46188545227051
+    },
+    {
+      "t_start": 24.0,
+      "t_end": 30.0,
+      "mae_C": 3.7849779868713305,
+      "l2_rel": 0.04109500621394762,
+      "runtime_s": 51.443541288375854
+    }
+  ],
+  "total_s": 256.68271827697754,
+  "checkpoint": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/thermal_fin/thermal_fin_bayesian_k4_seed_E.pt",
+  "train_config": {
+    "n_domain": 12000,
+    "n_bc": 2400,
+    "n_epochs": 2000,
+    "lr": 0.0008,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 100,
+    "n_eval": 4000,
+    "use_end_supervision": true
+  },
+  "run_tag": "seed_E"
+}

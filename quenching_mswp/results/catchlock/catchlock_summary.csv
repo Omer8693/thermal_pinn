@@ -1,0 +1,2 @@
+MAE_mean,L2_mean,max_err,max_err_mean,locked,lock_time_s,n_anchor_windows,n_fem_solves,fem_saving_pct,geometry,lock_threshold,lock_patience,train_time_s,variant,seed
+2.177291300682576,0.05045721016246577,63.47760250305407,3.250540005421728,True,9.0,6,6,0.9,square,5.0,3,454.98,tpe,0

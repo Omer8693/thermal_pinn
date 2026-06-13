@@ -1,0 +1,261 @@
+{
+  "domain": "thermal_fin",
+  "arch": "bayesian",
+  "dim": 3,
+  "run_tag": "pinn_only_adaptive_fin3d",
+  "mode": "pinn_only_adaptive",
+  "mean_mae": 200.3998938168617,
+  "n_windows": 20,
+  "fem_savings_pct": 95.0,
+  "fem_calls": 1,
+  "k_schedule": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "windows": [
+    {
+      "window": 1,
+      "t_start": 0.0,
+      "t_end": 1.5,
+      "k_used": 1,
+      "phase_cap": 2,
+      "mode": "burn-in",
+      "mae_C": 116.173419141466,
+      "runtime_s": 28.838062047958374
+    },
+    {
+      "window": 2,
+      "t_start": 1.5,
+      "t_end": 3.0,
+      "k_used": 1,
+      "phase_cap": 2,
+      "mode": "burn-in",
+      "mae_C": 165.7768849058945,
+      "runtime_s": 30.883821725845337
+    },
+    {
+      "window": 3,
+      "t_start": 3.0,
+      "t_end": 4.5,
+      "k_used": 1,
+      "phase_cap": 2,
+      "mode": "adaptive",
+      "mae_C": 188.68116212241074,
+      "runtime_s": 28.97090482711792
+    },
+    {
+      "window": 4,
+      "t_start": 4.5,
+      "t_end": 6.0,
+      "k_used": 1,
+      "phase_cap": 2,
+      "mode": "adaptive",
+      "mae_C": 204.17789505283912,
+      "runtime_s": 29.522050142288208
+    },
+    {
+      "window": 5,
+      "t_start": 6.0,
+      "t_end": 7.5,
+      "k_used": 1,
+      "phase_cap": 2,
+      "mode": "adaptive",
+      "mae_C": 213.94159802825652,
+      "runtime_s": 29.84975290298462
+    },
+    {
+      "window": 6,
+      "t_start": 7.5,
+      "t_end": 9.0,
+      "k_used": 1,
+      "phase_cap": 2,
+      "mode": "adaptive",
+      "mae_C": 218.81851485583223,
+      "runtime_s": 29.84957218170166
+    },
+    {
+      "window": 7,
+      "t_start": 9.0,
+      "t_end": 10.5,
+      "k_used": 1,
+      "phase_cap": 2,
+      "mode": "adaptive",
+      "mae_C": 219.7170085640847,
+      "runtime_s": 28.797008991241455
+    },
+    {
+      "window": 8,
+      "t_start": 10.5,
+      "t_end": 12.0,
+      "k_used": 1,
+      "phase_cap": 4,
+      "mode": "adaptive",
+      "mae_C": 217.27940407269313,
+      "runtime_s": 29.15682077407837
+    },
+    {
+      "window": 9,
+      "t_start": 12.0,
+      "t_end": 13.5,
+      "k_used": 1,
+      "phase_cap": 4,
+      "mode": "adaptive",
+      "mae_C": 217.0813127909283,
+      "runtime_s": 30.690748929977417
+    },
+    {
+      "window": 10,
+      "t_start": 13.5,
+      "t_end": 15.0,
+      "k_used": 1,
+      "phase_cap": 4,
+      "mode": "adaptive",
+      "mae_C": 215.14136202570626,
+      "runtime_s": 30.621101140975952
+    },
+    {
+      "window": 11,
+      "t_start": 15.0,
+      "t_end": 16.5,
+      "k_used": 1,
+      "phase_cap": 4,
+      "mode": "adaptive",
+      "mae_C": 214.07098737524228,
+      "runtime_s": 29.290706396102905
+    },
+    {
+      "window": 12,
+      "t_start": 16.5,
+      "t_end": 18.0,
+      "k_used": 1,
+      "phase_cap": 4,
+      "mode": "adaptive",
+      "mae_C": 209.78135021402323,
+      "runtime_s": 29.451162576675415
+    },
+    {
+      "window": 13,
+      "t_start": 18.0,
+      "t_end": 19.5,
+      "k_used": 1,
+      "phase_cap": 4,
+      "mode": "adaptive",
+      "mae_C": 207.09896860519115,
+      "runtime_s": 29.325788497924805
+    },
+    {
+      "window": 14,
+      "t_start": 19.5,
+      "t_end": 21.0,
+      "k_used": 1,
+      "phase_cap": 4,
+      "mode": "adaptive",
+      "mae_C": 202.72692667536984,
+      "runtime_s": 29.65858745574951
+    },
+    {
+      "window": 15,
+      "t_start": 21.0,
+      "t_end": 22.5,
+      "k_used": 1,
+      "phase_cap": 5,
+      "mode": "adaptive",
+      "mae_C": 200.10046734302648,
+      "runtime_s": 28.55051016807556
+    },
+    {
+      "window": 16,
+      "t_start": 22.5,
+      "t_end": 24.0,
+      "k_used": 1,
+      "phase_cap": 5,
+      "mode": "adaptive",
+      "mae_C": 199.6361674657554,
+      "runtime_s": 28.187079668045044
+    },
+    {
+      "window": 17,
+      "t_start": 24.0,
+      "t_end": 25.5,
+      "k_used": 1,
+      "phase_cap": 5,
+      "mode": "adaptive",
+      "mae_C": 199.34352591779393,
+      "runtime_s": 27.86014676094055
+    },
+    {
+      "window": 18,
+      "t_start": 25.5,
+      "t_end": 27.0,
+      "k_used": 1,
+      "phase_cap": 5,
+      "mode": "adaptive",
+      "mae_C": 199.23430678430395,
+      "runtime_s": 27.576719760894775
+    },
+    {
+      "window": 19,
+      "t_start": 27.0,
+      "t_end": 28.5,
+      "k_used": 1,
+      "phase_cap": 5,
+      "mode": "adaptive",
+      "mae_C": 199.51819145113467,
+      "runtime_s": 28.396868467330933
+    },
+    {
+      "window": 20,
+      "t_start": 28.5,
+      "t_end": 30.0,
+      "k_used": 1,
+      "phase_cap": 5,
+      "mode": "adaptive",
+      "mae_C": 199.69842294528127,
+      "runtime_s": 27.752706050872803
+    }
+  ],
+  "controller": {
+    "k_init": 1,
+    "k_min": 1,
+    "k_max": 5,
+    "thresh_up": 20.0,
+    "thresh_down": 35.0,
+    "burnin_windows": 2,
+    "burnin_k": 1,
+    "promote_streak": 2,
+    "early_until": 10.0,
+    "mid_until": 20.0,
+    "early_k_max": 2,
+    "mid_k_max": 4,
+    "late_k_max": 5
+  },
+  "train_config": {
+    "n_domain": 12000,
+    "n_bc": 2400,
+    "n_epochs": 2000,
+    "lr": 0.0008,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 100,
+    "n_eval": 4000,
+    "use_end_supervision": false
+  },
+  "total_s": 585.2983272075653
+}

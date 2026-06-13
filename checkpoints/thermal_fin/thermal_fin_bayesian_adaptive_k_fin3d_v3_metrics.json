@@ -1,0 +1,87 @@
+{
+  "domain": "thermal_fin",
+  "arch": "bayesian",
+  "dim": 3,
+  "run_tag": "adaptive_k_fin3d_v3",
+  "mean_mae": 11.753450800923284,
+  "n_windows": 4,
+  "fem_savings_pct": 80.0,
+  "k_schedule": [
+    5,
+    5,
+    5,
+    5
+  ],
+  "windows": [
+    {
+      "window": 1,
+      "t_start": 0.0,
+      "t_end": 7.5,
+      "k_used": 5,
+      "phase_cap": 5,
+      "mode": "burn-in",
+      "mae_C": 22.493490284194564,
+      "l2_rel": 0.08348144531172222,
+      "runtime_s": 27.703619480133057
+    },
+    {
+      "window": 2,
+      "t_start": 7.5,
+      "t_end": 15.0,
+      "k_used": 5,
+      "phase_cap": 5,
+      "mode": "adaptive",
+      "mae_C": 11.67446340127926,
+      "l2_rel": 0.06452942738585435,
+      "runtime_s": 28.528294563293457
+    },
+    {
+      "window": 3,
+      "t_start": 15.0,
+      "t_end": 22.5,
+      "k_used": 5,
+      "phase_cap": 5,
+      "mode": "adaptive",
+      "mae_C": 7.9517787738214905,
+      "l2_rel": 0.06054185002373377,
+      "runtime_s": 27.715891361236572
+    },
+    {
+      "window": 4,
+      "t_start": 22.5,
+      "t_end": 30.0,
+      "k_used": 5,
+      "phase_cap": 5,
+      "mode": "adaptive",
+      "mae_C": 4.894070744397823,
+      "l2_rel": 0.0474257555961779,
+      "runtime_s": 27.358935356140137
+    }
+  ],
+  "controller": {
+    "k_init": 5,
+    "k_min": 1,
+    "k_max": 5,
+    "thresh_up": 999.0,
+    "thresh_down": 14.0,
+    "burnin_windows": 1,
+    "burnin_k": 5,
+    "promote_streak": 2,
+    "early_until": 10.0,
+    "mid_until": 20.0,
+    "early_k_max": 5,
+    "mid_k_max": 5,
+    "late_k_max": 5
+  },
+  "train_config": {
+    "n_domain": 12000,
+    "n_bc": 2400,
+    "n_epochs": 2000,
+    "lr": 0.0008,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 100,
+    "n_eval": 4000,
+    "use_end_supervision": true
+  },
+  "total_s": 112.61000776290894
+}

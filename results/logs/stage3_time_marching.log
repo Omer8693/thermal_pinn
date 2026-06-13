@@ -1,0 +1,68 @@
+2026-05-23 21:55:01 [stage3_time_marching][all][pinn][k=-][s=-] INFO Stage 3B time-marching PINN | geometries=['square'] | epochs/step=5 | lbfgs/step=0
+2026-05-23 21:55:03 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 01 [0.0 -> 0.5] MAE=78.763 C L2=0.2061 max=136.007 C
+2026-05-23 21:55:03 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 02 [0.5 -> 1.0] MAE=111.571 C L2=0.4438 max=249.404 C
+2026-05-23 21:55:05 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   done: steps=2 MAE_mean=95.167 C L2_mean=0.3249 max=249.404 C time=1.7 s
+2026-05-23 21:55:05 [stage3_time_marching][all][pinn][k=-][s=-] INFO Saved summary: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/pinn_time_marching/stage3_time_marching_summary.csv
+2026-05-23 21:56:22 [stage3_time_marching][all][pinn][k=-][s=-] INFO Stage 3B time-marching PINN | geometries=['square'] | epochs/step=300 | lbfgs/step=0
+2026-05-23 21:56:29 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 01 [0.0 -> 0.5] MAE=46.596 C L2=0.1246 max=105.110 C
+2026-05-23 21:56:34 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 02 [0.5 -> 1.0] MAE=51.534 C L2=0.1839 max=86.473 C
+2026-05-23 21:56:40 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 03 [1.0 -> 1.5] MAE=51.080 C L2=0.2482 max=87.864 C
+2026-05-23 21:56:45 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 04 [1.5 -> 2.0] MAE=14.596 C L2=0.1152 max=58.700 C
+2026-05-23 21:56:51 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 05 [2.0 -> 2.5] MAE=7.037 C L2=0.0734 max=25.857 C
+2026-05-23 21:56:56 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 06 [2.5 -> 3.0] MAE=21.695 C L2=0.2597 max=50.844 C
+2026-05-23 21:57:01 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 07 [3.0 -> 3.5] MAE=61.390 C L2=0.8864 max=97.254 C
+2026-05-23 21:57:07 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 08 [3.5 -> 4.0] MAE=65.182 C L2=1.1768 max=106.753 C
+2026-05-23 21:57:12 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 09 [4.0 -> 4.5] MAE=22.937 C L2=0.5463 max=60.943 C
+2026-05-23 21:57:17 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 10 [4.5 -> 5.0] MAE=8.912 C L2=0.2879 max=41.730 C
+2026-05-23 21:57:23 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 11 [5.0 -> 5.5] MAE=6.883 C L2=0.2630 max=30.863 C
+2026-05-23 21:57:28 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 12 [5.5 -> 6.0] MAE=29.960 C L2=1.0653 max=58.045 C
+2026-05-23 21:57:34 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 13 [6.0 -> 6.5] MAE=43.641 C L2=1.6467 max=69.194 C
+2026-05-23 21:57:40 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 14 [6.5 -> 7.0] MAE=23.846 C L2=1.0425 max=64.464 C
+2026-05-23 21:57:45 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 15 [7.0 -> 7.5] MAE=10.988 C L2=0.5970 max=47.545 C
+2026-05-23 21:57:51 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 16 [7.5 -> 8.0] MAE=27.766 C L2=1.2643 max=49.832 C
+2026-05-23 21:57:56 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 17 [8.0 -> 8.5] MAE=60.420 C L2=2.8131 max=101.554 C
+2026-05-23 21:58:01 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 18 [8.5 -> 9.0] MAE=28.735 C L2=1.3972 max=51.779 C
+2026-05-23 21:58:07 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 19 [9.0 -> 9.5] MAE=12.711 C L2=0.7408 max=47.209 C
+2026-05-23 21:58:12 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 20 [9.5 -> 10.0] MAE=24.824 C L2=1.2497 max=47.369 C
+2026-05-23 21:58:17 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 21 [10.0 -> 10.5] MAE=37.317 C L2=1.8627 max=63.159 C
+2026-05-23 21:58:22 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 22 [10.5 -> 11.0] MAE=12.044 C L2=0.6995 max=49.565 C
+2026-05-23 21:58:28 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 23 [11.0 -> 11.5] MAE=7.235 C L2=0.4422 max=27.071 C
+2026-05-23 21:58:33 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 24 [11.5 -> 12.0] MAE=41.807 C L2=2.1383 max=76.597 C
+2026-05-23 21:58:39 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 25 [12.0 -> 12.5] MAE=63.655 C L2=3.2140 max=95.324 C
+2026-05-23 21:58:46 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 26 [12.5 -> 13.0] MAE=66.577 C L2=3.3379 max=93.039 C
+2026-05-23 21:58:51 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 27 [13.0 -> 13.5] MAE=48.531 C L2=2.4945 max=83.947 C
+2026-05-23 21:58:57 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 28 [13.5 -> 14.0] MAE=35.357 C L2=1.8102 max=62.307 C
+2026-05-23 21:59:02 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 29 [14.0 -> 14.5] MAE=10.051 C L2=0.6323 max=39.323 C
+2026-05-23 21:59:08 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 30 [14.5 -> 15.0] MAE=12.339 C L2=0.7029 max=32.628 C
+2026-05-23 21:59:13 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 31 [15.0 -> 15.5] MAE=8.654 C L2=0.5362 max=44.427 C
+2026-05-23 21:59:18 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 32 [15.5 -> 16.0] MAE=26.037 C L2=1.3513 max=49.017 C
+2026-05-23 21:59:24 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 33 [16.0 -> 16.5] MAE=38.231 C L2=1.9592 max=65.164 C
+2026-05-23 21:59:29 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 34 [16.5 -> 17.0] MAE=26.823 C L2=1.4085 max=70.060 C
+2026-05-23 21:59:35 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 35 [17.0 -> 17.5] MAE=12.758 C L2=0.7776 max=46.926 C
+2026-05-23 21:59:40 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 36 [17.5 -> 18.0] MAE=6.079 C L2=0.3742 max=23.400 C
+2026-05-23 21:59:46 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 37 [18.0 -> 18.5] MAE=11.291 C L2=0.7022 max=37.572 C
+2026-05-23 21:59:51 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 38 [18.5 -> 19.0] MAE=11.086 C L2=0.6416 max=39.919 C
+2026-05-23 21:59:57 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 39 [19.0 -> 19.5] MAE=37.973 C L2=2.0260 max=82.311 C
+2026-05-23 22:00:02 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 40 [19.5 -> 20.0] MAE=33.145 C L2=1.7581 max=76.526 C
+2026-05-23 22:00:08 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 41 [20.0 -> 20.5] MAE=53.226 C L2=2.6969 max=80.074 C
+2026-05-23 22:00:13 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 42 [20.5 -> 21.0] MAE=33.743 C L2=1.7230 max=58.901 C
+2026-05-23 22:00:19 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 43 [21.0 -> 21.5] MAE=13.314 C L2=0.7971 max=39.776 C
+2026-05-23 22:00:24 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 44 [21.5 -> 22.0] MAE=41.397 C L2=2.1424 max=81.859 C
+2026-05-23 22:00:30 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 45 [22.0 -> 22.5] MAE=71.149 C L2=3.6028 max=105.079 C
+2026-05-23 22:00:35 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 46 [22.5 -> 23.0] MAE=51.432 C L2=2.5919 max=68.955 C
+2026-05-23 22:00:41 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 47 [23.0 -> 23.5] MAE=22.301 C L2=1.2144 max=51.982 C
+2026-05-23 22:00:47 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 48 [23.5 -> 24.0] MAE=53.265 C L2=2.7292 max=89.628 C
+2026-05-23 22:00:52 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 49 [24.0 -> 24.5] MAE=33.687 C L2=1.7784 max=66.446 C
+2026-05-23 22:00:57 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 50 [24.5 -> 25.0] MAE=15.117 C L2=0.8319 max=45.361 C
+2026-05-23 22:01:03 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 51 [25.0 -> 25.5] MAE=45.510 C L2=2.3242 max=72.666 C
+2026-05-23 22:01:09 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 52 [25.5 -> 26.0] MAE=38.395 C L2=2.0005 max=75.364 C
+2026-05-23 22:01:14 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 53 [26.0 -> 26.5] MAE=12.606 C L2=0.7750 max=57.319 C
+2026-05-23 22:01:20 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 54 [26.5 -> 27.0] MAE=41.804 C L2=2.1992 max=84.759 C
+2026-05-23 22:01:25 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 55 [27.0 -> 27.5] MAE=28.972 C L2=1.4933 max=53.601 C
+2026-05-23 22:01:31 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 56 [27.5 -> 28.0] MAE=11.391 C L2=0.7539 max=57.554 C
+2026-05-23 22:01:36 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 57 [28.0 -> 28.5] MAE=9.519 C L2=0.5889 max=36.856 C
+2026-05-23 22:01:42 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 58 [28.5 -> 29.0] MAE=9.793 C L2=0.6140 max=40.520 C
+2026-05-23 22:01:48 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 59 [29.0 -> 29.5] MAE=10.570 C L2=0.6766 max=42.121 C
+2026-05-23 22:01:53 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   step 60 [29.5 -> 30.0] MAE=11.175 C L2=0.6728 max=36.071 C
+2026-05-23 22:01:59 [stage3_time_marching][all][pinn][k=-][s=-] INFO square   done: steps=60 MAE_mean=29.601 C L2_mean=1.2843 max=106.753 C time=331.4 s
+2026-05-23 22:01:59 [stage3_time_marching][all][pinn][k=-][s=-] INFO Saved summary: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/pinn_time_marching/stage3_time_marching_summary.csv

@@ -1,0 +1,275 @@
+nohup: ignoring input
+2026-05-28 22:31:15 [pinn_trainer][square][pinn_only_bayesian][k=1][s=0] INFO Training start: t=[0.0,1.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:31:17 [pinn_trainer][square][pinn_only_bayesian][k=1][s=0] INFO Adam     1/800  loss=1.6543e+01  pde=9.0649e+00  bc=1.4751e+00  ic=1.0271e-02  fc=0.0000e+00
+2026-05-28 22:31:26 [pinn_trainer][square][pinn_only_bayesian][k=1][s=0] INFO Adam   500/800  loss=1.1927e-01  pde=2.2416e-02  bc=1.7618e-02  ic=8.7628e-04  fc=0.0000e+00
+2026-05-28 22:31:33 [pinn_trainer][square][pinn_only_bayesian][k=1][s=0] INFO L-BFGS   50/50  loss=7.2764e-02
+2026-05-28 22:31:33 [pinn_trainer][square][pinn_only_bayesian][k=1][s=0] INFO Training done in 17.5 s
+2026-05-28 22:31:33 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 01 [0.0→1.5 s]  MAE=30.769°C  L2=0.1613
+2026-05-28 22:31:33 [pinn_trainer][square][pinn_only_bayesian][k=2][s=0] INFO Training start: t=[1.5,3.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:31:33 [pinn_trainer][square][pinn_only_bayesian][k=2][s=0] INFO Adam     1/800  loss=2.2921e+01  pde=2.0864e+01  bc=3.8514e-01  ic=1.3153e-02  fc=0.0000e+00
+2026-05-28 22:31:42 [pinn_trainer][square][pinn_only_bayesian][k=2][s=0] INFO Adam   500/800  loss=3.1863e-02  pde=8.6407e-03  bc=3.7491e-03  ic=4.4766e-04  fc=0.0000e+00
+2026-05-28 22:31:49 [pinn_trainer][square][pinn_only_bayesian][k=2][s=0] INFO L-BFGS   50/50  loss=1.0788e-02
+2026-05-28 22:31:49 [pinn_trainer][square][pinn_only_bayesian][k=2][s=0] INFO Training done in 16.1 s
+2026-05-28 22:31:49 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 02 [1.5→3.0 s]  MAE=19.686°C  L2=0.2797
+2026-05-28 22:31:49 [pinn_trainer][square][pinn_only_bayesian][k=3][s=0] INFO Training start: t=[3.0,4.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:31:49 [pinn_trainer][square][pinn_only_bayesian][k=3][s=0] INFO Adam     1/800  loss=1.7074e+01  pde=1.3446e+01  bc=7.0028e-01  ic=1.2617e-02  fc=0.0000e+00
+2026-05-28 22:31:58 [pinn_trainer][square][pinn_only_bayesian][k=3][s=0] INFO Adam   500/800  loss=3.0926e-03  pde=6.9729e-04  bc=4.4095e-04  ic=1.9062e-05  fc=0.0000e+00
+2026-05-28 22:32:05 [pinn_trainer][square][pinn_only_bayesian][k=3][s=0] INFO L-BFGS   50/50  loss=2.1666e-03
+2026-05-28 22:32:05 [pinn_trainer][square][pinn_only_bayesian][k=3][s=0] INFO Training done in 16.1 s
+2026-05-28 22:32:05 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 03 [3.0→4.5 s]  MAE=10.848°C  L2=0.4178
+2026-05-28 22:32:05 [pinn_trainer][square][pinn_only_bayesian][k=4][s=0] INFO Training start: t=[4.5,6.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:32:05 [pinn_trainer][square][pinn_only_bayesian][k=4][s=0] INFO Adam     1/800  loss=5.0548e+01  pde=4.1034e+01  bc=1.8223e+00  ic=4.0219e-02  fc=0.0000e+00
+2026-05-28 22:32:15 [pinn_trainer][square][pinn_only_bayesian][k=4][s=0] INFO Adam   500/800  loss=2.0257e-04  pde=1.5375e-05  bc=3.4982e-05  ic=1.2281e-06  fc=0.0000e+00
+2026-05-28 22:32:21 [pinn_trainer][square][pinn_only_bayesian][k=4][s=0] INFO L-BFGS   50/50  loss=1.7586e-04
+2026-05-28 22:32:21 [pinn_trainer][square][pinn_only_bayesian][k=4][s=0] INFO Training done in 16.3 s
+2026-05-28 22:32:21 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 04 [4.5→6.0 s]  MAE=5.040°C  L2=0.5266
+2026-05-28 22:32:21 [pinn_trainer][square][pinn_only_bayesian][k=5][s=0] INFO Training start: t=[6.0,7.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:32:22 [pinn_trainer][square][pinn_only_bayesian][k=5][s=0] INFO Adam     1/800  loss=1.2209e+01  pde=9.8216e+00  bc=4.5849e-01  ic=9.4707e-03  fc=0.0000e+00
+2026-05-28 22:32:31 [pinn_trainer][square][pinn_only_bayesian][k=5][s=0] INFO Adam   500/800  loss=3.2874e-05  pde=1.0655e-05  bc=3.9011e-06  ic=2.7131e-07  fc=0.0000e+00
+2026-05-28 22:32:38 [pinn_trainer][square][pinn_only_bayesian][k=5][s=0] INFO L-BFGS   50/50  loss=2.4674e-05
+2026-05-28 22:32:38 [pinn_trainer][square][pinn_only_bayesian][k=5][s=0] INFO Training done in 16.3 s
+2026-05-28 22:32:38 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 05 [6.0→7.5 s]  MAE=2.223°C  L2=0.6297
+2026-05-28 22:32:38 [pinn_trainer][square][pinn_only_bayesian][k=6][s=0] INFO Training start: t=[7.5,9.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:32:38 [pinn_trainer][square][pinn_only_bayesian][k=6][s=0] INFO Adam     1/800  loss=5.4560e+01  pde=5.2217e+01  bc=4.3154e-01  ic=1.8552e-02  fc=0.0000e+00
+2026-05-28 22:32:47 [pinn_trainer][square][pinn_only_bayesian][k=6][s=0] INFO Adam   500/800  loss=4.2682e-06  pde=1.2736e-06  bc=4.7465e-07  ic=6.2135e-08  fc=0.0000e+00
+2026-05-28 22:32:53 [pinn_trainer][square][pinn_only_bayesian][k=6][s=0] INFO L-BFGS   50/50  loss=3.5397e-06
+2026-05-28 22:32:53 [pinn_trainer][square][pinn_only_bayesian][k=6][s=0] INFO Training done in 15.1 s
+2026-05-28 22:32:53 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 06 [7.5→9.0 s]  MAE=0.839°C  L2=0.6444
+2026-05-28 22:32:53 [pinn_trainer][square][pinn_only_bayesian][k=7][s=0] INFO Training start: t=[9.0,10.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:32:53 [pinn_trainer][square][pinn_only_bayesian][k=7][s=0] INFO Adam     1/800  loss=2.1577e+01  pde=1.8765e+01  bc=5.3732e-01  ic=1.2548e-02  fc=0.0000e+00
+2026-05-28 22:33:02 [pinn_trainer][square][pinn_only_bayesian][k=7][s=0] INFO Adam   500/800  loss=5.6481e-07  pde=1.5888e-07  bc=6.5946e-08  ic=7.6203e-09  fc=0.0000e+00
+2026-05-28 22:33:08 [pinn_trainer][square][pinn_only_bayesian][k=7][s=0] INFO L-BFGS   50/50  loss=4.9131e-07
+2026-05-28 22:33:08 [pinn_trainer][square][pinn_only_bayesian][k=7][s=0] INFO Training done in 15.0 s
+2026-05-28 22:33:08 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 07 [9.0→10.5 s]  MAE=0.313°C  L2=0.6519
+2026-05-28 22:33:08 [pinn_trainer][square][pinn_only_bayesian][k=8][s=0] INFO Training start: t=[10.5,12.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:33:08 [pinn_trainer][square][pinn_only_bayesian][k=8][s=0] INFO Adam     1/800  loss=4.8611e+01  pde=4.5805e+01  bc=4.9525e-01  ic=3.3030e-02  fc=0.0000e+00
+2026-05-28 22:33:17 [pinn_trainer][square][pinn_only_bayesian][k=8][s=0] INFO Adam   500/800  loss=2.2209e-07  pde=1.3357e-07  bc=1.4017e-08  ic=1.8436e-09  fc=0.0000e+00
+2026-05-28 22:33:23 [pinn_trainer][square][pinn_only_bayesian][k=8][s=0] INFO L-BFGS   50/50  loss=1.8055e-07
+2026-05-28 22:33:23 [pinn_trainer][square][pinn_only_bayesian][k=8][s=0] INFO Training done in 14.9 s
+2026-05-28 22:33:23 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 08 [10.5→12.0 s]  MAE=0.109°C  L2=0.6145
+2026-05-28 22:33:23 [pinn_trainer][square][pinn_only_bayesian][k=9][s=0] INFO Training start: t=[12.0,13.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:33:23 [pinn_trainer][square][pinn_only_bayesian][k=9][s=0] INFO Adam     1/800  loss=1.5492e+02  pde=1.5396e+02  bc=1.3778e-02  ic=8.9565e-02  fc=0.0000e+00
+2026-05-28 22:33:32 [pinn_trainer][square][pinn_only_bayesian][k=9][s=0] INFO Adam   500/800  loss=1.1426e-07  pde=7.1261e-08  bc=7.1388e-09  ic=7.3062e-10  fc=0.0000e+00
+2026-05-28 22:33:38 [pinn_trainer][square][pinn_only_bayesian][k=9][s=0] INFO L-BFGS   50/50  loss=1.0359e-07
+2026-05-28 22:33:38 [pinn_trainer][square][pinn_only_bayesian][k=9][s=0] INFO Training done in 15.1 s
+2026-05-28 22:33:38 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 09 [12.0→13.5 s]  MAE=0.030°C  L2=0.4664
+2026-05-28 22:33:38 [pinn_trainer][square][pinn_only_bayesian][k=10][s=0] INFO Training start: t=[13.5,15.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:33:38 [pinn_trainer][square][pinn_only_bayesian][k=10][s=0] INFO Adam     1/800  loss=7.0278e+01  pde=5.4482e+01  bc=3.0582e+00  ic=5.0472e-02  fc=0.0000e+00
+2026-05-28 22:33:47 [pinn_trainer][square][pinn_only_bayesian][k=10][s=0] INFO Adam   500/800  loss=7.9486e-08  pde=6.3714e-08  bc=3.0854e-09  ic=3.4466e-11  fc=0.0000e+00
+2026-05-28 22:33:53 [pinn_trainer][square][pinn_only_bayesian][k=10][s=0] INFO L-BFGS   50/50  loss=7.0017e-08
+2026-05-28 22:33:53 [pinn_trainer][square][pinn_only_bayesian][k=10][s=0] INFO Training done in 14.9 s
+2026-05-28 22:33:53 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 10 [13.5→15.0 s]  MAE=0.014°C  L2=0.5769
+2026-05-28 22:33:53 [pinn_trainer][square][pinn_only_bayesian][k=11][s=0] INFO Training start: t=[15.0,16.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:33:53 [pinn_trainer][square][pinn_only_bayesian][k=11][s=0] INFO Adam     1/800  loss=1.1844e+02  pde=1.0858e+02  bc=1.8432e+00  ic=6.4180e-02  fc=0.0000e+00
+2026-05-28 22:34:02 [pinn_trainer][square][pinn_only_bayesian][k=11][s=0] INFO Adam   500/800  loss=8.8682e-08  pde=2.8892e-08  bc=1.1806e-08  ic=7.6218e-11  fc=0.0000e+00
+2026-05-28 22:34:08 [pinn_trainer][square][pinn_only_bayesian][k=11][s=0] INFO L-BFGS   50/50  loss=7.2583e-08
+2026-05-28 22:34:08 [pinn_trainer][square][pinn_only_bayesian][k=11][s=0] INFO Training done in 15.1 s
+2026-05-28 22:34:08 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 11 [15.0→16.5 s]  MAE=0.007°C  L2=0.8640
+2026-05-28 22:34:08 [pinn_trainer][square][pinn_only_bayesian][k=12][s=0] INFO Training start: t=[16.5,18.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:34:08 [pinn_trainer][square][pinn_only_bayesian][k=12][s=0] INFO Adam     1/800  loss=3.1038e+01  pde=2.9772e+01  bc=2.1921e-01  ic=1.6985e-02  fc=0.0000e+00
+2026-05-28 22:34:17 [pinn_trainer][square][pinn_only_bayesian][k=12][s=0] INFO Adam   500/800  loss=3.2404e-08  pde=3.0203e-08  bc=3.6504e-10  ic=3.7548e-11  fc=0.0000e+00
+2026-05-28 22:34:23 [pinn_trainer][square][pinn_only_bayesian][k=12][s=0] INFO L-BFGS   50/50  loss=2.8585e-08
+2026-05-28 22:34:23 [pinn_trainer][square][pinn_only_bayesian][k=12][s=0] INFO Training done in 15.1 s
+2026-05-28 22:34:23 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 12 [16.5→18.0 s]  MAE=0.002°C  L2=0.5921
+2026-05-28 22:34:23 [pinn_trainer][square][pinn_only_bayesian][k=13][s=0] INFO Training start: t=[18.0,19.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:34:23 [pinn_trainer][square][pinn_only_bayesian][k=13][s=0] INFO Adam     1/800  loss=3.5795e+01  pde=3.1084e+01  bc=8.9389e-01  ic=2.4187e-02  fc=0.0000e+00
+2026-05-28 22:34:32 [pinn_trainer][square][pinn_only_bayesian][k=13][s=0] INFO Adam   500/800  loss=8.3312e-08  pde=5.4175e-08  bc=5.7080e-09  ic=5.9755e-11  fc=0.0000e+00
+2026-05-28 22:34:38 [pinn_trainer][square][pinn_only_bayesian][k=13][s=0] INFO L-BFGS   50/50  loss=6.4725e-08
+2026-05-28 22:34:38 [pinn_trainer][square][pinn_only_bayesian][k=13][s=0] INFO Training done in 15.4 s
+2026-05-28 22:34:38 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 13 [18.0→19.5 s]  MAE=0.005°C  L2=4.8257
+2026-05-28 22:34:38 [pinn_trainer][square][pinn_only_bayesian][k=14][s=0] INFO Training start: t=[19.5,21.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:34:39 [pinn_trainer][square][pinn_only_bayesian][k=14][s=0] INFO Adam     1/800  loss=1.3987e+02  pde=1.3551e+02  bc=7.2689e-01  ic=7.3197e-02  fc=0.0000e+00
+2026-05-28 22:34:48 [pinn_trainer][square][pinn_only_bayesian][k=14][s=0] INFO Adam   500/800  loss=5.8111e-08  pde=4.6298e-08  bc=2.0417e-09  ic=1.6043e-10  fc=0.0000e+00
+2026-05-28 22:34:54 [pinn_trainer][square][pinn_only_bayesian][k=14][s=0] INFO L-BFGS   50/50  loss=5.0007e-08
+2026-05-28 22:34:54 [pinn_trainer][square][pinn_only_bayesian][k=14][s=0] INFO Training done in 15.3 s
+2026-05-28 22:34:54 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 14 [19.5→21.0 s]  MAE=0.007°C  L2=15.8757
+2026-05-28 22:34:54 [pinn_trainer][square][pinn_only_bayesian][k=15][s=0] INFO Training start: t=[21.0,22.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:34:54 [pinn_trainer][square][pinn_only_bayesian][k=15][s=0] INFO Adam     1/800  loss=3.9044e+01  pde=3.2489e+01  bc=1.2611e+00  ic=2.4904e-02  fc=0.0000e+00
+2026-05-28 22:35:03 [pinn_trainer][square][pinn_only_bayesian][k=15][s=0] INFO Adam   500/800  loss=1.8186e-07  pde=1.1088e-07  bc=1.3279e-08  ic=4.5824e-10  fc=0.0000e+00
+2026-05-28 22:35:09 [pinn_trainer][square][pinn_only_bayesian][k=15][s=0] INFO L-BFGS   50/50  loss=1.4336e-07
+2026-05-28 22:35:09 [pinn_trainer][square][pinn_only_bayesian][k=15][s=0] INFO Training done in 15.2 s
+2026-05-28 22:35:09 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 15 [21.0→22.5 s]  MAE=0.006°C  L2=42.2086
+2026-05-28 22:35:09 [pinn_trainer][square][pinn_only_bayesian][k=16][s=0] INFO Training start: t=[22.5,24.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:35:09 [pinn_trainer][square][pinn_only_bayesian][k=16][s=0] INFO Adam     1/800  loss=3.3627e+01  pde=3.0624e+01  bc=5.6258e-01  ic=1.9003e-02  fc=0.0000e+00
+2026-05-28 22:35:18 [pinn_trainer][square][pinn_only_bayesian][k=16][s=0] INFO Adam   500/800  loss=8.1586e-08  pde=4.6827e-08  bc=5.7038e-09  ic=6.2402e-10  fc=0.0000e+00
+2026-05-28 22:35:24 [pinn_trainer][square][pinn_only_bayesian][k=16][s=0] INFO L-BFGS   50/50  loss=7.2190e-08
+2026-05-28 22:35:24 [pinn_trainer][square][pinn_only_bayesian][k=16][s=0] INFO Training done in 15.3 s
+2026-05-28 22:35:24 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 16 [22.5→24.0 s]  MAE=0.012°C  L2=196.4496
+2026-05-28 22:35:24 [pinn_trainer][square][pinn_only_bayesian][k=17][s=0] INFO Training start: t=[24.0,25.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:35:24 [pinn_trainer][square][pinn_only_bayesian][k=17][s=0] INFO Adam     1/800  loss=3.4326e+01  pde=3.3085e+01  bc=2.0419e-01  ic=2.2057e-02  fc=0.0000e+00
+2026-05-28 22:35:34 [pinn_trainer][square][pinn_only_bayesian][k=17][s=0] INFO Adam   500/800  loss=5.7062e-08  pde=4.2015e-08  bc=2.9420e-09  ic=3.3648e-11  fc=0.0000e+00
+2026-05-28 22:35:39 [pinn_trainer][square][pinn_only_bayesian][k=17][s=0] INFO L-BFGS   50/50  loss=4.5506e-08
+2026-05-28 22:35:39 [pinn_trainer][square][pinn_only_bayesian][k=17][s=0] INFO Training done in 15.3 s
+2026-05-28 22:35:39 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 17 [24.0→25.5 s]  MAE=0.002°C  L2=128.4806
+2026-05-28 22:35:39 [pinn_trainer][square][pinn_only_bayesian][k=18][s=0] INFO Training start: t=[25.5,27.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:35:40 [pinn_trainer][square][pinn_only_bayesian][k=18][s=0] INFO Adam     1/800  loss=8.5143e+01  pde=8.2803e+01  bc=3.5872e-01  ic=5.4679e-02  fc=0.0000e+00
+2026-05-28 22:35:49 [pinn_trainer][square][pinn_only_bayesian][k=18][s=0] INFO Adam   500/800  loss=6.2426e-08  pde=4.3423e-08  bc=3.3232e-09  ic=2.3874e-10  fc=0.0000e+00
+2026-05-28 22:35:55 [pinn_trainer][square][pinn_only_bayesian][k=18][s=0] INFO L-BFGS   50/50  loss=4.9798e-08
+2026-05-28 22:35:55 [pinn_trainer][square][pinn_only_bayesian][k=18][s=0] INFO Training done in 15.3 s
+2026-05-28 22:35:55 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 18 [25.5→27.0 s]  MAE=0.003°C  L2=501.9611
+2026-05-28 22:35:55 [pinn_trainer][square][pinn_only_bayesian][k=19][s=0] INFO Training start: t=[27.0,28.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:35:55 [pinn_trainer][square][pinn_only_bayesian][k=19][s=0] INFO Adam     1/800  loss=1.2467e+02  pde=1.2273e+02  bc=2.4407e-01  ic=7.1574e-02  fc=0.0000e+00
+2026-05-28 22:36:04 [pinn_trainer][square][pinn_only_bayesian][k=19][s=0] INFO Adam   500/800  loss=1.1650e-07  pde=8.3614e-08  bc=5.9910e-09  ic=2.9355e-10  fc=0.0000e+00
+2026-05-28 22:36:10 [pinn_trainer][square][pinn_only_bayesian][k=19][s=0] INFO L-BFGS   50/50  loss=9.0327e-08
+2026-05-28 22:36:10 [pinn_trainer][square][pinn_only_bayesian][k=19][s=0] INFO Training done in 15.2 s
+2026-05-28 22:36:10 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 19 [27.0→28.5 s]  MAE=0.006°C  L2=1980.9075
+2026-05-28 22:36:10 [pinn_trainer][square][pinn_only_bayesian][k=20][s=0] INFO Training start: t=[28.5,30.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:36:10 [pinn_trainer][square][pinn_only_bayesian][k=20][s=0] INFO Adam     1/800  loss=5.8886e+01  pde=5.2682e+01  bc=1.1909e+00  ic=2.5055e-02  fc=0.0000e+00
+2026-05-28 22:36:19 [pinn_trainer][square][pinn_only_bayesian][k=20][s=0] INFO Adam   500/800  loss=4.5748e-08  pde=2.4799e-08  bc=3.7629e-09  ic=2.1352e-10  fc=0.0000e+00
+2026-05-28 22:36:25 [pinn_trainer][square][pinn_only_bayesian][k=20][s=0] INFO L-BFGS   50/50  loss=3.6420e-08
+2026-05-28 22:36:25 [pinn_trainer][square][pinn_only_bayesian][k=20][s=0] INFO Training done in 15.0 s
+2026-05-28 22:36:25 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO square   win 20 [28.5→30.0 s]  MAE=0.009°C  L2=8219.9583
+2026-05-28 22:36:25 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO RESULT geo=square   | MAE=3.496°C | L2=554.8546 | time=310s
+2026-05-28 22:36:26 [pinn_trainer][circle][pinn_only_bayesian][k=1][s=0] INFO Training start: t=[0.0,1.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:36:26 [pinn_trainer][circle][pinn_only_bayesian][k=1][s=0] INFO Adam     1/800  loss=1.5463e+01  pde=7.9559e+00  bc=1.4835e+00  ic=8.9575e-03  fc=0.0000e+00
+2026-05-28 22:36:35 [pinn_trainer][circle][pinn_only_bayesian][k=1][s=0] INFO Adam   500/800  loss=5.8845e-01  pde=4.1658e-01  bc=3.1424e-02  ic=1.4751e-03  fc=0.0000e+00
+2026-05-28 22:36:42 [pinn_trainer][circle][pinn_only_bayesian][k=1][s=0] INFO L-BFGS   50/50  loss=9.8336e-02
+2026-05-28 22:36:42 [pinn_trainer][circle][pinn_only_bayesian][k=1][s=0] INFO Training done in 16.0 s
+2026-05-28 22:36:42 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 01 [0.0→1.5 s]  MAE=31.830°C  L2=0.1682
+2026-05-28 22:36:42 [pinn_trainer][circle][pinn_only_bayesian][k=2][s=0] INFO Training start: t=[1.5,3.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:36:42 [pinn_trainer][circle][pinn_only_bayesian][k=2][s=0] INFO Adam     1/800  loss=2.2811e+01  pde=2.0823e+01  bc=3.7390e-01  ic=1.1799e-02  fc=0.0000e+00
+2026-05-28 22:36:52 [pinn_trainer][circle][pinn_only_bayesian][k=2][s=0] INFO Adam   500/800  loss=5.1018e-02  pde=2.5573e-02  bc=4.4503e-03  ic=3.1930e-04  fc=0.0000e+00
+2026-05-28 22:36:58 [pinn_trainer][circle][pinn_only_bayesian][k=2][s=0] INFO L-BFGS   50/50  loss=1.2811e-02
+2026-05-28 22:36:58 [pinn_trainer][circle][pinn_only_bayesian][k=2][s=0] INFO Training done in 16.4 s
+2026-05-28 22:36:58 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 02 [1.5→3.0 s]  MAE=22.011°C  L2=0.3202
+2026-05-28 22:36:58 [pinn_trainer][circle][pinn_only_bayesian][k=3][s=0] INFO Training start: t=[3.0,4.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:36:59 [pinn_trainer][circle][pinn_only_bayesian][k=3][s=0] INFO Adam     1/800  loss=1.5635e+01  pde=1.1927e+01  bc=7.2176e-01  ic=9.9209e-03  fc=0.0000e+00
+2026-05-28 22:37:08 [pinn_trainer][circle][pinn_only_bayesian][k=3][s=0] INFO Adam   500/800  loss=2.7838e-03  pde=7.5189e-04  bc=3.7454e-04  ic=1.5924e-05  fc=0.0000e+00
+2026-05-28 22:37:15 [pinn_trainer][circle][pinn_only_bayesian][k=3][s=0] INFO L-BFGS   50/50  loss=1.9309e-03
+2026-05-28 22:37:15 [pinn_trainer][circle][pinn_only_bayesian][k=3][s=0] INFO Training done in 16.4 s
+2026-05-28 22:37:15 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 03 [3.0→4.5 s]  MAE=11.323°C  L2=0.4537
+2026-05-28 22:37:15 [pinn_trainer][circle][pinn_only_bayesian][k=4][s=0] INFO Training start: t=[4.5,6.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:37:15 [pinn_trainer][circle][pinn_only_bayesian][k=4][s=0] INFO Adam     1/800  loss=4.7640e+01  pde=3.7859e+01  bc=1.8839e+00  ic=3.6097e-02  fc=0.0000e+00
+2026-05-28 22:37:24 [pinn_trainer][circle][pinn_only_bayesian][k=4][s=0] INFO Adam   500/800  loss=1.6642e-04  pde=1.0897e-05  bc=2.9532e-05  ic=7.8596e-07  fc=0.0000e+00
+2026-05-28 22:37:31 [pinn_trainer][circle][pinn_only_bayesian][k=4][s=0] INFO L-BFGS   50/50  loss=1.4741e-04
+2026-05-28 22:37:31 [pinn_trainer][circle][pinn_only_bayesian][k=4][s=0] INFO Training done in 16.2 s
+2026-05-28 22:37:31 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 04 [4.5→6.0 s]  MAE=5.273°C  L2=0.5820
+2026-05-28 22:37:31 [pinn_trainer][circle][pinn_only_bayesian][k=5][s=0] INFO Training start: t=[6.0,7.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:37:31 [pinn_trainer][circle][pinn_only_bayesian][k=5][s=0] INFO Adam     1/800  loss=1.1036e+01  pde=8.5807e+00  bc=4.7475e-01  ic=8.1490e-03  fc=0.0000e+00
+2026-05-28 22:37:41 [pinn_trainer][circle][pinn_only_bayesian][k=5][s=0] INFO Adam   500/800  loss=2.6355e-05  pde=9.4050e-06  bc=2.8808e-06  ic=2.5459e-07  fc=0.0000e+00
+2026-05-28 22:37:48 [pinn_trainer][circle][pinn_only_bayesian][k=5][s=0] INFO L-BFGS   50/50  loss=2.3519e-05
+2026-05-28 22:37:48 [pinn_trainer][circle][pinn_only_bayesian][k=5][s=0] INFO Training done in 16.7 s
+2026-05-28 22:37:48 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 05 [6.0→7.5 s]  MAE=2.251°C  L2=0.6842
+2026-05-28 22:37:48 [pinn_trainer][circle][pinn_only_bayesian][k=6][s=0] INFO Training start: t=[7.5,9.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:37:48 [pinn_trainer][circle][pinn_only_bayesian][k=6][s=0] INFO Adam     1/800  loss=5.1788e+01  pde=4.9441e+01  bc=4.3551e-01  ic=1.6929e-02  fc=0.0000e+00
+2026-05-28 22:37:57 [pinn_trainer][circle][pinn_only_bayesian][k=6][s=0] INFO Adam   500/800  loss=2.2043e-06  pde=8.1074e-07  bc=2.3161e-07  ic=2.3551e-08  fc=0.0000e+00
+2026-05-28 22:38:04 [pinn_trainer][circle][pinn_only_bayesian][k=6][s=0] INFO L-BFGS   50/50  loss=1.9545e-06
+2026-05-28 22:38:04 [pinn_trainer][circle][pinn_only_bayesian][k=6][s=0] INFO Training done in 15.8 s
+2026-05-28 22:38:04 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 06 [7.5→9.0 s]  MAE=0.857°C  L2=0.7171
+2026-05-28 22:38:04 [pinn_trainer][circle][pinn_only_bayesian][k=7][s=0] INFO Training start: t=[9.0,10.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:38:04 [pinn_trainer][circle][pinn_only_bayesian][k=7][s=0] INFO Adam     1/800  loss=1.8723e+01  pde=1.5895e+01  bc=5.4582e-01  ic=9.9225e-03  fc=0.0000e+00
+2026-05-28 22:38:13 [pinn_trainer][circle][pinn_only_bayesian][k=7][s=0] INFO Adam   500/800  loss=3.4621e-07  pde=9.9980e-08  bc=3.9206e-08  ic=5.0206e-09  fc=0.0000e+00
+2026-05-28 22:38:19 [pinn_trainer][circle][pinn_only_bayesian][k=7][s=0] INFO L-BFGS   50/50  loss=3.0266e-07
+2026-05-28 22:38:19 [pinn_trainer][circle][pinn_only_bayesian][k=7][s=0] INFO Training done in 15.7 s
+2026-05-28 22:38:19 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 07 [9.0→10.5 s]  MAE=0.309°C  L2=0.7118
+2026-05-28 22:38:19 [pinn_trainer][circle][pinn_only_bayesian][k=8][s=0] INFO Training start: t=[10.5,12.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:38:20 [pinn_trainer][circle][pinn_only_bayesian][k=8][s=0] INFO Adam     1/800  loss=4.8116e+01  pde=4.5374e+01  bc=4.8217e-01  ic=3.3156e-02  fc=0.0000e+00
+2026-05-28 22:38:29 [pinn_trainer][circle][pinn_only_bayesian][k=8][s=0] INFO Adam   500/800  loss=1.0906e-07  pde=3.6093e-08  bc=1.0516e-08  ic=2.0392e-09  fc=0.0000e+00
+2026-05-28 22:38:35 [pinn_trainer][circle][pinn_only_bayesian][k=8][s=0] INFO L-BFGS   50/50  loss=9.4578e-08
+2026-05-28 22:38:35 [pinn_trainer][circle][pinn_only_bayesian][k=8][s=0] INFO Training done in 15.6 s
+2026-05-28 22:38:35 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 08 [10.5→12.0 s]  MAE=0.102°C  L2=0.6468
+2026-05-28 22:38:35 [pinn_trainer][circle][pinn_only_bayesian][k=9][s=0] INFO Training start: t=[12.0,13.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:38:35 [pinn_trainer][circle][pinn_only_bayesian][k=9][s=0] INFO Adam     1/800  loss=1.5774e+02  pde=1.5677e+02  bc=1.2748e-02  ic=9.0531e-02  fc=0.0000e+00
+2026-05-28 22:38:44 [pinn_trainer][circle][pinn_only_bayesian][k=9][s=0] INFO Adam   500/800  loss=5.4538e-08  pde=3.4684e-08  bc=3.4378e-09  ic=2.6648e-10  fc=0.0000e+00
+2026-05-28 22:38:50 [pinn_trainer][circle][pinn_only_bayesian][k=9][s=0] INFO L-BFGS   50/50  loss=5.2219e-08
+2026-05-28 22:38:50 [pinn_trainer][circle][pinn_only_bayesian][k=9][s=0] INFO Training done in 15.5 s
+2026-05-28 22:38:50 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 09 [12.0→13.5 s]  MAE=0.036°C  L2=0.6244
+2026-05-28 22:38:50 [pinn_trainer][circle][pinn_only_bayesian][k=10][s=0] INFO Training start: t=[13.5,15.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:38:51 [pinn_trainer][circle][pinn_only_bayesian][k=10][s=0] INFO Adam     1/800  loss=6.3558e+01  pde=4.7263e+01  bc=3.1827e+00  ic=3.8169e-02  fc=0.0000e+00
+2026-05-28 22:39:00 [pinn_trainer][circle][pinn_only_bayesian][k=10][s=0] INFO Adam   500/800  loss=5.3166e-08  pde=4.4859e-08  bc=1.5374e-09  ic=6.1941e-11  fc=0.0000e+00
+2026-05-28 22:39:06 [pinn_trainer][circle][pinn_only_bayesian][k=10][s=0] INFO L-BFGS   50/50  loss=4.7029e-08
+2026-05-28 22:39:06 [pinn_trainer][circle][pinn_only_bayesian][k=10][s=0] INFO Training done in 15.2 s
+2026-05-28 22:39:06 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 10 [13.5→15.0 s]  MAE=0.011°C  L2=0.5311
+2026-05-28 22:39:06 [pinn_trainer][circle][pinn_only_bayesian][k=11][s=0] INFO Training start: t=[15.0,16.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:39:06 [pinn_trainer][circle][pinn_only_bayesian][k=11][s=0] INFO Adam     1/800  loss=1.1579e+02  pde=1.0583e+02  bc=1.8750e+00  ic=5.8530e-02  fc=0.0000e+00
+2026-05-28 22:39:15 [pinn_trainer][circle][pinn_only_bayesian][k=11][s=0] INFO Adam   500/800  loss=4.1203e-08  pde=2.4338e-08  bc=3.3277e-09  ic=2.2710e-11  fc=0.0000e+00
+2026-05-28 22:39:21 [pinn_trainer][circle][pinn_only_bayesian][k=11][s=0] INFO L-BFGS   50/50  loss=4.0452e-08
+2026-05-28 22:39:21 [pinn_trainer][circle][pinn_only_bayesian][k=11][s=0] INFO Training done in 15.3 s
+2026-05-28 22:39:21 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 11 [15.0→16.5 s]  MAE=0.003°C  L2=0.4356
+2026-05-28 22:39:21 [pinn_trainer][circle][pinn_only_bayesian][k=12][s=0] INFO Training start: t=[16.5,18.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:39:21 [pinn_trainer][circle][pinn_only_bayesian][k=12][s=0] INFO Adam     1/800  loss=3.1224e+01  pde=2.9962e+01  bc=2.2045e-01  ic=1.5936e-02  fc=0.0000e+00
+2026-05-28 22:39:30 [pinn_trainer][circle][pinn_only_bayesian][k=12][s=0] INFO Adam   500/800  loss=6.5032e-08  pde=5.7947e-08  bc=1.3277e-09  ic=4.4624e-11  fc=0.0000e+00
+2026-05-28 22:39:36 [pinn_trainer][circle][pinn_only_bayesian][k=12][s=0] INFO L-BFGS   50/50  loss=5.5880e-08
+2026-05-28 22:39:36 [pinn_trainer][circle][pinn_only_bayesian][k=12][s=0] INFO Training done in 15.3 s
+2026-05-28 22:39:36 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 12 [16.5→18.0 s]  MAE=0.001°C  L2=0.2341
+2026-05-28 22:39:36 [pinn_trainer][circle][pinn_only_bayesian][k=13][s=0] INFO Training start: t=[18.0,19.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:39:37 [pinn_trainer][circle][pinn_only_bayesian][k=13][s=0] INFO Adam     1/800  loss=3.5785e+01  pde=3.1111e+01  bc=8.9325e-01  ic=2.0739e-02  fc=0.0000e+00
+2026-05-28 22:39:46 [pinn_trainer][circle][pinn_only_bayesian][k=13][s=0] INFO Adam   500/800  loss=7.6968e-08  pde=5.5476e-08  bc=4.0940e-09  ic=1.0221e-10  fc=0.0000e+00
+2026-05-28 22:39:51 [pinn_trainer][circle][pinn_only_bayesian][k=13][s=0] INFO L-BFGS   50/50  loss=7.0223e-08
+2026-05-28 22:39:51 [pinn_trainer][circle][pinn_only_bayesian][k=13][s=0] INFO Training done in 15.3 s
+2026-05-28 22:39:51 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 13 [18.0→19.5 s]  MAE=0.005°C  L2=5.5550
+2026-05-28 22:39:51 [pinn_trainer][circle][pinn_only_bayesian][k=14][s=0] INFO Training start: t=[19.5,21.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:39:52 [pinn_trainer][circle][pinn_only_bayesian][k=14][s=0] INFO Adam     1/800  loss=1.3987e+02  pde=1.3537e+02  bc=7.4894e-01  ic=7.6149e-02  fc=0.0000e+00
+2026-05-28 22:40:01 [pinn_trainer][circle][pinn_only_bayesian][k=14][s=0] INFO Adam   500/800  loss=8.1893e-08  pde=2.2233e-08  bc=1.1849e-08  ic=4.1670e-11  fc=0.0000e+00
+2026-05-28 22:40:07 [pinn_trainer][circle][pinn_only_bayesian][k=14][s=0] INFO L-BFGS   50/50  loss=7.1691e-08
+2026-05-28 22:40:07 [pinn_trainer][circle][pinn_only_bayesian][k=14][s=0] INFO Training done in 15.3 s
+2026-05-28 22:40:07 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 14 [19.5→21.0 s]  MAE=0.002°C  L2=8.1064
+2026-05-28 22:40:07 [pinn_trainer][circle][pinn_only_bayesian][k=15][s=0] INFO Training start: t=[21.0,22.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:40:07 [pinn_trainer][circle][pinn_only_bayesian][k=15][s=0] INFO Adam     1/800  loss=3.5960e+01  pde=2.9146e+01  bc=1.3222e+00  ic=2.0372e-02  fc=0.0000e+00
+2026-05-28 22:40:17 [pinn_trainer][circle][pinn_only_bayesian][k=15][s=0] INFO Adam   500/800  loss=2.8196e-08  pde=2.1234e-08  bc=1.3269e-09  ic=3.2812e-11  fc=0.0000e+00
+2026-05-28 22:40:23 [pinn_trainer][circle][pinn_only_bayesian][k=15][s=0] INFO L-BFGS   50/50  loss=2.5359e-08
+2026-05-28 22:40:23 [pinn_trainer][circle][pinn_only_bayesian][k=15][s=0] INFO Training done in 15.9 s
+2026-05-28 22:40:23 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 15 [21.0→22.5 s]  MAE=0.002°C  L2=19.7437
+2026-05-28 22:40:23 [pinn_trainer][circle][pinn_only_bayesian][k=16][s=0] INFO Training start: t=[22.5,24.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:40:23 [pinn_trainer][circle][pinn_only_bayesian][k=16][s=0] INFO Adam     1/800  loss=3.2871e+01  pde=2.9698e+01  bc=6.0162e-01  ic=1.6484e-02  fc=0.0000e+00
+2026-05-28 22:40:32 [pinn_trainer][circle][pinn_only_bayesian][k=16][s=0] INFO Adam   500/800  loss=5.6738e-08  pde=3.0873e-08  bc=5.0028e-09  ic=8.5070e-11  fc=0.0000e+00
+2026-05-28 22:40:38 [pinn_trainer][circle][pinn_only_bayesian][k=16][s=0] INFO L-BFGS   50/50  loss=4.7003e-08
+2026-05-28 22:40:38 [pinn_trainer][circle][pinn_only_bayesian][k=16][s=0] INFO Training done in 15.7 s
+2026-05-28 22:40:38 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 16 [22.5→24.0 s]  MAE=0.004°C  L2=107.6524
+2026-05-28 22:40:38 [pinn_trainer][circle][pinn_only_bayesian][k=17][s=0] INFO Training start: t=[24.0,25.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:40:39 [pinn_trainer][circle][pinn_only_bayesian][k=17][s=0] INFO Adam     1/800  loss=3.4243e+01  pde=3.2974e+01  bc=2.0849e-01  ic=2.2676e-02  fc=0.0000e+00
+2026-05-28 22:40:48 [pinn_trainer][circle][pinn_only_bayesian][k=17][s=0] INFO Adam   500/800  loss=4.4382e-08  pde=3.9826e-08  bc=7.4769e-10  ic=8.1673e-11  fc=0.0000e+00
+2026-05-28 22:40:54 [pinn_trainer][circle][pinn_only_bayesian][k=17][s=0] INFO L-BFGS   50/50  loss=3.9411e-08
+2026-05-28 22:40:54 [pinn_trainer][circle][pinn_only_bayesian][k=17][s=0] INFO Training done in 15.3 s
+2026-05-28 22:40:54 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 17 [24.0→25.5 s]  MAE=0.001°C  L2=80.9466
+2026-05-28 22:40:54 [pinn_trainer][circle][pinn_only_bayesian][k=18][s=0] INFO Training start: t=[25.5,27.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:40:54 [pinn_trainer][circle][pinn_only_bayesian][k=18][s=0] INFO Adam     1/800  loss=8.6718e+01  pde=8.4315e+01  bc=3.7547e-01  ic=5.2554e-02  fc=0.0000e+00
+2026-05-28 22:41:03 [pinn_trainer][circle][pinn_only_bayesian][k=18][s=0] INFO Adam   500/800  loss=2.2566e-08  pde=1.5993e-08  bc=1.2845e-09  ic=1.5023e-11  fc=0.0000e+00
+2026-05-28 22:41:09 [pinn_trainer][circle][pinn_only_bayesian][k=18][s=0] INFO L-BFGS   50/50  loss=2.2341e-08
+2026-05-28 22:41:09 [pinn_trainer][circle][pinn_only_bayesian][k=18][s=0] INFO Training done in 15.3 s
+2026-05-28 22:41:09 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 18 [25.5→27.0 s]  MAE=0.001°C  L2=227.2153
+2026-05-28 22:41:09 [pinn_trainer][circle][pinn_only_bayesian][k=19][s=0] INFO Training start: t=[27.0,28.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:41:09 [pinn_trainer][circle][pinn_only_bayesian][k=19][s=0] INFO Adam     1/800  loss=1.2837e+02  pde=1.2640e+02  bc=2.4922e-01  ic=7.2641e-02  fc=0.0000e+00
+2026-05-28 22:41:19 [pinn_trainer][circle][pinn_only_bayesian][k=19][s=0] INFO Adam   500/800  loss=8.0087e-08  pde=6.0338e-08  bc=3.6282e-09  ic=1.6081e-10  fc=0.0000e+00
+2026-05-28 22:41:24 [pinn_trainer][circle][pinn_only_bayesian][k=19][s=0] INFO L-BFGS   50/50  loss=7.6314e-08
+2026-05-28 22:41:24 [pinn_trainer][circle][pinn_only_bayesian][k=19][s=0] INFO Training done in 15.5 s
+2026-05-28 22:41:24 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 19 [27.0→28.5 s]  MAE=0.004°C  L2=1898.7468
+2026-05-28 22:41:24 [pinn_trainer][circle][pinn_only_bayesian][k=20][s=0] INFO Training start: t=[28.5,30.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:41:25 [pinn_trainer][circle][pinn_only_bayesian][k=20][s=0] INFO Adam     1/800  loss=5.4482e+01  pde=4.8511e+01  bc=1.1572e+00  ic=1.8478e-02  fc=0.0000e+00
+2026-05-28 22:41:34 [pinn_trainer][circle][pinn_only_bayesian][k=20][s=0] INFO Adam   500/800  loss=9.6616e-08  pde=5.6489e-08  bc=7.9531e-09  ic=3.6148e-11  fc=0.0000e+00
+2026-05-28 22:41:40 [pinn_trainer][circle][pinn_only_bayesian][k=20][s=0] INFO L-BFGS   50/50  loss=8.4314e-08
+2026-05-28 22:41:40 [pinn_trainer][circle][pinn_only_bayesian][k=20][s=0] INFO Training done in 15.7 s
+2026-05-28 22:41:40 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO circle   win 20 [28.5→30.0 s]  MAE=0.002°C  L2=2632.5015
+2026-05-28 22:41:40 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO RESULT geo=circle   | MAE=3.701°C | L2=249.3288 | time=314s
+2026-05-28 22:41:40 [pinn_trainer][lshape][pinn_only_bayesian][k=1][s=0] INFO Training start: t=[0.0,1.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:41:41 [pinn_trainer][lshape][pinn_only_bayesian][k=1][s=0] INFO Adam     1/800  loss=9.6970e+00  pde=4.8217e+00  bc=9.5769e-01  ic=8.6838e-03  fc=0.0000e+00
+2026-05-28 22:41:50 [pinn_trainer][lshape][pinn_only_bayesian][k=1][s=0] INFO Adam   500/800  loss=9.0227e-01  pde=1.3770e-01  bc=1.1295e-01  ic=1.9983e-02  fc=0.0000e+00
+2026-05-28 22:41:56 [pinn_trainer][lshape][pinn_only_bayesian][k=1][s=0] INFO L-BFGS   50/50  loss=6.8295e-01
+2026-05-28 22:41:56 [pinn_trainer][lshape][pinn_only_bayesian][k=1][s=0] INFO Training done in 15.6 s
+2026-05-28 22:41:56 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO lshape   win 01 [0.0→1.5 s]  MAE=10.085°C  L2=0.0444
+2026-05-28 22:41:56 [pinn_trainer][lshape][pinn_only_bayesian][k=2][s=0] INFO Training start: t=[1.5,3.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:41:56 [pinn_trainer][lshape][pinn_only_bayesian][k=2][s=0] INFO Adam     1/800  loss=1.5092e+01  pde=1.2745e+01  bc=4.3138e-01  ic=1.9088e-02  fc=0.0000e+00
+2026-05-28 22:42:05 [pinn_trainer][lshape][pinn_only_bayesian][k=2][s=0] INFO Adam   500/800  loss=1.8207e-01  pde=1.2539e-02  bc=2.8052e-02  ic=2.9275e-03  fc=0.0000e+00
+2026-05-28 22:42:12 [pinn_trainer][lshape][pinn_only_bayesian][k=2][s=0] INFO L-BFGS   50/50  loss=1.5455e-01
+2026-05-28 22:42:12 [pinn_trainer][lshape][pinn_only_bayesian][k=2][s=0] INFO Training done in 15.5 s
+2026-05-28 22:42:12 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO lshape   win 02 [1.5→3.0 s]  MAE=6.340°C  L2=0.0556
+2026-05-28 22:42:12 [pinn_trainer][lshape][pinn_only_bayesian][k=3][s=0] INFO Training start: t=[3.0,4.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:42:12 [pinn_trainer][lshape][pinn_only_bayesian][k=3][s=0] INFO Adam     1/800  loss=4.9240e+00  pde=3.6902e+00  bc=2.1932e-01  ic=1.3722e-02  fc=0.0000e+00
+2026-05-28 22:42:21 [pinn_trainer][lshape][pinn_only_bayesian][k=3][s=0] INFO Adam   500/800  loss=4.5039e-02  pde=3.2829e-03  bc=6.9704e-03  ic=6.9042e-04  fc=0.0000e+00
+2026-05-28 22:42:27 [pinn_trainer][lshape][pinn_only_bayesian][k=3][s=0] INFO L-BFGS   50/50  loss=3.8366e-02
+2026-05-28 22:42:27 [pinn_trainer][lshape][pinn_only_bayesian][k=3][s=0] INFO Training done in 15.5 s
+2026-05-28 22:42:27 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO lshape   win 03 [3.0→4.5 s]  MAE=3.426°C  L2=0.0613
+2026-05-28 22:42:27 [pinn_trainer][lshape][pinn_only_bayesian][k=4][s=0] INFO Training start: t=[4.5,6.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:42:27 [pinn_trainer][lshape][pinn_only_bayesian][k=4][s=0] INFO Adam     1/800  loss=2.7728e+01  pde=2.3984e+01  bc=6.8257e-01  ic=3.3129e-02  fc=0.0000e+00
+2026-05-28 22:42:36 [pinn_trainer][lshape][pinn_only_bayesian][k=4][s=0] INFO Adam   500/800  loss=1.1524e-02  pde=5.5127e-04  bc=1.8052e-03  ic=1.9463e-04  fc=0.0000e+00
+2026-05-28 22:42:43 [pinn_trainer][lshape][pinn_only_bayesian][k=4][s=0] INFO L-BFGS   50/50  loss=9.9349e-03
+2026-05-28 22:42:43 [pinn_trainer][lshape][pinn_only_bayesian][k=4][s=0] INFO Training done in 15.9 s
+2026-05-28 22:42:43 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO lshape   win 04 [4.5→6.0 s]  MAE=1.843°C  L2=0.0650
+2026-05-28 22:42:43 [pinn_trainer][lshape][pinn_only_bayesian][k=5][s=0] INFO Training start: t=[6.0,7.5]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:42:43 [pinn_trainer][lshape][pinn_only_bayesian][k=5][s=0] INFO Adam     1/800  loss=5.6860e+00  pde=4.6987e+00  bc=1.8045e-01  ic=8.5007e-03  fc=0.0000e+00
+2026-05-28 22:42:53 [pinn_trainer][lshape][pinn_only_bayesian][k=5][s=0] INFO Adam   500/800  loss=2.8164e-03  pde=2.0883e-04  bc=4.3064e-04  ic=4.5435e-05  fc=0.0000e+00
+2026-05-28 22:43:00 [pinn_trainer][lshape][pinn_only_bayesian][k=5][s=0] INFO L-BFGS   50/50  loss=2.4347e-03
+2026-05-28 22:43:00 [pinn_trainer][lshape][pinn_only_bayesian][k=5][s=0] INFO Training done in 16.7 s
+2026-05-28 22:43:00 [pinn_only_bayesian][all][pinn_only][k=-][s=-] INFO lshape   win 05 [6.0→7.5 s]  MAE=1.181°C  L2=0.0821
+2026-05-28 22:43:00 [pinn_trainer][lshape][pinn_only_bayesian][k=6][s=0] INFO Training start: t=[7.5,9.0]s  epochs_adam=800  epochs_lbfgs=50  params=92564
+2026-05-28 22:43:00 [pinn_trainer][lshape][pinn_only_bayesian][k=6][s=0] INFO Adam     1/800  loss=1.8690e+01  pde=1.7724e+01  bc=1.4727e-01  ic=2.2966e-02  fc=0.0000e+00

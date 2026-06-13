@@ -1,0 +1,98 @@
+% ── Encoding & fonts ──────────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% ── Page layout ───────────────────────────────────────────────────────────────
+\usepackage[a4paper,
+            top=25mm, bottom=25mm,
+            inner=30mm, outer=25mm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{emptypage}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+% ── Typography ────────────────────────────────────────────────────────────────
+\usepackage{microtype}
+\usepackage{lmodern}
+
+% ── Maths ─────────────────────────────────────────────────────────────────────
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{nicefrac}
+\usepackage{bm}
+\usepackage{siunitx}
+
+% ── Graphics & figures ────────────────────────────────────────────────────────
+\usepackage{graphicx}
+\graphicspath{{Figures/}{Figures/seed_results/}}
+\usepackage[export]{adjustbox}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{eso-pic}
+\usepackage{transparent}
+\raggedbottom
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\captionsetup{font=small, labelfont=bf, skip=4pt}
+\captionsetup[subfigure]{font=footnotesize, skip=2pt}
+
+% ── Tables ────────────────────────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{makecell}
+\usepackage{longtable}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.15}
+
+% ── Lists & enumerations ──────────────────────────────────────────────────────
+\usepackage{enumitem}
+
+% ── Algorithms ────────────────────────────────────────────────────────────────
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% ── Code listings ─────────────────────────────────────────────────────────────
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small, breaklines=true}
+
+% ── Bibliography (biblatex + biber) ───────────────────────────────────────────
+\usepackage[backend=biber,
+            style=ieee,
+            url=true,
+            doi=true,
+            isbn=false,
+            sorting=none,
+            maxbibnames=6]{biblatex}
+
+% Show both DOI and URL when present: DOI links to publisher, URL links to free preprint
+% (URL is suppressed only when no free preprint was found)
+
+% Make DOI a full clickable link
+\DeclareFieldFormat{doi}{%
+  \mkbibacro{DOI}\addcolon\space
+  \ifhyperref
+    {\href{https://doi.org/#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}%
+}
+
+% ── Hyperlinks — must be loaded last ─────────────────────────────────────────
+\usepackage[colorlinks=true,
+            linkcolor=black,
+            citecolor=blue,
+            urlcolor=blue,
+            pdfborder={0 0 0}]{hyperref}
+\usepackage{placeins}
+
+% ── Misc ──────────────────────────────────────────────────────────────────────
+\usepackage{comment}
+\usepackage{pdfpages}

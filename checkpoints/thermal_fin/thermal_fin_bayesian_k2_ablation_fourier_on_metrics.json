@@ -1,0 +1,93 @@
+{
+  "domain": "thermal_fin",
+  "arch": "bayesian",
+  "k": 2,
+  "dim": 3,
+  "mean_mae": 6.813656165386545,
+  "n_windows": 10,
+  "windows": [
+    {
+      "t_start": 0.0,
+      "t_end": 3.0,
+      "mae_C": 18.184310474936996,
+      "l2_rel": 0.0836267598548521,
+      "runtime_s": 42.64572095870972
+    },
+    {
+      "t_start": 3.0,
+      "t_end": 6.0,
+      "mae_C": 11.5476822922001,
+      "l2_rel": 0.06766300299955906,
+      "runtime_s": 43.703845500946045
+    },
+    {
+      "t_start": 6.0,
+      "t_end": 9.0,
+      "mae_C": 8.835627441256683,
+      "l2_rel": 0.061259497814792015,
+      "runtime_s": 43.30349612236023
+    },
+    {
+      "t_start": 9.0,
+      "t_end": 12.0,
+      "mae_C": 7.034314985013464,
+      "l2_rel": 0.060917523845554954,
+      "runtime_s": 43.091224670410156
+    },
+    {
+      "t_start": 12.0,
+      "t_end": 15.0,
+      "mae_C": 5.410396305287607,
+      "l2_rel": 0.052410938725377304,
+      "runtime_s": 42.96782946586609
+    },
+    {
+      "t_start": 15.0,
+      "t_end": 18.0,
+      "mae_C": 4.4595416953823355,
+      "l2_rel": 0.047192691311153244,
+      "runtime_s": 43.72905898094177
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 21.0,
+      "mae_C": 3.753592497550368,
+      "l2_rel": 0.041390549160381165,
+      "runtime_s": 42.72640919685364
+    },
+    {
+      "t_start": 21.0,
+      "t_end": 24.0,
+      "mae_C": 3.2522970595569993,
+      "l2_rel": 0.03961853592759264,
+      "runtime_s": 46.32039403915405
+    },
+    {
+      "t_start": 24.0,
+      "t_end": 27.0,
+      "mae_C": 2.9482952780786036,
+      "l2_rel": 0.042059006115192976,
+      "runtime_s": 43.22192597389221
+    },
+    {
+      "t_start": 27.0,
+      "t_end": 30.0,
+      "mae_C": 2.7105036246022913,
+      "l2_rel": 0.04159260536250952,
+      "runtime_s": 45.21806335449219
+    }
+  ],
+  "total_s": 438.7965898513794,
+  "checkpoint": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/thermal_fin/thermal_fin_bayesian_k2_ablation_fourier_on.pt",
+  "train_config": {
+    "n_domain": 12000,
+    "n_bc": 2400,
+    "n_epochs": 2000,
+    "lr": 0.0008,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 100,
+    "n_eval": 4000,
+    "use_end_supervision": true
+  },
+  "run_tag": "ablation_fourier_on"
+}

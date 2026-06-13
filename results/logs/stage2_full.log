@@ -1,0 +1,36 @@
+2026-05-23 21:42:01 [stage2_full][all][fem][k=-][s=-] INFO square: 61 FEM snapshots, contact sheet panels=61, t0 mean=540.0 C, tend mean=20.0 C
+2026-05-23 21:42:10 [stage2_full][all][fem][k=-][s=-] INFO Saved /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/square_fem_full_timeline.png
+2026-05-23 21:42:24 [stage2_full][all][fem][k=-][s=-] INFO Saved 61 frames to /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/frames/square
+2026-05-23 21:42:24 [stage2_full][all][fem][k=-][s=-] INFO circle: 61 FEM snapshots, contact sheet panels=61, t0 mean=540.0 C, tend mean=20.0 C
+2026-05-23 21:42:38 [stage2_full][all][fem][k=-][s=-] INFO Saved /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/circle_fem_full_timeline.png
+2026-05-23 21:42:58 [stage2_full][all][fem][k=-][s=-] INFO Saved 61 frames to /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/frames/circle
+2026-05-23 21:42:58 [stage2_full][all][fem][k=-][s=-] INFO lshape: 61 FEM snapshots, contact sheet panels=61, t0 mean=540.0 C, tend mean=20.0 C
+2026-05-23 21:43:08 [stage2_full][all][fem][k=-][s=-] INFO Saved /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/lshape_fem_full_timeline.png
+2026-05-23 21:43:24 [stage2_full][all][fem][k=-][s=-] INFO Saved 61 frames to /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/frames/lshape
+2026-05-23 21:43:24 [stage2_full][all][fem][k=-][s=-] INFO flower: 61 FEM snapshots, contact sheet panels=61, t0 mean=540.0 C, tend mean=20.0 C
+2026-05-23 21:43:34 [stage2_full][all][fem][k=-][s=-] INFO Saved /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/flower_fem_full_timeline.png
+2026-05-23 21:43:49 [stage2_full][all][fem][k=-][s=-] INFO Saved 61 frames to /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/frames/flower
+2026-05-23 21:45:53 [stage2_full][all][fem][k=-][s=-] INFO square: 61 FEM snapshots, contact sheet panels=13, t0 mean=540.0 C, tend mean=20.0 C
+2026-05-23 21:45:55 [stage2_full][all][fem][k=-][s=-] INFO Saved /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/square_fem_full_timeline.png
+2026-05-23 21:45:55 [stage2_full][all][fem][k=-][s=-] INFO circle: 61 FEM snapshots, contact sheet panels=13, t0 mean=540.0 C, tend mean=20.0 C
+2026-05-23 21:45:58 [stage2_full][all][fem][k=-][s=-] INFO Saved /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/circle_fem_full_timeline.png
+2026-05-23 21:45:58 [stage2_full][all][fem][k=-][s=-] INFO lshape: 61 FEM snapshots, contact sheet panels=13, t0 mean=540.0 C, tend mean=20.0 C
+2026-05-23 21:46:01 [stage2_full][all][fem][k=-][s=-] INFO Saved /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/lshape_fem_full_timeline.png
+2026-05-23 21:46:01 [stage2_full][all][fem][k=-][s=-] INFO flower: 61 FEM snapshots, contact sheet panels=13, t0 mean=540.0 C, tend mean=20.0 C
+2026-05-23 21:46:03 [stage2_full][all][fem][k=-][s=-] INFO Saved /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/flower_fem_full_timeline.png
+2026-05-23 21:46:37 [stage2_full][all][fem][k=-][s=-] INFO square: 61 FEM snapshots, contact sheet panels=7, t0 mean=540.0 C, tend mean=20.0 C
+2026-05-23 21:46:38 [stage2_full][all][fem][k=-][s=-] INFO Saved /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/square_fem_full_timeline.png
+2026-05-23 21:46:38 [stage2_full][all][fem][k=-][s=-] INFO circle: 61 FEM snapshots, contact sheet panels=7, t0 mean=540.0 C, tend mean=20.0 C
+2026-05-23 21:46:40 [stage2_full][all][fem][k=-][s=-] INFO Saved /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/circle_fem_full_timeline.png
+2026-05-23 21:46:40 [stage2_full][all][fem][k=-][s=-] INFO lshape: 61 FEM snapshots, contact sheet panels=7, t0 mean=540.0 C, tend mean=20.0 C
+2026-05-23 21:46:41 [stage2_full][all][fem][k=-][s=-] INFO Saved /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/lshape_fem_full_timeline.png
+2026-05-23 21:46:41 [stage2_full][all][fem][k=-][s=-] INFO flower: 61 FEM snapshots, contact sheet panels=7, t0 mean=540.0 C, tend mean=20.0 C
+2026-05-23 21:46:42 [stage2_full][all][fem][k=-][s=-] INFO Saved /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/flower_fem_full_timeline.png
+2026-05-23 21:50:05 [stage2_full][all][fem][k=-][s=-] INFO square: 61 FEM snapshots, contact sheet panels=7, t0 mean=540.0 C, tend mean=20.0 C
+2026-05-23 21:50:06 [stage2_full][all][fem][k=-][s=-] INFO Saved /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/square_fem_full_timeline.png
+2026-05-23 21:50:06 [stage2_full][all][fem][k=-][s=-] INFO circle: 61 FEM snapshots, contact sheet panels=7, t0 mean=540.0 C, tend mean=20.0 C
+2026-05-23 21:50:08 [stage2_full][all][fem][k=-][s=-] INFO Saved /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/circle_fem_full_timeline.png
+2026-05-23 21:50:08 [stage2_full][all][fem][k=-][s=-] INFO lshape: 61 FEM snapshots, contact sheet panels=7, t0 mean=540.0 C, tend mean=20.0 C
+2026-05-23 21:50:10 [stage2_full][all][fem][k=-][s=-] INFO Saved /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/lshape_fem_full_timeline.png
+2026-05-23 21:50:10 [stage2_full][all][fem][k=-][s=-] INFO flower: 61 FEM snapshots, contact sheet panels=7, t0 mean=540.0 C, tend mean=20.0 C
+2026-05-23 21:50:11 [stage2_full][all][fem][k=-][s=-] INFO Saved /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/fem_full/flower_fem_full_timeline.png

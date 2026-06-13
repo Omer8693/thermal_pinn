@@ -1,0 +1,30 @@
+{
+  "domain": "thermal_fin",
+  "arch": "bayesian",
+  "k": 1,
+  "dim": 3,
+  "mean_mae": 16.953952071562917,
+  "n_windows": 1,
+  "windows": [
+    {
+      "t_start": 0.0,
+      "t_end": 1.5,
+      "mae_C": 16.953952071562917,
+      "l2_rel": 0.04822496433555945,
+      "runtime_s": 0.3291747570037842
+    }
+  ],
+  "total_s": 1.4627869129180908,
+  "checkpoint": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/thermal_fin/thermal_fin_bayesian_k1_smoketest.pt",
+  "train_config": {
+    "n_domain": 64,
+    "n_bc": 32,
+    "n_epochs": 3,
+    "lr": 0.0008,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 0,
+    "n_eval": 64,
+    "use_end_supervision": true
+  },
+  "run_tag": "smoketest"
+}

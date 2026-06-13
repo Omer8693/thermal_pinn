@@ -1,0 +1,13 @@
+2026-05-24 21:18:13 [nas_nsga3][square][nsga3][k=-][s=-] INFO NSGA3 search: pop=20  gen=25  (~520 evals)  trial_epochs=500  geo=square
+2026-05-24 21:19:15 [nas_nsga3][square][nsga3][k=-][s=-] INFO   NSGA3 eval  10  arch=[50]  MAE=20.088°C
+2026-05-24 21:20:31 [nas_nsga3][square][nsga3][k=-][s=-] INFO   NSGA3 eval  20  arch=[70, 90, 90, 10]  MAE=14.197°C
+2026-05-24 21:21:35 [nas_nsga3][square][nsga3][k=-][s=-] INFO   NSGA3 eval  30  arch=[70, 10, 10, 50]  MAE=0.988°C
+2026-05-24 21:22:37 [nas_nsga3][square][nsga3][k=-][s=-] INFO   NSGA3 eval  40  arch=[70]  MAE=21.438°C
+2026-05-24 21:23:31 [nas_nsga3][square][nsga3][k=-][s=-] INFO   NSGA3 eval  50  arch=[10, 10, 10]  MAE=17.947°C
+2026-05-24 21:24:20 [nas_nsga3][square][nsga3][k=-][s=-] INFO   NSGA3 eval  60  arch=[70, 10, 90]  MAE=3.080°C
+2026-05-24 21:25:20 [nas_nsga3][square][nsga3][k=-][s=-] INFO   NSGA3 eval  70  arch=[10, 70, 90, 10]  MAE=17.360°C
+2026-05-24 21:26:17 [nas_nsga3][square][nsga3][k=-][s=-] INFO   NSGA3 eval  80  arch=[30, 50, 90, 50]  MAE=0.501°C
+2026-05-24 21:27:16 [nas_nsga3][square][nsga3][k=-][s=-] INFO   NSGA3 eval  90  arch=[50, 10, 70, 90]  MAE=3.182°C
+2026-05-24 21:28:09 [nas_nsga3][square][nsga3][k=-][s=-] INFO   NSGA3 eval 100  arch=[50, 10, 10, 10]  MAE=15.119°C
+2026-05-24 21:29:10 [nas_nsga3][square][nsga3][k=-][s=-] INFO   NSGA3 eval 110  arch=[50, 10, 10, 50, 30]  MAE=6.391°C
+2026-05-24 21:30:14 [nas_nsga3][square][nsga3][k=-][s=-] INFO   NSGA3 eval 120  arch=[10, 10]  MAE=21.355°C

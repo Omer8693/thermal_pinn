@@ -1,0 +1,14 @@
+{
+  "geometry": "square",
+  "n_refine": 4,
+  "n_vertices": 1089,
+  "n_cells": 2048,
+  "t_assemble_s": 0.017,
+  "t_solve_s": 0.2054,
+  "t_total_s": 0.2223,
+  "T_mean_init": 540.0,
+  "T_mean_final": 20.0,
+  "T_min_final": 20.0,
+  "T_max_final": 20.0,
+  "cooling_fraction": 1.0
+}

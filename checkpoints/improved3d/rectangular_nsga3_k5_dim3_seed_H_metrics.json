@@ -1,0 +1,57 @@
+{
+  "domain": "rectangular",
+  "arch": "nsga3",
+  "k": 5,
+  "dim": 3,
+  "mean_mae": 11.254050367601957,
+  "n_windows": 4,
+  "windows": [
+    {
+      "t_start": 0.0,
+      "t_end": 7.5,
+      "mae_C": 21.728880852846338,
+      "l2_rel": 0.07393995220148403,
+      "runtime_s": 19.92395305633545
+    },
+    {
+      "t_start": 7.5,
+      "t_end": 15.0,
+      "mae_C": 10.530669023878787,
+      "l2_rel": 0.03800589055845297,
+      "runtime_s": 20.771183013916016
+    },
+    {
+      "t_start": 15.0,
+      "t_end": 22.5,
+      "mae_C": 7.162495595233263,
+      "l2_rel": 0.028748196854315605,
+      "runtime_s": 20.95993185043335
+    },
+    {
+      "t_start": 22.5,
+      "t_end": 30.0,
+      "mae_C": 5.594155998449446,
+      "l2_rel": 0.02182045580959282,
+      "runtime_s": 20.591132164001465
+    }
+  ],
+  "total_s": 82.30158138275146,
+  "checkpoint": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/improved3d/rectangular_nsga3_k5_dim3_seed_H.pt",
+  "train_config": {
+    "n_domain": 8000,
+    "n_bc": 1600,
+    "n_epochs": 1600,
+    "lr": 0.0008,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 100,
+    "n_eval": 2500,
+    "use_end_supervision": true
+  },
+  "weights": {
+    "w_pde": 1.0,
+    "w_ic": 15.0,
+    "w_bc": 5.0,
+    "w_end": 10.0
+  },
+  "run_tag": "seed_H"
+}

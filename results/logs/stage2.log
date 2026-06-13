@@ -1,0 +1,102 @@
+2026-05-21 21:34:45 [stage2][all][fem][k=-][s=-] INFO Stage 2: FEM baseline visualisation
+2026-05-21 21:34:45 [stage2][all][fem][k=-][s=-] INFO Processing geometry: square
+2026-05-21 21:34:47 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/square_fem_snapshots.png
+2026-05-21 21:34:47 [stage2][all][fem][k=-][s=-] INFO Processing geometry: circle
+2026-05-21 21:34:48 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/circle_fem_snapshots.png
+2026-05-21 21:34:48 [stage2][all][fem][k=-][s=-] INFO Processing geometry: lshape
+2026-05-21 21:34:49 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/lshape_fem_snapshots.png
+2026-05-21 21:34:49 [stage2][all][fem][k=-][s=-] INFO Processing geometry: flower
+2026-05-21 21:34:51 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/flower_fem_snapshots.png
+2026-05-21 21:34:51 [stage2][all][fem][k=-][s=-] INFO Saved cooling curves: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/all_cooling_curves.png
+2026-05-21 21:34:51 [stage2][all][fem][k=-][s=-] INFO Saved runtime chart: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/runtime_comparison/stage1_fem_runtimes.png
+2026-05-21 21:34:51 [stage2][all][fem][k=-][s=-] INFO Saved summary CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/fem/stage2_summary.csv
+2026-05-21 21:34:51 [stage2][all][fem][k=-][s=-] INFO === Stage 2 complete ===
+2026-05-21 21:34:51 [stage2][all][fem][k=-][s=-] INFO Figures written to: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures
+2026-05-21 21:35:32 [stage2][all][fem][k=-][s=-] INFO Stage 2: FEM baseline visualisation
+2026-05-21 21:35:32 [stage2][all][fem][k=-][s=-] INFO Processing geometry: square
+2026-05-21 21:35:33 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/square_fem_snapshots.png
+2026-05-21 21:35:33 [stage2][all][fem][k=-][s=-] INFO Processing geometry: circle
+2026-05-21 21:35:34 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/circle_fem_snapshots.png
+2026-05-21 21:35:34 [stage2][all][fem][k=-][s=-] INFO Processing geometry: lshape
+2026-05-21 21:35:36 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/lshape_fem_snapshots.png
+2026-05-21 21:35:36 [stage2][all][fem][k=-][s=-] INFO Processing geometry: flower
+2026-05-21 21:35:37 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/flower_fem_snapshots.png
+2026-05-21 21:35:37 [stage2][all][fem][k=-][s=-] INFO Saved cooling curves: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/all_cooling_curves.png
+2026-05-21 21:35:37 [stage2][all][fem][k=-][s=-] INFO Saved runtime chart: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/runtime_comparison/stage1_fem_runtimes.png
+2026-05-21 21:35:37 [stage2][all][fem][k=-][s=-] INFO Saved summary CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/fem/stage2_summary.csv
+2026-05-21 21:35:37 [stage2][all][fem][k=-][s=-] INFO === Stage 2 complete ===
+2026-05-21 21:35:37 [stage2][all][fem][k=-][s=-] INFO Figures written to: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures
+2026-05-23 21:02:54 [stage2][all][fem][k=-][s=-] INFO Stage 2: FEM baseline visualisation
+2026-05-23 21:02:54 [stage2][all][fem][k=-][s=-] INFO Processing geometry: square
+2026-05-23 21:02:56 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/square_fem_snapshots.png
+2026-05-23 21:02:56 [stage2][all][fem][k=-][s=-] INFO Processing geometry: circle
+2026-05-23 21:02:58 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/circle_fem_snapshots.png
+2026-05-23 21:02:58 [stage2][all][fem][k=-][s=-] INFO Processing geometry: lshape
+2026-05-23 21:03:00 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/lshape_fem_snapshots.png
+2026-05-23 21:03:00 [stage2][all][fem][k=-][s=-] INFO Processing geometry: flower
+2026-05-23 21:03:01 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/flower_fem_snapshots.png
+2026-05-23 21:03:01 [stage2][all][fem][k=-][s=-] INFO Saved cooling curves: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/all_cooling_curves.png
+2026-05-23 21:03:01 [stage2][all][fem][k=-][s=-] INFO Saved runtime chart: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/runtime_comparison/stage1_fem_runtimes.png
+2026-05-23 21:03:01 [stage2][all][fem][k=-][s=-] INFO Saved summary CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/fem/stage2_summary.csv
+2026-05-23 21:03:01 [stage2][all][fem][k=-][s=-] INFO === Stage 2 complete ===
+2026-05-23 21:03:01 [stage2][all][fem][k=-][s=-] INFO Figures written to: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures
+2026-05-23 21:06:04 [stage2][all][fem][k=-][s=-] INFO Stage 2: FEM baseline visualisation
+2026-05-23 21:06:04 [stage2][all][fem][k=-][s=-] INFO Processing geometry: square
+2026-05-23 21:06:05 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/square_fem_snapshots.png
+2026-05-23 21:06:05 [stage2][all][fem][k=-][s=-] INFO Processing geometry: circle
+2026-05-23 21:06:08 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/circle_fem_snapshots.png
+2026-05-23 21:06:08 [stage2][all][fem][k=-][s=-] INFO Processing geometry: lshape
+2026-05-23 21:06:09 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/lshape_fem_snapshots.png
+2026-05-23 21:06:09 [stage2][all][fem][k=-][s=-] INFO Processing geometry: flower
+2026-05-23 21:06:11 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/flower_fem_snapshots.png
+2026-05-23 21:06:11 [stage2][all][fem][k=-][s=-] INFO Saved cooling curves: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/all_cooling_curves.png
+2026-05-23 21:06:11 [stage2][all][fem][k=-][s=-] INFO Saved runtime chart: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/runtime_comparison/stage1_fem_runtimes.png
+2026-05-23 21:06:11 [stage2][all][fem][k=-][s=-] INFO Saved summary CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/fem/stage2_summary.csv
+2026-05-23 21:06:11 [stage2][all][fem][k=-][s=-] INFO === Stage 2 complete ===
+2026-05-23 21:06:11 [stage2][all][fem][k=-][s=-] INFO Figures written to: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures
+2026-05-23 21:08:36 [stage2][all][fem][k=-][s=-] INFO Stage 2: FEM baseline visualisation
+2026-05-23 21:08:36 [stage2][all][fem][k=-][s=-] INFO Processing geometry: square
+2026-05-23 21:08:37 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/square_fem_snapshots.png
+2026-05-23 21:08:37 [stage2][all][fem][k=-][s=-] INFO Processing geometry: circle
+2026-05-23 21:08:40 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/circle_fem_snapshots.png
+2026-05-23 21:08:40 [stage2][all][fem][k=-][s=-] INFO Processing geometry: lshape
+2026-05-23 21:08:42 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/lshape_fem_snapshots.png
+2026-05-23 21:08:42 [stage2][all][fem][k=-][s=-] INFO Processing geometry: flower
+2026-05-23 21:08:43 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/flower_fem_snapshots.png
+2026-05-23 21:08:43 [stage2][all][fem][k=-][s=-] INFO Saved cooling curves: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/all_cooling_curves.png
+2026-05-23 21:08:43 [stage2][all][fem][k=-][s=-] INFO Saved runtime chart: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/runtime_comparison/stage1_fem_runtimes.png
+2026-05-23 21:08:43 [stage2][all][fem][k=-][s=-] INFO Saved summary CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/fem/stage2_summary.csv
+2026-05-23 21:08:43 [stage2][all][fem][k=-][s=-] INFO === Stage 2 complete ===
+2026-05-23 21:08:43 [stage2][all][fem][k=-][s=-] INFO Figures written to: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures
+2026-05-23 21:12:25 [stage2][all][fem][k=-][s=-] INFO Stage 2: FEM baseline visualisation
+2026-05-23 21:12:25 [stage2][all][fem][k=-][s=-] INFO Processing geometry: square
+2026-05-23 21:12:26 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/square_fem_snapshots.png
+2026-05-23 21:12:26 [stage2][all][fem][k=-][s=-] INFO Processing geometry: circle
+2026-05-23 21:12:28 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/circle_fem_snapshots.png
+2026-05-23 21:12:28 [stage2][all][fem][k=-][s=-] INFO Processing geometry: lshape
+2026-05-23 21:12:29 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/lshape_fem_snapshots.png
+2026-05-23 21:12:29 [stage2][all][fem][k=-][s=-] INFO Processing geometry: flower
+2026-05-23 21:12:30 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/flower_fem_snapshots.png
+2026-05-23 21:12:31 [stage2][all][fem][k=-][s=-] INFO Saved cooling curves: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/all_cooling_curves.png
+2026-05-23 21:12:31 [stage2][all][fem][k=-][s=-] INFO Saved runtime chart: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/runtime_comparison/stage1_fem_runtimes.png
+2026-05-23 21:12:31 [stage2][all][fem][k=-][s=-] INFO Saved summary CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/fem/stage2_summary.csv
+2026-05-23 21:12:31 [stage2][all][fem][k=-][s=-] INFO === Stage 2 complete ===
+2026-05-23 21:12:31 [stage2][all][fem][k=-][s=-] INFO Figures written to: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures
+2026-05-23 21:16:12 [stage2][all][fem][k=-][s=-] INFO Stage 2: FEM baseline visualisation
+2026-05-23 21:16:12 [stage2][all][fem][k=-][s=-] INFO Processing geometry: square
+2026-05-23 21:16:13 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/square_fem_snapshots.png
+2026-05-23 21:16:15 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/square_fem_snapshots_global.png
+2026-05-23 21:16:15 [stage2][all][fem][k=-][s=-] INFO Processing geometry: circle
+2026-05-23 21:16:17 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/circle_fem_snapshots.png
+2026-05-23 21:16:19 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/circle_fem_snapshots_global.png
+2026-05-23 21:16:19 [stage2][all][fem][k=-][s=-] INFO Processing geometry: lshape
+2026-05-23 21:16:21 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/lshape_fem_snapshots.png
+2026-05-23 21:16:22 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/lshape_fem_snapshots_global.png
+2026-05-23 21:16:22 [stage2][all][fem][k=-][s=-] INFO Processing geometry: flower
+2026-05-23 21:16:24 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/flower_fem_snapshots.png
+2026-05-23 21:16:25 [stage2][all][fem][k=-][s=-] INFO Saved: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/flower_fem_snapshots_global.png
+2026-05-23 21:16:25 [stage2][all][fem][k=-][s=-] INFO Saved cooling curves: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/all_cooling_curves.png
+2026-05-23 21:16:25 [stage2][all][fem][k=-][s=-] INFO Saved runtime chart: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/runtime_comparison/stage1_fem_runtimes.png
+2026-05-23 21:16:25 [stage2][all][fem][k=-][s=-] INFO Saved summary CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/fem/stage2_summary.csv
+2026-05-23 21:16:25 [stage2][all][fem][k=-][s=-] INFO === Stage 2 complete ===
+2026-05-23 21:16:25 [stage2][all][fem][k=-][s=-] INFO Figures written to: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures

@@ -1,0 +1,147 @@
+2026-05-23 17:36:15 [stage7][all][thesis_nas][k=-][s=-] INFO Stage 7 | variants=['tpe'] | geometries=['circle'] | k=[1] | seeds=[0]
+2026-05-23 17:36:15 [stage7][all][thesis_nas][k=-][s=-] INFO Search budget: TPE n_trials=3 | NSGA pop=20 gen=25 | trial_epochs=100 | final_epochs=200 | mswp_epochs=200
+2026-05-23 17:36:15 [stage7][all][thesis_nas][k=-][s=-] INFO === NAS search: variant=tpe  geo=circle ===
+2026-05-23 17:36:25 [stage7][all][thesis_nas][k=-][s=-] INFO NAS tpe  geo=circle    arch=[10, 90, 90]  MAE=28.830°C
+2026-05-23 17:36:25 [stage7][all][thesis_nas][k=-][s=-] INFO === MSWP sweep: variant=tpe  geo=circle  arch=[10, 90, 90] ===
+2026-05-23 17:37:25 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=1  seed=0  MAE=2.015°C  L2=0.0212  FEM=67%  t=59 s
+2026-05-23 17:37:25 [stage7][all][thesis_nas][k=-][s=-] INFO [1 / 1 MSWP runs done]
+2026-05-23 17:37:25 [stage7][all][thesis_nas][k=-][s=-] INFO CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/nas_tpe/stage7_summary.csv
+2026-05-23 17:37:25 [stage7][all][thesis_nas][k=-][s=-] INFO Combined CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/stage7_all_variants.csv
+2026-05-23 17:37:26 [stage7][all][thesis_nas][k=-][s=-] INFO k-vs-MAE figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage7_k_vs_mae_all.png
+2026-05-23 17:37:26 [stage7][all][thesis_nas][k=-][s=-] INFO NAS karşılaştırma figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage7_nas_comparison.png
+2026-05-23 17:37:26 [stage7][all][thesis_nas][k=-][s=-] INFO === Stage 7 Özet — MAE (°C) per (variant, geometry, k) ===
+2026-05-23 17:37:26 [stage7][all][thesis_nas][k=-][s=-] INFO Variant   Geo       k=1
+2026-05-23 17:37:26 [stage7][all][thesis_nas][k=-][s=-] INFO tpe       circle      2.02
+2026-05-23 17:37:26 [stage7][all][thesis_nas][k=-][s=-] INFO === Kabul Kriterleri Kontrolü ===
+2026-05-23 17:37:26 [stage7][all][thesis_nas][k=-][s=-] INFO tpe     circle    k=1  MAE=2.02°C  (thr=1°C)  [FAIL]
+2026-05-23 17:37:40 [stage7][all][thesis_nas][k=-][s=-] INFO Stage 7 | variants=['nsga2'] | geometries=['circle'] | k=[1] | seeds=[0]
+2026-05-23 17:37:40 [stage7][all][thesis_nas][k=-][s=-] INFO Search budget: TPE n_trials=50 | NSGA pop=4 gen=2 | trial_epochs=100 | final_epochs=200 | mswp_epochs=200
+2026-05-23 17:37:40 [stage7][all][thesis_nas][k=-][s=-] INFO === NAS search: variant=nsga2  geo=circle ===
+2026-05-23 17:37:56 [stage7][all][thesis_nas][k=-][s=-] INFO NAS nsga2  geo=circle    arch=[50]  MAE=40.726°C
+2026-05-23 17:37:56 [stage7][all][thesis_nas][k=-][s=-] INFO === MSWP sweep: variant=nsga2  geo=circle  arch=[50] ===
+2026-05-23 17:38:42 [stage7][all][thesis_nas][k=-][s=-] INFO variant=nsga2   geo=circle    k=1  seed=0  MAE=2.342°C  L2=0.0375  FEM=67%  t=45 s
+2026-05-23 17:38:42 [stage7][all][thesis_nas][k=-][s=-] INFO [1 / 1 MSWP runs done]
+2026-05-23 17:38:42 [stage7][all][thesis_nas][k=-][s=-] INFO CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/nas_nsga2/stage7_summary.csv
+2026-05-23 17:38:42 [stage7][all][thesis_nas][k=-][s=-] INFO Combined CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/stage7_all_variants.csv
+2026-05-23 17:38:42 [stage7][all][thesis_nas][k=-][s=-] INFO k-vs-MAE figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage7_k_vs_mae_all.png
+2026-05-23 17:38:42 [stage7][all][thesis_nas][k=-][s=-] INFO NAS karşılaştırma figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage7_nas_comparison.png
+2026-05-23 17:38:42 [stage7][all][thesis_nas][k=-][s=-] INFO === Stage 7 Özet — MAE (°C) per (variant, geometry, k) ===
+2026-05-23 17:38:42 [stage7][all][thesis_nas][k=-][s=-] INFO Variant   Geo       k=1
+2026-05-23 17:38:42 [stage7][all][thesis_nas][k=-][s=-] INFO nsga2     circle      2.34
+2026-05-23 17:38:42 [stage7][all][thesis_nas][k=-][s=-] INFO === Kabul Kriterleri Kontrolü ===
+2026-05-23 17:38:42 [stage7][all][thesis_nas][k=-][s=-] INFO nsga2   circle    k=1  MAE=2.34°C  (thr=1°C)  [FAIL]
+2026-05-23 17:42:58 [stage7][all][thesis_nas][k=-][s=-] INFO Stage 7 | variants=['tpe'] | geometries=['circle'] | k=[1, 2, 3, 4, 5] | seeds=[0, 1, 2]
+2026-05-23 17:42:58 [stage7][all][thesis_nas][k=-][s=-] INFO Search budget: TPE n_trials=50 | NSGA pop=20 gen=25 | trial_epochs=500 | final_epochs=2000 | mswp_epochs=1000
+2026-05-23 17:42:58 [stage7][all][thesis_nas][k=-][s=-] INFO === NAS search: variant=tpe  geo=circle ===
+2026-05-23 17:43:52 [stage7][all][thesis_nas][k=-][s=-] INFO Stage 7 | variants=['tpe'] | geometries=['circle'] | k=[1, 2, 3, 4, 5] | seeds=[0]
+2026-05-23 17:43:52 [stage7][all][thesis_nas][k=-][s=-] INFO Search budget: TPE n_trials=50 | NSGA pop=20 gen=25 | trial_epochs=500 | final_epochs=2000 | mswp_epochs=1000
+2026-05-23 17:43:52 [stage7][all][thesis_nas][k=-][s=-] INFO === NAS search: variant=tpe  geo=circle ===
+2026-05-23 17:50:55 [stage7][all][thesis_nas][k=-][s=-] INFO NAS tpe  geo=circle    arch=[30, 110, 70, 110, 50]  MAE=25.984°C
+2026-05-23 17:50:56 [stage7][all][thesis_nas][k=-][s=-] INFO === MSWP sweep: variant=tpe  geo=circle  arch=[30, 110, 70, 110, 50] ===
+2026-05-23 17:57:15 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=1  seed=0  MAE=1.825°C  L2=0.0123  FEM=67%  t=379 s
+2026-05-23 18:00:24 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=2  seed=0  MAE=5.980°C  L2=0.0492  FEM=83%  t=189 s
+2026-05-23 18:02:36 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=3  seed=0  MAE=10.028°C  L2=0.0979  FEM=88%  t=132 s
+2026-05-23 18:04:11 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=4  seed=0  MAE=13.674°C  L2=0.1677  FEM=92%  t=95 s
+2026-05-23 18:05:27 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=5  seed=0  MAE=17.737°C  L2=0.2791  FEM=93%  t=76 s
+2026-05-23 18:05:27 [stage7][all][thesis_nas][k=-][s=-] INFO [5 / 5 MSWP runs done]
+2026-05-23 18:05:27 [stage7][all][thesis_nas][k=-][s=-] INFO CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/nas_tpe/stage7_summary.csv
+2026-05-23 18:05:27 [stage7][all][thesis_nas][k=-][s=-] INFO Combined CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/stage7_all_variants.csv
+2026-05-23 18:05:27 [stage7][all][thesis_nas][k=-][s=-] INFO k-vs-MAE figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage7_k_vs_mae_all.png
+2026-05-23 18:05:27 [stage7][all][thesis_nas][k=-][s=-] INFO NAS karşılaştırma figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage7_nas_comparison.png
+2026-05-23 18:05:27 [stage7][all][thesis_nas][k=-][s=-] INFO === Stage 7 Özet — MAE (°C) per (variant, geometry, k) ===
+2026-05-23 18:05:27 [stage7][all][thesis_nas][k=-][s=-] INFO Variant   Geo       k=1  k=2  k=3  k=4  k=5
+2026-05-23 18:05:27 [stage7][all][thesis_nas][k=-][s=-] INFO tpe       circle      1.83    5.98   10.03   13.67   17.74
+2026-05-23 18:05:27 [stage7][all][thesis_nas][k=-][s=-] INFO === Kabul Kriterleri Kontrolü ===
+2026-05-23 18:05:27 [stage7][all][thesis_nas][k=-][s=-] INFO tpe     circle    k=1  MAE=1.83°C  (thr=1°C)  [FAIL]
+2026-05-23 18:05:27 [stage7][all][thesis_nas][k=-][s=-] INFO tpe     circle    k=5  MAE=17.74°C  (thr=15°C)  [FAIL]
+2026-05-23 18:47:53 [stage7][all][thesis_nas][k=-][s=-] INFO Stage 7 | variants=['tpe'] | geometries=['circle'] | k=[1, 2, 3, 4, 5] | seeds=[0]
+2026-05-23 18:47:53 [stage7][all][thesis_nas][k=-][s=-] INFO Search budget: TPE n_trials=50 | NSGA pop=20 gen=25 | trial_epochs=500 | final_epochs=2000 | mswp_epochs=1000
+2026-05-23 18:47:53 [stage7][all][thesis_nas][k=-][s=-] INFO === NAS search: variant=tpe  geo=circle ===
+2026-05-23 18:54:16 [stage7][all][thesis_nas][k=-][s=-] INFO NAS tpe  geo=circle    arch=[70, 10, 70, 50]  MAE=69.164°C
+2026-05-23 18:54:16 [stage7][all][thesis_nas][k=-][s=-] INFO === MSWP sweep: variant=tpe  geo=circle  arch=[70, 10, 70, 50] ===
+2026-05-23 18:57:23 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=1  seed=0  MAE=2.073°C  L2=0.0134  FEM=50%  t=186 s
+2026-05-23 18:58:03 [stage7][all][thesis_nas][k=-][s=-] INFO Stage 7 | variants=['tpe'] | geometries=['circle'] | k=[1, 2, 3, 4, 5] | seeds=[0]
+2026-05-23 18:58:03 [stage7][all][thesis_nas][k=-][s=-] INFO Search budget: TPE n_trials=50 | NSGA pop=20 gen=25 | trial_epochs=500 | final_epochs=2000 | mswp_epochs=1000
+2026-05-23 18:58:03 [stage7][all][thesis_nas][k=-][s=-] INFO === NAS search: variant=tpe  geo=circle ===
+2026-05-23 18:59:01 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=2  seed=0  MAE=10.224°C  L2=0.0697  FEM=75%  t=98 s
+2026-05-23 19:00:19 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=3  seed=0  MAE=20.712°C  L2=0.1586  FEM=80%  t=78 s
+2026-05-23 19:01:20 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=4  seed=0  MAE=26.876°C  L2=0.2386  FEM=85%  t=61 s
+2026-05-23 19:02:00 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=5  seed=0  MAE=35.592°C  L2=0.3526  FEM=90%  t=40 s
+2026-05-23 19:02:00 [stage7][all][thesis_nas][k=-][s=-] INFO [5 / 5 MSWP runs done]
+2026-05-23 19:02:00 [stage7][all][thesis_nas][k=-][s=-] INFO CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/nas_tpe/stage7_summary.csv
+2026-05-23 19:02:00 [stage7][all][thesis_nas][k=-][s=-] INFO Combined CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/stage7_all_variants.csv
+2026-05-23 19:02:01 [stage7][all][thesis_nas][k=-][s=-] INFO k-vs-MAE figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage7_k_vs_mae_all.png
+2026-05-23 19:02:01 [stage7][all][thesis_nas][k=-][s=-] INFO NAS karşılaştırma figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage7_nas_comparison.png
+2026-05-23 19:02:01 [stage7][all][thesis_nas][k=-][s=-] INFO === Stage 7 Özet — MAE (°C) per (variant, geometry, k) ===
+2026-05-23 19:02:01 [stage7][all][thesis_nas][k=-][s=-] INFO Variant   Geo       k=1  k=2  k=3  k=4  k=5
+2026-05-23 19:02:01 [stage7][all][thesis_nas][k=-][s=-] INFO tpe       circle      2.07   10.22   20.71   26.88   35.59
+2026-05-23 19:02:01 [stage7][all][thesis_nas][k=-][s=-] INFO === Kabul Kriterleri Kontrolü ===
+2026-05-23 19:02:01 [stage7][all][thesis_nas][k=-][s=-] INFO tpe     circle    k=1  MAE=2.07°C  (thr=1°C)  [FAIL]
+2026-05-23 19:02:01 [stage7][all][thesis_nas][k=-][s=-] INFO tpe     circle    k=5  MAE=35.59°C  (thr=15°C)  [FAIL]
+2026-05-23 19:04:09 [stage7][all][thesis_nas][k=-][s=-] INFO NAS tpe  geo=circle    arch=[70, 10, 70, 50]  MAE=69.164°C
+2026-05-23 19:04:09 [stage7][all][thesis_nas][k=-][s=-] INFO === MSWP sweep: variant=tpe  geo=circle  arch=[70, 10, 70, 50] ===
+2026-05-23 19:07:04 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=1  seed=0  MAE=2.073°C  L2=0.0134  FEM=50%  t=174 s
+2026-05-23 19:08:29 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=2  seed=0  MAE=10.224°C  L2=0.0697  FEM=75%  t=85 s
+2026-05-23 19:09:36 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=3  seed=0  MAE=20.712°C  L2=0.1586  FEM=80%  t=68 s
+2026-05-23 19:10:28 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=4  seed=0  MAE=26.876°C  L2=0.2386  FEM=85%  t=52 s
+2026-05-23 19:11:04 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=5  seed=0  MAE=35.592°C  L2=0.3526  FEM=90%  t=36 s
+2026-05-23 19:11:04 [stage7][all][thesis_nas][k=-][s=-] INFO [5 / 5 MSWP runs done]
+2026-05-23 19:11:04 [stage7][all][thesis_nas][k=-][s=-] INFO CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/nas_tpe/stage7_summary.csv
+2026-05-23 19:11:04 [stage7][all][thesis_nas][k=-][s=-] INFO Combined CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/stage7_all_variants.csv
+2026-05-23 19:11:04 [stage7][all][thesis_nas][k=-][s=-] INFO k-vs-MAE figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage7_k_vs_mae_all.png
+2026-05-23 19:11:04 [stage7][all][thesis_nas][k=-][s=-] INFO NAS karşılaştırma figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage7_nas_comparison.png
+2026-05-23 19:11:04 [stage7][all][thesis_nas][k=-][s=-] INFO === Stage 7 Özet — MAE (°C) per (variant, geometry, k) ===
+2026-05-23 19:11:04 [stage7][all][thesis_nas][k=-][s=-] INFO Variant   Geo       k=1  k=2  k=3  k=4  k=5
+2026-05-23 19:11:04 [stage7][all][thesis_nas][k=-][s=-] INFO tpe       circle      2.07   10.22   20.71   26.88   35.59
+2026-05-23 19:11:04 [stage7][all][thesis_nas][k=-][s=-] INFO === Kabul Kriterleri Kontrolü ===
+2026-05-23 19:11:04 [stage7][all][thesis_nas][k=-][s=-] INFO tpe     circle    k=1  MAE=2.07°C  (thr=1°C)  [FAIL]
+2026-05-23 19:11:04 [stage7][all][thesis_nas][k=-][s=-] INFO tpe     circle    k=5  MAE=35.59°C  (thr=15°C)  [FAIL]
+2026-05-23 19:13:14 [stage7][all][thesis_nas][k=-][s=-] INFO Stage 7 | variants=['tpe'] | geometries=['circle'] | k=[1, 2, 3, 4, 5] | seeds=[0]
+2026-05-23 19:13:14 [stage7][all][thesis_nas][k=-][s=-] INFO Search budget: TPE n_trials=50 | NSGA pop=20 gen=25 | trial_epochs=500 | final_epochs=2000 | mswp_epochs=1000
+2026-05-23 19:13:14 [stage7][all][thesis_nas][k=-][s=-] INFO === NAS search: variant=tpe  geo=circle ===
+2026-05-23 19:20:26 [stage7][all][thesis_nas][k=-][s=-] INFO NAS tpe  geo=circle    arch=[70, 110, 10, 30, 110, 50]  MAE=48.644°C
+2026-05-23 19:20:26 [stage7][all][thesis_nas][k=-][s=-] INFO === MSWP sweep: variant=tpe  geo=circle  arch=[70, 110, 10, 30, 110, 50] ===
+2026-05-23 19:25:33 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=1  seed=0  MAE=1.389°C  L2=0.0091  FEM=50%  t=307 s
+2026-05-23 19:28:16 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=2  seed=0  MAE=6.817°C  L2=0.0468  FEM=73%  t=162 s
+2026-05-23 19:29:57 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=3  seed=0  MAE=12.893°C  L2=0.1025  FEM=83%  t=102 s
+2026-05-23 19:31:19 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=4  seed=0  MAE=20.228°C  L2=0.1787  FEM=87%  t=81 s
+2026-05-23 19:32:20 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=5  seed=0  MAE=21.517°C  L2=0.2281  FEM=90%  t=62 s
+2026-05-23 19:32:20 [stage7][all][thesis_nas][k=-][s=-] INFO [5 / 5 MSWP runs done]
+2026-05-23 19:32:20 [stage7][all][thesis_nas][k=-][s=-] INFO CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/nas_tpe/stage7_summary.csv
+2026-05-23 19:32:20 [stage7][all][thesis_nas][k=-][s=-] INFO Combined CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/stage7_all_variants.csv
+2026-05-23 19:32:21 [stage7][all][thesis_nas][k=-][s=-] INFO k-vs-MAE figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage7_k_vs_mae_all.png
+2026-05-23 19:32:21 [stage7][all][thesis_nas][k=-][s=-] INFO NAS karşılaştırma figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage7_nas_comparison.png
+2026-05-23 19:32:21 [stage7][all][thesis_nas][k=-][s=-] INFO === Stage 7 Özet — MAE (°C) per (variant, geometry, k) ===
+2026-05-23 19:32:21 [stage7][all][thesis_nas][k=-][s=-] INFO Variant   Geo       k=1  k=2  k=3  k=4  k=5
+2026-05-23 19:32:21 [stage7][all][thesis_nas][k=-][s=-] INFO tpe       circle      1.39    6.82   12.89   20.23   21.52
+2026-05-23 19:32:21 [stage7][all][thesis_nas][k=-][s=-] INFO === Kabul Kriterleri Kontrolü ===
+2026-05-23 19:32:21 [stage7][all][thesis_nas][k=-][s=-] INFO tpe     circle    k=1  MAE=1.39°C  (thr=1°C)  [FAIL]
+2026-05-23 19:32:21 [stage7][all][thesis_nas][k=-][s=-] INFO tpe     circle    k=5  MAE=21.52°C  (thr=15°C)  [FAIL]
+2026-05-23 19:36:11 [stage7][all][thesis_nas][k=-][s=-] INFO Stage 7 | variants=['tpe'] | geometries=['circle'] | k=[1, 2, 3, 4, 5] | seeds=[0]
+2026-05-23 19:36:11 [stage7][all][thesis_nas][k=-][s=-] INFO Search budget: TPE n_trials=50 | NSGA pop=20 gen=25 | trial_epochs=500 | final_epochs=2000 | mswp_epochs=3000
+2026-05-23 19:36:11 [stage7][all][thesis_nas][k=-][s=-] INFO --skip-nas: tpe circle  arch=[70, 110, 10, 30, 110, 50]
+2026-05-23 19:36:11 [stage7][all][thesis_nas][k=-][s=-] INFO === MSWP sweep: variant=tpe  geo=circle  arch=[70, 110, 10, 30, 110, 50] ===
+2026-05-23 19:51:57 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=1  seed=0  MAE=1.393°C  L2=0.0091  FEM=50%  t=946 s
+2026-05-23 20:00:13 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=2  seed=0  MAE=6.442°C  L2=0.0453  FEM=73%  t=497 s
+2026-05-23 20:05:23 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=3  seed=0  MAE=11.459°C  L2=0.0932  FEM=83%  t=310 s
+2026-05-23 20:09:30 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=4  seed=0  MAE=15.908°C  L2=0.1446  FEM=87%  t=247 s
+2026-05-23 20:12:36 [stage7][all][thesis_nas][k=-][s=-] INFO variant=tpe     geo=circle    k=5  seed=0  MAE=18.689°C  L2=0.2080  FEM=90%  t=186 s
+2026-05-23 20:12:36 [stage7][all][thesis_nas][k=-][s=-] INFO [5 / 5 MSWP runs done]
+2026-05-23 20:12:36 [stage7][all][thesis_nas][k=-][s=-] INFO CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/nas_tpe/stage7_summary.csv
+2026-05-23 20:12:36 [stage7][all][thesis_nas][k=-][s=-] INFO Combined CSV: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/results/stage7_all_variants.csv
+2026-05-23 20:12:36 [stage7][all][thesis_nas][k=-][s=-] INFO k-vs-MAE figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage7_k_vs_mae_all.png
+2026-05-23 20:12:36 [stage7][all][thesis_nas][k=-][s=-] INFO NAS karşılaştırma figürü: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/error_plots/stage7_nas_comparison.png
+2026-05-23 20:12:36 [stage7][all][thesis_nas][k=-][s=-] INFO === Stage 7 Özet — MAE (°C) per (variant, geometry, k) ===
+2026-05-23 20:12:36 [stage7][all][thesis_nas][k=-][s=-] INFO Variant   Geo       k=1  k=2  k=3  k=4  k=5
+2026-05-23 20:12:36 [stage7][all][thesis_nas][k=-][s=-] INFO tpe       circle      1.39    6.44   11.46   15.91   18.69
+2026-05-23 20:12:36 [stage7][all][thesis_nas][k=-][s=-] INFO === Kabul Kriterleri Kontrolü ===
+2026-05-23 20:12:36 [stage7][all][thesis_nas][k=-][s=-] INFO tpe     circle    k=1  MAE=1.39°C  (thr=1°C)  [FAIL]
+2026-05-23 20:12:36 [stage7][all][thesis_nas][k=-][s=-] INFO tpe     circle    k=5  MAE=18.69°C  (thr=15°C)  [FAIL]
+2026-05-23 20:28:41 [stage7][all][thesis_nas][k=-][s=-] INFO Stage 7 | variants=['tpe'] | geometries=['circle'] | k=[1, 2, 3, 4, 5] | seeds=[0]
+2026-05-23 20:28:41 [stage7][all][thesis_nas][k=-][s=-] INFO Search budget: TPE n_trials=50 | NSGA pop=20 gen=25 | trial_epochs=500 | final_epochs=2000 | mswp_epochs=1000
+2026-05-23 20:28:41 [stage7][all][thesis_nas][k=-][s=-] INFO === NAS search: variant=tpe  geo=circle ===
+2026-05-24 20:03:40 [stage7][all][thesis_nas][k=-][s=-] INFO Stage 7 | variants=['tpe', 'nsga2', 'nsga3'] | geometries=['square'] | k=[1] | seeds=[0]
+2026-05-24 20:03:40 [stage7][all][thesis_nas][k=-][s=-] INFO Search budget: TPE n_trials=50 | NSGA pop=20 gen=25 | trial_epochs=500 | final_epochs=2000 | mswp_epochs=1000
+2026-05-24 20:03:40 [stage7][all][thesis_nas][k=-][s=-] INFO === NAS search: variant=tpe  geo=square ===
+2026-05-24 20:09:12 [stage7][all][thesis_nas][k=-][s=-] INFO NAS tpe  geo=square    arch=[50, 110, 70, 50]  MAE=29.467°C
+2026-05-24 20:09:12 [stage7][all][thesis_nas][k=-][s=-] INFO === NAS search: variant=nsga2  geo=square ===

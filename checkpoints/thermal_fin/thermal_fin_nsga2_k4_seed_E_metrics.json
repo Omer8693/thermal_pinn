@@ -1,0 +1,58 @@
+{
+  "domain": "thermal_fin",
+  "arch": "nsga2",
+  "k": 4,
+  "dim": 3,
+  "mean_mae": 13.579918094887068,
+  "n_windows": 5,
+  "windows": [
+    {
+      "t_start": 0.0,
+      "t_end": 6.0,
+      "mae_C": 27.403352077134965,
+      "l2_rel": 0.10072775015117806,
+      "runtime_s": 44.83127784729004
+    },
+    {
+      "t_start": 6.0,
+      "t_end": 12.0,
+      "mae_C": 14.939090398915976,
+      "l2_rel": 0.08001588565633114,
+      "runtime_s": 44.926820278167725
+    },
+    {
+      "t_start": 12.0,
+      "t_end": 18.0,
+      "mae_C": 10.51388809148554,
+      "l2_rel": 0.06858417471821888,
+      "runtime_s": 40.8576762676239
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 24.0,
+      "mae_C": 8.769050018547135,
+      "l2_rel": 0.06892910157709381,
+      "runtime_s": 45.36787724494934
+    },
+    {
+      "t_start": 24.0,
+      "t_end": 30.0,
+      "mae_C": 6.274209888351728,
+      "l2_rel": 0.05749675527163866,
+      "runtime_s": 42.10411024093628
+    }
+  ],
+  "total_s": 219.51389861106873,
+  "checkpoint": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/thermal_fin/thermal_fin_nsga2_k4_seed_E.pt",
+  "train_config": {
+    "n_domain": 12000,
+    "n_bc": 2400,
+    "n_epochs": 2000,
+    "lr": 0.0008,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 100,
+    "n_eval": 4000,
+    "use_end_supervision": true
+  },
+  "run_tag": "seed_E"
+}

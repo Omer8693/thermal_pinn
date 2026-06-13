@@ -1,0 +1,52 @@
+\begin{titlepage}
+
+
+%%%% Select the correct front page by changing the reference below %%%% 
+
+% Figures/Frontpage/forside_bachelor_eng.pdf
+% Figures/Frontpage/forside_bachelor_nor.pdf
+% Figures/Frontpage/forside_master_eng.pdf
+% Figures/Frontpage/forside_master_nor.pdf
+
+\AddToShipoutPicture*{
+    \AtPageLowerLeft{% Sayfanın tam sol alt köşesinden başla
+        \includegraphics[width=\paperwidth, height=\paperheight]{Figures/Frontpage/forside_master_eng.pdf}%
+    }
+    \put(0,0){%
+        \transparent{0}\textcolor{white}{\rule{\paperwidth}{\paperheight}}
+    }
+}
+%%%% Type in your data here %%%% 
+
+\newcommand{\projectTitle}{Neural Architecture Search Guided Physics Informed Neural Networks for Finite Element Method Anchored Transient Heat Transfer Simulation}
+\newcommand{\projectSubTitlel}{ Step Optimization in Thermal Simulation Using Selective Finite Element Method Step Skipping.}
+\newcommand{\authors}{ÖMER CETINKAYA}
+\newcommand{\supervisor}{Prof. Turgay Celik}
+
+\newcommand{\projectYear}{2026}
+\newcommand{\facultyName}{Faculty of Engineering and Science}
+\newcommand{\departmentName}{Department of Engineering and Sciences}
+
+
+
+
+%%%% Page Layout %%%% 
+\begin{tabular}{p{12cm}}
+                                            \\[5cm]
+    \LARGE{\textsc{\textbf{\projectTitle}}} \\[1.5cm]
+    \projectSubTitlel                       \\[2.5cm]
+    \large{\authors}                        \\[9cm]
+    \Large{SUPERVISOR}                      \\
+    \supervisor
+\end{tabular}
+
+
+\vfill % Bu komut üstteki metinler ile alttaki kurum bilgisi arasını açar
+
+\noindent % Paragraf girintisini sıfırlar, sola tam yaslar
+\textbf{University of Agder, \projectYear} \\
+\small{\facultyName \\
+\departmentName}
+
+\vspace{1cm}
+\end{titlepage}

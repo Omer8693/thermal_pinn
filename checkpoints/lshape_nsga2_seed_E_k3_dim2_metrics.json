@@ -1,0 +1,76 @@
+{
+  "domain": "lshape",
+  "arch": "nsga2",
+  "tag": "seed_E",
+  "strategy": "fem_anchor_fixed_k_sweep",
+  "reference_used_each_window": true,
+  "reference_used_for_final_evaluation": true,
+  "k": 3,
+  "dim": 2,
+  "mean_mae": 9.385533414900989,
+  "n_windows": 7,
+  "windows": [
+    {
+      "t_start": 0.0,
+      "t_end": 4.5,
+      "mae_C": 21.823050130643743,
+      "l2_rel": 0.1040819400273921,
+      "runtime_s": 10.135521173477173
+    },
+    {
+      "t_start": 4.5,
+      "t_end": 9.0,
+      "mae_C": 10.341110051668236,
+      "l2_rel": 0.04611573019507796,
+      "runtime_s": 11.194062232971191
+    },
+    {
+      "t_start": 9.0,
+      "t_end": 13.5,
+      "mae_C": 10.43237242127416,
+      "l2_rel": 0.04773288988036099,
+      "runtime_s": 13.165913343429565
+    },
+    {
+      "t_start": 13.5,
+      "t_end": 18.0,
+      "mae_C": 7.09216459507921,
+      "l2_rel": 0.036927408089377285,
+      "runtime_s": 13.286587476730347
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 22.5,
+      "mae_C": 6.058232142134144,
+      "l2_rel": 0.033385367298887886,
+      "runtime_s": 13.212853908538818
+    },
+    {
+      "t_start": 22.5,
+      "t_end": 27.0,
+      "mae_C": 5.508957279704118,
+      "l2_rel": 0.02981080332141044,
+      "runtime_s": 13.542023658752441
+    },
+    {
+      "t_start": 27.0,
+      "t_end": 30.0,
+      "mae_C": 4.442847283803305,
+      "l2_rel": 0.028579631321619958,
+      "runtime_s": 14.936830282211304
+    }
+  ],
+  "total_s": 89.63419032096863,
+  "checkpoint": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/lshape_nsga2_seed_E_k3_dim2.pt",
+  "train_kwargs": {
+    "n_domain": 1500,
+    "n_bc": 300,
+    "n_epochs": 800,
+    "lr": 0.001,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 50,
+    "use_end_supervision": true,
+    "use_physical_scaling": false,
+    "balanced_feature_sampling": false
+  }
+}

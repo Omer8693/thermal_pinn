@@ -1,0 +1,295 @@
+\section{Thermal Fin Benchmark}
+\label{sec:results_thermal_fin}
+
+The Thermal Fin benchmark is the final and most demanding case in this study.
+It originates from a 2D steady-state parametric problem in the RBniCS
+library~\cite{rozza2008}.
+We adapted it to a full 3D transient water-quenching scenario, making it the
+most geometrically complex domain in the evaluation.
+The geometry consists of a rectangular base plate with four cooling fins.
+We evaluate the transient temperature field against the FEM reference solution
+produced with a Crank--Nicolson solver.
+The acceptance threshold is $15\,^\circ\mathrm{C}$ mean-window MAE,
+corresponding to roughly 3\% of the full operating temperature range.
+
+Two error values are reported throughout this section. The
+\emph{mean-window MAE} is the main engineering metric. It averages the
+prediction error over the complete 30-second rollout. The \emph{final window
+MAE} is also included when discussing the plotted temperature fields at
+$t=30\,\mathrm{s}$. Readers should not treat it as a primary indicator. The
+field becomes nearly uniform by the end of quenching, so a low final-window
+value does not mean the network was accurate throughout the simulation.
+
+Table~\ref{tab:tf_overview} collects the headline numbers from each
+experimental mode before we go into the details.
+
+\begin{table}[H]
+\centering
+\caption{Thermal Fin Benchmark: headline results across all experimental modes.
+$^*$Bayesian/TPE uses Fourier feature embedding; NSGA-II/III use plain MLP.}
+\label{tab:tf_overview}
+\small
+\begin{tabular}{llccc}
+\toprule
+Mode & Architecture & Acceptable $k$ & Best MAE ($^\circ\mathrm{C}$) & FEM saved \\
+\midrule
+FEM-anchored, fixed $k$ & Bayesian/TPE$^*$ & $1$--$5$ &  5.10 & up to 80\% \\
+FEM-anchored, fixed $k$ & NSGA-II      & $1$--$4$ &  8.98 & up to 75\% \\
+FEM-anchored, fixed $k$ & NSGA-III     & $1$--$4$ &  8.97 & up to 75\% \\
+\midrule
+FEM-anchored, adaptive  & Bayesian/TPE & —        & 11.26 & 45\% \\
+FEM-anchored, adaptive  & NSGA-II      & —        & \textbf{10.54} & 45\% \\
+FEM-anchored, adaptive  & NSGA-III     & —        & 13.21 & 45\% \\
+\midrule
+PINN-only, best $k$ & Bayesian/TPE & — (all fail) & 217.10 & 95\% \\
+PINN-only, best $k$ & NSGA-II      & — (all fail) & 113.46 & 95\% \\
+PINN-only, best $k$ & NSGA-III     & — (all fail) &  59.20 & 95\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:tf_overview} serves as a roadmap for this section. The
+\emph{Acceptable $k$} column identifies the highest skip factor within the
+$15\,^\circ\mathrm{C}$ engineering acceptance band. Bayesian/TPE (Fourier)
+reaches $k=5$ (80\% FEM saving). NSGA-II and NSGA-III top out at $k=4$
+(75\%). Adaptive-$k$ control achieves 45\% saving for all three architectures
+but does not exceed fixed-$k$ accuracy. PINN-only mode fails completely,
+demonstrating that periodic FEM correction is not optional on this geometry.
+
+% -----------------------------------------------------------------------------
+\subsection{FEM-Anchored Fixed-$k$ Sweep}
+\label{subsec:tf_fem_fixed}
+
+In FEM-anchored mode the PINN predicts over a window of $k \times 1.5\,\mathrm{s}$
+and is corrected by the next FEM snapshot.  Larger $k$ means fewer FEM calls
+but a longer prediction interval.  All three architectures were trained at
+every $k$ from 1 to 5 (15 configurations total), using 2\,000 Adam epochs
+followed by 100 L-BFGS steps with 12\,000 interior and 2\,400 boundary
+collocation points per window.
+
+Full per-seed MAE and $L_2$ tables are in Appendix~\ref{app:full_results}
+(Tables~\ref{tab:tf_consolidated} and~\ref{tab:tf_l2}).
+
+Bayesian/TPE (Fourier) achieves $L_2{=}0.049$ at $k=1$, rising to $0.081$
+at $k=5$, which is still well below the $L_2{=}0.10$ practical threshold.
+NSGA-II and NSGA-III follow a similar trend, reaching $0.083$--$0.084$ at
+$k=5$.
+Seed variance is very low ($\sigma \leq 0.007$), confirming reproducibility.
+
+Three key findings stand out. First, Bayesian/TPE with Fourier embedding remains within
+the $15\,^\circ\mathrm{C}$ acceptance band at every skip factor including
+$k=5$ ($12.55\pm0.30\,^\circ\mathrm{C}$, 80\% FEM saving). Four FEM calls
+suffice instead of twenty. Seed variance is very low
+($\sigma \leq 0.29\,^\circ\mathrm{C}$), confirming that this result is
+reproducible. Second, NSGA-II and NSGA-III remain acceptable through $k=4$
+($14.14$ and $14.40\,^\circ\mathrm{C}$ respectively, 75\% saving) but exceed
+the threshold at $k=5$ by less than $1\,^\circ\mathrm{C}$. Third, Bayesian/TPE
+consistently achieves the lowest mean at every $k$. It benefits from both its
+larger capacity ($5{\times}151$ vs.\ $3{\times}153$ and $3{\times}75$) and the
+Fourier embedding that reduces per-window error by $1.8$--$4.4\,^\circ\mathrm{C}$
+relative to plain MLP (see Appendix~\ref{app:ablation} for the ablation).
+
+Prediction quality degrades gradually as $k$ increases and errors concentrate at the fin-base junctions.
+Temperature field heat maps (2D cross-sections and 3D volumetric views) for all architectures and skip factors are in Appendix~\ref{app:tf_heatmaps} (Figures~\ref{fig:app_tf_fixed_2d} and~\ref{fig:app_tf_fixed_3d}).
+
+% -----------------------------------------------------------------------------
+\subsection{FEM Anchored Adaptive \texorpdfstring{$k$}{k}}
+\label{subsec:tf_fem_adaptive}
+
+The adaptive controller monitors the per-window error and adjusts $k$ on the
+fly. It starts conservatively at $k=1$ and promotes to a longer window only
+once the error has stayed low for two consecutive windows. Phase-based caps
+prevented promotion to $k>2$ before $t=10\,\mathrm{s}$ and to $k>4$ before
+$t=20\,\mathrm{s}$, ensuring the controller kept short windows during the
+steepest part of the transient. All three architectures were trained with the
+same adaptive schedule, using the same per-window training budget as the
+fixed-$k$ runs. Table~\ref{tab:tf_fem_adaptive} shows the outcomes.
+
+\begin{table}[H]
+\centering
+\caption{Thermal Fin adaptive-$k$ controller: FEM savings, accuracy, and window schedule.}
+\label{tab:tf_fem_adaptive}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccl}
+\toprule
+Architecture & FEM calls & FEM saved & Mean MAE ($^\circ$C) & $L_2$ rel. & Final MAE ($^\circ$C) & $k$ schedule \\
+\midrule
+Bayesian/TPE & 11 & 45\% & 11.26 & 0.068 & 6.35
+  & 1-1-1-1-1-2-2-3-3-4-1 \\
+NSGA-II      & 11 & 45\% & \textbf{10.54} & \textbf{0.061} & \textbf{4.50}
+  & 1-1-1-1-1-2-2-3-3-4-1 \\
+NSGA-III     & 11 & 45\% & 13.21 & 0.068 & 6.06
+  & 1-1-1-1-1-1-2-2-3-3-4 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Table~\ref{tab:tf_fem_adaptive} shows MAE and $L_2$ relative error alongside
+the window schedule selected by the controller. The controller used 11 of 20
+FEM calls (45\% saving), and the remaining 9 FEM calls were replaced by PINN
+predictions over progressively longer windows. The adaptive schedule does not
+outperform the best fixed-$k$ result. Bayesian/TPE with fixed $k=5$ achieves
+$12.55\,^\circ\mathrm{C}$ (ten-seed mean) at 80\% FEM saving, while the adaptive run reaches
+only $11.26\,^\circ\mathrm{C}$ at 45\% saving. The mechanism behind this
+underperformance, a threshold--architecture mismatch that causes different
+architectures to promote and demote at incorrect points, is analysed in
+Section~\ref{sec:disc_thermalfin}. The $k$ schedule column lists the skip
+factor for each consecutive window from $t=0$ to $t=30\,\mathrm{s}$. The
+final entry ($k=1$) covers the last short window near equilibrium. All three
+architectures achieve mean-window MAE within the $15\,^\circ\mathrm{C}$
+threshold and $L_2{<}0.07$ (excellent field reconstruction), confirming that
+the adaptive controller maintains quality comparable to fixed $k=2$--$3$ runs.
+
+The controller behaved physically as expected: it held at $k=1$ during the
+steep early gradient phase, then promoted to $k=2$, $k=3$, and $k=4$ as the
+field relaxed, automatically tracking prediction difficulty.
+The window timing for each architecture is shown in the $k$ schedule column of
+Table~\ref{tab:tf_fem_adaptive}.
+
+Temperature field heat maps for the adaptive-$k$ runs are in Appendix~\ref{app:tf_heatmaps} (Figure~\ref{fig:app_tf_adap_pinn_2d}).
+
+Figure~\ref{fig:tf_l2_curve} shows how the per-window $L_2$ relative error
+evolves over the 30-second quench. Error is highest in the first windows
+because fin-tip gradients are steepest early in the quench. The error
+decreases as the field approaches uniformity, consistent with the early-window
+difficulty seen in all benchmark groups.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{l2_all_k_thermal_fin.png}
+\caption{Per-window $L_2$ relative error over the 30-second Thermal Fin quench.
+Line: ten-seed mean; band: $\pm$one standard deviation. Colour encodes $k$.}
+\label{fig:tf_l2_curve}
+\end{figure}
+
+
+% -----------------------------------------------------------------------------
+\subsection{PINN Only Rollouts}
+\label{subsec:tf_pinn_only}
+
+To understand how much of the accuracy comes from the FEM corrections, the
+network was also run without any anchoring after $t=0$. In this mode the
+network receives the FEM initial condition once and then propagates entirely
+from its own output, with no corrections at any subsequent window. This is the
+most extreme test of the surrogate. Each window's prediction depends only on
+the previous PINN output, so any error in one window feeds directly into the
+next as its initial condition. All 15 architecture--$k$ combinations were run
+under this protocol, with the same training setup as the FEM-anchored runs.
+Table~\ref{tab:tf_pinn_only_fixed} shows the full set of results.
+
+\begin{table}[H]
+\centering
+\caption{Thermal Fin PINN-Only Fixed-$k$ Rollout: Catastrophic Error Without FEM Correction.
+Mean-window MAE and final-window MAE ($^\circ\mathrm{C}$) across all 15 architecture--skip-factor
+combinations run without any FEM anchor after $t=0$.  Bold = lowest mean MAE per architecture.
+$L_2$ relative error is not reported because all values exceed the practical measurement range ($L_2 \gg 1$).}
+\label{tab:tf_pinn_only_fixed}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccccc}
+\toprule
+Architecture & $k$ & Windows & FEM saved & Mean MAE ($^\circ$C) & Final MAE ($^\circ$C) \\
+\midrule
+Bayesian/TPE & 1 & 20 & 95\% & 217.10 & 327.97 \\
+Bayesian/TPE & 2 & 10 & 95\% & 242.96 & 348.91 \\
+Bayesian/TPE & 3 &  7 & 95\% & 249.30 & 345.20 \\
+Bayesian/TPE & 4 &  5 & 95\% & 221.42 & 292.17 \\
+Bayesian/TPE & 5 &  4 & 95\% & 264.88 & 350.28 \\
+\midrule
+NSGA-II      & 1 & 20 & 95\% & 180.46 & 241.67 \\
+NSGA-II      & 2 & 10 & 95\% & 119.62 &  57.13 \\
+NSGA-II      & 3 &  7 & 95\% & \textbf{113.46} &  50.85 \\
+NSGA-II      & 4 &  5 & 95\% & 134.24 &  83.25 \\
+NSGA-II      & 5 &  4 & 95\% & 160.15 & 108.26 \\
+\midrule
+NSGA-III     & 1 & 20 & 95\% &  83.78 & 115.15 \\
+NSGA-III     & 2 & 10 & 95\% & 160.89 & 206.46 \\
+NSGA-III     & 3 &  7 & 95\% &  62.90 &  51.16 \\
+NSGA-III     & 4 &  5 & 95\% &  95.91 &  66.54 \\
+NSGA-III     & 5 &  4 & 95\% & \textbf{59.20} &  44.47 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:tf_pinn_only_fixed} reports mean-window and final-window MAE
+for every (architecture, $k$) combination without FEM anchoring.
+\emph{Mean-window MAE} averages the absolute error over all prediction windows
+and grid points throughout the 30-second rollout. This is the honest measure
+of overall accuracy. \emph{Final-window MAE} measures only the last window at
+$t=30\,\mathrm{s}$. Because the temperature field approaches uniformity at the
+end of quenching, final-window values appear deceptively low even when
+intermediate predictions were catastrophically wrong. Mean-window MAE should
+always be used as the primary metric.
+
+Bayesian/TPE is completely unstable without FEM correction. All five $k$
+values produce mean-window MAE above $200\,^\circ\mathrm{C}$, showing that
+the large ReLU network accumulates drift regardless of window length. NSGA-III
+performs best (minimum $59.20\,^\circ\mathrm{C}$ at $k=5$), yet this is still
+nearly four times the $15\,^\circ\mathrm{C}$ threshold. $L_2$ relative error
+is not reported for PINN-only runs because all values exceed the practical
+range ($L_2 \gg 1$), making the metric uninformative.
+
+Unlike the FEM-anchored runs where errors stay localised near fin junctions,
+the PINN-only errors spread over the entire fin geometry.
+Temperature field heat maps for the PINN-only runs are in Appendix~\ref{app:tf_heatmaps} (Figure~\ref{fig:app_tf_adap_pinn_2d}).
+
+The adaptive controller was also tested in PINN-only mode.
+Table~\ref{tab:tf_pinn_only_adaptive} shows the outcomes.
+
+\begin{table}[H]
+\centering
+\caption{Thermal Fin PINN-Only Adaptive-$k$ Rollout: Adaptive Controller Failure Without FEM Correction.
+The controller stalls at $k=1$ for all architectures because the first-window error immediately
+exceeds the demotion threshold, preventing any window promotion.  Mean-window MAE exceeds $100\,^\circ\mathrm{C}$
+in all cases, demonstrating that periodic FEM correction is a necessary condition for stable prediction.}
+\label{tab:tf_pinn_only_adaptive}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccl}
+\toprule
+Architecture & FEM calls & FEM saved & Mean MAE ($^\circ$C) & Final MAE ($^\circ$C) & $k$ schedule \\
+\midrule
+Bayesian/TPE & 1 & 95\% & 200.40 & 199.70 & $k{=}1$ for all 20 windows \\
+NSGA-II      & 1 & 95\% & 173.62 & 185.99 & $k{=}1$ for all 20 windows \\
+NSGA-III     & 1 & 95\% & 185.00 & 197.14 & $k{=}1$ for all 20 windows \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Table~\ref{tab:tf_pinn_only_adaptive} shows the extreme consequence of
+removing FEM anchoring entirely. The adaptive controller evaluates whether to
+increase $k$ based on per-window error. Without FEM correction, the
+first-window error exceeds $100\,^\circ\mathrm{C}$ immediately, above the
+demotion threshold, so the controller stalls at $k=1$ for all 20 windows.
+Even maximum temporal resolution (no step-skipping) cannot save the rollout.
+The error comes from the absence of periodic FEM correction, not from window
+length. This table is the clearest demonstration in the thesis that FEM
+anchoring is \emph{necessary}, not merely helpful.
+
+Figure~\ref{fig:tf_seed_bars} shows the FEM-anchored fixed-$k$ mean-window
+MAE for all ten seeds across each skip factor. Each panel corresponds to one
+architecture. The solid line is the ten-seed mean and the shaded band covers
+one standard deviation.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{seed_bar_thermal_fin.png}
+\caption{Seed-to-seed variability in mean-window MAE for the Thermal Fin.
+Line: ten-seed mean; band: $\pm$one standard deviation.}
+\label{fig:tf_seed_bars}
+\end{figure}
+
+Three patterns stand out. First, Bayesian/TPE (Fourier) shows the narrowest
+bands at every skip factor, confirming that the Fourier embedding stabilises
+training against random initialisation as well as improving accuracy. Second,
+the band width grows with $k$ for all architectures, consistent with the
+observation that longer prediction windows amplify initialisation-dependent
+variability. Third, no individual seed violates the $15\,^\circ\mathrm{C}$
+threshold for Bayesian/TPE through $k=5$, whereas NSGA-II and NSGA-III have
+individual seeds above the threshold only at $k=5$ (see
+Table~\ref{tab:tf_consolidated} for the full per-seed values).
+
+The low seed variance across the thermal fin domain, which is smaller than for
+most 3D canonical domains, reflects the effect of the Fourier embedding for
+Bayesian/TPE and the relatively moderate geometry complexity for NSGA-II/III.
+The fin junction gradients are steep but localised, and the MSWP strategy
+limits error accumulation through periodic FEM correction.

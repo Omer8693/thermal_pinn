@@ -1,0 +1,63 @@
+{
+  "domain": "thermal_fin",
+  "arch": "bayesian",
+  "dim": 3,
+  "run_tag": "seed_B",
+  "mean_mae": 18.676107283664436,
+  "n_windows": 2,
+  "fem_savings_pct": 90.0,
+  "k_schedule": [
+    1,
+    1
+  ],
+  "windows": [
+    {
+      "window": 1,
+      "t_start": 0.0,
+      "t_end": 1.5,
+      "k_used": 1,
+      "phase_cap": 2,
+      "mode": "burn-in",
+      "mae_C": 17.761116752895703,
+      "l2_rel": 0.06516071912899506,
+      "runtime_s": 30.790573835372925
+    },
+    {
+      "window": 2,
+      "t_start": 1.5,
+      "t_end": 3.0,
+      "k_used": 1,
+      "phase_cap": 2,
+      "mode": "burn-in",
+      "mae_C": 19.591097814433166,
+      "l2_rel": 0.08427920095363892,
+      "runtime_s": 30.00627064704895
+    }
+  ],
+  "controller": {
+    "k_init": 1,
+    "k_min": 1,
+    "k_max": 5,
+    "thresh_up": 13.0,
+    "thresh_down": 16.0,
+    "burnin_windows": 2,
+    "burnin_k": 1,
+    "promote_streak": 2,
+    "early_until": 10.0,
+    "mid_until": 20.0,
+    "early_k_max": 2,
+    "mid_k_max": 4,
+    "late_k_max": 5
+  },
+  "train_config": {
+    "n_domain": 12000,
+    "n_bc": 2400,
+    "n_epochs": 2000,
+    "lr": 0.0008,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 100,
+    "n_eval": 4000,
+    "use_end_supervision": true
+  },
+  "total_s": 62.25198221206665
+}

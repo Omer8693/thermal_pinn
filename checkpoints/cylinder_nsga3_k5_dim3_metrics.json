@@ -1,0 +1,40 @@
+{
+  "domain": "cylinder",
+  "arch": "nsga3",
+  "k": 5,
+  "dim": 3,
+  "mean_mae": 17.11699139132815,
+  "n_windows": 4,
+  "windows": [
+    {
+      "t_start": 0.0,
+      "t_end": 7.5,
+      "mae_C": 26.013285325281164,
+      "l2_rel": 0.08425617726324762,
+      "runtime_s": 22.58916687965393
+    },
+    {
+      "t_start": 7.5,
+      "t_end": 15.0,
+      "mae_C": 21.353801325707327,
+      "l2_rel": 0.10918025012476511,
+      "runtime_s": 21.08145260810852
+    },
+    {
+      "t_start": 15.0,
+      "t_end": 22.5,
+      "mae_C": 11.646132239513072,
+      "l2_rel": 0.05791643518893627,
+      "runtime_s": 19.264314651489258
+    },
+    {
+      "t_start": 22.5,
+      "t_end": 30.0,
+      "mae_C": 9.454746674811027,
+      "l2_rel": 0.04971348855939954,
+      "runtime_s": 18.999341249465942
+    }
+  ],
+  "total_s": 81.99145412445068,
+  "checkpoint": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/cylinder_nsga3_k5_dim3.pt"
+}

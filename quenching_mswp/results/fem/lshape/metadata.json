@@ -1,0 +1,14 @@
+{
+  "geometry": "lshape",
+  "n_refine": 4,
+  "n_vertices": 833,
+  "n_cells": 1536,
+  "t_assemble_s": 0.012,
+  "t_solve_s": 0.1451,
+  "t_total_s": 0.1572,
+  "T_mean_init": 540.0,
+  "T_mean_final": 20.0006,
+  "T_min_final": 20.0005,
+  "T_max_final": 20.0007,
+  "cooling_fraction": 1.0
+}

@@ -1,0 +1,31 @@
+2026-05-21 22:45:40 [stage4][all][nas_original][k=-][s=-] INFO Stage 4 NAS-PINN C1 | outer=20 × inner=10
+2026-05-21 22:45:40 [stage4][all][nas_original][k=-][s=-] INFO === NAS: square ===
+2026-05-21 22:46:31 [stage4][all][nas_original][k=-][s=-] INFO Stage 4 NAS-PINN C1 | outer=20 × inner=10
+2026-05-21 22:46:31 [stage4][all][nas_original][k=-][s=-] INFO === NAS: square ===
+2026-05-21 22:49:08 [stage4][all][nas_original][k=-][s=-] INFO Saved figure: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/square_nas_comparison.png
+2026-05-21 22:49:08 [stage4][all][nas_original][k=-][s=-] INFO === Stage 4 complete ===
+2026-05-21 22:49:08 [stage4][all][nas_original][k=-][s=-] INFO   square    arch=[70, 90, 70, 70, 90, 70, 70]  MAE=23.98 C  L2=0.2458
+2026-05-21 22:49:31 [stage4][all][nas_original][k=-][s=-] INFO Stage 4 NAS-PINN C1 | outer=100 × inner=50
+2026-05-21 22:49:31 [stage4][all][nas_original][k=-][s=-] INFO === NAS: square ===
+2026-05-21 22:54:44 [stage4][all][nas_original][k=-][s=-] INFO Saved figure: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/square_nas_comparison.png
+2026-05-21 22:54:44 [stage4][all][nas_original][k=-][s=-] INFO === NAS: circle ===
+2026-05-21 22:59:54 [stage4][all][nas_original][k=-][s=-] INFO Saved figure: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/circle_nas_comparison.png
+2026-05-21 22:59:54 [stage4][all][nas_original][k=-][s=-] INFO === NAS: lshape ===
+2026-05-21 23:04:58 [stage4][all][nas_original][k=-][s=-] INFO Saved figure: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/lshape_nas_comparison.png
+2026-05-21 23:04:58 [stage4][all][nas_original][k=-][s=-] INFO === NAS: flower ===
+2026-05-21 23:09:55 [stage4][all][nas_original][k=-][s=-] INFO Saved figure: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/flower_nas_comparison.png
+2026-05-21 23:09:55 [stage4][all][nas_original][k=-][s=-] INFO === Stage 4 complete ===
+2026-05-21 23:09:55 [stage4][all][nas_original][k=-][s=-] INFO   square    arch=[110, 110, 110, 90]   MAE=21.92 C  L2=0.1593
+2026-05-21 23:09:55 [stage4][all][nas_original][k=-][s=-] INFO   circle    arch=[90, 110, 110, 70]    MAE=24.35 C  L2=0.2699
+2026-05-21 23:09:55 [stage4][all][nas_original][k=-][s=-] INFO   lshape    arch=[10, 90, 10, 50]      MAE=33.60 C  L2=0.2325
+2026-05-21 23:09:55 [stage4][all][nas_original][k=-][s=-] INFO   flower    arch=[70]                  MAE=31.92 C  L2=0.9304
+2026-05-23 22:17:13 [stage4][all][nas_original][k=-][s=-] INFO Stage 4 NAS-PINN C1 | outer=100 × inner=50
+2026-05-23 22:17:13 [stage4][all][nas_original][k=-][s=-] INFO === NAS: square ===
+2026-05-23 22:21:19 [stage4][all][nas_original][k=-][s=-] INFO Saved figure: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/square_nas_comparison.png
+2026-05-23 22:21:19 [stage4][all][nas_original][k=-][s=-] INFO === Stage 4 complete ===
+2026-05-23 22:21:19 [stage4][all][nas_original][k=-][s=-] INFO   square    arch=[70]                  MAE=21.71 C  L2=0.1632
+2026-05-23 23:05:44 [stage4][all][nas_original][k=-][s=-] INFO Stage 4 NAS-PINN C1 | outer=100 × inner=50
+2026-05-23 23:05:44 [stage4][all][nas_original][k=-][s=-] INFO === NAS: square ===
+2026-05-23 23:11:53 [stage4][all][nas_original][k=-][s=-] INFO Saved figure: /home/coder/NAS-PINNS1/thermal_pinn/quenching_mswp/figures/heat_maps/square_nas_comparison.png
+2026-05-23 23:11:53 [stage4][all][nas_original][k=-][s=-] INFO === Stage 4 complete ===
+2026-05-23 23:11:53 [stage4][all][nas_original][k=-][s=-] INFO   square    arch=[90]                  MAE=21.71 C  L2=0.1603

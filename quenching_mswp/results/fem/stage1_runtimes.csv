@@ -1,0 +1,5 @@
+geometry,n_refine,n_vertices,n_cells,t_assemble_s,t_solve_s,t_total_s,T_mean_init,T_mean_final,T_min_final,T_max_final,cooling_fraction
+square,4,1089,2048,0.017,0.2054,0.2223,540.0,20.0,20.0,20.0,1.0
+circle,4,8321,16384,0.0825,3.4419,3.5244,540.0,20.0,20.0,20.0,1.0
+lshape,4,833,1536,0.012,0.1451,0.1572,540.0,20.0006,20.0005,20.0007,1.0
+flower,4,935,1468,0.0179,0.1231,0.141,540.0,20.0,20.0,20.0,1.0
