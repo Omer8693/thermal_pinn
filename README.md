@@ -1,6 +1,10 @@
-# NAS-PINN: Neural Architecture Search for FEM-Anchored Thermal Simulation
+# Neural Architecture Search Guided Physics Informed Neural Networks for Finite Element Method Anchored Transient Heat Transfer Simulation
 
-This repository contains the code, metrics, and results for a master's thesis on accelerating transient water-quenching simulations using Physics-Informed Neural Networks (PINNs) guided by Neural Architecture Search (NAS).
+**Step Optimization in Thermal Simulation Using Selective Finite Element Method Step Skipping**
+
+*Master's Thesis — Ömer Cetinkaya, University of Agder, 2026*
+
+This repository contains the code, metrics, and results for the thesis. It extends the NAS-PINN framework of Wang & Zhong (2024) to FEM-anchored transient heat transfer simulation using a Multi-Step Window Prediction (MSWP) strategy.
 
 ## Motivation
 
@@ -64,8 +68,12 @@ thermal_pinn/
 | FEM solver | Crank–Nicolson (Δt = 0.5 s) |
 | Acceptance threshold | MAE ≤ 15°C |
 
-## Reference
+## References
 
-Physical parameters and engineering motivation follow:
+**NAS-PINN (original framework this work extends):**
+
+> Wang, Y. & Zhong, L. (2024). NAS-PINN: Neural architecture search-guided physics-informed neural network for solving PDEs. *Journal of Computational Physics*, 496, 112603. https://doi.org/10.1016/j.jcp.2023.112603
+
+**Physical parameters and engineering motivation:**
 
 > Mortensen et al. (2026). *FEM-based thermomechanical simulation of water quenching for A356 aluminium subframes.*
