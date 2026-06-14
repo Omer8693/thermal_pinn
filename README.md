@@ -4,6 +4,8 @@
 
 *Master's Thesis — Ömer Cetinkaya, University of Agder, 2026*
 
+**[Project Website](https://omer8693.github.io/thermal_pinn/)** — results, figures, and method overview
+
 This repository contains the code, metrics, and results for the thesis. It extends the NAS-PINN framework of Wang & Zhong (2024) to FEM-anchored transient heat transfer simulation using a Multi-Step Window Prediction (MSWP) strategy.
 
 ## Motivation
