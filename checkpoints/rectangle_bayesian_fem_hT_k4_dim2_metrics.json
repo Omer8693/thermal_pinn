@@ -1,0 +1,62 @@
+{
+  "domain": "rectangle",
+  "arch": "bayesian",
+  "tag": "fem_hT",
+  "strategy": "fem_anchor_fixed_k_sweep",
+  "reference_used_each_window": true,
+  "reference_used_for_final_evaluation": true,
+  "k": 4,
+  "dim": 2,
+  "mean_mae": 6.24111371684204,
+  "n_windows": 5,
+  "windows": [
+    {
+      "t_start": 0.0,
+      "t_end": 6.0,
+      "mae_C": 4.259132134080077,
+      "l2_rel": 0.021902494361254923,
+      "runtime_s": 9.574856758117676
+    },
+    {
+      "t_start": 6.0,
+      "t_end": 12.0,
+      "mae_C": 5.316360081401667,
+      "l2_rel": 0.022424220773248224,
+      "runtime_s": 9.059414148330688
+    },
+    {
+      "t_start": 12.0,
+      "t_end": 18.0,
+      "mae_C": 6.576023432076867,
+      "l2_rel": 0.02539806624128041,
+      "runtime_s": 9.034174680709839
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 24.0,
+      "mae_C": 7.686070446174383,
+      "l2_rel": 0.028362094765550325,
+      "runtime_s": 8.978346824645996
+    },
+    {
+      "t_start": 24.0,
+      "t_end": 30.0,
+      "mae_C": 7.367982490477206,
+      "l2_rel": 0.02516056620177335,
+      "runtime_s": 9.0007164478302
+    }
+  ],
+  "total_s": 45.82609987258911,
+  "checkpoint": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/rectangle_bayesian_fem_hT_k4_dim2.pt",
+  "train_kwargs": {
+    "n_domain": 1500,
+    "n_bc": 300,
+    "n_epochs": 800,
+    "lr": 0.001,
+    "lr_min": 1e-05,
+    "lbfgs_iters": 50,
+    "use_end_supervision": true,
+    "use_physical_scaling": false,
+    "balanced_feature_sampling": false
+  }
+}
