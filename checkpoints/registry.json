@@ -1,21 +1,6 @@
 [
   {
     "domain": "rectangle",
-    "arch": "bayesian",
-    "dim": 2,
-    "best_k": 1,
-    "best_mae": 2.488366585204578,
-    "all_k": {
-      "1": 2.488366585204578,
-      "2": 3.485768361730277,
-      "3": 4.338555367713111,
-      "4": 5.348806985622483,
-      "5": 5.804415596977628
-    },
-    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/rectangle_bayesian_k1_dim2.pt"
-  },
-  {
-    "domain": "rectangle",
     "arch": "nsga2",
     "dim": 2,
     "best_k": 1,
@@ -3234,6 +3219,108 @@
       "5": 12.519887364861065
     },
     "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/lshape_nsga3_seed_J_k1_dim2.pt",
+    "train_kwargs": {
+      "n_domain": 1500,
+      "n_bc": 300,
+      "n_epochs": 800,
+      "lr": 0.001,
+      "lr_min": 1e-05,
+      "lbfgs_iters": 50,
+      "use_end_supervision": true,
+      "use_physical_scaling": false,
+      "balanced_feature_sampling": false
+    }
+  },
+  {
+    "domain": "rectangle",
+    "arch": "bayesian",
+    "tag": "",
+    "strategy": "fem_anchor_fixed_k_sweep",
+    "dim": 2,
+    "best_k": 1,
+    "best_mae": 19.64954614557158,
+    "all_k": {
+      "1": 19.64954614557158
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/rectangle_bayesian_k1_dim2.pt",
+    "train_kwargs": {
+      "n_domain": 1500,
+      "n_bc": 300,
+      "n_epochs": 50,
+      "lr": 0.001,
+      "lr_min": 1e-05,
+      "lbfgs_iters": 10,
+      "use_end_supervision": true,
+      "use_physical_scaling": false,
+      "balanced_feature_sampling": false
+    }
+  },
+  {
+    "domain": "rectangle",
+    "arch": "bayesian",
+    "tag": "fem_hT",
+    "strategy": "fem_anchor_fixed_k_sweep",
+    "dim": 2,
+    "best_k": 1,
+    "best_mae": 5.682144051433081,
+    "all_k": {
+      "1": 5.682144051433081,
+      "2": 5.926390144704838,
+      "3": 7.762706032783776,
+      "4": 6.24111371684204,
+      "5": 6.887626716411319
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/rectangle_bayesian_fem_hT_k1_dim2.pt",
+    "train_kwargs": {
+      "n_domain": 1500,
+      "n_bc": 300,
+      "n_epochs": 800,
+      "lr": 0.001,
+      "lr_min": 1e-05,
+      "lbfgs_iters": 50,
+      "use_end_supervision": true,
+      "use_physical_scaling": false,
+      "balanced_feature_sampling": false
+    }
+  },
+  {
+    "domain": "circle",
+    "arch": "bayesian",
+    "tag": "fem_hT",
+    "strategy": "fem_anchor_fixed_k_sweep",
+    "dim": 2,
+    "best_k": 1,
+    "best_mae": 6.012985678923631,
+    "all_k": {
+      "1": 6.012985678923631,
+      "2": 7.318272145445223
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/circle_bayesian_fem_hT_k1_dim2.pt",
+    "train_kwargs": {
+      "n_domain": 1500,
+      "n_bc": 300,
+      "n_epochs": 800,
+      "lr": 0.001,
+      "lr_min": 1e-05,
+      "lbfgs_iters": 50,
+      "use_end_supervision": true,
+      "use_physical_scaling": false,
+      "balanced_feature_sampling": false
+    }
+  },
+  {
+    "domain": "lshape",
+    "arch": "bayesian",
+    "tag": "fem_hT",
+    "strategy": "fem_anchor_fixed_k_sweep",
+    "dim": 2,
+    "best_k": 2,
+    "best_mae": 4.0101419251832295,
+    "all_k": {
+      "1": 4.957663628819537,
+      "2": 4.0101419251832295
+    },
+    "checkpoint_best": "/home/coder/NAS-PINNS1/thermal_pinn/checkpoints/lshape_bayesian_fem_hT_k2_dim2.pt",
     "train_kwargs": {
       "n_domain": 1500,
       "n_bc": 300,
