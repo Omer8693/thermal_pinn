@@ -2,7 +2,6 @@
 
 **Step Optimization in Thermal Simulation Using Selective Finite Element Method Step Skipping**
 
-*Master's Thesis — Ömer Cetinkaya, University of Agder, 2026*
 
 **[Project Website](https://omer8693.github.io/thermal_pinn/)** — results, figures, and method overview
 
