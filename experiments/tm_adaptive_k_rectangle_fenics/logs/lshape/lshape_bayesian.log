@@ -1,0 +1,46 @@
+2026-09-16 03:44:51,277 - tmu.util.cuda_profiler - WARNING - Could not import pycuda: No module named 'pycuda'
+2026-09-16 03:44:51,278 - tmu.clause_bank.clause_bank_cuda - ERROR - No module named 'pycuda'
+Traceback (most recent call last):
+  File "/home/coder/.local/lib/python3.12/site-packages/tmu/clause_bank/clause_bank_cuda.py", line 41, in <module>
+    from pycuda._driver import Device, Context
+ModuleNotFoundError: No module named 'pycuda'
+2026-09-16 03:44:51,284 - tmu.clause_bank.clause_bank_cuda - WARNING - Could not import pycuda. This indicates that it is not installed! A possible fix is to run 'pip install pycuda'. Fallback to CPU ClauseBanks.
+Device: cuda  geometry: lshape
+[TM] trained on all 138 rows, final train_acc=1.000
+
+=== algorithm3 ===
+  [ 1] [0.0->1.5s] k=1  MAE=5.85C  true=SAFE  MAE=5.85C vs thresh_up=2.0 / thresh_down=5.0  -> k_next=1  (10s)
+  [ 2] [1.5->3.0s] k=1  MAE=3.98C  true=SAFE  MAE=3.98C vs thresh_up=2.0 / thresh_down=5.0  -> k_next=1  (10s)
+  [ 3] [3.0->4.5s] k=1  MAE=3.10C  true=SAFE  MAE=3.10C vs thresh_up=2.0 / thresh_down=5.0  -> k_next=1  (11s)
+  [ 4] [4.5->6.0s] k=1  MAE=2.44C  true=SAFE  MAE=2.44C vs thresh_up=2.0 / thresh_down=5.0  -> k_next=1  (10s)
+  [ 5] [6.0->7.5s] k=1  MAE=1.93C  true=SAFE  MAE=1.93C vs thresh_up=2.0 / thresh_down=5.0  -> k_next=2  (9s)
+  [ 6] [7.5->10.5s] k=2  MAE=3.67C  true=SAFE  MAE=3.67C vs thresh_up=2.0 / thresh_down=5.0  -> k_next=2  (9s)
+  [ 7] [10.5->13.5s] k=2  MAE=4.76C  true=SAFE  MAE=4.76C vs thresh_up=2.0 / thresh_down=5.0  -> k_next=2  (10s)
+  [ 8] [13.5->16.5s] k=2  MAE=5.69C  true=SAFE  MAE=5.69C vs thresh_up=2.0 / thresh_down=5.0  -> k_next=1  (10s)
+  [ 9] [16.5->18.0s] k=1  MAE=2.62C  true=SAFE  MAE=2.62C vs thresh_up=2.0 / thresh_down=5.0  -> k_next=1  (10s)
+  [10] [18.0->19.5s] k=1  MAE=1.69C  true=SAFE  MAE=1.69C vs thresh_up=2.0 / thresh_down=5.0  -> k_next=2  (10s)
+  [11] [19.5->22.5s] k=2  MAE=1.87C  true=SAFE  MAE=1.87C vs thresh_up=2.0 / thresh_down=5.0  -> k_next=3  (10s)
+  [12] [22.5->27.0s] k=3  MAE=2.22C  true=SAFE  MAE=2.22C vs thresh_up=2.0 / thresh_down=5.0  -> k_next=3  (10s)
+  [13] [27.0->30.0s] k=2  MAE=3.23C  true=SAFE  MAE=3.23C vs thresh_up=2.0 / thresh_down=5.0  -> k_next=2  (11s)
+
+=== tm_guided ===
+  [ 1] [0.0->1.5s] k=1  MAE=5.85C  true=SAFE  TM predicted SAFE (true=SAFE)  -> k_next=2  (9s)
+  [ 2] [1.5->4.5s] k=2  MAE=3.46C  true=SAFE  TM predicted SAFE (true=SAFE)  -> k_next=3  (11s)
+  [ 3] [4.5->9.0s] k=3  MAE=3.43C  true=SAFE  TM predicted SAFE (true=SAFE)  -> k_next=4  (9s)
+  [ 4] [9.0->15.0s] k=4  MAE=3.38C  true=SAFE  TM predicted SAFE (true=SAFE)  -> k_next=5  (9s)
+  [ 5] [15.0->22.5s] k=5  MAE=3.38C  true=SAFE  TM predicted SAFE (true=SAFE)  -> k_next=5  (10s)
+  [ 6] [22.5->30.0s] k=5  MAE=3.19C  true=SAFE  TM predicted SAFE (true=SAFE)  -> k_next=5  (10s)
+
+=== tm_hybrid ===
+  [ 1] [0.0->1.5s] k=1  MAE=5.85C  true=SAFE  TM predicted SAFE  -> k_next=2  (9s)
+  [ 2] [1.5->4.5s] k=2  MAE=3.46C  true=SAFE  TM predicted SAFE  -> k_next=3  (12s)
+  [ 3] [4.5->9.0s] k=3  MAE=3.43C  true=SAFE  TM predicted SAFE  -> k_next=4  (9s)
+  [ 4] [9.0->15.0s] k=4  MAE=3.38C  true=SAFE  TM predicted SAFE  -> k_next=5  (9s)
+  [ 5] [15.0->22.5s] k=5  MAE=3.38C  true=SAFE  TM predicted SAFE; k grew 4->5 but MAE grew 3.38->3.38C; -> boosting next window to 6400 epochs (streak 1/3)  -> k_next=5  (10s)
+  [ 6] [22.5->30.0s] k=5  MAE=2.71C  true=SAFE  TM predicted SAFE  -> k_next=5  (74s)
+Report written -> /home/coder/NAS-PINNS1/thermal_pinn/experiments/tm_adaptive_k_rectangle_fenics/reports/lshape/compare_report.md
+
+=== SUMMARY ===
+Algorithm 3 : windows=13  savings=35.0%  mean_mae=3.31C  max_mae=5.85C
+TM-guided   : windows=6  savings=70.0%  mean_mae=3.78C  max_mae=5.85C
+TM-hybrid   : windows=6  savings=70.0%  mean_mae=3.70C  max_mae=5.85C
