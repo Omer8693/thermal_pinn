@@ -118,6 +118,7 @@ def run_adaptive(domain_name: str, arch: str, dim: int,
                  k_max: int  = K_MAX_DEFAULT,
                  thresh_up: float   = THRESH_UP_DEFAULT,
                  thresh_down: float = THRESH_DOWN_DEFAULT,
+                 tag: str = "",
                  verbose: bool = True) -> dict:
     """
     Adaptive-k training loop for one (domain, arch) combination.
@@ -248,13 +249,14 @@ def run_adaptive(domain_name: str, arch: str, dim: int,
 
     # Save metrics
     CHECKPOINT_DIR.mkdir(parents=True, exist_ok=True)
-    tag = f"{domain_name}_{arch}_adaptive_dim{dim}"
-    metrics_path = CHECKPOINT_DIR / f"{tag}_metrics.json"
+    tag_part = f"_{tag.strip('_')}" if tag else ""
+    stem = f"{domain_name}_{arch}_adaptive{tag_part}_dim{dim}"
+    metrics_path = CHECKPOINT_DIR / f"{stem}_metrics.json"
     with open(metrics_path, "w") as f:
         json.dump(result, f, indent=2)
 
     # Save model checkpoint
-    ckpt_path = CHECKPOINT_DIR / f"{tag}.pt"
+    ckpt_path = CHECKPOINT_DIR / f"{stem}.pt"
     torch.save({
         "model_state": model.state_dict(),
         "arch":        arch,
@@ -337,6 +339,7 @@ def main():
     parser.add_argument("--cuda",       action="store_true")
     parser.add_argument("--no_compare", action="store_true",
                         help="Skip comparison with fixed-k registry entry")
+    parser.add_argument("--tag", default="", help="Optional output tag, e.g. fem_hT")
     args = parser.parse_args()
 
     device = torch.device("cuda" if args.cuda and torch.cuda.is_available() else "cpu")
@@ -345,6 +348,7 @@ def main():
     kwargs = dict(
         k_init=args.k_init, k_min=args.k_min, k_max=args.k_max,
         thresh_up=args.thresh_up, thresh_down=args.thresh_down,
+        tag=args.tag,
         device=device,
     )
 
