@@ -4,9 +4,17 @@ __pycache__/
 .DS_Store
 .vscode/
 
-# Model checkpoints (large binary — tracked via metrics JSON only)
+# Model checkpoints: binary, kept out of git (the metrics JSON files are tracked)
 checkpoints/**/*.pt
 checkpoints/**/*.pt.bak
+*.pt
 
-# Thesis report (LaTeX source, not part of the code repo)
+# Thesis report LaTeX source
 reports/
+
+# data/ and assets/ are tracked (small files)
+!data/
+!assets/
+
+# Published papers: cited in the bibliography, not redistributed here
+quenching_mswp/*.pdf
