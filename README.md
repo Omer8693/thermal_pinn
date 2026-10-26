@@ -53,7 +53,12 @@ thermal_pinn/
 ├── plots/            # Plotting scripts for results
 ├── checkpoints/      # Experiment metrics (JSON) — .pt model files excluded
 ├── results/          # Generated figures and tables
-└── quenching_mswp/   # Quenching MSWP experiments (4 geometries, 10 seeds)
+├── data/             # FEM reference fields for the FEM h-T comparison (npz)
+├── assets/           # Figures used in FEM_HT_RESULTS.md and on the website
+├── experiments/      # Thermal-model guided adaptive k on the rectangle (in-process and FEniCS runs)
+├── quenching_mswp/   # Quenching MSWP experiments (4 geometries, 10 seeds)
+├── FEM_HT_RESULTS.md # FEM h-T comparison: adaptive, fixed-k and PINN-only results
+└── index.html        # Project website (GitHub Pages)
 ```
 
 ## Physical Setup
